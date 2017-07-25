@@ -1,3 +1,16 @@
+---
+title: UIApplication && UIViewController && UIView 生命周期
+date: 2017-06-02 09:23:26
+tags:
+- iOS
+- 生命周期
+categories:
+- iOS
+- UIApplication
+- UIViewController
+- UIView
+---
+
 ## UIApplicationDelegate
 
 **几个角色：**
