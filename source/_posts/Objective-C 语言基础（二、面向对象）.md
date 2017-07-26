@@ -28,7 +28,7 @@ categories:
 	```
 
 - 可以利用封装来解决这一问题。通过封装来隐藏对象的属性和实现的细节，仅对外提供公共的访问方法。
-
+<!-- more -->
 	```
 	@interface  Student : NSObject
 	{

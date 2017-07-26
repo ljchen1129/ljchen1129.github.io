@@ -25,7 +25,7 @@ categories: iOS
 //        NSLog(@"我也是OCTimer");
 //    }];
 }
-
+<!-- more -->
 // 在子线程中实现定时器
 - (void)OCTimerInBackgroudThread
 {

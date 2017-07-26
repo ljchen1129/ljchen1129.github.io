@@ -19,7 +19,7 @@ categories: iOS
 </div>
 
 2. 打开终端，输入如下命令：
-
+<!-- more -->
 	```
 	find . -name "*.m" -or -name "*.h" -or -name "*.xib" -or -name "*.c" |xargs grep -v "^$"|wc -l 
 	```

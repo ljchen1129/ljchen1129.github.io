@@ -27,7 +27,7 @@ categories:
 	3. 自定义类集成 NSOperation，实现内部相应的方法
 
 - NSInvocationOperation
-
+<!-- more -->
 ```
 // NSInvocationOperation 对象不会开启线程
 - (void)invocationOperation

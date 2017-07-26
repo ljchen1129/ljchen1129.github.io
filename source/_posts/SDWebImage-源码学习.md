@@ -16,6 +16,7 @@ SDWebImage 是用来做图片异步加载以及图片缓存的第三方库，用
 
 
 ## 使用方法
+<!-- more -->
 1.通过 `UIImageView+WebCache` 分类，给一个 UIImageView 视图下载并设置图片。
 
 ```

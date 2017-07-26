@@ -31,7 +31,7 @@ NSString *str3 = [NSString stringWithFormat:@"李四"];
 ```
 
 通过不同的方式创建的字符串，字符串对象存储的位置不一样
-
+<!-- more -->
 1. 通过字符串常量创建：字符串对象存储在`常量区`中，并且如果多个字符串对象，多个字符串对象指向同一块存储空间。
 	
 	![](http://o6heygfyq.bkt.clouddn.com/Snip20170416_5.png)

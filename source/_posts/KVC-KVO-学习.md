@@ -27,7 +27,7 @@ KVC：Key-value coding）键值编码。通过 key 值，来获取对象的属�
 ```
 
 **其他的一些方法：**
-
+<!-- more -->
 ```
 // 默认返回 YES，表示如果没有找到 Set<Key> 方法的话，会按照 _key，_iskey，key，iskey 的顺序搜索成员变量，设置成 NO 就不这样搜索
 + (BOOL)accessInstanceVariablesDirectly;

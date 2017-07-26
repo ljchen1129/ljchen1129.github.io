@@ -11,7 +11,7 @@ categories: Swift
 by Stanford](https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id1104579961)
 
 > [源代码](https://github.com/ljchen1129/SwiftLearningProctice)
-
+<!-- more -->
 # 开发环境
 >系统：macOS Sierra 10.12
 
@@ -731,14 +731,22 @@ Operation |Enum | 带关联值的枚举，存储运算的操作类型 | private
 
 	```
 	enumOptional<T>{ 
-		case None    	case Some(T)  	}
+		case None
+    	case Some(T)
+  	}
 	```
 
 2. 可选可以成链式（chained）：
 
 	```
 	var display: UILabel? // 假设 display 没有被定义成隐式解析可选的 UILabel 类型  
-		if let label = display {    	if let text = label.text {        	let x = text.hashValue			... 		}	}
+	
+	if let label = display {
+    	if let text = label.text {
+        	let x = text.hashValue
+			... 
+		}
+	}
 	```
 	可以简化为：
 	
@@ -747,7 +755,26 @@ Operation |Enum | 带关联值的枚举，存储运算的操作类型 | private
 	```
 
 3. 可选的默认运算符 "??"(空合运算符)
-	假设需求：给一个 UIlable 赋值一个 String 类型的文本，如果这个 String 为 nil, 则赋值为“ ”空格。一般需要这样做：	```	let s: String? = ... // might be nil	if s != nil {    	display.text = s	} else {    	display.text = “ “	}	```	但是有更简单的方式实现：	```	display.text = s ?? " " 	```	>使用空合运算符 ?? 需要满足两个条件： 	- s 是可选类型；	- 默认值的数据类型需要和可选类型的数据类型一致；
+	假设需求：给一个 UIlable 赋值一个 String 类型的文本，如果这个 String 为 nil, 则赋值为“ ”空格。一般需要这样做：
+
+	```
+	let s: String? = ... // might be nil
+	if s != nil {
+    	display.text = s
+	} else {
+    	display.text = “ “
+	}
+	```
+
+	但是有更简单的方式实现：
+
+	```
+	display.text = s ?? " " 
+	```
+
+	>使用空合运算符 ?? 需要满足两个条件： 
+	- s 是可选类型；
+	- 默认值的数据类型需要和可选类型的数据类型一致；
 
 ### 关联值枚举
 [关联值枚举](http://chenliangjing.me/2016/10/08/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80-Enumerations%EF%BC%89/#关联值-Associated-Values)

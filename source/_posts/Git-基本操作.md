@@ -20,7 +20,7 @@ git version
 
 ### git 配置
 安装完 git，首要任务是配置我们的信息，最重要的是用户名及邮箱，在终端中以下命令：
-
+<!-- more -->
 ```bash
 git config --global user.name "用户名" 
 git config --global user.email "用户邮箱"

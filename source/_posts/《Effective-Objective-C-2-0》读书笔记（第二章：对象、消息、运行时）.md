@@ -10,7 +10,7 @@ categories:
 ---
 ## 前言
 正在读[《Effective Objective-C 2.0》](https://book.douban.com/subject/25829244/)这本书，这本书主要介绍了一些使用 Objective-C 语言编写代码方面的 52 个有效方法，并且介绍了相应的原理。准备按章节写下读书笔记，并贴出实际的验证代码。
-
+<!-- more -->
 1. [《Effective Objective-C 2.0》读书笔记（第一章：熟悉 Objective-C）](http://chenliangjing.me/2017/03/27/%E3%80%8AEffective-Objective-C-2-0%E3%80%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E7%86%9F%E6%82%89-Objective-C/)
 2. [《Effective Objective-C 2.0》读书笔记（第二章：对象、消息、运行时）](http://chenliangjing.me/2017/03/27/%E3%80%8AEffective-Objective-C-2-0%E3%80%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E7%86%9F%E6%82%89-Objective-C/)
 3. 《Effective Objective-C 2.0》读书笔记（第三章：接口与 API 设计）

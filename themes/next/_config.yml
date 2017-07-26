@@ -50,6 +50,8 @@ menu:
   about: /about/
   archives: /archives/
   tags: /tags
+  iOS进阶: /iOS-进阶
+  零碎想法: /零碎想法
   #sitemap: /sitemap.xml
   commonweal: /404.html
 
@@ -66,6 +68,8 @@ menu_icons:
   categories: th
   schedule: calendar
   tags: tags
+  iOS进阶: money
+  零碎想法: edit
   archives: archive
   sitemap: sitemap
   commonweal: heartbeat
@@ -76,9 +80,9 @@ menu_icons:
 # ---------------------------------------------------------------
 
 # Schemes
-# scheme: Muse
-#scheme: Mist
-scheme: Pisces
+scheme: Muse
+# scheme: Mist
+# scheme: Pisces
 
 
 # ---------------------------------------------------------------
@@ -106,7 +110,7 @@ social_icons:
   Weibo: weibo
 
 # Blog rolls
-links_title: Links
+links_title: 友情链接
 # links_layout: block
 # links_layout: inline
 links:
