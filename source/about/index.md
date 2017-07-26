@@ -3,9 +3,6 @@ title: 关于我
 date: 2016-06-01 16:04:19
 ---
 
-<img src="index/myIcon.jpg" width="200px" height="200px
-">
-
 ## 基本资料
 姓名：陈良静
 性别：男
@@ -51,7 +48,7 @@ date: 2016-06-01 16:04:19
 	- 2015建发厦门国际马拉松（5：50)
 	- 2016香港渣打国际马拉松（4：50)
 	- 2017建发厦门国际马拉松（5：38）
-- #### 想参加
+- #### 想参加q
     - 2017深圳国际马拉松
     - 2017广州国际马拉松
 
@@ -64,7 +61,7 @@ HTML5、Swift、python
 [GitHub](https://github.com/ljchen1129)
 [新浪微博](http://weibo.com/u/3240004000?topnav=1&wvr=6&topsug=1&is_all=1)
 微信
-<img src="index/weixingIcon.png" width="200px" height="200px
+<img src="about/index/weixingIcon.png" width="200px" height="200px
 ">
 
 

@@ -5,9 +5,9 @@
 # Site
 title: coderChenlj
 subtitle: 记录个人成长历程
-description: 
+description: 运动，饮食，睡眠，运动，相结合，成就崭新的自己！
 author: 陈良静
-language: zh-CN
+language: zh-Hans
 timezone:
 
 # URL
@@ -64,7 +64,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: jacman
+theme: next
 stylus:
   compress: true
 
@@ -72,7 +72,18 @@ stylus:
 plugins:
 # - <plugin-name>  #插件名
 
+# 开启本地监听端口
+server:
+  port: 4001
+  compress: true
+  header: true
 
+# 站内搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

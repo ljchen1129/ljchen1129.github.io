@@ -21,6 +21,7 @@ categories:
 	3. 帮助管理应用程序的生命周期，通过 UIApplicationDelegate 代理类来实现，UIApplication 对象接收这些生命周期事件，UIApplicationDelegate 决定如何响应这些事件(应用程序的生命周期事件（比如程序启动和关闭）、系统事件（比如来电、记事项警告）)
 	
 * App delegate 对象
+<!-- more -->
 	* 遵循 UIApplicationDelegate 协议，响应 app 运行时重要事件（App 启动、App 内存不足、App 终止、切换到另一个 App、切回 App），主要用于在 App 启动时初始化一些重要的数据结构，如：初始化 UIWindow，设置一些属性，为 window 添加 rootViewController（self.window.rootViewController = [[XXXViewController alloc] init] 相当于 [self.window addSubview: [[XXXViewController alloc] init].view]）。
 	
 * UIWidow 对象
