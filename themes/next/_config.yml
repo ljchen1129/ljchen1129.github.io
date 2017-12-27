@@ -379,17 +379,17 @@ wildfire:
   ## 系统语言，目前可选值为en/zh-CN两种，默认为en
   locale: zh-CN
   ## Wilddog配置
-  # database_provider: wilddog
-  # site_id: site_id
+  database_provider: wilddog
+  site_id: wd2487578052fzgofz
   
   ## Firebase配置
-  database_provider: firebase
-  api_key: AIzaSyCvDkShFGcRnCaLmfnyUJi5HKGXuNQ014s
-  auth_domain: hexoblogcomment.firebaseapp.com
-  database_url: https://hexoblogcomment.firebaseio.com
-  project_id: hexoblogcomment
-  storage_bucket: hexoblogcomment.appspot.com
-  messaging_sender_id: 751302105776
+  # database_provider: firebase
+  # api_key: AIzaSyCvDkShFGcRnCaLmfnyUJi5HKGXuNQ014s
+  # auth_domain: hexoblogcomment.firebaseapp.com
+  # database_url: https://hexoblogcomment.firebaseio.com
+  # project_id: hexoblogcomment
+  # storage_bucket: hexoblogcomment.appspot.com
+  # messaging_sender_id: 751302105776
 
 
 
@@ -540,8 +540,8 @@ pace: false
 #pace-theme-mac-osx
 #pace-theme-minimal
 # For example
-# pace_theme: pace-theme-center-simple
-pace_theme: pace-theme-minimal
+pace_theme: pace-theme-center-simple
+# pace_theme: pace-theme-minimal
 
 # Canvas-nest
 canvas_nest: false
