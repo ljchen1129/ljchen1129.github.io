@@ -381,7 +381,7 @@ wildfire:
   ## Wilddog配置
   database_provider: wilddog
   site_id: wd2487578052fzgofz
-  
+
   ## Firebase配置
   # database_provider: firebase
   # api_key: AIzaSyCvDkShFGcRnCaLmfnyUJi5HKGXuNQ014s
@@ -518,7 +518,7 @@ exturl: false
 #! ---------------------------------------------------------------
 
 # Motion
-use_motion: true
+use_motion: false
 
 # Fancybox
 fancybox: true
@@ -540,14 +540,14 @@ pace: false
 #pace-theme-mac-osx
 #pace-theme-minimal
 # For example
-pace_theme: pace-theme-center-simple
-# pace_theme: pace-theme-minimal
+# pace_theme: pace-theme-center-simple
+pace_theme: pace-theme-minimal
 
 # Canvas-nest
 canvas_nest: false
 
 # three_waves
-three_waves: true
+three_waves: false
 
 # canvas_lines
 canvas_lines: false
@@ -649,3 +649,11 @@ images: images
 
 # Theme version
 version: 5.1.1
+
+reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+wechatpay: /wechat-reward-image.jpg
+alipay: /alipay-reward-image.jpg
+
+
+# 站点建立时间
+since: 2015
