@@ -651,8 +651,8 @@ images: images
 version: 5.1.1
 
 reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-wechatpay: /wechat-reward-image.jpg
-alipay: /alipay-reward-image.jpg
+wechatpay: /images/wechat-reward-image.jpg
+alipay: /images/alipay-reward-image.jpg
 
 
 # 站点建立时间
