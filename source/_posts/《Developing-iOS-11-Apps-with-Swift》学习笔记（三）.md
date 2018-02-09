@@ -48,7 +48,7 @@ categories:
 ## Range（区间）
 Swift 中没有 C 语言的那种 `for` 循环。
 
-```
+```c
 for(i = 0.5; i <= 15.25; i += 0.3)
 ```
 
@@ -56,7 +56,7 @@ for(i = 0.5; i <= 15.25; i += 0.3)
 
 在 Swift 中，有一个全局函数，可以用来创建一个 `CountableRange` 的循环区间。
 
-```
+```swift
 for i in stride(from:0.5, through:15.25, by:0.3) {
 }
 ```
@@ -69,7 +69,7 @@ for i in stride(from:0.5, through:15.25, by:0.3) {
 
 Tuples（元组）是一种轻量级的数据类型，里面只有值，没有属性，也没有方法。可以在任何地方使用元组：
 
-```
+```swift
 let x: (String, Int, Double) = (“hello”, 5, 0.85) // the type of x is “a tuple”
 let (word, number, value) = x // this names the tuple elements when accessing the tuple print(word) // prints hello
 print(number) // prints 5
@@ -78,7 +78,7 @@ print(value) // prints 0.85
 ```
 元组中的元素在声明之后也能够通过变量名访问：
 
-```
+```swift
 let x: (w: String, i: Int, v: Double) = (“hello”, 5, 0.85) print(x.w) // prints hello
 print(x.i) // prints 5
 print(x.v) // prints 0.85
@@ -86,7 +86,7 @@ let (wrd, num, val) = x // this is also legal (renames the tuple’s elements on
 ```
 `Tuples（元组）`非常适合在函数和方法中有多个返回值时使用：
 
-```
+```swift
 func getSize() -> (weight: Double, height: Double) { return (250, 80) }
 let x = getSize()
 print(“weight is \(x.weight)”) // weight is 250
@@ -97,7 +97,7 @@ print(“height is \(getSize().height)”) // height is 80
 ## Computed Properties（计算属性）
 在 Swift 中，属性可以分为存储属性（Stored property）和计算属性(Computed Properties)。
 
-```
+```swift
 <!--存储属性-->
   var foo: Double
 <!--计算属性-->
@@ -120,12 +120,12 @@ print(“height is \(getSize().height)”) // height is 80
 
 
 ## Access Control（访问控制）
-- internal 默认。表示可以仅在这个 App、或者框架framework 都能够访问。
-- private 私有。表示仅在这个对象作用域内才能访问。
-- private(set) 私有set。表示这个属性在这个对象外部是只读的。
-- fileprivate 文件私有。表示仅在这个源文件内都能够访问。
-- public 框架framework专有。表示在框架外面也能够访问到。 
-- open 框架framework专有。框架外面不只能够访问，还能继承。
+- `internal`: 默认。表示可以仅在这个 App、或者框架framework 都能够访问。
+- `private`: 私有。表示仅在这个对象作用域内才能访问。
+- `private(set) `: 私有set。表示这个属性在这个对象外部是只读的。
+- `fileprivate`: 文件私有。表示仅在这个源文件内都能够访问。
+- `public`: 框架framework专有。表示在框架外面也能够访问到。 
+- `open`: 框架framework专有。框架外面不只能够访问，还能继承。
 
 ## Assertions(断言)
 `Assertions(断言)` 是一个函数，可以用来在开发中保护 API，调试定位程序的 bug。
@@ -154,7 +154,7 @@ enum FastFoodMenuItem {
 - 关联值（Associated Data）
 	- 枚举的每一种状态都可以关联各自的值
 
-```
+```swift
 enum FastFoodMenuItem {
     case hamburger(numberOfPatties: Int)
     case fries(size: FryOrderSize)
@@ -170,7 +170,7 @@ enum FryOrderSize {
 
 - 给枚举设置值
 	
-```
+```swift
 let menuItem: FastFoodMenuItem = FastFoodMenuItem.hamburger(patties: 2) 
 var otherItem: FastFoodMenuItem = FastFoodMenuItem.cookie
 ```
@@ -178,7 +178,7 @@ var otherItem: FastFoodMenuItem = FastFoodMenuItem.cookie
 
 - 类型推断
 
-```
+```swift
 Swift can infer the type on one side of the assignment or the other (but not both) ...
 let menuItem = FastFoodMenuItem.hamburger(patties: 2)
 var otherItem: FastFoodMenuItem = .cookie
@@ -187,7 +187,7 @@ var otherItem: FastFoodMenuItem = .cookie
 
 - 检测一个枚举的状态，使用 switch，switch 也可以类型推断，所以也可以不写类型
 
-```
+```swift
 var menuItem = FastFoodMenuItem.hamburger(patties: 2)
 switch menuItem {
   case FastFoodMenuItem.hamburger: print(“burger”)
@@ -199,7 +199,7 @@ switch menuItem {
 
 - 使用 `break` 跳过其中的一个枚举状态
 
-```
+```swift
 var menuItem = FastFoodMenuItem.hamburger(patties: 2)
 switch menuItem {
 	case .hamburger: break
@@ -209,23 +209,22 @@ switch menuItem {
 }
 ``` 
 
-- 使用 `default` 表示余下的所有状态
+使用 `default` 表示余下的所有状态
 
-```
-var menuItem = FastFoodMenuItem.cookie
-switch menuItem {
-    case .hamburger: break
-    case .fries: print(“fries”)
-    default: print(“other”)
-}
-```
+	var menuItem = FastFoodMenuItem.cookie
+	switch menuItem {
+	    case .hamburger: break
+	    case .fries: print(“fries”)
+	    default: print(“other”)
+	}
+
 
 >注意：必须列举完一个枚举的所有状态。
 
 
 - `switch` 中一个 case 可以写多行代码，并且不会 `fall through(贯穿)`到下一个 case
 
-```
+```swift
 var menuItem = FastFoodMenuItem.fries(size: FryOrderSize.large)
 switch menuItem {
   case .hamburger: print(“burger”)
@@ -240,7 +239,7 @@ case .drink:
 
 - 可以使用 `let` 来访问枚举关联的关联值
 
-```
+```swift
 var menuItem = FastFoodMenuItem.drink(“Coke”, ounces: 32)
 switch menuItem {
   case .hamburger(let pattyCount): print(“a burger with \(pattyCount) patties!”)
@@ -255,7 +254,7 @@ switch menuItem {
 - 方法、计算属性
 	- 枚举和 struct 、class 一样，可以在内部定义方法和计算属性，不能定义存储属性，存储值可以使用关联值。
 
-```
+```swift
 enum FastFoodMenuItem { 
 	...
    func isIncludedInSpecialOrder(number: Int) -> Bool {
@@ -272,7 +271,7 @@ enum FastFoodMenuItem {
 
 在枚举内部，可以使用 `self` 来检测枚举的状态
 
-```
+```swift
 enum FastFoodMenuItem { 
 	...
   func isIncludedInSpecialOrder(number: Int) -> Bool {
@@ -288,7 +287,7 @@ enum FastFoodMenuItem {
 
 在枚举内部，可以使用 `mutating ` 关键字的方法来修改枚举的状态
 
-```
+```swift
 enum FastFoodMenuItem { 
 	...
 	mutating func switchToBeingACookie() {
@@ -303,7 +302,7 @@ enum FastFoodMenuItem {
 
 Optionals(可选) 就是一种枚举。有两个状态，一种是没有设置值 none，一种有设置值 some(<T>)。
 
-```
+```swift
 enum Optional<T> { // a generic type, like Array<Element> or Dictionary<Key,Value> 
 	case none
 	case some(<T>) // the some case has associated data of type T 
