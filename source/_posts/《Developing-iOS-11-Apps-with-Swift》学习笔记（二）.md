@@ -17,6 +17,9 @@ categories:
 
 [Demo 示例地址](https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master)
 
+[参考资料一：官方文档](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
+[参考资料二：官方文档中文翻译](https://www.cnswift.org/)
+
 这一节课主要将的是 MVC 设计模式，以及优化上节课的翻纸牌游戏 demo，在优化 Demo 中讲解了 Swift 中的几个语法。Initialization(构造器)、struct（结构体）和 class（类）、static methods（静态方法）和 properties（属性）、optionals（可选）Dictionary<KeyType,ValueType>(字典)、UIStackView 、 autolayout（自动布局）
 
 ## 索引
@@ -77,7 +80,7 @@ MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角�
 
 ## _ 忽略下标
 1. 当遍历一个 `sequence` 的下标，不需要用到该下标值。
-2. 省略`函数`的`外部参数（external parameter）`.
+2. 省略`函数`的外部参数（external parameter）
 
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180209_23.png?imageView2/2/w/700)
 

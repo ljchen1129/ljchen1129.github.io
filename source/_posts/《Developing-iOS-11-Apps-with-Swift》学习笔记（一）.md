@@ -17,6 +17,9 @@ categories:
 
 [Demo 示例地址](https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master)
 
+[参考资料一：官方文档](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
+[参考资料二：官方文档中文翻译](https://www.cnswift.org/)
+
 第一节课主要是介绍了 iOS 开发的一些基本知识点，iOS 系统的框架层级，Swift 语言的基础知识以及一个翻卡片游戏的 demo。
 
 ## 索引
