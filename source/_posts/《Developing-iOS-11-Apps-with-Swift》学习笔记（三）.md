@@ -108,6 +108,7 @@ print(“height is \(getSize().height)”) // height is 80
       set(newValue) {
 			// do something based on the fact that foo has changed to newValue }
 	  }
+ }
 ```
 
 >注意：如果计算属性，只有实现了 get，而没有实现 set，那么该计算属性是只读的（read only）。 
@@ -209,18 +210,18 @@ switch menuItem {
 }
 ``` 
 
-使用 `default` 表示余下的所有状态
+- 使用 `default` 表示余下的所有状态
 
-	var menuItem = FastFoodMenuItem.cookie
-	switch menuItem {
-	    case .hamburger: break
-	    case .fries: print(“fries”)
-	    default: print(“other”)
-	}
-
+```swift
+var menuItem = FastFoodMenuItem.cookie
+switch menuItem {
+    case .hamburger: break
+    case .fries: print(“fries”)
+    default: print(“other”)
+}
+```
 
 >注意：必须列举完一个枚举的所有状态。
-
 
 - `switch` 中一个 case 可以写多行代码，并且不会 `fall through(贯穿)`到下一个 case
 
