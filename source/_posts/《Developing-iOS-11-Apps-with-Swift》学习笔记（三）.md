@@ -186,19 +186,7 @@ var otherItem: FastFoodMenuItem = .cookie
 错误 var yetAnotherItem = .cookie // Swift can’t figure this out 
 ```
 
-- 检测一个枚举的状态，使用 swift
-
-```
-var menuItem = FastFoodMenuItem.hamburger(patties: 2)
-switch menuItem {
-  case FastFoodMenuItem.hamburger: print(“burger”)
-  case FastFoodMenuItem.fries: print(“fries”)
-  case FastFoodMenuItem.drink: print(“drink”)
-  case FastFoodMenuItem.cookie: print(“cookie”)
-}
-```
-
-switch 也可以类型推断，所以也可以不写类型
+- 检测一个枚举的状态，使用 switch，switch 也可以类型推断，所以也可以不写类型
 
 ```
 var menuItem = FastFoodMenuItem.hamburger(patties: 2)
