@@ -24,6 +24,18 @@ categories:
 
 ## 索引
 
+[UIStackView](#UIStackView)
+[Range（区间）](#Range（区间）)
+[Tuples（元组）](#Tuples（元组）)
+[Computed Properties（计算属性）](#Computed Properties（计算属性）)
+[Access Control（访问控制）](#Access Control（访问控制）)
+[Assertions(断言)](#Assertions(断言))
+[Extensions（扩展）](#Extensions（扩展）)
+[enum(枚举)](#enum(枚举))
+[Optionals(可选)](#Optionals(可选))
+[Memory Management(内存管理)](#Memory Management(内存管理))
+
+
 ## UIStackView
 `UIStackView` 是 iOS 9 推出的一项用于自动布局的技术。只要将需要布局的控件放入到 UIStackView 容器中，容器里面的控件的约束就不需要管理了，UIStackView 会自动管理。
 
@@ -210,7 +222,8 @@ switch menuItem {
 }
 ``` 
 
--  使用 `default` 表示余下的所有状态
+- 使用 `default` 表示余下的所有状态
+
 
 ```
 var menuItem = FastFoodMenuItem.cookie
@@ -220,7 +233,9 @@ switch menuItem {
     default: print(“other”)
 }
 ```
+
 >注意：必须列举完一个枚举的所有状态。
+
 
 - `switch` 中一个 case 可以写多行代码，并且不会 `fall through(贯穿)`到下一个 case
 
@@ -236,6 +251,7 @@ case .drink:
   case .cookie: print(“cookie”)
 }
 ```
+
 - 可以使用 `let` 来访问枚举关联的关联值
 
 ```
@@ -264,7 +280,9 @@ enum FastFoodMenuItem {
  	} 
 }
 ```
+
 >一个 `switch case` 可以并列多个枚举状态，中间用` , `好隔开。
+
 
 在枚举内部，可以使用 `self` 来检测枚举的状态
 
@@ -293,7 +311,7 @@ enum FastFoodMenuItem {
 }
 
 ```
-> 为什么要加 `mutating 关键字`？因为枚举是值类型，在传递的时候是写时复制，当值发生改变了，才会真正的复制，所以需要标识这个有改变枚举值的方法，就使用 `mutating 关键字`。struct 中有修改 到 struct 的方法也一样。
+> 为什么要加 `mutating 关键字`？因为枚举是值类型，在传递的时候是`写时复制`，当值发生改变了，才会真正的复制，所以需要标识这个有改变枚举值的方法，就使用 `mutating 关键字`。struct 中有修改 到 struct 的方法也一样。
 
 ## Optionals(可选)
 
