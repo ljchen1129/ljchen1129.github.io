@@ -45,16 +45,16 @@ MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角�
 - View 和 Model
 	- 不能直接相互通信。
 - Controller 和 View
-	- Controller 持有 View，可以主动和 View 通信，但 View 不能直接和 Controller 通信。 View 上发生一些用户响应想要告诉 Controller 可以通过 action/target 的方式，将 Controller 和 view 进行绑定。除此之外，view 还可以通过 delegate（代理）的方式，让 Controller 成为自己的代理，实现代理的协议方法，View 将自己发生的一些变化告诉自己的代理。其中给 View 提供数据的 delegate（代理）叫做 DataSource.
+	- Controller 持有 View，可以主动和 View 通信，但 View 不能直接和 Controller 通信。 View 上发生一些用户响应想要告诉 Controller 可以通过 `action/target` 的方式，将 Controller 和 view 进行绑定。除此之外，view 还可以通过 `delegate（代理）`的方式，让 Controller 成为自己的代理，实现代理的协议方法，View 将自己发生的一些变化告诉自己的代理。其中给 View 提供数据的 `delegate（代理）`叫做 `DataSource`.
 		
 - Controller 和 Model
-	- Controller 持有模型，可以直接主动和 Model 通信，获取 Model 的数据，但 Model 不能直接和 Controller 通信。Model 发生数据改变想要主动告诉 Controller，Controller 可以通过 KVO 监听 Model 属性的方式。
+	- Controller 持有模型，可以直接主动和 Model 通信，获取 Model 的数据，但 Model 不能直接和 Controller 通信。Model 发生数据改变想要主动告诉 Controller，Controller 可以通过` KVO` 监听 Model 属性的方式。
 	
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180208_15.png?imageView2/2/w/600)
 
 **MVCS：**
 
-单个页面可以是 MVC，一个 App 通常有多个页面，这些 MVC 组合成一起，就是 MVCS。
+单个页面可以是 MVC，一个 App 通常有多个页面，这些 MVC 组合成一起，就是 `MVCS`。
 
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180208_16.png?imageView2/2/w/600)
 
@@ -76,8 +76,12 @@ MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角�
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180209_22.png?imageView2/2/w/700)
 
 ## _ 忽略下标
+1. 当遍历一个 `sequence` 的下标，不需要用到该下标值。
+2. 省略`函数`的`外部参数（external parameter）`.
 
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180209_23.png?imageView2/2/w/700)
+
+![](http://o6heygfyq.bkt.clouddn.com/Snip20180209_28.png?imageView2/2/w/500)
 
 ## 数组拼接元素
 
