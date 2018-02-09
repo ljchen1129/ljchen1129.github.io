@@ -21,14 +21,14 @@ categories:
 
 ## 索引
 
-[MVC 设计模式]()
-[Initialization(构造器)]()
-[struct（结构体）和 class（类）]()
-[static methods（静态方法）和 properties（属性）]()
-[optionals（可选）]()
-[Dictionary<KeyType,ValueType>(字典)]()
-[UIStackView]()
-[ autolayout（自动布局）]()
+[MVC 设计模式](#MVC 设计模式)
+[struct（结构体）和 class（类）](#struct（结构体）和 class（类）)
+[static methods（静态方法）和 properties（属性）](#static methods（静态方法）和 properties（属性）)
+[_ 忽略下标](#_ 忽略下标)
+[数组拼接元素](#数组拼接元素)
+[lazy 懒加载](#lazy 懒加载)
+[并列表达式](#并列表达式)
+[空合运算符 ??](#空合运算符 ??)
 
 ## MVC 设计模式
 
