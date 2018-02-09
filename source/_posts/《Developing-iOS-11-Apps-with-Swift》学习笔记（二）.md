@@ -38,7 +38,7 @@ categories:
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180208_14.png?imageView2/2/w/600)
 
 MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角色组成。View、Controller、Model 组成。各个角色的分工如下：
-
+<!-- more -->
 - View：展示给用户的界面，例如用户看到的所有 UI 元素、按钮、标签、表格等等。
 - Controller：主管逻辑。控制 Model 层的数据怎样显示到 View 上。
 - Model：负责数据部分，和 UI 独立，View 视图显示的数据。

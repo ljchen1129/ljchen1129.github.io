@@ -38,6 +38,7 @@ categories:
 
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180208_3.png?imageView2/2/w/600)
 
+<!-- more -->
 - Core Services（系统服务层）
 
 这层是面向对象的，iOS 开发中经常用到的。主要封装有 Collections（集合类型）、Core Location(核心定位)、Address Book(地址簿)、Net Services(网络服务)、Networking(网络)、Theading (线程)、File Access(文件访问)、Preferences(偏好设置)、SQLite(数据库)、URL 实体等。

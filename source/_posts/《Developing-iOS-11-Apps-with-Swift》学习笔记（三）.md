@@ -14,7 +14,6 @@ categories:
 这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。
 
 [课程地址](https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2)
-
 [Demo 示例地址](https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master)
 
 [参考资料一：官方文档](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
@@ -40,7 +39,7 @@ categories:
 `UIStackView` 是 iOS 9 推出的一项用于自动布局的技术。只要将需要布局的控件放入到 UIStackView 容器中，容器里面的控件的约束就不需要管理了，UIStackView 会自动管理。
 
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180209_29.png?imageView2/2/w/600)
-
+<!-- more -->
 设置 UIStackView 属性
 
 ![](http://o6heygfyq.bkt.clouddn.com/Snip20180209_30.png?imageView2/2/w/600)
@@ -211,7 +210,6 @@ switch menuItem {
 ``` 
 
 - 使用 `default` 表示余下的所有状态
-
 
 ```
 var menuItem = FastFoodMenuItem.cookie
