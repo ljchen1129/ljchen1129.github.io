@@ -20,3 +20,5 @@ categories:
 [参考资料一：官方文档](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
 [参考资料二：官方文档中文翻译](https://www.cnswift.org/)
 
+这节课主要讲述了 Swift 中 protocols(协议) 和 Closures（闭包）、NSAttributedString 的语法和注意点。
+
