@@ -5,8 +5,12 @@ date: 2017-05-28 23:27:40
 
 ### 2018.3.7
 
-{% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}
+{% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
 
+<!--{% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
+
+<br></br>
+<br></br>
 
 ### 2018.2.17
 
