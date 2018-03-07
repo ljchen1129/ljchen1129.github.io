@@ -7,10 +7,7 @@ date: 2017-05-28 23:27:40
 
 {% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
 
-<!--{% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
-
-
-
+<br></br>
 
 ### 2018.2.17
 
@@ -58,3 +55,6 @@ AI。入个门，把需要的基础知识复习下、搞个模型弄弄就行，
 * 凡事预则立，不预则废。不做规划，做了规划却没有执行力，这样的年纪还能任性多久？
 * 越往后压力越大，如果还是这个样子，人生就要废了！只有用自己不断的进步来堵住那些悠悠众口，聪明和勤奋的人太多了，千万不能自己感动自己！
 * 三十岁之前的时间很珍贵很珍贵！-->
+
+
+<!--{% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
