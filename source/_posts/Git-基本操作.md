@@ -280,4 +280,54 @@ git branch --set-upstream branch-name origin/branch-name
 ```
 
 
+## #标签
+在开发过程中，当发布了一个稳定的版本后，都会给代码带一个标签。主要的 git 命令如下：
+
+### 新建标签
+
+```bash
+# 1. 当前 HEAD 打标签
+git tag <name>
+
+# 2. 给某个 commit 打标签
+git tag <name> <commit id>
+
+# 3. 创建带有说明的标签， 用 `-a` 指定标签名，`-m` 指定说明文字：
+git tag -a <name> -m <说明> <commit id>
+
+# 4. 当前 HEAD 打标签
+git tag -a <name> -m <说明>
+
+```
+
+### 查看标签
+
+```bash
+# 1. 查看某一个标签的详情
+git show <tagname>
+
+# 2. 查看所有标签
+git tag
+```
+
+### 推送标签到远程
+
+```bash
+# 1. 推送标签到远程
+git push origin <tagname>
+
+# 2. 一次性推送所有本地未推送到远程的标签到远程
+git push origin --tags
+```
+
+### 删除标签
+```bash
+# 1. 删除本地标签
+git tag -d <tagname>
+
+# 2. 删除远程标签
+git push origin :refs/tags/<tagname>
+
+```
+
 ## #查看历史记录
