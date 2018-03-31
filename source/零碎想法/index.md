@@ -3,6 +3,25 @@ title: 零碎想法
 date: 2017-05-28 23:27:40
 ---
 
+### 2018.3.31
+
+{% aplayer "借我" "谢春花" "http://o6heygfyq.bkt.clouddn.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000" %}
+
+借我十年
+借我亡命天涯的勇敢
+借我说得出口的旦旦誓言
+借我孤绝如初见
+借我不惧碾压的鲜活
+借我生猛与莽撞不问明天
+借我一束光照亮黯淡
+借我笑颜灿烂如春天
+借我杀死庸碌的情怀
+借我纵容的悲怆与哭喊
+借我怦然心动如往昔
+借我安适的清晨与傍晚
+
+三月份，离职，找工作，面试，入职，找房子，搬家，维护旧项目，接手新项目，新业务，新环境，新同事。
+
 ### 2018.3.7
 
 {% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
