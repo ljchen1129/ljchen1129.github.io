@@ -116,4 +116,20 @@ tableView.separatorInset = UIEdgeInsetsZero;
 tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; // 隐藏模拟器上多余的cell分割线
 ```
 
+
+### Assertion failure in -[UICollectionViewData validateLayoutInRect:], /SourceCache/UIKit/UIKit-3347.44/UICollectionViewData.m:426
+
+iOS 8 系统下 UICollectionView 自定义布局后，刷新 reloadData 方法，当前一个布局还没有结束的时候，就有开始刷新布局，会崩溃，搞了好久，解决方案如下：
+
+- 重写布局类 UICollectionViewLayout 的 `prepareLayout` 布局方法，在每一次开始布局前，是原有的布局失效
+
+```
+- (void)prepareLayout
+{
+  [super prepareLayout];
+  [self invalidateLayout];
+}
+```
+
+
 # 其他

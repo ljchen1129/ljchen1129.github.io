@@ -244,8 +244,12 @@ git branch -d develop2
 </div>
 
 >注意：如果要删除的分支正是当前所在的分支，则会报错，需要切换到另一个分支，再可以执行删除命令。
-
+>强制删除分支：`git branch -D [branch-name]` 命令。
+ 
 ### 合并分支
+
+**Fast forward 模式（删除分支后，会丢掉分支信息）**
+
 如果在 develop 分支里做了修改，想要把修改合并到 master 分支里面，就要用到合并分支命令 `git merge [branch]`，如在 develop 添加一个 test.txt 文件，然后合并到 master 分支里去：
 
 ```bash
@@ -255,5 +259,75 @@ git merge develop // 把 develop 分支中的修改合并到 master 分支
 ```
  
 >注意：如果在 develop 分支和 master 对同一个文件做了不同的修改的话，则合并的时候会产生冲突，这个时候，需要打开那个冲突的文件，`<<<<<<< HEAD` 到 `=======` 线包裹的内容是来自 master 分支，`=======` 到 `>>>>>>> develop` 线包裹的内容是 develop 分支中的，需要删除其中一个分支中冲突的内容的包括所有包裹内容的线，然后再进行合并。 
+
+**禁用Fast forward 模式（Git就会在merge时生成一个新的commit， 从分支历史上就可以看出分支信息。）**
+
+```bash
+git merge --no-ff -m "合并说明" branch-name
+```
+
+
+### 在本地创建和远程分支对应的分支
+
+```bash
+git checkout -b branch-name origin/branch-name
+```
+
+### 建立本地分支和远程分支的关联
+
+```bash
+git branch --set-upstream branch-name origin/branch-name
+```
+
+
+## #标签
+在开发过程中，当发布了一个稳定的版本后，都会给代码带一个标签。主要的 git 命令如下：
+
+### 新建标签
+
+```bash
+# 1. 当前 HEAD 打标签
+git tag <name>
+
+# 2. 给某个 commit 打标签
+git tag <name> <commit id>
+
+# 3. 创建带有说明的标签， 用 `-a` 指定标签名，`-m` 指定说明文字：
+git tag -a <name> -m <说明> <commit id>
+
+# 4. 当前 HEAD 打标签
+git tag -a <name> -m <说明>
+
+```
+
+### 查看标签
+
+```bash
+# 1. 查看某一个标签的详情
+git show <tagname>
+
+# 2. 查看所有标签
+git tag
+```
+
+### 推送标签到远程
+
+```bash
+# 1. 推送标签到远程
+git push origin <tagname>
+
+# 2. 一次性推送所有本地未推送到远程的标签到远程
+git push origin --tags
+```
+
+### 删除标签
+```bash
+# 1. 删除本地标签
+git tag -d <tagname>
+
+# 2. 删除远程标签
+git push origin :refs/tags/<tagname>
+
+```
 
 ## #查看历史记录
