@@ -196,9 +196,6 @@ iOS 中内存问题主要包含两个部分:
 
 ## 参考资料
 [iOS App 启动性能优化](https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653579242&idx=1&sn=8f2313711f96a62e7a80d63851653639&chksm=84b3b5edb3c43cfb08e30f2affb1895e8bac8c5c433a50e74e18cda794dcc5bd53287ba69025&mpshare=1&scene=1&srcid=081075Vt9sYPaGgAWwb7xd1x&key=4b95006583a3cb388791057645bf19a825b73affa9d3c1303dbc0040c75548ef548be21acce6a577731a08112119a29dfa75505399bba67497ad729187c6a98469674924c7b447788c7370f6c2003fb4&ascene=0&uin=NDA2NTgwNjc1&devicetype=iMac16%2C2+OSX+OSX+10.12.6+build(16G29)&version=12020110&nettype=WIFI&fontScale=100&pass_ticket=IDZVtt6EyfPD9ZLcACRVJZYH8WaaMPtT%2BF3nfv7yZUQBCMKM4H1rDCbevGd7bXoG)
-
 [iOS-Performance-Optimization](https://github.com/skyming/iOS-Performance-Optimization)
-
 [[iOS]一次立竿见影的启动时间优化](https://www.jianshu.com/p/c1734cbdf39b)
-
 [实现60fps的网易云音乐首页](https://blog.csdn.net/hello_hwc/article/details/76255527)
