@@ -331,3 +331,55 @@ git push origin :refs/tags/<tagname>
 ```
 
 ## #查看历史记录
+
+
+## 采坑记录
+
+### 1. 仓库太大，clone 太慢
+
+碰到一个仓库，仓库代码 500 多兆，通过 http 的方式 git clone 出现报错，报错信息是：
+
+`error: RPC failed; curl 18 transfer closed with outstanding read data remaining
+fatal: The remote end hung up unexpectedly`
+
+找了找网上的解决方案，主要有两个：
+
+1. 增大 http postBuffer 的空间大小
+
+```
+# 全局设置 http postBuffer 的空间大小
+git config --global http.postBuffer 524288000 // 大概 500 M，不够再自己加
+
+# 查看是否设置成功
+git config -l  
+```
+
+![](http://o6heygfyq.bkt.clouddn.com/Snip20180626_1.png)
+
+>但这个方法对我无效。
+
+2. 只 clone 最近的一次提交
+
+```
+
+# clone 最近的一次提交
+git clone --depth=1 <仓库地址>
+
+# 下载该分支下的所有提交记录信息
+git fetch --unshallow
+
+```
+
+> 这样可以很快很轻量的把代码 clone 下来，但这中方式同样会有一个问题，就是只会默认 clone 默认分支下的代码，通常是 master 分支下的代码。接下来就需要用到下面的命令，比如下载日常开发分支 develop 下的代码：
+
+```
+# 设置和远程 develop 分支的连接
+git remote set-branches origin 'develop'
+# 下载远程 develop 分支下最近的一次提交 
+git fetch --depth 1 origin develop
+# 从远处 develop 分支新建一个 develop 的本地分支
+git checkout -b develop origin/develop
+
+```
+
+![](http://o6heygfyq.bkt.clouddn.com/Snip20180626_3.png)
