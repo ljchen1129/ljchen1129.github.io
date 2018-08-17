@@ -279,6 +279,21 @@ git checkout -b branch-name origin/branch-name
 git branch --set-upstream branch-name origin/branch-name
 ```
 
+### 合并远程不是对应分支的代码
+
+有时候如果远程有一条分支更新了一些代码，如newFetrue，fixBug，需要合并到本地，由于和本地不是对应关系，不能直接 pull 拉取合并，可以先在本地新建一个和远程对应的临时分支，然后再去合并这条临时分支上的代码
+
+```
+# develop:远程分支，temp 本地临时分支
+git fetch origin develop:temp
+
+# 合并 temp 分支
+git merge temp
+
+# 合并指定 commitId 的代码
+git cherry-pick commitId
+
+```
 
 ## #标签
 在开发过程中，当发布了一个稳定的版本后，都会给代码带一个标签。主要的 git 命令如下：
