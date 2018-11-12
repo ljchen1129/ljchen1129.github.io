@@ -323,23 +323,23 @@ self.session = [NSURLSession sessionWithConfiguration:sessionConfiguration
 
 UIImageView+WebCache 的分类方法，给一个 UIImageView 下载设置图片:
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170509_1.png)
+![](http://liangjinggege.com/Snip20170509_1.png)
 
 然后调用：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170509_4.png)
+![](http://liangjinggege.com/Snip20170509_4.png)
 
 接着调用 `UIView+WebCache` 类中方法：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170509_6.png)
+![](http://liangjinggege.com/Snip20170509_6.png)
 
 其实就是单例类 `SDWebImageManager` 中的下载方法：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170509_7.png)
+![](http://liangjinggege.com/Snip20170509_7.png)
 
 最终调用 `SDWebImageDownloader` 类中的下载方法，通过 `NSUrlSeesion` 类进行网络下载： 
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170509_8.png)
+![](http://liangjinggege.com/Snip20170509_8.png)
 
 
 ## 源码

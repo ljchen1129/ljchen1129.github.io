@@ -37,7 +37,7 @@ Objective-C 语言是在 C 语言的基础上添加了一层面向对象，是 C
 	
 - 直接这样定义，会报如下错误：
 	
-	![](http://o6heygfyq.bkt.clouddn.com/Snip20170327_2.png?imageView2/0/h/100)
+	![](http://liangjinggege.com/Snip20170327_2.png?imageView2/0/h/100)
 	
 > 原因：Objective-C 对象所占的内存总是分配在`堆（heap）`空间上，而不是在`栈空间（stack space）`，不能在栈中分配 OC 对象。
 
@@ -51,7 +51,7 @@ Objective-C 语言是在 C 语言的基础上添加了一层面向对象，是 C
 	
 - 此时的内存布局：
 	
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170327_3.png?imageView2/0/h/250)
+![](http://liangjinggege.com/Snip20170327_3.png?imageView2/0/h/250)
 	
 > 此时图中演示了一个分配在堆中的 NSString 实例，还有两个分配在栈上的指针指向该实例。其中，分配在堆中的内存必须直接管理，而分配在栈上用于保存变量的内存则会在其栈帧（stack frame）弹出时自动清理。
 
@@ -193,7 +193,7 @@ Objective-C 语言是在 C 语言的基础上添加了一层面向对象，是 C
 	```
 	看下打印：
 	
-	![](http://o6heygfyq.bkt.clouddn.com/Snip20170327_5.png?imageView2/0/h/150)
+	![](http://liangjinggege.com/Snip20170327_5.png?imageView2/0/h/150)
 	
 	> 结果：没有使用字面量方式创建的数组 arrayA 只有 obj1 一个元素加进去了，而使用字面量创建的数组 arrayB 崩溃了。
 	
@@ -243,7 +243,7 @@ Objective-C 语言是在 C 语言的基础上添加了一层面向对象，是 C
 	
 - 打印：
 	
-	![](http://o6heygfyq.bkt.clouddn.com/Snip20170327_6.png?imageView2/0/h/100)
+	![](http://liangjinggege.com/Snip20170327_6.png?imageView2/0/h/100)
 	
 - **要点**
 	- 应该使用字面量语法来创建字符串、数值、数组、字典。与创建此类对象的常规方法相比，更加简明扼要。

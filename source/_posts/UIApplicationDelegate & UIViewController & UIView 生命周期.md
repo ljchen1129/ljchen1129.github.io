@@ -37,14 +37,14 @@ categories:
 
 **应用程序启动：**
 
-![](http://o6heygfyq.bkt.clouddn.com/1933920-acb1107656c1a483.png)
+![](http://liangjinggege.com/1933920-acb1107656c1a483.png)
 
 应用程序启动 -> 执行 main 函数 -> 执行 UIApplicationMain 函数 -> 初始化 UIApplication 对象（创建和设置代理对象，开启主线程 ranloop）-> 代理对象监听系统事件（程序加载完毕、程序获取焦点、程序进入后台、程序失去焦点、程序从后台回到前台、内存警告、程序即将退出）-> 结束程序
 
 **应用程序的状态和多任务：**
 应用程序有好几种状态，当按下 Home 键，锁屏、电话打来，切换 App 等中断情况时都会造成应用程序的状态发生改变。
 
-![](http://o6heygfyq.bkt.clouddn.com/5588c94641d3a.jpg)
+![](http://liangjinggege.com/5588c94641d3a.jpg)
 
 * Not running：App 还没运行
 * Inactive：App 运行在前台但没有接收事件
@@ -98,24 +98,24 @@ categories:
 * App 启动和 active/inactive
 	
 	App 一启动，由	Not running 状态变成 Inactive 状态，调用 `application didFinishLaunchingWithOptions` 方法，然后由 Inactive 状态变成 Active 状态，调用 `applicationDidBecomeActive` 方法
-	![](http://o6heygfyq.bkt.clouddn.com/5588d15fc4c41.gif)
+	![](http://liangjinggege.com/5588d15fc4c41.gif)
 	
 	
 	当 App 由于一些原因（来电等系统事件）发生中断时，由 Active 状态变成 Inactive 状态，调用 `applicationWillResignActive` 方法。
-	![](http://o6heygfyq.bkt.clouddn.com/5588d56cdc36a.gif)
+	![](http://liangjinggege.com/5588d56cdc36a.gif)
 	
 * 来回切换App
 	
 	当 App 切换到另一个 App 时，先由 Active 状态变成 Inactive 状态，调用 `applicationWillResignActive` 方法，然后再从 Inactive 状态变成 running 状态，调用 `applicationDidEnterBackground` 方法。
-	![](http://o6heygfyq.bkt.clouddn.com/5588d259ba79b.gif)
+	![](http://liangjinggege.com/5588d259ba79b.gif)
 	
 	当切换回本 App 时，先由 running 状态变为 Inactive 状态，调用 `applicationWillEnterForeground` 方法，然后由 Inactive 状态变为 Active 状态，调用 `applicationDidBecomeActive` 方法。
-	![](http://o6heygfyq.bkt.clouddn.com/5588d2941520f.gif)
+	![](http://liangjinggege.com/5588d2941520f.gif)
 	
 * 锁屏
 	
 	锁屏时，先由 Active 状态变成 Inactive 状态，调用 `applicationWillResignActive` 方法，然后由 Inactive 状态变为 Running 状态，调用 `applicationDidEnterBackground` 方法。
-	![](http://o6heygfyq.bkt.clouddn.com/5588d2a8aa73a.gif)
+	![](http://liangjinggege.com/5588d2a8aa73a.gif)
 	
 * 应用程序终止
 
@@ -125,7 +125,7 @@ categories:
 
 **UIView 的加载**
 
-![](http://o6heygfyq.bkt.clouddn.com/1354776680_2123.png)
+![](http://liangjinggege.com/1354776680_2123.png)
 
 控制器 view 的加载时懒加载的，只用用到时才会去加载，首先调用的 loadView 方法，
 

@@ -169,7 +169,7 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 ```
 **打印结果：**
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170316_19.png?imageView2/0/h/360/)
+![](http://liangjinggege.com/Snip20170316_19.png?imageView2/0/h/360/)
 
 > 结论：异步函数 + 并发队列，可以同时开启多个线程，多个任务能并发执行
 
@@ -209,7 +209,7 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 
 打印结果：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_2.png?imageView2/0/h/360/)
+![](http://liangjinggege.com/Snip20170317_2.png?imageView2/0/h/360/)
 
 >结论：同步函数 + 并发队列：不能开启新的线程
 
@@ -252,7 +252,7 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 
 打印结果：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_5.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_5.png?imageView2/0/h/400/)
 
 >结论：同步函数 + 串行队列：不会开启新的线程，任务一个接一个地执行 
 
@@ -294,7 +294,7 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 
 打印结果：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_6.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_6.png?imageView2/0/h/400/)
 
 > 结论：异步函数 + 手动创建串行队列：会开启新的线程，另外任务是串行执行的。
 
@@ -334,7 +334,7 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 
 打印输出：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_7.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_7.png?imageView2/0/h/400/)
 
 >结论：异步函数 + 主队列：主队列优先级更高，不会开启新的线程，会在主线程中执行，任务也是一个接一个执行。
 
@@ -374,7 +374,7 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 
 - 情况一：如果同步函数在`主线程`被调用，那么会崩溃：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_9.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_9.png?imageView2/0/h/400/)
 
 - 情况二：如果同步函数在`子线程`被调用，会怎么样呢？
 
@@ -385,7 +385,7 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 
 看打印输出：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_11.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_11.png?imageView2/0/h/400/)
 
 结果不会崩溃，任务会在主线程中被执行，而且是串行执行
 
@@ -394,20 +394,20 @@ dispatch_queue_t queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
 ### 总结
 所以，总结一下，各种队列的执行效果：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_12.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_12.png?imageView2/0/h/400/)
 
 ### 注意
 - 如果往`当前串行队列`中添加任务，会阻塞住当前的串行队列，应用也会崩溃。如这样：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_16.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_16.png?imageView2/0/h/400/)
 
 - 如果把队列改成串行队列改成并发队列，再看一下结果：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_17.png?imageView2/0/h/200/)
+![](http://liangjinggege.com/Snip20170317_17.png?imageView2/0/h/200/)
 
 - 如果还是串行队列，就把同步函数改成异步函数，再来看下结果打印：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_18.png?imageView2/0/h/200/)
+![](http://liangjinggege.com/Snip20170317_18.png?imageView2/0/h/200/)
 
 >同步函数和异步函数的执行：异步函数中的任务执行会等一会儿执行，如果是同步函数，那么同步函数中的任务会立即执行。
 
@@ -468,7 +468,7 @@ for (NSInteger i = 0; i < 3; i ++)
 
 控制台输出：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_20.png?imageView2/0/h/300/)
+![](http://liangjinggege.com/Snip20170317_20.png?imageView2/0/h/300/)
 
 
 ### 延时执行函数
@@ -525,7 +525,7 @@ dispatch_after(dispatch_time_t when, dispatch_queue_t queue, dispatch_block_t bl
 
 打印结果：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_21.png?imageView2/0/h/75/)
+![](http://liangjinggege.com/Snip20170317_21.png?imageView2/0/h/75/)
 
 ### 一次性代码函数
 
@@ -576,7 +576,7 @@ dispatch_apply(fromSubpath.count, dispatch_get_global_queue(0, 0), ^(size_t inde
 
 控制台输出：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_22.png?imageView2/0/h/400/)
+![](http://liangjinggege.com/Snip20170317_22.png?imageView2/0/h/400/)
 
 ### 队列组函数
 
@@ -657,4 +657,4 @@ dispatch_group_notify(group, queue, ^{
 
 看下效果：
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170317_24.png?imageView2/0/h/300/)
+![](http://liangjinggege.com/Snip20170317_24.png?imageView2/0/h/300/)

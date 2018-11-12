@@ -179,7 +179,7 @@ static id _instance;\
 
 - 外界调用
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170502_1.png?imageView/0/h/400)
+![](http://liangjinggege.com/Snip20170502_1.png?imageView/0/h/400)
 
 ## 非 GCD 实现
 

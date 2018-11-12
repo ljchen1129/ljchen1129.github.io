@@ -31,11 +31,11 @@ categories:
 
 - 未使用 `mutating` 关键字 
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20180222_2.png?imageView2/2/w/700)
+![](http://liangjinggege.com/Snip20180222_2.png?imageView2/2/w/700)
 
 - 使用 `mutating` 关键字 
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20180222_4.png?imageView2/2/w/700)
+![](http://liangjinggege.com/Snip20180222_4.png?imageView2/2/w/700)
 
 ## protocols(协议)
 

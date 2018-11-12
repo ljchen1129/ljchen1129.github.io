@@ -14,7 +14,7 @@ git version
 ```
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161109_3.png?imageView2/0/h/300/w/475" >
+    <img src="http://liangjinggege.com/Snip20161109_3.png?imageView2/0/h/300/w/475" >
   </center>
 </div>
 
@@ -30,7 +30,7 @@ git config --global user.email "用户邮箱"
 
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161109_1.png?imageView2/0/h/300/w/375" >
+    <img src="http://liangjinggege.com/Snip20161109_1.png?imageView2/0/h/300/w/375" >
   </center>
 </div>
 
@@ -74,7 +74,7 @@ git push origin master
 ```
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161109_5.png?imageView2/0/h/300/w/575" >
+    <img src="http://liangjinggege.com/Snip20161109_5.png?imageView2/0/h/300/w/575" >
   </center>
 </div>
 
@@ -88,7 +88,7 @@ git status
 ```
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161109_4.png?imageView2/0/h/300/w/575" >
+    <img src="http://liangjinggege.com/Snip20161109_4.png?imageView2/0/h/300/w/575" >
   </center>
 </div>
 
@@ -187,7 +187,7 @@ git branch
 
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161124_1.png?imageView2/0/h/300/w/575" >
+    <img src="http://liangjinggege.com/Snip20161124_1.png?imageView2/0/h/300/w/575" >
   </center>
 </div>
 
@@ -201,7 +201,7 @@ git branch develop
 
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161124_2.png?imageView2/0/h/300/w/575" >
+    <img src="http://liangjinggege.com/Snip20161124_2.png?imageView2/0/h/300/w/575" >
   </center>
 </div>
 
@@ -215,7 +215,7 @@ git checkout develop
 
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161124_3.png?imageView2/0/h/300/w/575" >
+    <img src="http://liangjinggege.com/Snip20161124_3.png?imageView2/0/h/300/w/575" >
   </center>
 </div>
 
@@ -226,7 +226,7 @@ git checkout -b develop2
 ```
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161124_5.png?imageView2/0/h/300/w/575" >
+    <img src="http://liangjinggege.com/Snip20161124_5.png?imageView2/0/h/300/w/575" >
   </center>
 </div>
 
@@ -239,7 +239,7 @@ git branch -d develop2
 
 <div >
 <center>
-    <img src="http://o6heygfyq.bkt.clouddn.com/Snip20161124_6.png?imageView2/0/h/300/w/575" >
+    <img src="http://liangjinggege.com/Snip20161124_6.png?imageView2/0/h/300/w/575" >
   </center>
 </div>
 
@@ -369,7 +369,7 @@ git config --global http.postBuffer 524288000 // 大概 500 M，不够再自己�
 git config -l  
 ```
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20180626_1.png)
+![](http://liangjinggege.com/Snip20180626_1.png)
 
 >但这个方法对我无效。
 
@@ -397,4 +397,4 @@ git checkout -b develop origin/develop
 
 ```
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20180626_3.png)
+![](http://liangjinggege.com/Snip20180626_3.png)

@@ -45,7 +45,7 @@ categories:
 
 `HTTP 协议`对应于`应用层`，`TCP 协议`对应于`传输层`，`IP 协议`对应于`网络层`，`HTTP 协议`是基于 `TCP 连接`的，三者本质上没有可比性。 `TCP/IP` 是`传输层协议`，主要解决数据如何在网络中传输；而 HTTP 是应用层协议，主要解决如何包装数据。`Socket 是应用层与 TCP/IP 协议族通信的中间软件抽象层，是它的一组接口`。
 
-![](http://o6heygfyq.bkt.clouddn.com/1170656-fe177ff611c71d76.jpg)
+![](http://liangjinggege.com/1170656-fe177ff611c71d76.jpg)
 
 ## UDP 和 TCP
 * UPD（用户数据报协议）
@@ -75,7 +75,7 @@ categories:
 
 `三次握手(Three-way Handshake)`即建立一个 TCP 连接时，需要客户端和服务器总共发送 3 个包。三次握手的目的是`连接服务器指定端口`，建立 TCP 连接，并同步连接双方的序列号和确认号并交换 TCP 窗口大小信息。`在 socket 编程中，客户端执行 connect() 时,将触发三次握手`。
 
-![](http://o6heygfyq.bkt.clouddn.com/1170656-a3120a20b9393a94.png)
+![](http://liangjinggege.com/1170656-a3120a20b9393a94.png)
 
 
 
@@ -83,7 +83,7 @@ categories:
 
 TCP 连接的拆除需要发送四个包，因此称为四次握手(four-way handshake)。`在 socket 编程中，任何一方执行 close() 操作即可产生握手（有地方称为“挥手”）操作`。
 
-![](http://o6heygfyq.bkt.clouddn.com/1170656-26cc9a86da3d9a68.jpg)
+![](http://liangjinggege.com/1170656-26cc9a86da3d9a68.jpg)
 
 
 ## Socket
@@ -101,7 +101,7 @@ TCP 连接的拆除需要发送四个包，因此称为四次握手(four-way han
 
 * Socket 通信示意图
 
-![](http://o6heygfyq.bkt.clouddn.com/1170656-6b9392fad31b711d.png) 
+![](http://liangjinggege.com/1170656-6b9392fad31b711d.png) 
 
 ## Socket 库函数
 1. 导入系统库 `<sys/socket.h>`、 `<netinet/in.h>`、`<arpa/inet.h>`

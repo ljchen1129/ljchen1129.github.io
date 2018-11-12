@@ -17,21 +17,21 @@ A：进程是指在系统中`正在运行`的一个应用程序。
 eg：比如同时打开微信、QQ，系统就会分别启动两个进程。
 > 注意：每个进程之间是`独立`的且均运行在其专用并受保护的内存空间内。
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170316_4.png?imageView2/0/h/120/)
+![](http://liangjinggege.com/Snip20170316_4.png?imageView2/0/h/120/)
 
 ## 线程
 Q：什么是线程？
 A：`线程`是`进程`的`基本执行单元`，一个进程想要执行任务，必须得有线程（每个进程至少要有一个线程）。
 eg：比如使用 QQ 进行文字聊天，使用微信进行视频聊天，都需要在各自的线程中执行。
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170316_3.png?imageView2/0/h/120/)
+![](http://liangjinggege.com/Snip20170316_3.png?imageView2/0/h/120/)
 <!-- more -->
 ## 线程的串行
 Q：什么是线程的串行？
 A：如果要在一个线程中执行多个任务，那么只能一个一个的按照顺利执行这些任务，也就是说：`在同一时间内，一个线程中只能执行一个任务`。
 eg：比如在一个线程中有 3 个下载任务（任务 A，任务 B，任务 C）
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170316_7.png?imageView2/0/h/250/)
+![](http://liangjinggege.com/Snip20170316_7.png?imageView2/0/h/250/)
 
 ## 多线程
 Q：什么是多线程？
@@ -40,7 +40,7 @@ eg：可以将进程比作工厂车间，线程比作车间工人，由不任务
 
 比如：同时开启 3 条线程分别来执行 3 个下载任务（任务 A，任务 B，任务 C）
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170316_8.png?imageView2/0/h/170/)
+![](http://liangjinggege.com/Snip20170316_8.png?imageView2/0/h/170/)
 
 
 ## 多线程的原理
@@ -53,7 +53,7 @@ eg：可以将进程比作工厂车间，线程比作车间工人，由不任务
 
 A：CPU 会在多个线程之间调度，最终会导致 CPU 累死，消耗大量的 CPU 资源，并且每条线程被执行的频率降低，导致线程的执行效率降低
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170316_9.png?imageView2/0/h/170/)
+![](http://liangjinggege.com/Snip20170316_9.png?imageView2/0/h/170/)
 
 ## 多线程的优缺点
 ### #多线程的优点
@@ -80,6 +80,6 @@ A：CPU 会在多个线程之间调度，最终会导致 CPU 累死，消耗大�
 
 ## 多线程的实现方案
 
-![](http://o6heygfyq.bkt.clouddn.com/Snip20170316_10.png?imageView2/0/h/370/)
+![](http://liangjinggege.com/Snip20170316_10.png?imageView2/0/h/370/)
 
 > 备注：`pthread`: iOS 10 已经找不到了这个方法 
