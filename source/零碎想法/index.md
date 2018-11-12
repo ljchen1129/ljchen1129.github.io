@@ -53,7 +53,7 @@ App 开发的发展方向判断。
 
 ### 2018.3.31
 
-{% aplayer "借我" "谢春花" "http://o6heygfyq.bkt.clouddn.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000" %}
+{% aplayer "借我" "谢春花" "http://liangjinggege.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000" %}
 
 借我十年
 借我亡命天涯的勇敢
@@ -72,7 +72,7 @@ App 开发的发展方向判断。
 
 ### 2018.3.7
 
-{% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
+{% aplayer "彼岸" "汪峰" "http://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
 
 <br></br>
 
@@ -116,7 +116,7 @@ AI。入个门，把需要的基础知识复习下、搞个模型弄弄就行，
 * 汪峰-->是一个奇才 写了太多好听的歌了 也许正是一定的年龄和阶段才最能听懂汪峰的音乐吧
 
 
-{% aplayer "觉醒" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002HocyJ3ad9Uh.mp3" "http://i.gtimg.cn/music/photo/mid_album_500/V/I/003k3pNG0KpRVI.jpg" %}
+{% aplayer "觉醒" "汪峰" "http://liangjinggege.com/M800002HocyJ3ad9Uh.mp3" "http://i.gtimg.cn/music/photo/mid_album_500/V/I/003k3pNG0KpRVI.jpg" %}
 
 ### 2017.5.28
 <!--* _检讨自己：_
@@ -126,4 +126,4 @@ AI。入个门，把需要的基础知识复习下、搞个模型弄弄就行，
 * 三十岁之前的时间很珍贵很珍贵！-->
 
 
-<!--{% aplayer "彼岸" "汪峰" "http://o6heygfyq.bkt.clouddn.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
+<!--{% aplayer "彼岸" "汪峰" "http://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
