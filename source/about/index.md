@@ -62,7 +62,7 @@ HTML5、Swift、python
 [新浪微博](http://weibo.com/u/3240004000?topnav=1&wvr=6&topsug=1&is_all=1)
 微信
 
-<img src="index/weixingIcon.png" width="200px" height="200px
+<img src="index/weixingIcon.png" width="200px" height="200px align='left'
 ">
 
 
