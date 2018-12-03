@@ -48,9 +48,9 @@ date: 2016-06-01 16:04:19
 	- 2015建发厦门国际马拉松（5：50)
 	- 2016香港渣打国际马拉松（4：50)
 	- 2017建发厦门国际马拉松（5：38）
-- #### 想参加q
-    - 2017深圳国际马拉松
-    - 2017广州国际马拉松
+- #### 想参加
+    - 2018深圳国际马拉松
+    - 2018广州国际马拉松
 
 ## 正在学习
 HTML5、Swift、python
@@ -61,7 +61,8 @@ HTML5、Swift、python
 [GitHub](https://github.com/ljchen1129)
 [新浪微博](http://weibo.com/u/3240004000?topnav=1&wvr=6&topsug=1&is_all=1)
 微信
-<img src="about/index/weixingIcon.png" width="200px" height="200px
+
+<img src="index/weixingIcon.png" width="200px" height="200px
 ">
 
 
