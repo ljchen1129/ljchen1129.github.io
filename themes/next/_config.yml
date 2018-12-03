@@ -526,9 +526,9 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+  appid:  UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz
+  appkey:  CYDILgdElMj7KhP2Bxd32PgP
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # comment box placeholder
@@ -573,8 +573,8 @@ gitalk:
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-#baidushare:
-##  type: button
+baidushare:
+ type: button
 
 # addthis Share, see: https://www.addthis.com
 #add_this_id:
@@ -834,7 +834,7 @@ motion:
 # Please, choose only any one variant, do not need to install both.
 # For install 2.x: https://github.com/theme-next/theme-next-fancybox
 # For install 3.x: https://github.com/theme-next/theme-next-fancybox3
-fancybox: false
+fancybox: true
 
 # Added switch option for separated repo in 6.0.0.
 # Dependencies: https://github.com/theme-next/theme-next-fastclick
@@ -842,7 +842,7 @@ fastclick: false
 
 # Added switch option for separated repo in 6.0.0.
 # Dependencies: https://github.com/theme-next/theme-next-jquery-lazyload
-lazyload: false
+lazyload: true
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
