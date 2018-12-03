@@ -66,7 +66,7 @@ footer:
   icon: 
     # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons
     # `heart` is recommended with animation in red (#ff0000).
-    name: user
+    name: 陈良静
     # If you want to animate the icon, set it to true.
     animated: false
     # Change the color of icon, using Hex Code.
@@ -570,8 +570,8 @@ gitalk:
   distraction_free_mode: true # Facebook-like distraction free mode
 
 # Baidu Share
-# Available value:
-#    button | slide
+Available value:
+ button | slide
 # Warning: Baidu Share does not support https.
 baidushare:
  type: button
