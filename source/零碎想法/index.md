@@ -3,6 +3,13 @@ title: 零碎想法
 date: 2017-05-28 23:27:40
 ---
 
+### 2018.12.10
+
+土豆炒肉
+
+![](http://liangjinggege.com/IMG_3022.HEIC?imageView2/2/w/600)
+
+
 ### 2018.12.7
 
 肉末茄子
