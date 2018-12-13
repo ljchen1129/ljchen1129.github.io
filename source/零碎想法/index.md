@@ -3,39 +3,13 @@ title: 零碎想法
 date: 2017-05-28 23:27:40
 ---
 
-### 2018.12.10
+### 2018.12.13
 
-土豆炒肉
-
-![](http://liangjinggege.com/IMG_3022.HEIC?imageView2/2/w/600)
-
-
-### 2018.12.7
-
-肉末茄子
-
-![](http://liangjinggege.com/IMG_3017.HEIC?imageView2/2/w/600)
-
-### 2018.12.6
-
-猪肉炒芹菜
-
-![](http://liangjinggege.com/IMG_3016.HEIC?imageView2/2/w/600)
-
-### 2018.12.5
-
-清炒空心菜
-
-![](http://liangjinggege.com/IMG_3015.HEIC?imageView2/2/w/600)
+寒冬
 
 ### 2018.12.4
 
 神经官能症、植物性神经絮乱。
-
-萝卜排骨汤
-毛豆炒肉
-
-![](http://liangjinggege.com/IMG_3014.jpg?imageView2/2/w/600)
 
 ### 2018.9.7
 
