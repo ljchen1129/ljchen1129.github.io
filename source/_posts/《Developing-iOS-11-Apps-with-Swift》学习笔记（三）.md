@@ -187,7 +187,6 @@ var otherItem: FastFoodMenuItem = .cookie
 错误 var yetAnotherItem = .cookie // Swift can’t figure this out 
 ```
 
-
 ### #检测一个枚举的状态，使用 switch，switch 也可以类型推断，所以也可以不写类型
 
 ```swift
@@ -198,6 +197,7 @@ switch menuItem {
   case FastFoodMenuItem.drink: print(“drink”)
   case FastFoodMenuItem.cookie: print(“cookie”)
 }
+
 ```
 
 ### #使用 `break` 跳过其中的一个枚举状态
@@ -210,7 +210,9 @@ switch menuItem {
 	case .drink: print(“drink”)
 	case .cookie: print(“cookie”)
 }
+
 ``` 
+
 
 ### #使用 `default` 表示余下的所有状态
 
@@ -221,6 +223,7 @@ switch menuItem {
     case .fries: print(“fries”)
     default: print(“other”)
 }
+
 ```
 
 >注意：必须列举完一个枚举的所有状态。
