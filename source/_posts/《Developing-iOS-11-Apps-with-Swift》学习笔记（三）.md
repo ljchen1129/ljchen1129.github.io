@@ -141,7 +141,7 @@ print(“height is \(getSize().height)”) // height is 80
 ## enum(枚举)
 `enum(枚举)` 是一种出 struct 和 class 外另一种常用的`数据结构`。`enum(枚举)` 和 struct 一样是值类型。
 
-- 用来分离不同状态。
+### #用来分离不同状态。
 	
 ```
 enum FastFoodMenuItem {
@@ -152,8 +152,9 @@ enum FastFoodMenuItem {
 }
 ```
 
-- 关联值（Associated Data）
-	- 枚举的每一种状态都可以关联各自的值
+### #关联值（Associated Data）
+
+枚举的每一种状态都可以关联各自的值
 
 ```swift
 enum FastFoodMenuItem {
@@ -169,7 +170,7 @@ enum FryOrderSize {
 }
 ```
 
-- 给枚举设置值
+### #给枚举设置值
 	
 ```swift
 let menuItem: FastFoodMenuItem = FastFoodMenuItem.hamburger(patties: 2) 
@@ -177,7 +178,7 @@ var otherItem: FastFoodMenuItem = FastFoodMenuItem.cookie
 ```
 >注意：如果枚举有关联值，必须同时设置关联值，这是唯一一次设置关联值得时刻。
 
-- 类型推断
+### #类型推断
 
 ```swift
 Swift can infer the type on one side of the assignment or the other (but not both) ...
@@ -186,7 +187,8 @@ var otherItem: FastFoodMenuItem = .cookie
 错误 var yetAnotherItem = .cookie // Swift can’t figure this out 
 ```
 
-- 检测一个枚举的状态，使用 switch，switch 也可以类型推断，所以也可以不写类型
+
+### #检测一个枚举的状态，使用 switch，switch 也可以类型推断，所以也可以不写类型
 
 ```swift
 var menuItem = FastFoodMenuItem.hamburger(patties: 2)
@@ -198,7 +200,7 @@ switch menuItem {
 }
 ```
 
-- 使用 `break` 跳过其中的一个枚举状态
+### #使用 `break` 跳过其中的一个枚举状态
 
 ```swift
 var menuItem = FastFoodMenuItem.hamburger(patties: 2)
@@ -210,7 +212,7 @@ switch menuItem {
 }
 ``` 
 
-- 使用 `default` 表示余下的所有状态
+### #使用 `default` 表示余下的所有状态
 
 ```swift
 var menuItem = FastFoodMenuItem.cookie
@@ -223,7 +225,7 @@ switch menuItem {
 
 >注意：必须列举完一个枚举的所有状态。
 
-- `switch` 中一个 case 可以写多行代码，并且不会 `fall through(贯穿)`到下一个 case
+### #`switch` 中一个 case 可以写多行代码，并且不会 `fall through(贯穿)`到下一个 case
 
 ```swift
 var menuItem = FastFoodMenuItem.fries(size: FryOrderSize.large)
@@ -238,7 +240,7 @@ case .drink:
 }
 ```
 
-- 可以使用 `let` 来访问枚举关联的关联值
+### #可以使用 `let` 来访问枚举关联的关联值
 
 ```swift
 var menuItem = FastFoodMenuItem.drink(“Coke”, ounces: 32)
@@ -252,8 +254,9 @@ switch menuItem {
 
 >注意：和元组一样。关联值变量，可以重命名，不需要和定义时的变量名称一样。
 
-- 方法、计算属性
-	- 枚举和 struct 、class 一样，可以在内部定义方法和计算属性，不能定义存储属性，存储值可以使用关联值。
+### #方法、计算属性
+
+#### 枚举和 struct 、class 一样，可以在内部定义方法和计算属性，不能定义存储属性，存储值可以使用关联值。
 
 ```swift
 enum FastFoodMenuItem { 
@@ -270,7 +273,7 @@ enum FastFoodMenuItem {
 >一个 `switch case` 可以并列多个枚举状态，中间用` , `好隔开。
 
 
-在枚举内部，可以使用 `self` 来检测枚举的状态
+#### 在枚举内部，可以使用 `self` 来检测枚举的状态
 
 ```swift
 enum FastFoodMenuItem { 
@@ -286,7 +289,7 @@ enum FastFoodMenuItem {
 
 >可以使用 `_` 忽略不关心的关联值。
 
-在枚举内部，可以使用 `mutating ` 关键字的方法来修改枚举的状态
+#### 在枚举内部，可以使用 `mutating ` 关键字的方法来修改枚举的状态
 
 ```swift
 enum FastFoodMenuItem { 
@@ -301,7 +304,7 @@ enum FastFoodMenuItem {
 
 ## Optionals(可选)
 
-Optionals(可选) 就是一种枚举。有两个状态，一种是没有设置值 none，一种有设置值 some(<T>)。
+### #Optionals(可选) 就是一种枚举。有两个状态，一种是没有设置值 none，一种有设置值 some(<T>)。
 
 ```swift
 enum Optional<T> { // a generic type, like Array<Element> or Dictionary<Key,Value> 
@@ -311,17 +314,18 @@ enum Optional<T> { // a generic type, like Array<Element> or Dictionary<Key,Valu
 ```
 ![](http://liangjinggege.com/Snip20180209_39.png?imageView2/2/w/600)
 
-- `可选链`
+### #`可选链`
 使用 ？对多个可选值链式调用，当其中一个可选解包失败，整个表达式就会返回 nil。
 
 ![](http://liangjinggege.com/Snip20180209_40.png?imageView2/2/w/600)
 
 ## Memory Management(内存管理)
-- ARC（自动引用计数）
-	- 引用类型的数据存储在`堆（heap）`里面。
-	- 每个引用类型，都有一个与之关联的引用计数，当引用计数为 0 是，系统就会回收。这些都是自动的。
+### #ARC（自动引用计数）
+- 引用类型的数据存储在`堆（heap）`里面。
+- 每个引用类型，都有一个与之关联的引用计数，当引用计数为 0 是，系统就会回收。这些都是自动的。
 
-- 影响引用计数(使用一些关键字声明来影响一个引用类型的 ARC)
-	- strong: ARC 默认关键字，只有有一个 strong 类型的指针指向引用类型，该引用类型就不会被回收，就一直在内存`堆（heap）`里面。
-	- weak: weak 关键字，对引用类型的 ARC 不发生作用。表示只要有一个其他的 strong 指针指向了该引用类型，该应用类型就 weak 指针变量访问，如果没有一个其他的 strong 指针指向了该引用类型，该引用类型就是从内存`堆（heap）`里面释放，同时将该 weak 指针变量指 `nil`。weak 关键字 只修饰`可选的引用类型`，最常用到 weak 关键字的地方一个是 Outlet，一个是 delegate。
-	- unownd: 无主引用表示像 strong 一样指向引用类型，但是不影响引用计数。并且告诉系统，当该引用类型回收后，保证不再访问该引用类型。通常用在解决循环引用的问题上，在 `闭包` 中常用。
+### #影响引用计数(使用一些关键字声明来影响一个引用类型的 ARC)
+
+- strong: ARC 默认关键字，只有有一个 strong 类型的指针指向引用类型，该引用类型就不会被回收，就一直在内存`堆（heap）`里面。
+- weak: weak 关键字，对引用类型的 ARC 不发生作用。表示只要有一个其他的 strong 指针指向了该引用类型，该应用类型就 weak 指针变量访问，如果没有一个其他的 strong 指针指向了该引用类型，该引用类型就是从内存`堆（heap）`里面释放，同时将该 weak 指针变量指 `nil`。weak 关键字 只修饰`可选的引用类型`，最常用到 weak 关键字的地方一个是 Outlet，一个是 delegate。
+- unownd: 无主引用表示像 strong 一样指向引用类型，但是不影响引用计数。并且告诉系统，当该引用类型回收后，保证不再访问该引用类型。通常用在解决循环引用的问题上，在 `闭包` 中常用。
