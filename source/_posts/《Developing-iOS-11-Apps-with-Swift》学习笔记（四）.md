@@ -104,39 +104,37 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 
 #### 1. 像 Type 一样使用 protocols(协议)
 
-```swift
+	protocol Moveable {
+	    mutating func move(to point: CGPoint)
+	}
+	class Car : Moveable {
+	    func move(to point: CGPoint) { ... }
+	    func changeOil()
+	}
+	struct Shape : Moveable {
+	    mutating func move(to point: CGPoint) { ... }
+	func draw() }
+	
+	
+	let prius: Car = Car()
+	let square: Shape = Shape()
+	
+	var thingToMove: Moveable = prius
+	thingToMove.move(to: ...)
+	thingToMove.changeOil()
+	thingToMove = square
+	
+	let thingsToMove: [Moveable] = [prius, square]
+	func slide(slider: Moveable) {
+	    let positionToSlideTo = ...
+	    slider.move(to: positionToSlideTo)
+	}
+	
+	slide(prius)
+	slide(square)
+	func slipAndSlide(x: Slippery & Moveable)
+	slipAndSlide(prius)
 
-protocol Moveable {
-    mutating func move(to point: CGPoint)
-}
-class Car : Moveable {
-    func move(to point: CGPoint) { ... }
-    func changeOil()
-}
-struct Shape : Moveable {
-    mutating func move(to point: CGPoint) { ... }
-func draw() }
-
-
-let prius: Car = Car()
-let square: Shape = Shape()
-
-var thingToMove: Moveable = prius
-thingToMove.move(to: ...)
-thingToMove.changeOil()
-thingToMove = square
-
-let thingsToMove: [Moveable] = [prius, square]
-func slide(slider: Moveable) {
-    let positionToSlideTo = ...
-    slider.move(to: positionToSlideTo)
-}
-
-slide(prius)
-slide(square)
-func slipAndSlide(x: Slippery & Moveable)
-slipAndSlide(prius)
-```
 
 #### 2. 代理 Delegation
 
