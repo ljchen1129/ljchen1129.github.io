@@ -73,27 +73,25 @@ protocol SomeProtocol : AnyObject, InheritedProtocol1, InheritedProtocol2 {
 
 #### #实现一个protocols(协议)
 
-```swift
-<!--类实现-->
-class SomeClass : SuperclassOfSomeClass, SomeProtocol, AnotherProtocol {
-	// implementation of SomeClass here
-	// which must include all the properties and methods in SomeProtocol & AnotherProtocol
-	required init(...)
-}
- 
-<!--结构体实现-->
-struct SomeStruct : SomeProtocol, AnotherProtocol {
-	// implementation of SomeStruct here
-	// which must include all the properties and methods in SomeProtocol & AnotherProtocol
-}
-	
-<!--枚举实现-->
-enum SomeEnum : SomeProtocol, AnotherProtocol {
-	// implementation of SomeEnum here
-	// which must include all the properties and methods in SomeProtocol & AnotherProtocol
-}
+	<!--类实现-->
+	class SomeClass : SuperclassOfSomeClass, SomeProtocol, AnotherProtocol {
+		// implementation of SomeClass here
+		// which must include all the properties and methods in SomeProtocol & AnotherProtocol
+		required init(...)
+	}
+	 
+	<!--结构体实现-->
+	struct SomeStruct : SomeProtocol, AnotherProtocol {
+		// implementation of SomeStruct here
+		// which must include all the properties and methods in SomeProtocol & AnotherProtocol
+	}
+		
+	<!--枚举实现-->
+	enum SomeEnum : SomeProtocol, AnotherProtocol {
+		// implementation of SomeEnum here
+		// which must include all the properties and methods in SomeProtocol & AnotherProtocol
+	}
 
-```
 
 
 >注意1：必须实现协议以及他所有继承的父协议中的所有的属性和方法。并且任意数量的协议都可以被类，结构体，枚举实现。
@@ -103,37 +101,39 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 ### protocols(协议) 应用场景
 
 #### 1. 像 Type 一样使用 protocols(协议)
-	protocol Moveable {
-	    mutating func move(to point: CGPoint)
-	}
-	class Car : Moveable {
-	    func move(to point: CGPoint) { ... }
-	    func changeOil()
-	}
-	struct Shape : Moveable {
-	    mutating func move(to point: CGPoint) { ... }
-	func draw() }
-	
-	
-	let prius: Car = Car()
-	let square: Shape = Shape()
-	
-	var thingToMove: Moveable = prius
-	thingToMove.move(to: ...)
-	thingToMove.changeOil()
-	thingToMove = square
-	
-	let thingsToMove: [Moveable] = [prius, square]
-	func slide(slider: Moveable) {
-	    let positionToSlideTo = ...
-	    slider.move(to: positionToSlideTo)
-	}
-	
-	slide(prius)
-	slide(square)
-	func slipAndSlide(x: Slippery & Moveable)
-	slipAndSlide(prius)
 
+```swift
+protocol Moveable {
+    mutating func move(to point: CGPoint)
+}
+class Car : Moveable {
+    func move(to point: CGPoint) { ... }
+    func changeOil()
+}
+struct Shape : Moveable {
+    mutating func move(to point: CGPoint) { ... }
+func draw() }
+	
+	
+let prius: Car = Car()
+let square: Shape = Shape()
+	
+var thingToMove: Moveable = prius
+thingToMove.move(to: ...)
+thingToMove.changeOil()
+thingToMove = square
+	
+let thingsToMove: [Moveable] = [prius, square]
+func slide(slider: Moveable) {
+    let positionToSlideTo = ...
+    slider.move(to: positionToSlideTo)
+}
+	
+slide(prius)
+slide(square)
+func slipAndSlide(x: Slippery & Moveable)
+slipAndSlide(prius)
+```
 
 #### 2. 代理 Delegation
 
