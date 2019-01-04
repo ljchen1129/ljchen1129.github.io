@@ -93,17 +93,17 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 	// implementation of SomeEnum here
 	// which must include all the properties and methods in SomeProtocol & AnotherProtocol
 }
+```
 ``` 
+```
 
 >注意1：必须实现协议以及他所有继承的父协议中的所有的属性和方法。并且任意数量的协议都可以被类，结构体，枚举实现。
 >注意2：在类实现中，协议的初始化方法需要加上 `required` 关键字。否则子类可能不遵守。
 	
 
-
 ### protocols(协议) 应用场景
 
 #### 1. 像 Type 一样使用 protocols(协议)
-
 	protocol Moveable {
 	    mutating func move(to point: CGPoint)
 	}
@@ -150,8 +150,8 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 
 这里举了 UIScrollViewDelegate 的例子
 
-```swift
 
+```swift
 // UIScrollView
 weak var delegate: UIScrollViewDelegate?
 
@@ -168,8 +168,8 @@ class MyViewController : UIViewController, UIScrollViewDelegate {
 }
 
 scrollView.delegate = self
-
 ```
+
 
 #### 3. 其他用法
 
