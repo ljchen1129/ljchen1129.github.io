@@ -74,6 +74,7 @@ protocol SomeProtocol : AnyObject, InheritedProtocol1, InheritedProtocol2 {
 #### #实现一个protocols(协议)
 
 ```swift
+
 <!--类实现-->
 class SomeClass : SuperclassOfSomeClass, SomeProtocol, AnotherProtocol {
 	// implementation of SomeClass here
@@ -92,7 +93,6 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 	// implementation of SomeEnum here
 	// which must include all the properties and methods in SomeProtocol & AnotherProtocol
 }
-
 ``` 
 
 >注意1：必须实现协议以及他所有继承的父协议中的所有的属性和方法。并且任意数量的协议都可以被类，结构体，枚举实现。
@@ -105,6 +105,7 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 #### 1. 像 Type 一样使用 protocols(协议)
 
 ```swift
+
 protocol Moveable {
     mutating func move(to point: CGPoint)
 }
@@ -135,9 +136,7 @@ slide(prius)
 slide(square)
 func slipAndSlide(x: Slippery & Moveable)
 slipAndSlide(prius)
-
 ```
-
 
 #### 2. 代理 Delegation
 
