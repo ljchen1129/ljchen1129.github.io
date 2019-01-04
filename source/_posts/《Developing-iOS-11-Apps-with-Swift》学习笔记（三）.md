@@ -210,12 +210,9 @@ switch menuItem {
 	case .drink: print(“drink”)
 	case .cookie: print(“cookie”)
 }
-
 ``` 
 
-
 ### #使用 `default` 表示余下的所有状态
-
 ```swift
 var menuItem = FastFoodMenuItem.cookie
 switch menuItem {
@@ -223,7 +220,7 @@ switch menuItem {
     case .fries: print(“fries”)
     default: print(“other”)
 }
-
+	
 ```
 
 >注意：必须列举完一个枚举的所有状态。
