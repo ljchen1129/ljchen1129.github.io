@@ -22,13 +22,6 @@ categories:
 
 这节课主要讲述了 Swift 中 protocols(协议) 和 Closures（闭包）、NSAttributedString 的语法和注意点。
 
-## 索引
-[mutating 关键字](mutating 关键字)
-[protocols(协议)](protocols(协议))
-[String 字符串](String 字符串)
-[NSAttributedString](NSAttributedString)
-[Closures 闭包](Closures 闭包)
-
 ## mutating 关键字
 <!-- more -->
 
@@ -72,11 +65,11 @@ protocol SomeProtocol : InheritedProtocol1, InheritedProtocol2 {
 	
 #### #指定协议只能被类实现，使用 `AnyObject` 关键字标识:
 
-	```
-	protocol SomeProtocol : AnyObject, InheritedProtocol1, InheritedProtocol2 {
+```
+protocol SomeProtocol : AnyObject, InheritedProtocol1, InheritedProtocol2 {
 	
-	}
-	```
+}
+```
 
 #### #实现一个protocols(协议)
 
@@ -100,10 +93,12 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 	// which must include all the properties and methods in SomeProtocol & AnotherProtocol
 }
 ``` 
-	
+
 >注意1：必须实现协议以及他所有继承的父协议中的所有的属性和方法。并且任意数量的协议都可以被类，结构体，枚举实现。
 >注意2：在类实现中，协议的初始化方法需要加上 `required` 关键字。否则子类可能不遵守。
 	
+
+
 ### protocols(协议) 应用场景
 
 #### 1. 像 Type 一样使用 protocols(协议)
