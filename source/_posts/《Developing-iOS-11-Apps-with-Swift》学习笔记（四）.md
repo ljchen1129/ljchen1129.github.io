@@ -74,7 +74,6 @@ protocol SomeProtocol : AnyObject, InheritedProtocol1, InheritedProtocol2 {
 #### #实现一个protocols(协议)
 
 ```swift
-
 <!--类实现-->
 class SomeClass : SuperclassOfSomeClass, SomeProtocol, AnotherProtocol {
 	// implementation of SomeClass here
@@ -93,9 +92,9 @@ enum SomeEnum : SomeProtocol, AnotherProtocol {
 	// implementation of SomeEnum here
 	// which must include all the properties and methods in SomeProtocol & AnotherProtocol
 }
+
 ```
-``` 
-```
+
 
 >注意1：必须实现协议以及他所有继承的父协议中的所有的属性和方法。并且任意数量的协议都可以被类，结构体，枚举实现。
 >注意2：在类实现中，协议的初始化方法需要加上 `required` 关键字。否则子类可能不遵守。
