@@ -54,7 +54,7 @@ let x = try? errorProneFunctionThatReturnsAnInt()
 - swift 是一门`强类型`语言，不能直接对 Any & AnyObject 发送消息，必须要转成具体的类型先
 - 为了体现 swift `强类型`语言的优点，在 swift 中我们要避免使用 Any
 - 使用场景
-	- ·let attributes: [NSAttributedStringKey:Any]`：在字典表示中 value 可以是任何类型
+	- `let attributes: [NSAttributedStringKey:Any]`：在字典表示中 value 可以是任何类型
 	- 有时候但比较少见出现在函数的参数中，`func prepare(for segue: UIStoryboardSegue, sender: Any?)`
 - 这些是旧的 Objective-C API，在 swift 中使用带关联值的枚举或者协议来代替。
 
@@ -103,9 +103,10 @@ let intified: Int = n.intValue // also doubleValue, boolValue, etc.
 	- 定义空间坐标
 	- 绘图
 	- 处理触摸事件
+	
 - 层次
 	- 一个视图只有唯一的父视图：var superview: UIView?
-	- 可以有许多或者 0 个子视图：var subviews: [UIView]
+	- 可以有许多或者没有子视图：var subviews: [UIView]
 	- 子视图数组中的顺序：索引更后面的子视图越显示在索引更前面的子视图顶部
 	- 一个视图可以决定是否裁剪他的子视图超出自己 bounds 部分
 
@@ -114,10 +115,10 @@ let intified: Int = n.intValue // also doubleValue, boolValue, etc.
 	- 整个 App 生命周期中只有一个 UIWindow 视图
 	
 - 可以使用 Xcode graphically 查看视图的层次结构
-- 使用代码添加可删除一个视图
+- 使用代码添加或者删除一个视图
 - 视图的层次从哪里开始？
-	- 最顶部的视图是控制器的view属性：var view: UIView.
-	- 控制器的view在设备旋转时 bounds 会发生改变
+	- 最顶部的视图是控制器的 view 属性：var view: UIView.
+	- 控制器的 view 在设备旋转时 bounds 会发生改变
 
 ### 初始化一个view
 
@@ -140,7 +141,7 @@ requiredinit?(coderaDecoder:NSCoder){
 }
 ```
  
->另一个可供替代的构造器：`awakeFromNib()`，只有当视图从 storyboard 中创建才会调用，但不是一个构造器，在视图构造完成后会立即调用这个方法，所有在 storyboard 中继承自 NSObject 的对象都会调用这个方法。但调用顺序是不确定的。
+>另一个可供替代的方案：`awakeFromNib()`，只有当视图从 storyboard 中创建才会调用，但不是一个构造器，在视图构造完成后会立即调用这个方法，所有在 storyboard 中继承自 NSObject 的对象都会调用这个方法。但调用顺序是不确定的。
 	
 ### 坐标系统中的数据结构
 
@@ -204,10 +205,10 @@ contains(CGPoint)->Bool
 
 ###  bounds vs frame
 
-- bounds：视图内部能够绘图的矩形空间，包括origin 和 size，是以自己的坐标系统做参考的。
-- frame：在视图的父视图坐标系统中，包含视图的rect。
+- bounds：视图内部能够绘图的矩形空间，包括 origin 和 size，是以自己的坐标系统做参考的。
+- frame：在视图的父视图坐标系统中，包含视图的 rect。
 
-> 注意：bounds 和 frame 不总是相等的，当视图旋转、拉伸后 bounds 和 frame就不相等了。
+> 注意：bounds 和 frame 不总是相等的，如当视图旋转、拉伸后 bounds 和 frame就不相等了。
 
 ![](http://liangjinggege.com/Xnip2019-01-17_14-36-41.png?imageView2/2/w/700)
 
@@ -235,7 +236,7 @@ view.addSubview(label)
 
 ![](http://liangjinggege.com/Xnip2019-01-17_14-49-28.png?imageView2/2/w/700)
 
->注意：不要主动调用 `draw(CGRect)` 方法，如果需要重新绘图，可以调用 setNeedsDisplay() 或者 `setNeedsDisplay(_ rect: CGRect) ` 告诉系统，系统将会在适合的时间调用 draw(CGRect) 方法，其中 rect 参数为需要重绘制的区域。
+>注意：不要主动调用 `draw(CGRect)` 方法，如果需要重新绘图，可以调用 `setNeedsDisplay()`或者 `setNeedsDisplay(_ rect: CGRect) ` 告诉系统，系统将会在适合的时间调用 draw(CGRect) 方法，其中 rect 参数为需要重绘制的区域。
 
 #### 2. 怎么绘图？
 
@@ -259,8 +260,6 @@ if let context = UIGraphicsGetCurrentContext() {
 }
 
 ```
-
-
 
 ##### #贝塞尔曲线
 
@@ -318,9 +317,9 @@ func contains(_ point: CGPoint) -> Bool
 
 - let green = UIColor.green，定义颜色，其他方式如 RGB, HSB 等
 - 带透明度的颜色：UIColor.yellow.withAlphaComponent(0.5)
-- 设置整个View 的透明度：var alpha: CGFloat
+- 设置整个 View 的透明度：var alpha: CGFloat
 
->注意：如果想要绘制带透明度的颜色，需要设置 var opaque = false
+>注意：如果想要绘制带透明度的颜色，需要设置 `var opaque = false`
 
 
 ### Layers
@@ -345,8 +344,7 @@ var borderColor: CGColor?
 
 ### View Transparency
 
-- 隐藏一个View而不用将View从视图层次中移除出去：var isHidden: Bool
-
+- 隐藏一个 View 而不用将 View 从视图层次中移除出去：`var isHidden: Bool`
 
 ### 绘制文本
 
@@ -368,7 +366,7 @@ let textSize: CGSize = text.size
 
 代码获取字体
 
-- static func preferredFont(forTextStyle: UIFontTextStyle) -> UIFont：特别的，获取到的字体大小在系统->设置中修改后会立即生效
+- static func preferredFont(forTextStyle: UIFontTextStyle) -> UIFont：特别的，获取到的字体大小在 `系统->设置` 中修改后会`立即生效`
 - 获取指定的字体：let font = UIFont(name: “Helvetica”, size: 36.0)
 - static func systemFont(ofSize: CGFloat) -> UIFont 和 static func boldSystemFont(ofSize: CGFloat) -> UIFont
 
@@ -416,18 +414,18 @@ override func layoutSubviews() {
 
 ## DEMO
 
-1. 构造一张扑克牌结构体，有四种花色，13 中大小，其中包括，ace、numeric、face，使用了带关联值的枚举。
+- 构造一张扑克牌结构体，有四种花色，13 中大小，其中包括，ace、numeric、face，使用了带关联值的枚举。
 
 ![](http://liangjinggege.com/Xnip2019-01-17_16-27-01.png?imageView2/2/w/700)
 
-2. 一副扑克牌
+- 一副扑克牌
 
 ![](http://liangjinggege.com/Xnip2019-01-17_16-27-16.png?imageView2/2/w/700)
 
-3. 随机抽取 10 张
+- 随机抽取 10 张
 
 ![](http://liangjinggege.com/Xnip2019-01-17_16-27-51.png)
 
-4. 打印结果
+- 打印结果
 
 ![](http://liangjinggege.com/Xnip2019-01-17_16-28-02.png?imageView2/2/w/700)
