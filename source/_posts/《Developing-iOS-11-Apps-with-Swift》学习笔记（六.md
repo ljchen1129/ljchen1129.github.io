@@ -128,7 +128,6 @@ var allowableMovement: CGFloat
 ![](http://liangjinggege.com/Xnip2019-01-18_16-39-01.png)
 ![](http://liangjinggege.com/Xnip2019-01-18_16-39-22.png)
 
-
 ### 设置字体大小随系统设置改变而即时改变
 
 ![](http://liangjinggege.com/Xnip2019-01-18_17-08-42.png)
