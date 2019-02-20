@@ -18,6 +18,8 @@ categories:
 
 ![](http://liangjinggege.com/Xnip2018-07-13_19-21-39.png)
 
+<!-- more -->
+
 - [MLeaksFinder](https://github.com/Tencent/MLeaksFinder)：微信读书开源的一款 debeg 模式下精准 iOS 内存泄露检测工具；
 - [BLStopwatch](https://github.com/beiliao-mobile/BLStopwatch)：代码耗时打点计时器
 - [ImageOptim](https://github.com/ImageOptim/ImageOptim)：图片压缩工具；
