@@ -142,7 +142,7 @@ git push origin develop
 git branch -d release-0.1
 ```
 
-### Hotfix branches（热修复分支）
+#### Hotfix branches（热修复分支）
 这个分支系列是紧急线上修复，当线上出现 bug 且特别紧急的时候，就可以从 master 拉出分支到这里进行修复，修复完成后分别并入 master 和 develop 分支。
 
 ##### 1. 从 master 主分支上切出来
@@ -176,7 +176,7 @@ git branch -d bugfix-#001
 
 ## 解决冲突
 
-1. 还未提交到本地暂存区
+还未提交到本地暂存区
 
 ```shell
 
@@ -190,7 +190,7 @@ git reset HEAD file  
 git checkout -- file 
 ```
 
-2. 已经提交到本地，没有提交到远程
+已经提交到本地，没有提交到远程
 
 ```shell
 # 此操作相当于让之前的 git commit -m "修改说明" 失效。
@@ -198,7 +198,7 @@ git checkout -- file
 git reset --hard HEAD^
 ```
 
-3. 已经提交到远程
+已经提交到远程
 
 ```shell
 # 采取 revert 的方法，相当于重新生成一个提交，来撤销前一次错误的commit:
