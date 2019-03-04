@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.6.0"
+    "version": "3.8.0"
   },
   "dependencies": {
     "dplayer": "^1.25.0",
-    "hexo": "^3.6.0",
+    "hexo": "^3.8.0",
     "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
     "hexo-deployer-git": "^0.1.0",
     "hexo-fs": "^0.2.2",
@@ -18,10 +18,10 @@
     "hexo-generator-searchdb": "^1.0.8",
     "hexo-generator-tag": "^0.2.0",
     "hexo-renderer-ejs": "^0.2.0",
-    "hexo-renderer-marked": "^0.2.10",
+    "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0",
-    "hexo-tag-aplayer": "^3.0.2",
+    "hexo-server": "^0.3.3",
+    "hexo-tag-aplayer": "^3.0.4",
     "hexo-tag-dplayer": "^0.3.3",
     "hexo-wordcount": "^3.0.2",
     "shelljs": "^0.7.8"
