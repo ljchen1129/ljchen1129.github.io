@@ -76,7 +76,7 @@ hello，欢迎来到我的主页，我是一名 iOS 程序员，业余长跑马�
 ## 格言
 > 孤独是一种选择。自律，自信，自强，成就自我！
 
-{% aplayer "一个人" "韩红" "http://liangjinggege.com/%E9%9F%A9%E7%BA%A2%20-%20%E4%B8%80%E4%B8%AA%E4%BA%BA.mp3" "http://liangjinggege.com/offline-31997564.jpg" %}
+<!--{% aplayer "一个人" "韩红" "http://liangjinggege.com/%E9%9F%A9%E7%BA%A2%20-%20%E4%B8%80%E4%B8%AA%E4%BA%BA.mp3" "http://liangjinggege.com/offline-31997564.jpg" %}-->
 
 ## 联系我
 
