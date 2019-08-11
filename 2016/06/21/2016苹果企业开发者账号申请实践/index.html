@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="苹果开发者账号分类 个人。99美元，可以上传到APP Store,限制最大开发设备安装数100台，不能多人协作开发，可以申请升级为公司账号。 公司。99美元，可以上传到APP Store,限制最大开发设备安装数100台，能多人协作开发,申请需填写邓白氏编码。 企业。299美元，不可以上传到APP Store, 不限制最大开发设备安装数，能多人协作开发,申请需填写邓白氏编码  申请目的 给企业用户进">
+<meta name="keywords" content="iOS,开发者账号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2016 苹果企业开发者账号申请实践">
+<meta property="og:url" content="http://chenliangjing.me/2016/06/21/2016苹果企业开发者账号申请实践/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="苹果开发者账号分类 个人。99美元，可以上传到APP Store,限制最大开发设备安装数100台，不能多人协作开发，可以申请升级为公司账号。 公司。99美元，可以上传到APP Store,限制最大开发设备安装数100台，能多人协作开发,申请需填写邓白氏编码。 企业。299美元，不可以上传到APP Store, 不限制最大开发设备安装数，能多人协作开发,申请需填写邓白氏编码  申请目的 给企业用户进">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%BB%E9%A1%B5.png?imageView2/0/h/200">
+<meta property="og:image" content="http://liangjinggege.com/%E9%80%89%E6%8B%A9Enterprise%20Program.png?imageView2/0/h/200/w/600">
+<meta property="og:image" content="http://liangjinggege.com/getStart.png?imageView2/0/h/200/w/600">
+<meta property="og:image" content="http://liangjinggege.com/start2.png?imageView2/0/h/600/w/600">
+<meta property="og:image" content="http://liangjinggege.com/%E7%94%B3%E8%AF%B7apple%20id.png?imageView2/0/h/200/w/300">
+<meta property="og:image" content="http://liangjinggege.com/%E7%94%B3%E8%AF%B7Apple%20id%202.png">
+<meta property="og:image" content="http://liangjinggege.com/%E9%AA%8C%E8%AF%81%E7%A0%81.png?imageView2/0/h/300/w/300">
+<meta property="og:image" content="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E5%8F%B7%E7%94%B3%E8%AF%B7001.png?imageView2/0/h/500/w/500">
+<meta property="og:image" content="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E6%88%B7%E7%94%B3%E8%AF%B7002.png">
+<meta property="og:image" content="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E6%88%B7%E7%94%B3%E8%AF%B7003.png?imageView2/0/w/700">
+<meta property="og:image" content="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E6%88%B7%E7%94%B3%E8%AF%B7004.png?imageView2/0/h/300/w/600">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.308Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2016 苹果企业开发者账号申请实践">
+<meta name="twitter:description" content="苹果开发者账号分类 个人。99美元，可以上传到APP Store,限制最大开发设备安装数100台，不能多人协作开发，可以申请升级为公司账号。 公司。99美元，可以上传到APP Store,限制最大开发设备安装数100台，能多人协作开发,申请需填写邓白氏编码。 企业。299美元，不可以上传到APP Store, 不限制最大开发设备安装数，能多人协作开发,申请需填写邓白氏编码  申请目的 给企业用户进">
+<meta name="twitter:image" content="http://liangjinggege.com/%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%BB%E9%A1%B5.png?imageView2/0/h/200">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2016/06/21/2016苹果企业开发者账号申请实践/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>2016 苹果企业开发者账号申请实践 | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2016/06/21/2016苹果企业开发者账号申请实践/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2016 苹果企业开发者账号申请实践
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-06-21 16:47:57" itemprop="dateCreated datePublished" datetime="2016-06-21T16:47:57+08:00">2016-06-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/21/2016苹果企业开发者账号申请实践/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2016/06/21/2016苹果企业开发者账号申请实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/06/21/2016苹果企业开发者账号申请实践/" class="leancloud_visitors" data-flag-title="2016 苹果企业开发者账号申请实践">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="苹果开发者账号分类"><a href="#苹果开发者账号分类" class="headerlink" title="苹果开发者账号分类"></a>苹果开发者账号分类</h1><ol>
+<li>个人。<code>99美元</code>，可以上传到<code>APP Store</code>,限制最大开发设备安装数<code>100</code>台，<code>不能多人协作</code>开发，可以申请升级为<code>公司账号</code>。</li>
+<li>公司。<code>99美元</code>，可以上传到<code>APP Store</code>,限制最大开发设备安装数<code>100</code>台，<code>能多人协作开发</code>,申请需填写<code>邓白氏编码</code>。</li>
+<li>企业。<code>299美元</code>，<code>不</code>可以上传到<code>APP Store</code>, <code>不</code>限制最大开发设备安装数，<code>能多人协作开发</code>,申请需填写<code>邓白氏编码</code><br></li>
+</ol>
+<h1 id="申请目的"><a href="#申请目的" class="headerlink" title="申请目的"></a>申请目的</h1><blockquote>
+<p>给企业用户进行内部测试，使用企业账号生成的证书打包的APP没有安装设备数量的限制，但不能上传到AppStore,可以放于企业官网或者第三方分发渠道供用户下载安装。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol>
+<li>VISA或者万事达信用卡</li>
+<li>公司邮箱</li>
+<li>公司网站（需和邮箱后缀一致）</li>
+<li>Apple ID</li>
+<li>公司英文名称</li>
+<li>公司总部座机号</li>
+<li>公司邓白氏编码</li>
+<li>公司英文地址</li>
+<li>邮政编码</li>
+</ol>
+<h1 id="申请步骤"><a href="#申请步骤" class="headerlink" title="申请步骤"></a>申请步骤</h1><h2 id="申请Apple-ID"><a href="#申请Apple-ID" class="headerlink" title="申请Apple ID"></a>申请Apple ID</h2><ol>
+<li>登录<a href="https://developer.apple.com" target="_blank" rel="noopener">苹果开发者主页</a>,拉到最下面。选择<code>Developer Program</code><br><img src="http://liangjinggege.com/%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%BB%E9%A1%B5.png?imageView2/0/h/200" alt=""> </li>
+<li>同样拉到页面最下面，选择<code>Enterprise Program</code><br><br><img src="http://liangjinggege.com/%E9%80%89%E6%8B%A9Enterprise%20Program.png?imageView2/0/h/200/w/600" alt=""></li>
+<li>来到页面中间，选择<code>Get started with enrollment</code>，开始：<br><img src="http://liangjinggege.com/getStart.png?imageView2/0/h/200/w/600" alt=""> </li>
+<li>接下来这个页面，苹果将会告诉我们申请企业开发者账号需要哪些材料，依旧拉到下面，点击<code>Start Your Enrollment</code>按钮<br><br><img src="http://liangjinggege.com/start2.png?imageView2/0/h/600/w/600" alt=""> </li>
+<li>这时如果没有登录<code>Apple ID</code>的话会自动弹出Apple ID的登录界面,如果有的话就直接登录，没有的话就需要创建一个新的Apple ID，点击<br><br><img src="http://liangjinggege.com/%E7%94%B3%E8%AF%B7apple%20id.png?imageView2/0/h/200/w/300" alt=""><br><br></li>
+</ol>
+<hr>
+<p> <img src="http://liangjinggege.com/%E7%94%B3%E8%AF%B7Apple%20id%202.png" alt=""><br><br> 资料填完后，直接点击<code>Continue</code>按钮<br><br> <img src="http://liangjinggege.com/%E9%AA%8C%E8%AF%81%E7%A0%81.png?imageView2/0/h/300/w/300" alt=""><br><br>登录申请时填写的邮箱，就会收到苹果发过来的验证码，将验证码填进去，再点击<code>Vertify</code>按钮，进行验证</p>
+<h2 id="申请邓白氏编码"><a href="#申请邓白氏编码" class="headerlink" title="申请邓白氏编码"></a>申请邓白氏编码</h2><ol>
+<li>验证邮箱成功后，<code>Apple ID</code>就注册好了，接下来回到之前的注册登录页面，用刚注册好的<code>Apple ID</code>登录。</li>
+<li>登录成功后，来到<code>Apple Developer Enterprise Program Enrollment</code>页面,Entity Type类型选择<code>Company / Organization</code><br><br><img src="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E5%8F%B7%E7%94%B3%E8%AF%B7001.png?imageView2/0/h/500/w/500" alt=""><br></li>
+<li>如果没有申请邓白氏编码，则需要去申请邓白氏编码后才能继续，点击<code>Check Now</code>按钮，我这边已经申请过邓白氏编码，申请可参考简书上<a href="http://www.jianshu.com/p/2c3d74c49af9" target="_blank" rel="noopener">Apple 公司开发者账号&amp;邓白氏码申请记录</a>或者<a href="http://www.niaogebiji.com/article-9882-1.html" target="_blank" rel="noopener">2016年最新苹果开发者账号注册申请流程最强详解</a>这两篇帖子。如果已申请，则点击<code>continue</code>按钮，进入下一步:<br></li>
+</ol>
+<h2 id="申请企业开发者账号"><a href="#申请企业开发者账号" class="headerlink" title="申请企业开发者账号"></a>申请企业开发者账号</h2><ol>
+<li>进入下一步后，就开始填写资料<br><br><img src="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E6%88%B7%E7%94%B3%E8%AF%B7002.png" alt=""><br></li>
+<li>填完资料后检查一遍没问题后点击下面的<code>continue</code>按钮，来到确认页面，进入最终的信息确认<br><br><br><img src="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E6%88%B7%E7%94%B3%E8%AF%B7003.png?imageView2/0/w/700" alt=""><br></li>
+<li>检查完毕后，点击<code>Submit</code>按钮，提交申请，如果一切都填正确后，会出现<code>Your enrollment is being processed.</code>提示，表示申请已被受理，接下来就是等待了,等待付款….<br><br><img src="http://liangjinggege.com/%E4%BC%81%E4%B8%9A%E8%B4%A6%E6%88%B7%E7%94%B3%E8%AF%B7004.png?imageView2/0/h/300/w/600" alt=""><br></li>
+<li>苹果会发一封申请在处理中国的邮件过来，也可以到开发者主页中的个人账户中查看申请进度。</li>
+</ol>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
+<li>最好用<code>safari</code>浏览器操作，申请前最好清除cookie</li>
+<li>公司邮箱须和网站的域名保持一致，既<code>邮箱@后面为公司的域名</code></li>
+<li>填写的姓名须和<code>Apple id</code>账户中的<code>个人信息</code>保持一致</li>
+<li>公司信息须和申请<code>邓白氏编码</code>时填写的信息保持一致</li>
+<li>最好关闭翻墙，因为翻墙容易造成<code>当前电脑的IP</code>与<code>当前所在地的IP</code>不一致</li>
+<li>如果收不到验证邮件，请到<code>邮箱垃圾箱</code>中查看，很可能是默认把苹果的验证邮件给单做垃圾邮件拦截了</li>
+<li>最好有一个笔记，记录需要填写的信息和步骤，防止一次不通过后每次都要重复手写，也可以给当做一次实践经验，以后要用到的时候可以方便查看</li>
+</ol>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><ol>
+<li>与苹果客服交流过，如果是集团公司，用子公司的邓白氏认证的账号申请的只能用在子公司，如果要整个集团都要能使用，苹果要求使用母公司当做账号主体去申请。</li>
+<li>申请时填写的资料需要和邓白氏编码上的资料一致，座机电话，联系人信息一定要先确认能联系到自己。验证人电话填自己的领导，并且要和领导沟通，让他接听电话时确认你的身份。一定要接到苹果打来的验证电话，如果接不到，申请会被终止。两次用同一个账号去申请都没接到验证电话，第三次就要很长时间了。</li>
+<li>千万一切准备详细了再去申请，一旦错了两次，后面申请都是漫长的过程。</li>
+<li>苹果客服（需要提供caseNumber）<br> 苹果中国客服：4006-701-855<br> 美国客服：001-916-399-7000<br> 接通电话后是英文提示，需要输入分机号码按#号结束。然后会是一个中国人接的。通过她才能联系到主管的审核团队，无法直接联系审核团队。</li>
+<li>回答苹果的验证电话时一定要小心，邓白氏上的资料和申请企业账号时填写的资料还有回答苹果验证电话时的信息一定要三方都对的上，还有苹果打来验证电话问到申请企业账号用来干嘛，一定要回答是企业内部测试。</li>
+<li>一定要向领导说明目前的现状，不要自己背锅。由于近几年苹果的审核政策越来越严苛，有很多公司的申请都没有成功，所以企业账号不一定能申请通过，另外，申请周期可能会比较长。如果实在没有申请通过，考虑是否能从淘宝上买？当然淘宝上也不一定能买到。</li>
+<li>邓白氏资料修改。邮箱：<a href="mailto:applecs@dnb.com" target="_blank" rel="noopener">applecs@dnb.com</a>，负责对接苹果这边的华夏邓白氏公司电话： 021-26107504.<br>邮件需要用英文写，说明当初申请时填写的资料，然后告知要修改那些内容，理由。</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a href="http://www.niaogebiji.com/article-9882-1.html" target="_blank" rel="noopener">2016年最新苹果开发者账号注册申请流程最强详解！</a></li>
+<li><a href="http://www.jianshu.com/p/5975bf3d13be" target="_blank" rel="noopener">299$的企业开发者账号申请流程</a></li>
+<li><a href="http://www.jianshu.com/p/2c3d74c49af9" target="_blank" rel="noopener">Apple 公司开发者账号&amp;邓白氏码申请记录</a></li>
+<li><a href="http://weibo.com/ttarticle/p/show?id=2309403992134360367825" target="_blank" rel="noopener">如何申请邓白氏编码（DUNS码)</a></li>
+<li><a href="http://www.crifan.com/apply_apple_developer_programs_but_an_unknown_error_occurred/" target="_blank" rel="noopener">【记录】申请苹果开发者账号但失败出现：An Unknown error occurred</a></li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p>申请开发者账号是一个iOS开发者经常要碰到的问题，凡事多实践，多总结，就会多一些经验</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/开发者账号/" rel="tag"># 开发者账号</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/02/HTML5初体验/" rel="next" title="HTML5 初体验">
+                <i class="fa fa-chevron-left"></i> HTML5 初体验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/16/基于推送的实时聊天功能实现/" rel="prev" title="基于推送的实时聊天功能实现">
+                基于推送的实时聊天功能实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#苹果开发者账号分类"><span class="nav-number">1.</span> <span class="nav-text">苹果开发者账号分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#申请目的"><span class="nav-number">2.</span> <span class="nav-text">申请目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#申请步骤"><span class="nav-number">4.</span> <span class="nav-text">申请步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#申请Apple-ID"><span class="nav-number">4.1.</span> <span class="nav-text">申请Apple ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请邓白氏编码"><span class="nav-number">4.2.</span> <span class="nav-text">申请邓白氏编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请企业开发者账号"><span class="nav-number">4.3.</span> <span class="nav-text">申请企业开发者账号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">5.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">6.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

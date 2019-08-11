@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Foundation 简介Foundation 框架是 Mac/iOS 中其他框架的基础，Foundation 框架包含了很多开发中常用的数据类型（结构体、枚举、类） 字符串源码地址一源码地址二 1.NSString#创建字符串12345678// 1. 通过字符串常量创建，存储在`常量区`中NSString *str1 = @&quot;张三&quot;;    // 2. 通过对象方法创建NSString *st">
+<meta name="keywords" content="iOS,Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C  语言基础（五、Foundation 框架）">
+<meta property="og:url" content="http://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="Foundation 简介Foundation 框架是 Mac/iOS 中其他框架的基础，Foundation 框架包含了很多开发中常用的数据类型（结构体、枚举、类） 字符串源码地址一源码地址二 1.NSString#创建字符串12345678// 1. 通过字符串常量创建，存储在`常量区`中NSString *str1 = @&quot;张三&quot;;    // 2. 通过对象方法创建NSString *st">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170416_5.png">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170426_1.png">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C  语言基础（五、Foundation 框架）">
+<meta name="twitter:description" content="Foundation 简介Foundation 框架是 Mac/iOS 中其他框架的基础，Foundation 框架包含了很多开发中常用的数据类型（结构体、枚举、类） 字符串源码地址一源码地址二 1.NSString#创建字符串12345678// 1. 通过字符串常量创建，存储在`常量区`中NSString *str1 = @&quot;张三&quot;;    // 2. 通过对象方法创建NSString *st">
+<meta name="twitter:image" content="http://liangjinggege.com/Snip20170416_5.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Objective-C  语言基础（五、Foundation 框架） | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Objective-C  语言基础（五、Foundation 框架）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-26 23:46:47" itemprop="dateCreated datePublished" datetime="2017-04-26T23:46:47+08:00">2017-04-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Objective-C/" itemprop="url" rel="index"><span itemprop="name">Objective-C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/" class="leancloud_visitors" data-flag-title="Objective-C  语言基础（五、Foundation 框架）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Foundation-简介"><a href="#Foundation-简介" class="headerlink" title="Foundation 简介"></a>Foundation 简介</h2><p>Foundation 框架是 Mac/iOS 中其他框架的基础，Foundation 框架包含了很多开发中常用的数据类型（结构体、枚举、类）</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSString" target="_blank" rel="noopener">源码地址一</a><br><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/%E5%AD%97%E7%AC%A6%E4%B8%B2" target="_blank" rel="noopener">源码地址二</a></p>
+<h3 id="1-NSString"><a href="#1-NSString" class="headerlink" title="1.NSString"></a>1.NSString</h3><h4 id="创建字符串"><a href="#创建字符串" class="headerlink" title="#创建字符串"></a>#创建字符串</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 通过字符串常量创建，存储在`常量区`中</span></span><br><span class="line"><span class="built_in">NSString</span> *str1 = <span class="string">@"张三"</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 通过对象方法创建</span></span><br><span class="line"><span class="built_in">NSString</span> *str2 = [[<span class="built_in">NSString</span> alloc] initWithFormat:<span class="string">@"李四"</span>];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 通过类工厂方法创建</span></span><br><span class="line"><span class="built_in">NSString</span> *str3 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"李四"</span>];</span><br></pre></td></tr></table></figure>
+<p>通过不同的方式创建的字符串，字符串对象存储的位置不一样<br><a id="more"></a></p>
+<ol>
+<li><p>通过字符串常量创建：字符串对象存储在<code>常量区</code>中，并且如果多个字符串对象，多个字符串对象指向同一块存储空间。</p>
+<p> <img src="http://liangjinggege.com/Snip20170416_5.png" alt=""></p>
+</li>
+<li><p>通过对象方法以及类工厂方法创建：字符串对象存储在<code>堆区</code>中。</p>
+</li>
+</ol>
+<blockquote>
+<p>注意：不同平台存储的方式也不一样，如果是 MAC 平台，系统会对字符串对象进行优化，如果是 iOS 平台就是两个对象。</p>
+</blockquote>
+<h4 id="字符串读写"><a href="#字符串读写" class="headerlink" title="#字符串读写"></a>#字符串读写</h4><h5 id="文件读"><a href="#文件读" class="headerlink" title="文件读"></a>文件读</h5><h6 id="直接读写文件中的字符"><a href="#直接读写文件中的字符" class="headerlink" title="直接读写文件中的字符"></a>直接读写文件中的字符</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串读取</span></span><br><span class="line"><span class="comment">// 1. 从文件中读取字符串</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> file：文件路径，绝对路径</span></span><br><span class="line"><span class="comment"> encoding: 字符编码，一般写 UTF-8</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line"><span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithContentsOfFile:<span class="string">@"/Users/chenliangjing/Desktop/test.txt"</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (error == <span class="literal">nil</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>,str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"error = %@"</span>, [error localizedDescription]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 将字符串写入文件中</span></span><br><span class="line"><span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</span><br><span class="line"><span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>, now];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// atomically:如果YES，字符串写入文件的过程如果没有写完，那么不会生成文件</span></span><br><span class="line"><span class="comment">//            如果NO，字符串写入文件的过程如果没有写完，会生成文件</span></span><br><span class="line">[str writeToFile:<span class="string">@"/Users/chenliangjing/Desktop/test.txt"</span> atomically:<span class="literal">YES</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (error == <span class="literal">nil</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>,str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"error = %@"</span>, [error localizedDescription]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="根据-URL-加载文件中的字符串"><a href="#根据-URL-加载文件中的字符串" class="headerlink" title="根据 URL 加载文件中的字符串"></a>根据 URL 加载文件中的字符串</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据 URL 从文件中读取字符串</span></span><br><span class="line"><span class="comment">// 1. 创建 URL</span></span><br><span class="line"><span class="comment">// 协议头 + 主机地址 + 文件路径</span></span><br><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"file://192.168.0.100/Users/chenliangjing/Desktop/test.txt"</span>;</span><br><span class="line"><span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:path];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 根据 URL 加载文件中的字符串</span></span><br><span class="line"><span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithContentsOfURL:url encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (error == <span class="literal">nil</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>, str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"error = %@"</span>, [error localizedDescription]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果资源是在<code>本机地址</code>获取的，那么 URL 的主机地址可以省略，上述的路径可以写为：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 前面的 `/` 不能省略，代表根路径 </span><br><span class="line">NSString *path = @<span class="string">"file:/Users/chenliangjing/Desktop/test.txt"</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>如果是通过 fileURLWithPath: 方法创建 URL，则协议头也不用写，系统会自动添加协议头（file://）</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/chenliangjing/Desktop/test.txt"</span>; </span><br><span class="line"><span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> fileURLWithPath:path];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果 URL 中含有中文，通过 fileURLWithPath: 方法创建 URL 会自动将中文进行百分号编码，而如果通过 UrlWithString: 方法，不会自动进行中文的处理，需手动进行中文百分号编码：</p>
+</blockquote>
+<p><img src="http://liangjinggege.com/Snip20170426_1.png" alt=""></p>
+<h5 id="文件写"><a href="#文件写" class="headerlink" title="文件写"></a>文件写</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件写入</span></span><br><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"chenliangjing"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/chenliangjing/Desktop/test.txt"</span>;</span><br><span class="line"><span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line">[str writeToURL:[<span class="built_in">NSURL</span> fileURLWithPath:path] atomically:<span class="literal">YES</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入失败"</span>);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"error = %@"</span>, error);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果多次往同一个文件中写入内容，那么最后一次写入的内容会覆盖掉以前的内容。</p>
+</blockquote>
+<h4 id="字符串比较"><a href="#字符串比较" class="headerlink" title="#字符串比较"></a>#字符串比较</h4><h5 id="比较两个字符串的“内容”是否相同"><a href="#比较两个字符串的“内容”是否相同" class="headerlink" title="比较两个字符串的“内容”是否相同"></a>比较两个字符串的“内容”是否相同</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 比较两个字符串的“内容”是否相同</span></span><br><span class="line"><span class="keyword">bool</span> flag = [str1 isEqualToString:str2];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"flag = %i"</span>, flag);</span><br></pre></td></tr></table></figure>
+<h5 id="比较两个字符串的”地址“是否相同"><a href="#比较两个字符串的”地址“是否相同" class="headerlink" title="比较两个字符串的”地址“是否相同"></a>比较两个字符串的”地址“是否相同</h5><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// <span class="number">2</span>. 比较两个字符串的”地址“是否相同</span><br><span class="line"><span class="attribute">flag</span> = (str1 == str2)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h5 id="比较两个字符串大小，比较的-ACCIC-码值"><a href="#比较两个字符串大小，比较的-ACCIC-码值" class="headerlink" title="比较两个字符串大小，比较的 ACCIC 码值"></a>比较两个字符串大小，比较的 ACCIC 码值</h5><ul>
+<li>NSOrderedAscending 升序，前面的小于后面的</li>
+<li>NSOrderedSame, 相等</li>
+<li>NSOrderedDescending 降序，前面的大于后面的</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 不忽略大小写比较</span></span><br><span class="line"><span class="keyword">switch</span> ([str1 compare:str2]) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="built_in">NSOrderedAscending</span>:</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"str1 小于 str2"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="built_in">NSOrderedSame</span>:</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"str1 等于 str2"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="built_in">NSOrderedDescending</span>:</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"str1 大于 str2"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;;</span><br><span class="line">	</span><br><span class="line"><span class="comment">// 2. 忽略大小写比较</span></span><br><span class="line"><span class="built_in">NSString</span> *str3 = <span class="string">@"zhangsan"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *str4 = <span class="string">@"ZHANGSAN"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> ([str3 caseInsensitiveCompare:str4]) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="built_in">NSOrderedAscending</span>:</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"str3 小于 str4"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="built_in">NSOrderedSame</span>:</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"str3 等于 str4"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="built_in">NSOrderedDescending</span>:</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"str3 大于 str4"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串搜索"><a href="#字符串搜索" class="headerlink" title="#字符串搜索"></a>#字符串搜索</h4><h5 id="判断是否以什么开头"><a href="#判断是否以什么开头" class="headerlink" title="判断是否以什么开头"></a>判断是否以什么开头</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"http://www.baidu.com"</span>;</span><br><span class="line"><span class="comment">// 1. 判断是否以什么开头</span></span><br><span class="line"><span class="keyword">if</span> ([str hasPrefix:<span class="string">@"http://"</span>])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"是一个 url"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"不是一个 url"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="判断以什么结尾"><a href="#判断以什么结尾" class="headerlink" title="判断以什么结尾"></a>判断以什么结尾</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">if</span> ([str <span class="attribute">hasSuffix</span>:@<span class="string">".gif"</span>])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="selector-tag">NSLog</span>(@<span class="string">"动态图片"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="selector-tag">NSLog</span>(@<span class="string">"不是动态图片"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="判断字符串中是否包含“某个字符串”"><a href="#判断字符串中是否包含“某个字符串”" class="headerlink" title="判断字符串中是否包含“某个字符串”"></a>判断字符串中是否包含“某个字符串”</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只要 str 中包含“某个字符串”，就会返回该字符串在字符串中的起始位置和长度</span></span><br><span class="line"><span class="built_in">NSRange</span> range = [str rangeOfString:<span class="string">@"baidu"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"range.location = %lu, range.length = %lu"</span>, range.location, range.length); <span class="comment">// range.location = 11, range.length = 5</span></span><br><span class="line"><span class="comment">// 如果 str 中没有需要查找的字符串，那返回的 range 的length = 0，location = NSNotFound</span></span><br><span class="line"><span class="built_in">NSRange</span> range2 = [str rangeOfString:<span class="string">@"google"</span>];</span><br><span class="line"><span class="keyword">if</span> (range2.location != <span class="built_in">NSNotFound</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"在 str 中找到 “baidu”"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="built_in">NSLog</span>(<span class="string">@"在 str 中没有找到 “baidu”"</span>);</span><br><span class="line">     <span class="built_in">NSLog</span>(<span class="string">@"range2.length = %lu"</span>, range2.length); <span class="comment">// 0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串截取"><a href="#字符串截取" class="headerlink" title="#字符串截取"></a>#字符串截取</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = @<span class="string">"&lt;hea&gt;陈良静&lt;/hea&gt;"</span>;</span><br><span class="line"><span class="comment">// 默认从第一个字符开始找</span></span><br><span class="line">NSUInteger location = [str rangeOfString:<span class="type"></span>@<span class="string">"&gt;"</span>].location + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// NSBackwardsSearch，从最后一个字符开始找</span></span><br><span class="line">NSUInteger length = [str rangeOfString:<span class="type"></span>@<span class="string">"&lt;"</span> options:<span class="type">NSBackwardsSearch</span>].location - location;</span><br><span class="line"></span><br><span class="line">NSRange range = NSMakeRange(location,length);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 在 range 范围内截取</span></span><br><span class="line">NSString *<span class="keyword">new</span><span class="type">Str</span> = [str substringWithRange:<span class="type">range</span>];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// str = &lt;hea&gt;陈良静&lt;/hea&gt;, newStr = 陈良静</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 从什么位置开始截取，一直截取到最后</span></span><br><span class="line"><span class="comment">// 默认从第一个字符开始找</span></span><br><span class="line">NSUInteger fromLocation = [str rangeOfString:<span class="type"></span>@<span class="string">"&gt;"</span>].location + <span class="number">1</span>;</span><br><span class="line">NSString *<span class="keyword">new</span><span class="type">Str</span> = [str substringFromIndex:<span class="type">fromLocation</span>];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// &lt;hea&gt;陈良静&lt;/hea&gt;, newStr = 陈良静&lt;/hea&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 从开头开始截取，一直截取到什么位置</span></span><br><span class="line">NSUInteger toLocation = [<span class="keyword">new</span><span class="type">Str</span> rangeOfString:<span class="type"></span>@<span class="string">"&lt;"</span>].location;</span><br><span class="line"><span class="keyword">new</span><span class="type">Str</span> = [<span class="keyword">new</span><span class="type">Str</span> substringToIndex:<span class="type">toLocation</span>];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// &lt;hea&gt;陈良静&lt;/hea&gt;, newStr = 陈良静</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符串替换"><a href="#字符串替换" class="headerlink" title="#字符串替换"></a>#字符串替换</h4><h5 id="用制定字符串替换字符串中的子串"><a href="#用制定字符串替换字符串中的子串" class="headerlink" title="用制定字符串替换字符串中的子串"></a>用制定字符串替换字符串中的子串</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = @<span class="string">"http://www.baidu.com"</span>;</span><br><span class="line"><span class="comment">// 将“baidu”替换为“sina”</span></span><br><span class="line">NSString *<span class="keyword">new</span><span class="type">Str</span> = [str stringByReplacingOccurrencesOfString:<span class="type"></span>@<span class="string">"baidu"</span> withString:<span class="type"></span>@<span class="string">"sina"</span>];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// str = http://www.baidu.com, newStr = http://www.sina.com</span></span><br></pre></td></tr></table></figure>
+<h5 id="去除空格"><a href="#去除空格" class="headerlink" title="去除空格"></a>去除空格</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = @<span class="string">" http://ww w.baidu.c  om "</span>;</span><br><span class="line">NSString *<span class="keyword">new</span><span class="type">Str</span> = [str stringByReplacingOccurrencesOfString:<span class="type"></span>@<span class="string">" "</span> withString:<span class="type"></span>@<span class="string">""</span>];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// http://ww w.baidu.c  om , newStr = http://www.baidu.com</span></span><br></pre></td></tr></table></figure>
+<h5 id="替换首尾"><a href="#替换首尾" class="headerlink" title="替换首尾"></a>替换首尾</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = @<span class="string">" ht tp://ww w.b ai du.com  "</span>;</span><br><span class="line"><span class="comment">// 去除首尾的空格</span></span><br><span class="line">NSCharacterSet *<span class="keyword">set</span> = [NSCharacterSet whitespaceCharacterSet];</span><br><span class="line">NSString *<span class="keyword">new</span><span class="type">Str</span> = [str stringByTrimmingCharactersInSet:<span class="type">set</span>];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// str =  ht tp://ww w.b ai du.com  , newStr = ht tp://ww w.b ai du.com</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 将首尾的大写字符全部取出掉</span></span><br><span class="line">str = @<span class="string">"HTTP://www.baidu.com"</span>;</span><br><span class="line">NSCharacterSet *set2 = [NSCharacterSet uppercaseLetterCharacterSet];</span><br><span class="line"><span class="keyword">new</span><span class="type">Str</span> = [str stringByTrimmingCharactersInSet:<span class="type">set2</span>];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// str = HTTP://www.baidu.com, newStr = ://www.baidu.com</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符串和路径"><a href="#字符串和路径" class="headerlink" title="#字符串和路径"></a>#字符串和路径</h4><h5 id="判断是否是一个绝对路径"><a href="#判断是否是一个绝对路径" class="headerlink" title="判断是否是一个绝对路径"></a>判断是否是一个绝对路径</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 本质是判断字符串是否以“/”开头</span></span><br><span class="line"><span class="keyword">bool</span> flag = [str isAbsolutePath];</span><br><span class="line"><span class="keyword">if</span> (flag)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str 是一个绝对路径"</span>); <span class="comment">// str 是一个绝对路径</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str 不是一个绝对路径"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取文件路径中的最后一个目录"><a href="#获取文件路径中的最后一个目录" class="headerlink" title="获取文件路径中的最后一个目录"></a>获取文件路径中的最后一个目录</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 本质是获取路径中最后一个/后面的内容</span></span><br><span class="line"><span class="built_in">NSString</span> *lastDir = [str lastPathComponent];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"lastDir = %@"</span>, lastDir); <span class="comment">// lastDir = test.txt</span></span><br></pre></td></tr></table></figure>
+<h5 id="删除文件路径中的最后一个目录"><a href="#删除文件路径中的最后一个目录" class="headerlink" title="删除文件路径中的最后一个目录"></a>删除文件路径中的最后一个目录</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="regexp">//</span> 本质是删除最后一个<span class="string">"/"</span>以及后面的内容</span><br><span class="line">NSString *newStr = [str stringByDeletingLastPathComponent];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, newStr); <span class="regexp">//</span> str = <span class="regexp">/Users/</span>chenliangjing<span class="regexp">/Desktop/</span>test.txt, newStr = <span class="regexp">/Users/</span>chenliangjing<span class="regexp">/Desktop</span></span><br></pre></td></tr></table></figure>
+<h5 id="给文件路径添加一个目录"><a href="#给文件路径添加一个目录" class="headerlink" title="给文件路径添加一个目录"></a>给文件路径添加一个目录</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 如果原路径后面已经有了<span class="string">"/"</span>，则不会在添加“<span class="regexp">/”，如果有没有，怎会添加“/</span>”，如果有多个<span class="string">"/"</span>,则会删除多余的<span class="string">"/"</span>，只保留一个<span class="string">"/"</span></span><br><span class="line">NSString *addDir = @<span class="string">"chenliangjing.tex"</span>;</span><br><span class="line">newStr = [str stringByAppendingPathComponent:addDir];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, newStr); <span class="regexp">//</span> str = <span class="regexp">/Users/</span>chenliangjing<span class="regexp">/Desktop/</span>test.txt, newStr = <span class="regexp">/Users/</span>chenliangjing<span class="regexp">/Desktop/</span>test.txt<span class="regexp">/chenliangjing.tex</span></span><br></pre></td></tr></table></figure>
+<h5 id="获取路径中的文件扩展名"><a href="#获取路径中的文件扩展名" class="headerlink" title="获取路径中的文件扩展名"></a>获取路径中的文件扩展名</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 本质是从字符串的末尾开始查找，截取第一个"."后面的内容</span></span><br><span class="line"><span class="built_in">NSString</span> *extName = [str pathExtension];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"extName = %@"</span>, extName); <span class="comment">// extName = txt</span></span><br></pre></td></tr></table></figure>
+<h5 id="删除路径中的文件扩展名"><a href="#删除路径中的文件扩展名" class="headerlink" title="删除路径中的文件扩展名"></a>删除路径中的文件扩展名</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 本质是从字符串的末尾开始查找，删除第一个<span class="string">"."</span>后面的内容</span><br><span class="line">newStr = [str stringByDeletingPathExtension];</span><br><span class="line">NSLog(@<span class="string">"str = %@, newStr = %@"</span>, str, newStr); <span class="regexp">//</span> str = <span class="regexp">/Users/</span>chenliangjing<span class="regexp">/Desktop/</span>test.txt, newStr = <span class="regexp">/Users/</span>chenliangjing<span class="regexp">/Desktop/</span>test</span><br></pre></td></tr></table></figure>
+<h5 id="给文件路径天机一个扩展名"><a href="#给文件路径天机一个扩展名" class="headerlink" title="给文件路径天机一个扩展名"></a>给文件路径天机一个扩展名</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSString *addExtName = @<span class="string">"gif"</span>;</span><br><span class="line"><span class="keyword">new</span><span class="type">Str</span> = [<span class="keyword">new</span><span class="type">Str</span> stringByAppendingPathExtension:<span class="type">addExtName</span>];</span><br><span class="line">NSLog(@<span class="string">"newStr = %@"</span>, <span class="keyword">new</span><span class="type">Str</span>); <span class="comment">// newStr = /Users/chenliangjing/Desktop/test.gif</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符串转换"><a href="#字符串转换" class="headerlink" title="#字符串转换"></a>#字符串转换</h4><h5 id="将字符串装换为大写"><a href="#将字符串装换为大写" class="headerlink" title="将字符串装换为大写"></a>将字符串装换为大写</h5><pre><code>NSString *str = @&quot;chenLiangJing&quot;;
+NSString *newStr = [str uppercaseString];
+NSLog(@&quot;str = %@, newStr = %@&quot;, str, newStr); // str = chenLiangJing, newStr = CHENLIANGJING   
+</code></pre><h5 id="将字符串装换为小写"><a href="#将字符串装换为小写" class="headerlink" title="将字符串装换为小写"></a>将字符串装换为小写</h5><pre><code>newStr = [str lowercaseString];
+NSLog(@&quot;str = %@, newStr = %@&quot;, str, newStr); // henLiangJing, newStr = chenliangjing 
+</code></pre><h5 id="将字符串的首字符转换为大写"><a href="#将字符串的首字符转换为大写" class="headerlink" title="将字符串的首字符转换为大写"></a>将字符串的首字符转换为大写</h5><pre><code>newStr = [str capitalizedString];
+NSLog(@&quot;str = %@, newStr = %@&quot;, str, newStr); // str = chenLiangJing, newStr = Chenliangjing
+</code></pre><h5 id="字符串与基本数据类型的转换"><a href="#字符串与基本数据类型的转换" class="headerlink" title="字符串与基本数据类型的转换"></a>字符串与基本数据类型的转换</h5><pre><code>NSInteger a = 10;
+NSInteger b = 10;
+newStr = [NSString stringWithFormat:@&quot;%ld&quot;, a + b]; // newStr = 20
+NSLog(@&quot;newStr = %@&quot;, newStr);
+
+NSString *str1 = @&quot;30&quot;; // 要确保装换的字符串确实可以转成想要的基本数据类型，否则会结果错误
+NSString *str2 = @&quot;50&quot;;
+NSInteger result = [str1 integerValue] + [str2 integerValue];
+NSLog(@&quot;result = %ld&quot;, result); // result = 80  
+</code></pre><h5 id="C-语言字符创和-Objective-C-字符串之间的转换"><a href="#C-语言字符创和-Objective-C-字符串之间的转换" class="headerlink" title="C 语言字符创和 Objective-C 字符串之间的转换"></a>C 语言字符创和 Objective-C 字符串之间的转换</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C 转 OC</span></span><br><span class="line"><span class="keyword">char</span> *cStr = <span class="string">"clj"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *ocStr = [<span class="built_in">NSString</span> stringWithUTF8String:cStr];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"cStr = %s, ocStr = %@"</span>, cStr, ocStr); <span class="comment">// cStr = clj, ocStr = clj</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// OC 转 C</span></span><br><span class="line">ocStr = <span class="string">@"chenliangjing"</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *newcStr = [ocStr UTF8String];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"ocStr = %@, newcStr = %s"</span>, ocStr, newcStr); <span class="comment">// ocStr = chenliangjing, newcStr = chenliangjing</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-NSMutableString"><a href="#2-NSMutableString" class="headerlink" title="2.NSMutableString"></a>2.NSMutableString</h3><h4 id="NSMutableString-基本概念"><a href="#NSMutableString-基本概念" class="headerlink" title="#NSMutableString 基本概念"></a>#NSMutableString 基本概念</h4><ol>
+<li><p>NSMutableString 是 NSString 类的子类，NSString 类中提供的所有方法在  NSMutableString 类中都可以使用，NSMutableString 类似一个字符串链表，可以任意的在字符串中添加、删除字符串，在指定位置插入字符串，用来操作字符串更加灵活。</p>
+</li>
+<li><p>可变和不可变</p>
+</li>
+</ol>
+<ul>
+<li><p>不可变<br>指的是字符串在内存中占用的存储空间固定，并且存储的内容不能发生变化</p>
+</li>
+<li><p>可变<br>指的是字符串在内存中占用的存储空间可以不固定，并且存储的内容可以被修改</p>
+</li>
+</ul>
+<h4 id="NSMutableString-常用方法"><a href="#NSMutableString-常用方法" class="headerlink" title="#NSMutableString 常用方法"></a>#NSMutableString 常用方法</h4><h5 id="在字符串后面添加字符串"><a href="#在字符串后面添加字符串" class="headerlink" title="在字符串后面添加字符串"></a>在字符串后面添加字符串</h5><pre><code>[mStr appendString:@&quot;liangjing&quot;];
+NSLog(@&quot;mStr = %@&quot;, mStr); // mStr = chenliangjing
+[mStr appendFormat:@&quot;&apos;s age is %i&quot;, 25];
+NSLog(@&quot;mStr = %@&quot;, mStr); // mStr = chenliangjing&apos;s age is 25
+</code></pre><h5 id="删除字符串"><a href="#删除字符串" class="headerlink" title="删除字符串"></a>删除字符串</h5><pre><code>NSRange delRange = [mStr rangeOfString:@&quot;&apos;s age is 25&quot;];
+[mStr deleteCharactersInRange:delRange];
+NSLog(@&quot;mStr = %@&quot;, mStr); // chenliangjing
+</code></pre><h5 id="插入字符串"><a href="#插入字符串" class="headerlink" title="插入字符串"></a>插入字符串</h5><pre><code>NSRange insRange = [mStr rangeOfString:@&quot;liangjing&quot;];
+[mStr insertString:@&quot;_&quot; atIndex:insRange.location];
+NSLog(@&quot;mStr = %@&quot;, mStr); // mStr = chen_liangjing
+</code></pre><h5 id="替换字符串"><a href="#替换字符串" class="headerlink" title="替换字符串"></a>替换字符串</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用父类 NSString 的替换字符串方法，返回一个新的字符串，不修改原来的字符串</span></span><br><span class="line">NSString *newStr = [mStr <span class="string">stringByReplacingOccurrencesOfString:</span>@<span class="string">"_"</span> <span class="string">withString:</span>@<span class="string">""</span>];</span><br><span class="line">NSLog(@<span class="string">"mStr = %@, newStr = %@"</span>, mStr, newStr); <span class="comment">// chen_liangjing, newStr = chenliangjing</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 调用 NSMutableString 的替换方法</span></span><br><span class="line">NSRange repRange = [mStr <span class="string">rangeOfString:</span>@<span class="string">"_liangjing"</span>];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// OccurrencesOfString: 需要替换的字符串</span></span><br><span class="line"><span class="comment">// withString: 用什么字符串替换</span></span><br><span class="line"><span class="comment">// options: 替换是的搜索方式</span></span><br><span class="line"><span class="comment">// range: 搜索的范围</span></span><br><span class="line"><span class="comment">// 返回值: 表示替换了多少个字符串</span></span><br><span class="line">NSUInteger count = [mStr <span class="string">replaceOccurrencesOfString:</span>@<span class="string">"_"</span> <span class="string">withString:</span>@<span class="string">""</span> <span class="string">options:</span><span class="number">0</span> <span class="string">range:</span>repRange];</span><br><span class="line">NSLog(@<span class="string">"mStr = %@"</span>, mStr); <span class="comment">// mStr = chenliangjing</span></span><br><span class="line">NSLog(@<span class="string">"count = %ld"</span>, count); <span class="comment">// count = 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">源码地址</a></p>
+<h3 id="1-NSArray"><a href="#1-NSArray" class="headerlink" title="1. NSArray"></a>1. NSArray</h3><h4 id="NSArray-基本概念"><a href="#NSArray-基本概念" class="headerlink" title="NSArray 基本概念"></a>NSArray 基本概念</h4><ul>
+<li>能存放任意 OC 对象，而且是有序的</li>
+<li>不能存储非 OC 对象，比如 int\float\char\stuct 等</li>
+<li>不可变。一旦初始化完毕，他里面的内容就永远是固定的，不能添加，删除里面的元素</li>
+</ul>
+<h5 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h5><pre><code>+ (instancetype)array;
++ (instancetype)arrayWithObject:(ObjectType)anObject;
++ (instancetype)arrayWithObjects:(const ObjectType [])objects count:(NSUInteger)cnt;
++ (instancetype)arrayWithObjects:(ObjectType)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+// 通过一个数组来创建
++ (instancetype)arrayWithArray:(NSArray&lt;ObjectType&gt; *)array;
+
+- (instancetype)initWithObjects:(ObjectType)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+- (instancetype)initWithArray:(NSArray&lt;ObjectType&gt; *)array;
+- (instancetype)initWithArray:(NSArray&lt;ObjectType&gt; *)array copyItems:(BOOL)flag;
+
++ (nullable NSArray&lt;ObjectType&gt; *)arrayWithContentsOfFile:(NSString *)path;
++ (nullable NSArray&lt;ObjectType&gt; *)arrayWithContentsOfURL:(NSURL *)url;
+- (nullable NSArray&lt;ObjectType&gt; *)initWithContentsOfFile:(NSString *)path;
+- (nullable NSArray&lt;ObjectType&gt; *)initWithContentsOfURL:(NSURL *)url;
+
+
+// 常用创建方式，字面量语法
+NSArray *arr = @[@&quot;obj1&quot;, @&quot;obj2&quot;];
+</code></pre><h5 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *arr = @[<span class="string">@"obj1"</span>, <span class="string">@"obj2"</span>];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 1. 获取数组中元素的个数</span></span><br><span class="line"><span class="built_in">NSUInteger</span> arrCount = [arr count];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrCount = %lu"</span>, arrCount); <span class="comment">//  arrCount = 2</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 获取最后一个元素</span></span><br><span class="line"><span class="built_in">NSString</span> *lastObj = [arr lastObject];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"lastObj = %@"</span>, lastObj); <span class="comment">// lastObj = obj2</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 3. 获取第一个元素</span></span><br><span class="line"><span class="built_in">NSString</span> *firstObj = [arr firstObject];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"firstObj = %@"</span>, firstObj); <span class="comment">// firstObj = obj1</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 4. 获取数组中指定位置的元素</span></span><br><span class="line"><span class="built_in">NSString</span> *obj = [arr objectAtIndex:<span class="number">1</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"obj[1] = %@"</span>, obj); <span class="comment">// obj[1] = obj2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 数组中是否包含某一个元素</span></span><br><span class="line"><span class="built_in">NSString</span> *obj3 = <span class="string">@"obj3"</span>;</span><br><span class="line"><span class="built_in">BOOL</span> flag = [arr containsObject:obj3];</span><br><span class="line"><span class="keyword">if</span> (flag)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"arr 中包含 %@"</span>, obj3);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"arr 中不包含 %@"</span>, obj3); <span class="comment">// arr 中不包含 obj3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="简写-推荐方式"><a href="#简写-推荐方式" class="headerlink" title="简写(推荐方式)"></a>简写(推荐方式)</h5><pre><code>// 1. 数组简写
+NSArray *simpleArr = @[@&quot;zhangsan&quot;, @&quot;lisi&quot;, @&quot;wangwu&quot;, @15, @&quot;30&quot;];
+
+// 2. 获取指定位置的数组中元素
+id o = simpleArr[3];
+NSLog(@&quot;o = %@&quot;, o); // o = 15
+</code></pre><h4 id="NSArray-遍历"><a href="#NSArray-遍历" class="headerlink" title="NSArray 遍历"></a>NSArray 遍历</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    <span class="built_in">NSArray</span> *arr = @[<span class="string">@"zhangsan"</span>, <span class="string">@"lisi"</span>, <span class="string">@"wangwu"</span>];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 1. 常规遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.count; i ++ )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"arr[%i] = %@"</span>, i, arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 增强 for 循环</span></span><br><span class="line"><span class="comment">// 逐个取出 arr 中的元素，将元素赋值给 obj</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> *str <span class="keyword">in</span> arr)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>, str);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 3. 使用数组迭代器遍历(推荐使用)</span></span><br><span class="line"><span class="comment">// 每取出一个元素就会调用一次block</span></span><br><span class="line"><span class="comment">// 每次调用 block 都会将当前取出的元素和元素对应的索引传递出来</span></span><br><span class="line"><span class="comment">// obj 就是当前取出的元素，idx 就是当前元素的对应索引</span></span><br><span class="line"><span class="comment">// stop 用于控制什么时候停止遍历</span></span><br><span class="line">[arr enumerateObjectsUsingBlock:^(<span class="keyword">id</span>  _Nonnull obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</span><br><span class="line">    <span class="keyword">if</span> (idx == <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 停止遍历</span></span><br><span class="line">        *stop = <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"idx = %lu, obj = %@"</span>, idx, obj);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<h4 id="给-NSArray-中所有对象发消息"><a href="#给-NSArray-中所有对象发消息" class="headerlink" title="给 NSArray 中所有对象发消息"></a>给 NSArray 中所有对象发消息</h4><pre><code>Person *p1 = [Person new];
+p1.food = @&quot;food1&quot;;
+Person *p2 = [Person new];
+p2.food = @&quot;food2&quot;;
+Person *p3 = [Person new];
+p3.food = @&quot;food3&quot;;
+Person *p4 = [Person new];
+p4.food = @&quot;food4&quot;;
+
+NSArray *arr = @[p1, p2, p3, p4];
+// 如果使用 OC 数组存储对象，可以调用数组的方法给数组中所有的元素都执行指定的方法
+// selector: 要执行的方法
+// withObject:方法的参数
+[arr makeObjectsPerformSelector:@selector(eatWithFood:) withObject:@&quot;food&quot;];
+</code></pre><blockquote>
+<p>注意：如果数组中保存的不是相同类型的元素，并且没有相同的方法，那么程序运行会报错。</p>
+</blockquote>
+<h4 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h4><h5 id="方法一：只能用于-OC-对象"><a href="#方法一：只能用于-OC-对象" class="headerlink" title="方法一：只能用于 OC 对象"></a>方法一：只能用于 OC 对象</h5><pre><code>// compare: 排序方法只能用在数组中所有元素是 OC 对象时才能使用，如果数组中的对象时非 OC 对象，那么程序会运行报错
+NSArray *newArr = [arr sortedArrayUsingSelector:@selector(compare:)];
+NSLog(@&quot;newArr = %@&quot;, newArr); // newArr = (2, 3, 5, 10, 20, 100)
+</code></pre><h5 id="方法二：可用于自定义对象"><a href="#方法二：可用于自定义对象" class="headerlink" title="方法二：可用于自定义对象"></a>方法二：可用于自定义对象</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Person *p1 = [Person <span class="keyword">new</span><span class="type"></span>];</span><br><span class="line">p1.age = <span class="number">35</span>;</span><br><span class="line">Person *p2 = [Person <span class="keyword">new</span><span class="type"></span>];</span><br><span class="line">p2.age = <span class="number">15</span>;</span><br><span class="line">Person *p3 = [Person <span class="keyword">new</span><span class="type"></span>];</span><br><span class="line">p3.age = <span class="number">45</span>;</span><br><span class="line">Person *p4 = [Person <span class="keyword">new</span><span class="type"></span>];</span><br><span class="line">p4.age = <span class="number">5</span>;</span><br><span class="line">    </span><br><span class="line">NSArray *arr2 = @[p1, p2, p3, p4];</span><br><span class="line">NSLog(@<span class="string">"arr2.age = %@"</span>, arr2);</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 该排序方法默认会按照升序排序</span></span><br><span class="line">NSArray *<span class="keyword">new</span><span class="type">Arr2</span> = [arr2 sortedArrayUsingComparator:<span class="type"></span>^NSComparisonResult(Person *obj1, Person *obj2) &#123;</span><br><span class="line">    <span class="comment">// 每次调用该 block 都会取出数组中的两个元素出来</span></span><br><span class="line">    <span class="comment">// 二分排序</span></span><br><span class="line">    <span class="keyword">return</span> obj1.age &gt; obj2.age;</span><br><span class="line">&#125;];</span><br><span class="line">NSLog(@<span class="string">"newArr2 = %@"</span>, <span class="keyword">new</span><span class="type">Arr2</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="NSArray-和-NSString-转换"><a href="#NSArray-和-NSString-转换" class="headerlink" title="NSArray 和 NSString 转换"></a>NSArray 和 NSString 转换</h4><pre><code>// 1. 将 NSArray 中的元素按照某个连接符拼接成一个字符串
+NSArray *arr = @[@&quot;zhangsan&quot;, @&quot;lisi&quot;, @&quot;wangwu&quot;];
+NSString *result = [arr componentsJoinedByString:@&quot;_&quot;];
+NSLog(@&quot;result = %@&quot;, result); // result = zhangsan_lisi_wangwu
+
+// 2. 通过字符串中的某一个连接符截取出一个字符串数组，字符串切割
+NSArray *newArr = [result componentsSeparatedByString:@&quot;_&quot;];
+NSLog(@&quot;newArr = %@&quot;, newArr); // ewArr = (zhangsan, lisi, wangwu)
+</code></pre><h4 id="NSArray-文件读写"><a href="#NSArray-文件读写" class="headerlink" title="NSArray 文件读写"></a>NSArray 文件读写</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 将数组写入到文件中</span></span><br><span class="line"><span class="built_in">NSArray</span> *arr = @[<span class="string">@"zhangsan"</span>, <span class="string">@"lisi"</span>, <span class="string">@"wangwu"</span>];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 如果将一个数组写入文件中，本质是写入了一个 XML 文件，一般情况下，会将 XML 文件的扩展名保存为 plist，因为比较方便查看</span></span><br><span class="line"><span class="keyword">bool</span> flag = [arr writeToFile:<span class="string">@"/Users/chenliangjing/Desktop/temp.plist"</span> atomically:<span class="literal">YES</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"flag = %i"</span>, flag);</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 从文件中读取一个数组</span></span><br><span class="line"><span class="built_in">NSArray</span> *getArr = [<span class="built_in">NSArray</span> arrayWithContentsOfFile:<span class="string">@"/Users/chenliangjing/Desktop/temp.plist"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"getArr = %@"</span>, getArr); <span class="comment">// getArr = (zhangsan, lisi, wangwu)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：writeToFile:只能写入数组中保存的元素都是 Foundation 框架中的类创建的对象，如果保存的是自定义对象，那么不能写入。</p>
+</blockquote>
+<h3 id="2-NSMutableArray"><a href="#2-NSMutableArray" class="headerlink" title="2. NSMutableArray"></a>2. NSMutableArray</h3><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSMutableArray" target="_blank" rel="noopener">源代码地址</a></p>
+<h4 id="NSMutableArray-介绍"><a href="#NSMutableArray-介绍" class="headerlink" title="NSMutableArray 介绍"></a>NSMutableArray 介绍</h4><ul>
+<li>NSMutableArray 是 NSArray 的子类，是可变的数组，可以随时往里面增加，插入，删除，替换元素。</li>
+</ul>
+<h4 id="NSMutableArray-用法"><a href="#NSMutableArray-用法" class="headerlink" title="NSMutableArray 用法"></a>NSMutableArray 用法</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建一个空数组</span></span><br><span class="line"><span class="built_in">NSMutableArray</span> *arrM = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = ( )</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 添加元素</span></span><br><span class="line">[arrM addObject:<span class="string">@"zhangsan"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan)</span></span><br><span class="line"><span class="comment">// 从指定数组中取出元素添加到 arrM 中</span></span><br><span class="line">[arrM addObjectsFromArray:@[<span class="string">@"lisi"</span>, <span class="string">@"wangwu"</span>]];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi, wangwu)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 把指定数组当做 arrM 中的一个元素添加</span></span><br><span class="line">[arrM addObject:@[<span class="string">@"lisi2"</span>, <span class="string">@"wangwu2"</span>]];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi, wangwu, (lisi2, wangwu2))</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 3. 插入元素</span></span><br><span class="line"><span class="comment">// 往指定位置插入新元素</span></span><br><span class="line">[arrM insertObject:<span class="string">@"chenliangjing"</span> atIndex:<span class="number">2</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi, chenliangjing, wangwu, (lisi2, wangwu2))</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 插入一组数据，指定数组需要插入的位置，和要插入多少个元素</span></span><br><span class="line"><span class="built_in">NSIndexSet</span> *set = [<span class="built_in">NSIndexSet</span> indexSetWithIndexesInRange:<span class="built_in">NSMakeRange</span>(<span class="number">2</span>, <span class="number">2</span>)];</span><br><span class="line">[arrM insertObjects:@[<span class="string">@"A"</span>, <span class="string">@"B"</span>] atIndexes:set];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi, A, B, chenliangjing, wangwu, (lisi2, wangwu2))</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 4. 删除元素</span></span><br><span class="line"><span class="comment">// 删除最后一个元素</span></span><br><span class="line">[arrM removeLastObject];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi, A, B, chenliangjing, wangwu)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 从指定位置删除元素</span></span><br><span class="line">[arrM removeObjectAtIndex:<span class="number">4</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi, A, B, wangwu)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 从指定的范围删除一个数组</span></span><br><span class="line"><span class="built_in">NSIndexSet</span> *remSet = [<span class="built_in">NSIndexSet</span> indexSetWithIndexesInRange:<span class="built_in">NSMakeRange</span>(<span class="number">2</span>, <span class="number">2</span>)];</span><br><span class="line">[arrM removeObjectsAtIndexes:remSet];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi, wangwu)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 删除指定的元素</span></span><br><span class="line">[arrM removeObject:<span class="string">@"wangwu"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = (zhangsan, lisi)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 删除所有元素</span></span><br><span class="line">[arrM removeAllObjects];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// arrM = ( )</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 5. 替换元素</span></span><br><span class="line">[arrM addObject:<span class="string">@"A"</span>];</span><br><span class="line">[arrM replaceObjectAtIndex:<span class="number">0</span> withObject:<span class="string">@"B"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM = %@"</span>, arrM); <span class="comment">// // arrM = ( B )</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 6. 获取元素</span></span><br><span class="line"><span class="built_in">NSString</span> *element = [arrM objectAtIndex:<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"element = %@"</span>, element); <span class="comment">// element = B</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 7. 简易用法</span></span><br><span class="line"><span class="comment">// 获取</span></span><br><span class="line"><span class="built_in">NSString</span> *element2 = arrM[<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"element2 = %@"</span>, element2); <span class="comment">// element2 = B</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 替换</span></span><br><span class="line">arrM[<span class="number">0</span>] = <span class="string">@"C"</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrM[0] = %@"</span>, arrM[<span class="number">0</span>]); <span class="comment">// arrM[0] = C</span></span><br></pre></td></tr></table></figure>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/%E5%AD%97%E5%85%B8" target="_blank" rel="noopener">源代码地址</a></p>
+<h3 id="1-NSDictionary"><a href="#1-NSDictionary" class="headerlink" title="1. NSDictionary"></a>1. NSDictionary</h3><ul>
+<li>通过一个 key，能找到对应的 value</li>
+<li>NSDictionary 是不可变的，一旦初始化完毕，里面的内容就无法改变</li>
+</ul>
+<h4 id="字典创建"><a href="#字典创建" class="headerlink" title="字典创建"></a>字典创建</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建字典</span></span><br><span class="line"><span class="comment">// key 和 value 是一一对应的</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *dic = [<span class="built_in">NSDictionary</span> dictionaryWithObjects: @[<span class="string">@"chenliangjing"</span>, <span class="string">@"25"</span>] forKeys: @[<span class="string">@"name"</span>, <span class="string">@"age"</span>]];</span><br><span class="line"><span class="built_in">NSString</span> *name = [dic objectForKey:<span class="string">@"name"</span>];</span><br><span class="line"><span class="built_in">NSString</span> *age = [dic objectForKey:<span class="string">@"age"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"name = %@, age = %@"</span>, name, age); <span class="comment">// name = chenliangjing, age = 25</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 简易创建（推荐使用）</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *dic2 = @&#123;<span class="string">@"name"</span> : <span class="string">@"chenliangjing"</span>, <span class="string">@"age"</span> : @<span class="number">25</span>&#125;;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"dic2 = %@"</span>, dic2); <span class="comment">// dic2 = &#123; age = 25; name = chenliangjing; &#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="字典遍历"><a href="#字典遍历" class="headerlink" title="字典遍历"></a>字典遍历</h4><pre><code>NSDictionary *dic = @{@&quot;name&quot; : @&quot;chenliangjing&quot;, @&quot;age&quot; : @25, @&quot;height&quot; : @1.70};
+
+// 迭代器
+[dic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    NSLog(@&quot;key = %@, obj = %@&quot;, key, obj);
+}];
+</code></pre><h4 id="字典文件读取"><a href="#字典文件读取" class="headerlink" title="字典文件读取"></a>字典文件读取</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> *dic = @&#123;<span class="string">@"name"</span> : <span class="string">@"chenliangjing"</span>, <span class="string">@"age"</span> : @<span class="number">25</span>, <span class="string">@"height"</span> : @<span class="number">1.70</span>&#125;;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 1. 写入文件</span></span><br><span class="line"><span class="built_in">BOOL</span> flag = [dic writeToFile:<span class="string">@"/Users/chenliangjing/Desktop/test.plist"</span> atomically:<span class="literal">YES</span>];</span><br><span class="line"><span class="keyword">if</span> (flag)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入成功"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入失败"</span>);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 从文件中读取</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *newDic = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfFile:<span class="string">@"/Users/chenliangjing/Desktop/test.plist"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"newDic = %@"</span>, newDic); <span class="comment">// newDic = &#123;</span></span><br><span class="line">    age = <span class="number">25</span>;</span><br><span class="line">    height = <span class="string">"1.7"</span>;</span><br><span class="line">    name = chenliangjing;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：字典和数组不一样，字典中保存的数据是无序的。</p>
+</blockquote>
+<h3 id="2-NSMutableDictionary"><a href="#2-NSMutableDictionary" class="headerlink" title="2. NSMutableDictionary"></a>2. NSMutableDictionary</h3><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSMutableDictionary" target="_blank" rel="noopener">源代码地址</a></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建一个空的字典</span></span><br><span class="line"><span class="built_in">NSMutableDictionary</span> *mDic = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; &#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 添加</span></span><br><span class="line">[mDic setObject:<span class="string">@"chenliangjing"</span> forKey:<span class="string">@"name"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; name = chenliangjing; &#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 将字典中所有的键值对全部取出来添加到 mDic 中去</span></span><br><span class="line">[mDic setValuesForKeysWithDictionary:@&#123;<span class="string">@"age"</span> :  @<span class="number">25</span>, <span class="string">@"height"</span> : @<span class="number">1.70</span>&#125;];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; age = 25; height = "1.7"; name = chenliangjing;&#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 3. 获取</span></span><br><span class="line"><span class="built_in">NSString</span> *name = mDic[<span class="string">@"name"</span>]; <span class="comment">// 推荐使用</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"name = %@"</span>, name); <span class="comment">// name = chenliangjing</span></span><br><span class="line"><span class="built_in">NSNumber</span> *height = [mDic objectForKey:<span class="string">@"height"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"height = %@"</span>, height); <span class="comment">// height = 1.7</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 4. 删除</span></span><br><span class="line"><span class="comment">// 通过 key 删除</span></span><br><span class="line">[mDic removeObjectForKey:<span class="string">@"name"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; age = 25; height = "1.7"; &#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 通过一个 key 的数组删除</span></span><br><span class="line">[mDic removeObjectsForKeys:@[<span class="string">@"height"</span>, <span class="string">@"age"</span>]];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 修改</span></span><br><span class="line">[mDic setObject:<span class="string">@"zhangsan"</span> forKey:<span class="string">@"name"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; name = zhangsan;&#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 通过 setObject: 给同名的 key 赋值，就可以覆盖掉以前的旧值</span></span><br><span class="line">[mDic setObject:<span class="string">@"lisi"</span> forKey:<span class="string">@"name"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; name = lisi;&#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 通过字面量语法赋值</span></span><br><span class="line">mDic[<span class="string">@"name"</span>] = <span class="string">@"wangwu"</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mDic = %@"</span>, mDic); <span class="comment">// mDic = &#123; name = wangwu;&#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>注意事项：不能使用 @{} 来创建一个可变字典</li>
+<li>注意事项：如果是不可变字典，那么 key 不能相同。如果是不可变字典出现了同名 key，那么后面的 key 对应的值不会被保存，如果可变数组出现了同名的 key，那么后面的值会覆盖掉前面的。</li>
+</ol>
+</blockquote>
+<h2 id="NSNumber"><a href="#NSNumber" class="headerlink" title="NSNumber"></a>NSNumber</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSNumber" target="_blank" rel="noopener">源代码地址</a></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> age = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">float</span> height = <span class="number">1.70</span>;</span><br><span class="line"><span class="built_in">BOOL</span> isMale = <span class="literal">YES</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 1. 将基本数据类型转换成对象类型</span></span><br><span class="line"><span class="built_in">NSNumber</span> *ageN = [<span class="built_in">NSNumber</span> numberWithInt:age];</span><br><span class="line"><span class="built_in">NSNumber</span> *heightN = [<span class="built_in">NSNumber</span> numberWithFloat:height];</span><br><span class="line"><span class="built_in">NSNumber</span> *maleN = [<span class="built_in">NSNumber</span> numberWithBool:isMale];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"ageN = %@, heightN = %@, maleN = %@"</span>, ageN, heightN, maleN); <span class="comment">//  ageN = 25, heightN = 1.7, maleN = 1</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 将对象类型转换成基本数据类型</span></span><br><span class="line"><span class="keyword">int</span> ageT = [ageN intValue];</span><br><span class="line"><span class="keyword">float</span> heightT = [heightN floatValue];</span><br><span class="line"><span class="built_in">BOOL</span> isMaleT = [maleN boolValue];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"ageT = %d, heightT = %f, isMaleT = %i"</span>, ageT, heightT, isMaleT); <span class="comment">// ageT = 25, heightT = 1.700000, isMaleT = 1</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 3 .基本数据类型转成对象类型简写(推荐使用)</span></span><br><span class="line"><span class="built_in">NSNumber</span> *intN = @<span class="number">29</span>;</span><br><span class="line"><span class="built_in">NSNumber</span> *doubleN = @<span class="number">29.897</span>;</span><br><span class="line"><span class="built_in">NSNumber</span> *boolN = @NO;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 注意：如果传入的是变量，需要将变量用 () 包装起来，如果传入的是常量， () 可以省略</span></span><br><span class="line"><span class="keyword">float</span> temp = <span class="number">24.89</span>;</span><br><span class="line"><span class="built_in">NSNumber</span> *floatN = @(temp);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"intN = %@, doubleN = %@, boolN = %@, floatN = %@"</span>, intN, doubleN, boolN, floatN); <span class="comment">// intN = 29, doubleN = 29.897, boolN = 0, floatN = 24.89</span></span><br></pre></td></tr></table></figure>
+<h2 id="NSValue"><a href="#NSValue" class="headerlink" title="NSValue"></a>NSValue</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSValue" target="_blank" rel="noopener">源代码地址</a></p>
+<ul>
+<li>NSNumber 是 NSValue 的子类，但 NSNumber 只包装数值类型</li>
+<li>NSValue 可以包装任意值<ul>
+<li>因此，可以将结构体包装成 NSValue 类型后，加入到 NSArray/NSDictionary 中去</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 包装常用结构体</span></span><br><span class="line"><span class="built_in">CGPoint</span> point = <span class="built_in">CGPointMake</span>(<span class="number">10.0</span>, <span class="number">20.0</span>);</span><br><span class="line"><span class="built_in">NSValue</span> *valueP = [<span class="built_in">NSValue</span> valueWithPoint:point];</span><br><span class="line"><span class="built_in">NSArray</span> *arr = @[valueP];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arr = %@"</span>, arr); <span class="comment">// arr = ("NSPoint: &#123;10, 20&#125;")</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 包装自定义结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">char</span> *name;</span><br><span class="line">    <span class="keyword">double</span> _height;</span><br><span class="line">&#125;Person;</span><br><span class="line">    </span><br><span class="line">Person p = &#123;<span class="number">25</span>, <span class="string">"chenliangjing"</span>, <span class="number">17.0</span>&#125;;</span><br><span class="line"><span class="comment">// valueWithBytes: 接收一个指针，需要传递需要包装的结构体的变量的地址</span></span><br><span class="line"><span class="comment">// objCType: 需要传递需要包装的数据类型</span></span><br><span class="line"><span class="built_in">NSValue</span> *value = [<span class="built_in">NSValue</span> valueWithBytes:&amp;p objCType:<span class="keyword">@encode</span>(Person)];</span><br><span class="line"><span class="built_in">NSArray</span> *arrV = @[value];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrV = %@"</span>, arrV); <span class="comment">// rrV = ("&lt;19000000 00000000 740f0000 01000000 00000000 00003140&gt;")</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 从 value 中取出自定义的结构体变量</span></span><br><span class="line">Person result;</span><br><span class="line">[value getValue:&amp;result];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"age = %d, name = %s, _height = %f"</span>, result.age, result.name, result._height); <span class="comment">// age = 25, name = chenliangjing, _height = 17.000000</span></span><br></pre></td></tr></table></figure>
+<h2 id="NSDate"><a href="#NSDate" class="headerlink" title="NSDate"></a>NSDate</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSDate" target="_blank" rel="noopener">源代码地址</a></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建</span></span><br><span class="line"><span class="comment">// date 方法创建的时期对象，对象中就保存了当前时间</span></span><br><span class="line"><span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, now);</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 在 now 的时间基础上追加多少秒</span></span><br><span class="line"><span class="comment">//    NSDate *date = [now dateByAddingTimeInterval:8 * 60 * 60];</span></span><br><span class="line"><span class="comment">//    NSLog(@"date = %@", date);</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">// 1.1 获取当前所处的时区</span></span><br><span class="line"><span class="built_in">NSTimeZone</span> *zone = [<span class="built_in">NSTimeZone</span> systemTimeZone];</span><br><span class="line"><span class="comment">// 1.2 获取当前时区和指定时间的时间差</span></span><br><span class="line"><span class="built_in">NSInteger</span> seconds = [zone secondsFromGMTForDate:now];</span><br><span class="line"><span class="built_in">NSDate</span> *newDate = [now dateByAddingTimeInterval:seconds];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"newDate = %@"</span>, newDate);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 时间格式化</span></span><br><span class="line"><span class="comment">// 创建时间格式化对象</span></span><br><span class="line"><span class="built_in">NSDateFormatter</span> *fmt = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line"><span class="comment">// 指定时间的格式</span></span><br><span class="line"><span class="comment">//yyyy : 年</span></span><br><span class="line"><span class="comment">//MM : 月</span></span><br><span class="line"><span class="comment">//dd : 日</span></span><br><span class="line"><span class="comment">//HH : 时</span></span><br><span class="line"><span class="comment">//mm : 分</span></span><br><span class="line"><span class="comment">//ss : 秒</span></span><br><span class="line"><span class="comment">// Z : 时区</span></span><br><span class="line">fmt.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒"</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 利用时间格式对象对时间进行格式化</span></span><br><span class="line"><span class="built_in">NSString</span> *result = [fmt stringFromDate:[<span class="built_in">NSDate</span> date]];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"result = %@"</span>, result); <span class="comment">//  result = 2017年04月26日 21时43分14秒</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">// 3. 字符串转成时间对象</span></span><br><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"2017年04月26日 21时43分14秒"</span>;</span><br><span class="line"><span class="built_in">NSDateFormatter</span> *farmat = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 注意：str 的时间格式要和指定的 dateFormat 保持一致</span></span><br><span class="line">farmat.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒"</span>;</span><br><span class="line"><span class="built_in">NSDate</span> *date = [farmat dateFromString:str];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"date = %@"</span>, date); <span class="comment">//  date = 2017-04-26 13:43:14 +0000</span></span><br></pre></td></tr></table></figure>
+<h2 id="NSCalendar"><a href="#NSCalendar" class="headerlink" title="NSCalendar"></a>NSCalendar</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSCalendar" target="_blank" rel="noopener">源代码地址</a></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前时间</span></span><br><span class="line"><span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, now);</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 1. 日历</span></span><br><span class="line"><span class="built_in">NSCalendar</span> *calendar = [<span class="built_in">NSCalendar</span> currentCalendar];</span><br><span class="line"><span class="built_in">NSCalendarUnit</span> type = <span class="built_in">NSCalendarUnitYear</span> |</span><br><span class="line">                        <span class="built_in">NSCalendarUnitMonth</span> |</span><br><span class="line">                        <span class="built_in">NSCalendarUnitDay</span> |</span><br><span class="line">                        <span class="built_in">NSCalendarUnitHour</span> |</span><br><span class="line">                        <span class="built_in">NSCalendarUnitMinute</span> |</span><br><span class="line">                        <span class="built_in">NSCalendarUnitSecond</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 利用日历类从当前时间中获取单独的年、月，日，时，分，秒</span></span><br><span class="line"><span class="built_in">NSDateComponents</span> *cmps = [calendar components:type fromDate:now];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"year = %ld"</span>, cmps.year);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"month = %ld"</span>, cmps.month);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"day = %ld"</span>, cmps.day);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"hour = %ld"</span>, cmps.hour);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"minute = %ld"</span>, cmps.minute);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"second = %ld"</span>, cmps.second);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 比较两个时间之间的差值，比较相差多少年多少月多少日多少时多少分多少秒</span></span><br><span class="line"><span class="comment">// 2.1 过去的一个时间</span></span><br><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"2017年04月26日 21时43分14秒"</span>;</span><br><span class="line"><span class="built_in">NSDateFormatter</span> *farmat = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 注意：str 的时间格式要和指定的 dateFormat 保持一致</span></span><br><span class="line">farmat.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒"</span>;</span><br><span class="line"><span class="built_in">NSDate</span> *date = [farmat dateFromString:str];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"date = %@"</span>, date); <span class="comment">//  date = 2017-04-26 13:43:14 +0000</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2.2 现在的一个时间</span></span><br><span class="line"><span class="built_in">NSDate</span> *nowN = [<span class="built_in">NSDate</span> date];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2.3 比较两个时间</span></span><br><span class="line"><span class="built_in">NSCalendar</span> *calendarN = [<span class="built_in">NSCalendar</span> currentCalendar];</span><br><span class="line"><span class="built_in">NSDateComponents</span> *cmpsN = [calendarN components:type fromDate:date toDate:nowN options:<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"年：%ld, 月：%ld, 日：%ld, 时：%ld, 分：%ld, 秒：%ld"</span>, cmpsN.year, cmpsN.month, cmpsN.day, cmpsN.hour, cmpsN.minute, cmpsN.second); <span class="comment">// 年：0, 月：0, 日：0, 时：0, 分：40, 秒：59</span></span><br></pre></td></tr></table></figure>
+<h2 id="NSFileManager"><a href="#NSFileManager" class="headerlink" title="NSFileManager"></a>NSFileManager</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSFileManager" target="_blank" rel="noopener">源代码地址</a></p>
+<h3 id="1-NSFileManager-类是单例"><a href="#1-NSFileManager-类是单例" class="headerlink" title="1. NSFileManager 类是单例"></a>1. NSFileManager 类是单例</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. NSFileManager 类是一个单例</span></span><br><span class="line"><span class="built_in">NSFileManager</span> *manager1 = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line"><span class="built_in">NSFileManager</span> *manager2 = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"manager1 = %p, manager2 = %p"</span>, manager1, manager2); <span class="comment">// manager1 = 0x100205710, manager2 = 0x100205710 地址一样</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-判断一个文件或者一个文件夹是否存在"><a href="#2-判断一个文件或者一个文件夹是否存在" class="headerlink" title="2. 判断一个文件或者一个文件夹是否存在"></a>2. 判断一个文件或者一个文件夹是否存在</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> dirExist = [manager1 fileExistsAtPath:<span class="string">@"/Users/chenliangjing"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"dirExist = %i"</span>, dirExist); <span class="comment">// dirExist = 1 ,文件夹存在</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">BOOL</span> fileExist = [manager1 fileExistsAtPath:<span class="string">@"/Users/chenliangjing/Desktop/test.plist"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"fileExist = %i"</span>, fileExist); <span class="comment">// fileExist = 0 ,文件不存在</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-判断一个文件是否存在，并且判断它是否是一个文件夹"><a href="#3-判断一个文件是否存在，并且判断它是否是一个文件夹" class="headerlink" title="3. 判断一个文件是否存在，并且判断它是否是一个文件夹"></a>3. 判断一个文件是否存在，并且判断它是否是一个文件夹</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> dir = <span class="literal">NO</span>;</span><br><span class="line"><span class="comment">// 返回值表示为：传入路径对应的文件或者文件夹是否存在</span></span><br><span class="line"><span class="comment">// isDirectory：由于保存判断结果，如果是一个目录，那么就会给 dir 赋值为 YES，如果不是就赋值 NO</span></span><br><span class="line"><span class="built_in">BOOL</span> flag = [manager1 fileExistsAtPath:<span class="string">@"/Users/chenliangjing/Desktop/test.plist"</span> isDirectory:&amp;dir];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"flag = %i, dir = %i"</span>, flag, dir); <span class="comment">// flag = 1, dir = 0，文件存在，但不是一个文件夹</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-获取文件或者文件夹的属性"><a href="#4-获取文件或者文件夹的属性" class="headerlink" title="4. 获取文件或者文件夹的属性"></a>4. 获取文件或者文件夹的属性</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取文件或者文件夹的属性</span></span><br><span class="line"><span class="built_in">NSFileManager</span> *manager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line"><span class="built_in">NSDictionary</span> *info = [manager attributesOfItemAtPath:<span class="string">@"/Users/chenliangjing/Desktop/TempDir"</span> error:<span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"info = %@"</span>, info);</span><br></pre></td></tr></table></figure>
+<h3 id="5-获取文件夹下所有的文件"><a href="#5-获取文件夹下所有的文件" class="headerlink" title="5. 获取文件夹下所有的文件"></a>5. 获取文件夹下所有的文件</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建文件管理对象</span></span><br><span class="line"><span class="built_in">NSFileManager</span> *manager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 1. 不包括子文件夹下面的文件</span></span><br><span class="line"><span class="comment">// 注意：contentsOfDirectoryAtPath:方法只能获取当前文件下面的资源，而不能获取子文件夹下面的资源</span></span><br><span class="line"><span class="built_in">NSArray</span> *contentArr = [manager contentsOfDirectoryAtPath:<span class="string">@"/Users/chenliangjing/Desktop/TempDir"</span> error:<span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"contentArr = %@"</span>, contentArr);</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 2. 包括子文件夹下面的所有文件</span></span><br><span class="line"><span class="comment">//    NSArray *contentAllArr = [manager1 subpathsAtPath: @"/Users/chenliangjing/Desktop/TempDir"];</span></span><br><span class="line"><span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line"><span class="built_in">NSArray</span> *contentAllArr = [manager subpathsOfDirectoryAtPath: <span class="string">@"/Users/chenliangjing/Desktop/TempDir"</span>error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (error)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"error = %@"</span>, error);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"contentAllArr = %@"</span>, contentAllArr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-创建文件夹"><a href="#6-创建文件夹" class="headerlink" title="6. 创建文件夹"></a>6. 创建文件夹</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建文件夹</span></span><br><span class="line"><span class="built_in">NSFileManager</span> *manager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// DirectoryAtPath: 文件夹创建的位置</span></span><br><span class="line"><span class="comment">// withIntermediateDirectories: 如果指定的文件夹中有一些文件夹不存在，是否自动创建不存在的文件夹</span></span><br><span class="line"><span class="comment">// attributes: 指定创建出来的文件夹的属性</span></span><br><span class="line"><span class="comment">// error: 是否创建成功，如果失败会给传入的参数赋值</span></span><br><span class="line"><span class="comment">// 注意：该方法只能创建文件夹，不能用来创建文件</span></span><br><span class="line">[manager createDirectoryAtPath:<span class="string">@"/Users/chenliangjing/Desktop/chenlj"</span> withIntermediateDirectories:<span class="literal">YES</span> attributes:<span class="literal">nil</span> error:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="7-创建文件"><a href="#7-创建文件" class="headerlink" title="7. 创建文件"></a>7. 创建文件</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建文件</span></span><br><span class="line"><span class="built_in">NSFileManager</span> *manager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 创建二进制数据</span></span><br><span class="line"><span class="built_in">NSString</span> *contentStr = <span class="string">@"chenliangjing"</span>;</span><br><span class="line"><span class="built_in">NSData</span> *data = [contentStr dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// createFileAtPath: 指定文件创建出来的位置</span></span><br><span class="line"><span class="comment">// contents: 文件中的内容</span></span><br><span class="line"><span class="comment">// attributes: 创建处理文件的属性</span></span><br><span class="line"><span class="comment">// 该方法只能创建文件，不能用来创建文件夹</span></span><br><span class="line"><span class="built_in">BOOL</span> flag = [manager createFileAtPath:<span class="string">@"/Users/chenliangjing/Desktop/TempDir/chenlj.txt"</span> contents:data attributes:<span class="literal">nil</span>];</span><br><span class="line"><span class="keyword">if</span> (flag)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"创建成功"</span>);</span><br><span class="line">    <span class="built_in">NSString</span> *content = [<span class="built_in">NSString</span> stringWithContentsOfFile: <span class="string">@"/Users/chenliangjing/Desktop/TempDir/chenlj.txt"</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:<span class="literal">nil</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"content = %@"</span>, content); <span class="comment">// content = chenliangjing</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"创建失败"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常用结构体"><a href="#常用结构体" class="headerlink" title="常用结构体"></a>常用结构体</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/%E5%B8%B8%E7%94%A8%E7%BB%93%E6%9E%84%E4%BD%93" target="_blank" rel="noopener">源代码地址</a></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">CGPoint</span> <span class="built_in">NSPoint</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">CGSize</span> <span class="built_in">NSSize</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">CGRect</span> <span class="built_in">NSRect</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NSPoint 等于 CGPoint</li>
+<li>NSSize 等于 CGSize</li>
+<li>NSRect 等于 CGRect</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存坐标</span></span><br><span class="line">CGPoint <span class="built_in">point</span> = CGPointMake(<span class="number">10.0</span>, <span class="number">20.0</span>);</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 保存尺寸</span></span><br><span class="line">CGSize <span class="built_in">size</span> = CGSizeMake(<span class="number">100.0</span>, <span class="number">100.0</span>);</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 保存坐标和尺寸</span></span><br><span class="line">CGRect <span class="built_in">rect</span> = CGRectMake(<span class="built_in">point</span>.x, <span class="built_in">point</span>.y, <span class="built_in">size</span>.<span class="built_in">width</span>, <span class="built_in">size</span>.<span class="built_in">height</span>);</span><br><span class="line">NSLog(@<span class="string">"rect = %@"</span>, NSStringFromRect(<span class="built_in">rect</span>)); <span class="comment">// rect = &#123;&#123;10, 20&#125;, &#123;100, 100&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/Objective-C/" rel="tag"># Objective-C</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/20/《Effective-Objective-C-2-0》读书笔记（第二章：对象、消息、运行时）/" rel="next" title="《Effective Objective-C 2.0》读书笔记（第二章：对象、消息、运行时）">
+                <i class="fa fa-chevron-left"></i> 《Effective Objective-C 2.0》读书笔记（第二章：对象、消息、运行时）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/27/iOS-架构模式之-MVP-模式/" rel="prev" title="iOS 架构模式之 MVP 模式">
+                iOS 架构模式之 MVP 模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Foundation-简介"><span class="nav-number">1.</span> <span class="nav-text">Foundation 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">2.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-NSString"><span class="nav-number">2.1.</span> <span class="nav-text">1.NSString</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建字符串"><span class="nav-number">2.1.1.</span> <span class="nav-text">#创建字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串读写"><span class="nav-number">2.1.2.</span> <span class="nav-text">#字符串读写</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文件读"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">文件读</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#直接读写文件中的字符"><span class="nav-number">2.1.2.1.1.</span> <span class="nav-text">直接读写文件中的字符</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#根据-URL-加载文件中的字符串"><span class="nav-number">2.1.2.1.2.</span> <span class="nav-text">根据 URL 加载文件中的字符串</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件写"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">文件写</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串比较"><span class="nav-number">2.1.3.</span> <span class="nav-text">#字符串比较</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#比较两个字符串的“内容”是否相同"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">比较两个字符串的“内容”是否相同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#比较两个字符串的”地址“是否相同"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">比较两个字符串的”地址“是否相同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#比较两个字符串大小，比较的-ACCIC-码值"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">比较两个字符串大小，比较的 ACCIC 码值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串搜索"><span class="nav-number">2.1.4.</span> <span class="nav-text">#字符串搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#判断是否以什么开头"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">判断是否以什么开头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断以什么结尾"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">判断以什么结尾</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断字符串中是否包含“某个字符串”"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">判断字符串中是否包含“某个字符串”</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串截取"><span class="nav-number">2.1.5.</span> <span class="nav-text">#字符串截取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串替换"><span class="nav-number">2.1.6.</span> <span class="nav-text">#字符串替换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用制定字符串替换字符串中的子串"><span class="nav-number">2.1.6.1.</span> <span class="nav-text">用制定字符串替换字符串中的子串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#去除空格"><span class="nav-number">2.1.6.2.</span> <span class="nav-text">去除空格</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#替换首尾"><span class="nav-number">2.1.6.3.</span> <span class="nav-text">替换首尾</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串和路径"><span class="nav-number">2.1.7.</span> <span class="nav-text">#字符串和路径</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#判断是否是一个绝对路径"><span class="nav-number">2.1.7.1.</span> <span class="nav-text">判断是否是一个绝对路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取文件路径中的最后一个目录"><span class="nav-number">2.1.7.2.</span> <span class="nav-text">获取文件路径中的最后一个目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除文件路径中的最后一个目录"><span class="nav-number">2.1.7.3.</span> <span class="nav-text">删除文件路径中的最后一个目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给文件路径添加一个目录"><span class="nav-number">2.1.7.4.</span> <span class="nav-text">给文件路径添加一个目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取路径中的文件扩展名"><span class="nav-number">2.1.7.5.</span> <span class="nav-text">获取路径中的文件扩展名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除路径中的文件扩展名"><span class="nav-number">2.1.7.6.</span> <span class="nav-text">删除路径中的文件扩展名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给文件路径天机一个扩展名"><span class="nav-number">2.1.7.7.</span> <span class="nav-text">给文件路径天机一个扩展名</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串转换"><span class="nav-number">2.1.8.</span> <span class="nav-text">#字符串转换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将字符串装换为大写"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">将字符串装换为大写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将字符串装换为小写"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">将字符串装换为小写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将字符串的首字符转换为大写"><span class="nav-number">2.1.8.3.</span> <span class="nav-text">将字符串的首字符转换为大写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串与基本数据类型的转换"><span class="nav-number">2.1.8.4.</span> <span class="nav-text">字符串与基本数据类型的转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#C-语言字符创和-Objective-C-字符串之间的转换"><span class="nav-number">2.1.8.5.</span> <span class="nav-text">C 语言字符创和 Objective-C 字符串之间的转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-NSMutableString"><span class="nav-number">2.2.</span> <span class="nav-text">2.NSMutableString</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSMutableString-基本概念"><span class="nav-number">2.2.1.</span> <span class="nav-text">#NSMutableString 基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSMutableString-常用方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">#NSMutableString 常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在字符串后面添加字符串"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">在字符串后面添加字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除字符串"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">删除字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插入字符串"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">插入字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#替换字符串"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">替换字符串</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">3.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-NSArray"><span class="nav-number">3.1.</span> <span class="nav-text">1. NSArray</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSArray-基本概念"><span class="nav-number">3.1.1.</span> <span class="nav-text">NSArray 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建方式"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">创建方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用方法"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#简写-推荐方式"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">简写(推荐方式)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSArray-遍历"><span class="nav-number">3.1.2.</span> <span class="nav-text">NSArray 遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给-NSArray-中所有对象发消息"><span class="nav-number">3.1.3.</span> <span class="nav-text">给 NSArray 中所有对象发消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组排序"><span class="nav-number">3.1.4.</span> <span class="nav-text">数组排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法一：只能用于-OC-对象"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">方法一：只能用于 OC 对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法二：可用于自定义对象"><span class="nav-number">3.1.4.2.</span> <span class="nav-text">方法二：可用于自定义对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSArray-和-NSString-转换"><span class="nav-number">3.1.5.</span> <span class="nav-text">NSArray 和 NSString 转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSArray-文件读写"><span class="nav-number">3.1.6.</span> <span class="nav-text">NSArray 文件读写</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-NSMutableArray"><span class="nav-number">3.2.</span> <span class="nav-text">2. NSMutableArray</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSMutableArray-介绍"><span class="nav-number">3.2.1.</span> <span class="nav-text">NSMutableArray 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSMutableArray-用法"><span class="nav-number">3.2.2.</span> <span class="nav-text">NSMutableArray 用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">4.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-NSDictionary"><span class="nav-number">4.1.</span> <span class="nav-text">1. NSDictionary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字典创建"><span class="nav-number">4.1.1.</span> <span class="nav-text">字典创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字典遍历"><span class="nav-number">4.1.2.</span> <span class="nav-text">字典遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字典文件读取"><span class="nav-number">4.1.3.</span> <span class="nav-text">字典文件读取</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-NSMutableDictionary"><span class="nav-number">4.2.</span> <span class="nav-text">2. NSMutableDictionary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSNumber"><span class="nav-number">5.</span> <span class="nav-text">NSNumber</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSValue"><span class="nav-number">6.</span> <span class="nav-text">NSValue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSDate"><span class="nav-number">7.</span> <span class="nav-text">NSDate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSCalendar"><span class="nav-number">8.</span> <span class="nav-text">NSCalendar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSFileManager"><span class="nav-number">9.</span> <span class="nav-text">NSFileManager</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-NSFileManager-类是单例"><span class="nav-number">9.1.</span> <span class="nav-text">1. NSFileManager 类是单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-判断一个文件或者一个文件夹是否存在"><span class="nav-number">9.2.</span> <span class="nav-text">2. 判断一个文件或者一个文件夹是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-判断一个文件是否存在，并且判断它是否是一个文件夹"><span class="nav-number">9.3.</span> <span class="nav-text">3. 判断一个文件是否存在，并且判断它是否是一个文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-获取文件或者文件夹的属性"><span class="nav-number">9.4.</span> <span class="nav-text">4. 获取文件或者文件夹的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-获取文件夹下所有的文件"><span class="nav-number">9.5.</span> <span class="nav-text">5. 获取文件夹下所有的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-创建文件夹"><span class="nav-number">9.6.</span> <span class="nav-text">6. 创建文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-创建文件"><span class="nav-number">9.7.</span> <span class="nav-text">7. 创建文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用结构体"><span class="nav-number">10.</span> <span class="nav-text">常用结构体</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

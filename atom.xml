@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>青争哥哥</title>
+  
+  <subtitle>记录个人成长历程</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://chenliangjing.me/"/>
+  <updated>2019-06-04T14:05:38.335Z</updated>
+  <id>http://chenliangjing.me/</id>
+  
+  <author>
+    <name>陈良静</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《算法图解》读书笔记—像小说一样有趣的算法入门书</title>
+    <link href="http://chenliangjing.me/2019/05/02/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E5%83%8F%E5%B0%8F%E8%AF%B4%E4%B8%80%E6%A0%B7%E6%9C%89%E8%B6%A3%E7%9A%84%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E4%B9%A6/"/>
+    <id>http://chenliangjing.me/2019/05/02/《算法图解》读书笔记—像小说一样有趣的算法入门书/</id>
+    <published>2019-05-02T00:29:08.000Z</published>
+    <updated>2019-06-04T14:05:38.335Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;学习算法课程的时候，老师推荐了两本算法和数据结构入门书，一本是&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;、一本是&lt;a href=&quot;https://book.douban.com/subject/6424904/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《大话数据结构》&lt;/a&gt;，&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;这本书最近读完了，读完的最大感受就是对算法不再感到畏惧和陌生，对常用的算法和数据结构都会在心里有个基本的概念，这篇文章记录下这本书的主要内容和知识点。&lt;/p&gt;
+&lt;p&gt;总的来说，这本书是一本不错的算法入门书，作者以从实际开发场景出发，介绍了软件开发中最基本、最常用的一些&lt;code&gt;数据结构&lt;/code&gt;和&lt;code&gt;算法思想&lt;/code&gt;，同时作者写得非常深入浅出，联系实际应用场景，并结合了大量的算法推演图示，举例生动形象，循序渐进，使读者易于理解，能够很大地培养读者对算法的兴趣，从而引导读者进一步地进行学习研究。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《当我谈跑步时，我谈些什么》读书笔记--我跑，故我在</title>
+    <link href="http://chenliangjing.me/2019/04/30/%E3%80%8A%E5%BD%93%E6%88%91%E8%B0%88%E8%B7%91%E6%AD%A5%E6%97%B6%EF%BC%8C%E6%88%91%E8%B0%88%E4%BA%9B%E4%BB%80%E4%B9%88%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%88%91%E8%B7%91%EF%BC%8C%E6%95%85%E6%88%91%E5%9C%A8/"/>
+    <id>http://chenliangjing.me/2019/04/30/《当我谈跑步时，我谈些什么》读书笔记-我跑，故我在/</id>
+    <published>2019-04-30T13:17:08.000Z</published>
+    <updated>2019-06-04T14:05:38.334Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/timg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://book.douban.com/subject/3369600/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这本书&lt;/a&gt;是村上春树写得一本关于自己跑步的随笔集，记录了村上几十年来跑步训练、马拉松比赛的一些心情日志和对跑步的感悟，其实大学时期就读过了，不过那时候刚刚跑步不久，读完也没啥印象了，现在跑步也已经七八年了，马拉松也跑了快十场，再读这本书，就稍微有点感觉了，如果你也是一个爱跑步的人，我想也会有一些相似的体会吧，于我而言，觉得有感觉的地方有以下几点：&lt;/p&gt;
+&lt;h2 id=&quot;为什么是跑步？&quot;&gt;&lt;a href=&quot;#为什么是跑步？&quot; class=&quot;headerlink&quot; title=&quot;为什么是跑步？&quot;&gt;&lt;/a&gt;为什么是跑步？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;跑步简单。跑步对人类而言是一种天生的本能，每个人基因里天生就会跑，而且不需要同伴，一点不复杂，只需要一双合脚的跑鞋，说跑就跑了。&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="跑步" scheme="http://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%B7%91%E6%AD%A5/"/>
+    
+    
+      <category term="读书笔记" scheme="http://chenliangjing.me/Categorys/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="跑步" scheme="http://chenliangjing.me/Categorys/%E8%B7%91%E6%AD%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《人类简史》读书笔记-一切并不是那么理所当然</title>
+    <link href="http://chenliangjing.me/2019/03/29/%E3%80%8A%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%B8%80%E5%88%87%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%82%A3%E4%B9%88%E7%90%86%E6%89%80%E5%BD%93%E7%84%B6/"/>
+    <id>http://chenliangjing.me/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/</id>
+    <published>2019-03-29T11:29:09.000Z</published>
+    <updated>2019-06-04T14:05:38.333Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/IMG_3219.jpg?imageView2/2/w/200&quot; alt=&quot;&quot;&gt;&lt;br&gt;作者：[以色列] 尤瓦尔·赫拉利&lt;br&gt;翻译：林俊宏&lt;br&gt;出版年份：2014-11&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="读书笔记" scheme="http://chenliangjing.me/Categorys/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C 语言拾遗</title>
+    <link href="http://chenliangjing.me/2019/03/09/C-%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/"/>
+    <id>http://chenliangjing.me/2019/03/09/C-语言拾遗/</id>
+    <published>2019-03-09T11:29:09.000Z</published>
+    <updated>2019-06-04T14:05:38.309Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近学习&lt;a href=&quot;https://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/&quot;&gt;数据结构和算法&lt;/a&gt;，使用 C 语言实现一些算法和练习题的时候，容易卡壳在 C 语言里面的一些指针、结构体、内存分配等相关语法知识点上，这次复习了一下，下面是一些记录。&lt;/p&gt;
+&lt;h2 id=&quot;指针&quot;&gt;&lt;a href=&quot;#指针&quot; class=&quot;headerlink&quot; title=&quot;指针&quot;&gt;&lt;/a&gt;指针&lt;/h2&gt;&lt;p&gt;指针：就是&lt;code&gt;保存地址的变量&lt;/code&gt;，变量的值是所指像的&lt;code&gt;内存地址&lt;/code&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C" scheme="http://chenliangjing.me/Tags/C/"/>
+    
+    
+      <category term="C" scheme="http://chenliangjing.me/Categorys/C/"/>
+    
+      <category term="指针" scheme="http://chenliangjing.me/Categorys/%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法学习-链表下</title>
+    <link href="http://chenliangjing.me/2019/03/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8B/"/>
+    <id>http://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/</id>
+    <published>2019-03-08T03:49:59.000Z</published>
+    <updated>2019-06-04T14:05:38.343Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/&quot;&gt;上一篇文章&lt;/a&gt;讲了链表相关的概念，这篇主要记录的是和链表相关的算法以及一些写好链表算法代码&lt;code&gt;相关的技巧&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;实现单链表、循环链表、双向链表，支持增删操作&quot;&gt;&lt;a href=&quot;#实现单链表、循环链表、双向链表，支持增删操作&quot; class=&quot;headerlink&quot; title=&quot;实现单链表、循环链表、双向链表，支持增删操作&quot;&gt;&lt;/a&gt;实现单链表、循环链表、双向链表，支持增删操作&lt;/h2&gt;&lt;h4 id=&quot;1-单链表&quot;&gt;&lt;a href=&quot;#1-单链表&quot; class=&quot;headerlink&quot; title=&quot;1. 单链表&quot;&gt;&lt;/a&gt;1. 单链表&lt;/h4&gt;
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法学习-链表上</title>
+    <link href="http://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/"/>
+    <id>http://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/</id>
+    <published>2019-03-07T07:52:20.000Z</published>
+    <updated>2019-06-04T14:05:38.343Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这一篇笔记主要记录总结了&lt;code&gt;线性表&lt;/code&gt;数据结构中的&lt;code&gt;链表&lt;/code&gt;概念，以及和&lt;code&gt;数组&lt;/code&gt;的对比，数组和链表都是计算机中最基本的数据结构，是构建其他高级复杂数据的结构的基础。开发中应该根据具体的场景选择最合适的数据结构和算法。下一篇将会实现链表相关的算法。&lt;/p&gt;
+&lt;h2 id=&quot;链表概念&quot;&gt;&lt;a href=&quot;#链表概念&quot; class=&quot;headerlink&quot; title=&quot;链表概念&quot;&gt;&lt;/a&gt;链表概念&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/&quot;&gt;上一篇数组&lt;/a&gt;讲了数组是一种是一种&lt;code&gt;线性表&lt;/code&gt;数据结构，是用一组&lt;code&gt;连续的内存空间&lt;/code&gt;，来存储一组具有&lt;code&gt;相同数据类型&lt;/code&gt;的数据。和数组相同的是，&lt;code&gt;链表&lt;/code&gt;也是一种&lt;code&gt;线性表&lt;/code&gt;数据结构，不同的是链表是通过指针将&lt;code&gt;一组零散的内存块&lt;/code&gt;串联起来存储数据，可以存储&lt;code&gt;不同数据类型&lt;/code&gt;的数据。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法学习-数组</title>
+    <link href="http://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/"/>
+    <id>http://chenliangjing.me/2019/02/15/数据结构与算法学习-数组/</id>
+    <published>2019-02-15T08:43:24.000Z</published>
+    <updated>2019-06-04T14:05:38.342Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这一篇笔记主要记录总结了&lt;code&gt;线性表&lt;/code&gt;数据结构中的&lt;code&gt;数组&lt;/code&gt;概念以及&lt;code&gt;相关的算法&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;名词解释&quot;&gt;&lt;a href=&quot;#名词解释&quot; class=&quot;headerlink&quot; title=&quot;名词解释&quot;&gt;&lt;/a&gt;名词解释&lt;/h2&gt;&lt;h3 id=&quot;1-线性表（Linear-List）&quot;&gt;&lt;a href=&quot;#1-线性表（Linear-List）&quot; class=&quot;headerlink&quot; title=&quot;1. 线性表（Linear List）&quot;&gt;&lt;/a&gt;1. 线性表（Linear List）&lt;/h3&gt;&lt;p&gt;&lt;code&gt;线性表&lt;/code&gt;是数据排成像&lt;code&gt;一条线一样的结构&lt;/code&gt;，每个线性表上的数据最多有向前和向后两个方向。除了&lt;code&gt;数组&lt;/code&gt;外，&lt;code&gt;链表、队列、栈&lt;/code&gt;也是&lt;code&gt;线性表&lt;/code&gt;数据结构。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="线性表" scheme="http://chenliangjing.me/Categorys/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法学习-复杂度分析</title>
+    <link href="http://chenliangjing.me/2019/02/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"/>
+    <id>http://chenliangjing.me/2019/02/14/数据结构与算法学习-复杂度分析/</id>
+    <published>2019-02-14T06:43:24.000Z</published>
+    <updated>2019-06-04T14:05:38.341Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这一篇笔记主要记录总结了什么是算法复杂度？、为什要做算法复杂度分析？、如何做算法复杂度分析？、常用的复杂度级别？以及如何掌握复杂度分析？等问题。&lt;/p&gt;
+&lt;h2 id=&quot;算法复杂度分析是什么？&quot;&gt;&lt;a href=&quot;#算法复杂度分析是什么？&quot; class=&quot;headerlink&quot; title=&quot;算法复杂度分析是什么？&quot;&gt;&lt;/a&gt;算法复杂度分析是什么？&lt;/h2&gt;&lt;p&gt;&lt;code&gt;数据结构与算法&lt;/code&gt;解决的是&lt;code&gt;如何更省、更快的存储和处理数据&lt;/code&gt;的问题。因此就需要一个&lt;code&gt;考量效率和资源消耗&lt;/code&gt;的方法，这就是复杂度分析方法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法学习-开篇</title>
+    <link href="http://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/"/>
+    <id>http://chenliangjing.me/2019/02/13/数据结构与算法学习-开篇/</id>
+    <published>2019-02-13T06:43:24.000Z</published>
+    <updated>2019-06-04T14:05:38.341Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;数据结构和算法这门课一直是计算机专业最基础的一门课，大学时期掌握的不够好，毕业后长期写业务，也没有特别的花时间好好攻克一下，一直是自己的短板。这次在极客时间上订阅了两门数据结构和算法方面的专栏，一是 Google 工程师王争老师主讲的&lt;a href=&quot;https://time.geekbang.org/column/126?utm_term=nyre2019_app_zhuanlanxiangqingye&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《数据结构与算法之美》&lt;/a&gt;专栏，另一篇是前 Facebook 工程师覃超老师主讲的视频专栏&lt;a href=&quot;https://time.geekbang.org/course/intro/130?utm_term=nyre2019_app_zhuanlanxiangqingye&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法面试通关40讲》&lt;/a&gt;，计划将这两个专栏配合着学习，相互补充，并适时输出学习笔记。这是第一篇学习笔记，主要回答了数据结构和算法是什么？为什么要学习？以及怎么样学习？这三个问题。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Developing-iOS-11-Apps-with-Swift》学习笔记（七)</title>
+    <link href="http://chenliangjing.me/2019/01/18/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83/"/>
+    <id>http://chenliangjing.me/2019/01/18/《Developing-iOS-11-Apps-with-Swift》学习笔记（七/</id>
+    <published>2019-01-18T09:19:08.000Z</published>
+    <updated>2019-06-04T14:05:38.326Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Developing-iOS-11-Apps-with-Swift》学习笔记（六)</title>
+    <link href="http://chenliangjing.me/2019/01/17/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD/"/>
+    <id>http://chenliangjing.me/2019/01/17/《Developing-iOS-11-Apps-with-Swift》学习笔记（六/</id>
+    <published>2019-01-17T08:43:23.000Z</published>
+    <updated>2019-06-04T14:05:38.329Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这节课通过讲解扑克牌绘制的Demo。将上一节课里面讲到的绘图、触摸事件、手势等知识点串联起来了，另外插入了一些 AutoLayout 相关的知识点。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Developing-iOS-11-Apps-with-Swift》学习笔记（五)</title>
+    <link href="http://chenliangjing.me/2019/01/04/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94)/"/>
+    <id>http://chenliangjing.me/2019/01/04/《Developing-iOS-11-Apps-with-Swift》学习笔记（五)/</id>
+    <published>2019-01-04T07:30:16.000Z</published>
+    <updated>2019-06-04T14:05:38.328Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这节课主要讲了一些常用的系统对象，以及一个扑克牌绘制的Demo。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS JS-Native 交互方案总结</title>
+    <link href="http://chenliangjing.me/2018/12/28/iOS-JS-Native-%E4%BA%A4%E4%BA%92%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/"/>
+    <id>http://chenliangjing.me/2018/12/28/iOS-JS-Native-交互方案总结/</id>
+    <published>2018-12-28T02:31:27.000Z</published>
+    <updated>2019-06-04T14:05:38.319Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>团队 git-flow 开发流程</title>
+    <link href="http://chenliangjing.me/2018/10/20/%E5%9B%A2%E9%98%9F-git-flow-%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    <id>http://chenliangjing.me/2018/10/20/团队-git-flow-开发流程/</id>
+    <published>2018-10-20T06:50:06.000Z</published>
+    <updated>2019-06-04T14:05:38.337Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;之前做项目的时候，出现过一些因为代码提交管理出现的问题。问题如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分支过多，每个做马甲一个分支，每次混淆完又一个备份分支，每次企业包发版一个分支、每个新特性又是一个分支，大量的分支，又没有及时的删除，一方面容易造成 git 服务器的存储压力，另一方面，大量的提交记录造成工程体积庞大，全部 clone 下来好几个 G，费时费力，http 方式 clone 也容易报 &lt;code&gt;RPC failed; curl 18 transfer closed with outstanding read data remaining&lt;/code&gt; 错。&lt;/li&gt;&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="软件工程" scheme="http://chenliangjing.me/Tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件工程" scheme="http://chenliangjing.me/Categorys/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>活动行 App_iOS 性能检测分析</title>
+    <link href="http://chenliangjing.me/2018/08/20/%E6%B4%BB%E5%8A%A8%E8%A1%8C-App-iOS-%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%90/"/>
+    <id>http://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/</id>
+    <published>2018-08-20T03:12:29.000Z</published>
+    <updated>2019-06-04T14:05:38.344Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;性能检测&quot;&gt;&lt;a href=&quot;#性能检测&quot; class=&quot;headerlink&quot; title=&quot;性能检测&quot;&gt;&lt;/a&gt;性能检测&lt;/h2&gt;&lt;h3 id=&quot;使用到的相关工具&quot;&gt;&lt;a href=&quot;#使用到的相关工具&quot; class=&quot;headerlink&quot; title=&quot;使用到的相关工具&quot;&gt;&lt;/a&gt;使用到的相关工具&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Xnip2018-07-13_19-21-39.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="性能优化" scheme="http://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="性能优化" scheme="http://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记最近几次的面试</title>
+    <link href="http://chenliangjing.me/2018/06/16/%E8%AE%B0%E6%9C%80%E8%BF%91%E5%87%A0%E6%AC%A1%E7%9A%84%E9%9D%A2%E8%AF%95/"/>
+    <id>http://chenliangjing.me/2018/06/16/记最近几次的面试/</id>
+    <published>2018-06-16T14:36:07.000Z</published>
+    <updated>2019-06-04T14:05:38.346Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近部门被裁员了，虽然不情愿，但这并不以我的意志为转移，生活还要继续，于是重新写简历，找工作。&lt;/p&gt;
+&lt;p&gt;记录一下最近几次面试遇到的一些问题。&lt;/p&gt;
+&lt;h2 id=&quot;国内某电商大厂电话面试&quot;&gt;&lt;a href=&quot;#国内某电商大厂电话面试&quot; class=&quot;headerlink&quot; title=&quot;国内某电商大厂电话面试&quot;&gt;&lt;/a&gt;国内某电商大厂电话面试&lt;/h2&gt;&lt;p&gt;很意外，收到投递简历的邀请，下午 5 点投递，20 分钟后杭州的电话就打过来了，直接说晚上电话面试，很强势。说是要组建一个全新的研发部，要将国内的电商成功模式复制到东南亚，大量招人。&lt;/p&gt;
+&lt;p&gt;这些大厂的面试确实面试官都会提前准备，如提前下载好你的项目 App，阅读你简历上写的博客中的文章，提问也是由浅入深，从你做过的项目入手，然后根据你的回答情况再提问，主要分为项目经验和 iOS 基础部分。虽然结果也是 gg 了，但今年能收到这些大公司的面试邀请也算是看到了一点希望呢！再努努力也许能够得着！&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;说一下做过的项目中最有难度的一个技术点？&lt;/li&gt;
+&lt;li&gt;Google 的 Flutter 的原理有了解过吗？和 RN 的区别？&lt;/li&gt;
+&lt;li&gt;原生 App 中的网页容器？RN 这些有了解过吗？&lt;/li&gt;
+&lt;li&gt;Runloop 是什么？你是怎么理解的？&lt;/li&gt;
+&lt;li&gt;RunTime 是什么？在项目中具体那些地方用到过吗？&lt;/li&gt;
+&lt;li&gt;GPU 渲染和 CPU 渲染的区别？&lt;/li&gt;
+&lt;li&gt;tableview 如何做性能优化？&lt;/li&gt;
+&lt;li&gt;平常项目中怎么切圆角？&lt;/li&gt;
+&lt;li&gt;MVC 和 MVVM 这些架构模式有了解过吗？MVVM 的双向绑定是怎么做的？&lt;/li&gt;
+&lt;li&gt;安装包瘦身是怎么做的？用到的相关清理工具的原理是什么？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;某图片美化公司&quot;&gt;&lt;a href=&quot;#某图片美化公司&quot; class=&quot;headerlink&quot; title=&quot;某图片美化公司&quot;&gt;&lt;/a&gt;某图片美化公司&lt;/h2&gt;&lt;p&gt;该公司海外事业部的技术总监电话面试。没有问到很具体的技术问题，主要是聊了下工作和项目经历，主要有两个问题，一个是项目中最有挑战性的一个技术点，另外一个是项目中遇到过的多线程相关的问题？聊外直接约公司面试了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;二面，三面&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;手写算法实现找出两个视图实例的公共父视图，有则输出，没有则输出nil？&lt;/li&gt;
+&lt;li&gt;手写算法实现找出一个视图所有的子视图？&lt;/li&gt;
+&lt;li&gt;手写算法实现冒泡、条件、选择、堆排序中的一种？&lt;/li&gt;
+&lt;li&gt;代码纠错，一段代码中的纠错？&lt;/li&gt;
+&lt;li&gt;tableview 的优化？&lt;/li&gt;
+&lt;li&gt;算法实现一个字符串中最长的不重复的子串的长度？&lt;/li&gt;
+&lt;li&gt;你做过最有技术难点的一个项目？&lt;/li&gt;
+&lt;li&gt;你做过最复杂的一个业务是什么？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;算法面试官评价：表现在候选人里面很平均。&lt;br&gt;技术负责人评价：技术面较窄。&lt;/p&gt;
+&lt;h2 id=&quot;某南极动物厂电话面试&quot;&gt;&lt;a href=&quot;#某南极动物厂电话面试&quot; class=&quot;headerlink&quot; title=&quot;某南极动物厂电话面试&quot;&gt;&lt;/a&gt;某南极动物厂电话面试&lt;/h2&gt;&lt;p&gt;首先，非常感谢以前公司的老大帮我内推简历，于是在某一个晚上如愿收到了相关技术部门打来的面试电话。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="面试" scheme="http://chenliangjing.me/Tags/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="面试" scheme="http://chenliangjing.me/Categorys/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>男衣库 App_iOS 性能优化实践总结</title>
+    <link href="http://chenliangjing.me/2018/05/16/%E7%94%B7%E8%A1%A3%E5%BA%93%20App-iOS-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
+    <id>http://chenliangjing.me/2018/05/16/男衣库 App-iOS-性能优化实践总结/</id>
+    <published>2018-05-16T14:10:55.000Z</published>
+    <updated>2019-06-04T14:05:38.345Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;随着业务开发的不停迭代，如果没有很严格的执行代码开发规范、性能监控、测试覆盖等。容易引发一些 App 的性能问题，如崩溃率高、内存占用过高，安装包体积过大、启动时间过长，页面卡顿等一些性能问题，进而影响 App 的整体使用体验。 其中，主要优化的几个常见场景如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;业务优化&lt;ul&gt;
+&lt;li&gt;未使用到的业务代码，以前旧版本的一些业务逻辑，没有及时删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存优化&lt;ul&gt;
+&lt;li&gt;内存泄漏和大量数据加载导致收到系统内存警告&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;卡顿优化&lt;ul&gt;
+&lt;li&gt;监控页面实时滑动帧率 FPS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;布局优化&lt;ul&gt;
+&lt;li&gt;大量的布局重复运算，没有适当的缓存设计     &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;电量优化&lt;ul&gt;
+&lt;li&gt;一些硬件的操作、持续后台定位等     &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;安装包体积优化&lt;ul&gt;
+&lt;li&gt;无用资源、如图片、文档等数据，无用的代码，图片未压缩处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;启动时间优化&lt;ul&gt;
+&lt;li&gt;大量的业务逻辑代码堆积在启动的时候执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;网络优化&lt;ul&gt;
+&lt;li&gt;网络安全&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;现状&quot;&gt;&lt;a href=&quot;#现状&quot; class=&quot;headerlink&quot; title=&quot;现状&quot;&gt;&lt;/a&gt;现状&lt;/h2&gt;&lt;p&gt;&lt;code&gt;以下所有测试都是使用 iphone 6/iOS 8.3 版本测试真机在 release 环境下测试的。&lt;/code&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="性能优化" scheme="http://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="性能优化" scheme="http://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Developing iOS 11 Apps with Swift》学习笔记（四）</title>
+    <link href="http://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（四）/</id>
+    <published>2018-02-09T14:16:58.000Z</published>
+    <updated>2019-06-04T14:05:38.330Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这节课主要讲述了 Swift 中 protocols(协议) 和 Closures（闭包）、NSAttributedString 的语法和注意点。&lt;/p&gt;
+&lt;h2 id=&quot;mutating-关键字&quot;&gt;&lt;a href=&quot;#mutating-关键字&quot; class=&quot;headerlink&quot; title=&quot;mutating 关键字&quot;&gt;&lt;/a&gt;mutating 关键字&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Developing iOS 11 Apps with Swift》学习笔记（三）</title>
+    <link href="http://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（三）/</id>
+    <published>2018-02-09T04:16:46.000Z</published>
+    <updated>2019-06-04T14:05:38.327Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这一节课主要讲的是 Swift 的一些语法。如 Tuples(元组)、Computed Propertys (计算属性)、Access Control(访问控制)、Assertions(断言)、extensions(扩展)、enum(枚举）以及一些界面布局相关的 UIStackView 、 autolayout（自动布局）知识点。&lt;/p&gt;
+&lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;#UIStackView&quot;&gt;UIStackView&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Range（区间）&quot;&gt;Range（区间）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Tuples（元组）&quot;&gt;Tuples（元组）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Computed Properties（计算属性）&quot;&gt;Computed Properties（计算属性）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Access Control（访问控制）&quot;&gt;Access Control（访问控制）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Assertions(断言&quot;&gt;Assertions(断言)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Extensions（扩展）&quot;&gt;Extensions（扩展）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#enum(枚举&quot;&gt;enum(枚举)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Optionals(可选&quot;&gt;Optionals(可选)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Memory Management(内存管理&quot;&gt;Memory Management(内存管理)&lt;/a&gt;)&lt;/p&gt;
+&lt;h2 id=&quot;UIStackView&quot;&gt;&lt;a href=&quot;#UIStackView&quot; class=&quot;headerlink&quot; title=&quot;UIStackView&quot;&gt;&lt;/a&gt;UIStackView&lt;/h2&gt;&lt;p&gt;&lt;code&gt;UIStackView&lt;/code&gt; 是 iOS 9 推出的一项用于自动布局的技术。只要将需要布局的控件放入到 UIStackView 容器中，容器里面的控件的约束就不需要管理了，UIStackView 会自动管理。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Snip20180209_29.png?imageView2/2/w/600&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Developing iOS 11 Apps with Swift》学习笔记（二）</title>
+    <link href="http://chenliangjing.me/2018/02/08/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://chenliangjing.me/2018/02/08/《Developing-iOS-11-Apps-with-Swift》学习笔记（二）/</id>
+    <published>2018-02-08T08:58:20.000Z</published>
+    <updated>2019-06-04T14:05:38.328Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这一节课主要将的是 MVC 设计模式，以及优化上节课的翻纸牌游戏 demo，在优化 Demo 中讲解了 Swift 中的几个语法。Initialization(构造器)、struct（结构体）和 class（类）、static methods（静态方法）和 properties（属性）、optionals（可选）Dictionary&amp;lt;KeyType,ValueType&amp;gt;(字典)、UIStackView 、 autolayout（自动布局）&lt;/p&gt;
+&lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;#MVC 设计模式&quot;&gt;MVC 设计模式&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#struct（结构体）和 class（类）&quot;&gt;struct（结构体）和 class（类）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#static methods（静态方法）和 properties（属性）&quot;&gt;static methods（静态方法）和 properties（属性）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#_ 忽略下标&quot;&gt;_ 忽略下标&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#数组拼接元素&quot;&gt;数组拼接元素&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#lazy 懒加载&quot;&gt;lazy 懒加载&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#并列表达式&quot;&gt;并列表达式&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#空合运算符 ??&quot;&gt;空合运算符 ??&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;MVC-设计模式&quot;&gt;&lt;a href=&quot;#MVC-设计模式&quot; class=&quot;headerlink&quot; title=&quot;MVC 设计模式&quot;&gt;&lt;/a&gt;MVC 设计模式&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Snip20180208_14.png?imageView2/2/w/600&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角色组成。View、Controller、Model 组成。各个角色的分工如下：&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+    
+    
+      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+    
+  </entry>
+  
+</feed>

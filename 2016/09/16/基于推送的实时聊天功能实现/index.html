@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言最近做项目，遇到要做一个实时推送的聊天功能的需求，开发完成，把实现的细节和步骤以及遇到的问题记录一下。 效果不废话，先看效果：">
+<meta name="keywords" content="聊天,推送">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于推送的实时聊天功能实现">
+<meta property="og:url" content="http://chenliangjing.me/2016/09/16/基于推送的实时聊天功能实现/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="前言最近做项目，遇到要做一个实时推送的聊天功能的需求，开发完成，把实现的细节和步骤以及遇到的问题记录一下。 效果不废话，先看效果：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/chatTest.gif?imageView2/0/h/400/w/600">
+<meta property="og:image" content="http://liangjinggege.com/jpush_ios.png?imageView2/0/h/500/w/500">
+<meta property="og:image" content="http://liangjinggege.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%8B%89%E4%BC%B8.png?imageView2/0/w/700">
+<meta property="og:image" content="http://liangjinggege.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%8B%89%E4%BC%B8Slices.png?imageView2/0/h/500/w/700">
+<meta property="og:image" content="http://liangjinggege.com/%E5%90%8E%E5%8F%B0%E6%8E%A8%E9%80%81%E7%9A%84%E6%B6%88%E6%81%AF.png?imageView2/0/h/250/w/750">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.338Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于推送的实时聊天功能实现">
+<meta name="twitter:description" content="前言最近做项目，遇到要做一个实时推送的聊天功能的需求，开发完成，把实现的细节和步骤以及遇到的问题记录一下。 效果不废话，先看效果：">
+<meta name="twitter:image" content="http://liangjinggege.com/chatTest.gif?imageView2/0/h/400/w/600">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2016/09/16/基于推送的实时聊天功能实现/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>基于推送的实时聊天功能实现 | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2016/09/16/基于推送的实时聊天功能实现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于推送的实时聊天功能实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-09-16 12:09:42" itemprop="dateCreated datePublished" datetime="2016-09-16T12:09:42+08:00">2016-09-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/16/基于推送的实时聊天功能实现/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2016/09/16/基于推送的实时聊天功能实现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/16/基于推送的实时聊天功能实现/" class="leancloud_visitors" data-flag-title="基于推送的实时聊天功能实现">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近做项目，遇到要做一个实时推送的聊天功能的需求，开发完成，把实现的细节和步骤以及遇到的问题记录一下。</p>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>不废话，先看效果：<br><a id="more"></a></p>
+<p><div></div></p>
+<p><center><br>    <img src="http://liangjinggege.com/chatTest.gif?imageView2/0/h/400/w/600" width="400px"><br>    </center><br><br><br><br></p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><blockquote>
+<p>利用极光实时推送，客户端端发消息发送给服务端，服务端再把消息发送给极光服务器，极光服务器把接收到的消息发送给苹果服务器，苹果服务器最后把消息推送到另外一个客户端手中。由于iOS和andriod双平台，所以需要和服务端定义好协议以及设置好标签（tags），别名（alias）。这样才能实现张三发送给李四的消息，只有李四能收到，李四回给张三的消息也只有上三能收到。就是一个客户端发送指定的内容到指定的客户端（可能是一个，也可能是一多个），这些指定的客户端能收到指定的内容。</p>
+</blockquote>
+<p><img src="http://liangjinggege.com/jpush_ios.png?imageView2/0/h/500/w/500" alt=""></p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="界面搭建"><a href="#界面搭建" class="headerlink" title="界面搭建"></a>界面搭建</h2><p>一个基本的聊天界面。包括输入框，消息的展示，消息时间的处理，键盘的弹出隐藏，输入框高度的动态增长等这些基本的功能点：</p>
+<h3 id="监听键盘弹出和隐藏"><a href="#监听键盘弹出和隐藏" class="headerlink" title="监听键盘弹出和隐藏"></a>监听键盘弹出和隐藏</h3><p>在控制器<code>viewDidLoad</code>视图加载完毕的方法中接收键盘弹起和隐藏的通知：<code>UIKeyboardWillChangeFrameNotification</code>，键盘frame改变的这个通知，已经包含了键盘的弹出和隐藏，避免了写两个通知方法，通知响应事件，只需要到键盘frame变化以及动画时间，就可以通过该变输入框的约束从而达到输入框随着键盘的弹出而弹出，隐藏和降落，动画时间也是一样</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)keyboardWillChangeFrame:(<span class="built_in">NSNotification</span> *)note</span><br><span class="line">&#123;</span><br><span class="line">	 <span class="built_in">CGRect</span> beginFrame = [[note.userInfo objectForKey:<span class="built_in">UIKeyboardFrameBeginUserInfoKey</span>] <span class="built_in">CGRectValue</span>];</span><br><span class="line">	 <span class="built_in">CGRect</span> endFrame =  [[note.userInfo objectForKey:<span class="built_in">UIKeyboardFrameEndUserInfoKey</span>] <span class="built_in">CGRectValue</span>];</span><br><span class="line">	 <span class="built_in">CGFloat</span> duration = [note.userInfo[<span class="built_in">UIKeyboardAnimationDurationUserInfoKey</span>] doubleValue];</span><br><span class="line">	 <span class="built_in">CGFloat</span> delta = (endFrame.origin.y - beginFrame.origin.y);</span><br><span class="line">	 </span><br><span class="line">	 <span class="comment">// 动画</span></span><br><span class="line">	 [<span class="built_in">UIView</span> animateWithDuration:duration animations:^&#123;</span><br><span class="line">	     [<span class="keyword">self</span>.chatInputToolBarView mas_updateConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">	         make.bottom.mas_equalTo(-(kAllHeight - endFrame.origin.y));</span><br><span class="line">	     &#125;];</span><br><span class="line">	     </span><br><span class="line">	     <span class="built_in">CGFloat</span> contentOffsetY = <span class="keyword">self</span>.mainTableView.contentOffset.y - delta;</span><br><span class="line">	     <span class="keyword">self</span>.mainTableView.contentOffset = <span class="built_in">CGPointMake</span>(<span class="number">0</span>,  contentOffsetY);</span><br><span class="line">	     [<span class="keyword">self</span>.view layoutIfNeeded];</span><br><span class="line">	 &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="消息的展示"><a href="#消息的展示" class="headerlink" title="消息的展示"></a>消息的展示</h3><p>每次接受到新消息或者发送一条消息，都需要把最新的消息顶到表格的最底部，先更新数据源，再更新表格视图：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="name">self.mainTableView</span> beginUpdates]<span class="comment">;</span></span><br><span class="line">[<span class="name">self.messageDataArray</span> addObject:message]<span class="comment">;</span></span><br><span class="line">[<span class="name">self.mainTableView</span> insertRowsAtIndexPaths:@[[<span class="name">NSIndexPath</span> indexPathForRow:self.messageDataArray.count inSection:0]] withRowAnimation:UITableViewRowAnimationBottom]<span class="comment">;</span></span><br><span class="line">[<span class="name">self.mainTableView</span> endUpdates]<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">[<span class="name">self</span> scrollToBottom]<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>将消息滚动到最底部：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)scrollToBottom</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//1.获取最后一行</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.messageDataArray.count == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSIndexPath</span> *lastIndex = [<span class="built_in">NSIndexPath</span> indexPathForRow:<span class="keyword">self</span>.messageDataArray.count inSection:<span class="number">0</span>];</span><br><span class="line">    [<span class="keyword">self</span>.mainTableView scrollToRowAtIndexPath:lastIndex atScrollPosition:<span class="built_in">UITableViewScrollPositionBottom</span> animated:<span class="literal">NO</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="消息时间的处理"><a href="#消息时间的处理" class="headerlink" title="消息时间的处理"></a>消息时间的处理</h3><p>规则：今天的消息只显示小时和分钟，昨天的消息显示昨天：时：分，昨天以前的消息显示具体的年月时时分，同一个小时发送的消息时间只显示一次</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSString</span> *)getVSTChatFormatTime:(<span class="keyword">long</span> <span class="keyword">long</span>)time</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//1.获取当前的时间</span></span><br><span class="line">    <span class="built_in">NSDate</span> *currentDate = [SYTimeManager getCurrentDate];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 1.1获取年，月，日</span></span><br><span class="line">    <span class="built_in">NSInteger</span> currentYear = [SYTimeManager getYearWithDate:currentDate];</span><br><span class="line">    <span class="built_in">NSInteger</span> currentMonth = [SYTimeManager getMonthWithDate:currentDate];</span><br><span class="line">    <span class="built_in">NSInteger</span> currentDay = [SYTimeManager getDayWithDate:currentDate];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.获取消息发送时间</span></span><br><span class="line">    <span class="built_in">NSDate</span> *msgDate = [<span class="built_in">NSDate</span> dateWithTimeIntervalSince1970:time];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.1获取年，月，日</span></span><br><span class="line">    <span class="built_in">NSInteger</span> msgYear = [SYTimeManager getYearWithDate:msgDate];</span><br><span class="line">    <span class="built_in">NSInteger</span> msgMonth = [SYTimeManager getMonthWithDate:msgDate];</span><br><span class="line">    <span class="built_in">NSInteger</span> msgDay = [SYTimeManager getDayWithDate:msgDate];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//3.判断:</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     今天：(HH:mm)</span></span><br><span class="line"><span class="comment">     昨天: (昨天 HH:mm)</span></span><br><span class="line"><span class="comment">     昨天以前:（2016-07-27 16:07）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="built_in">NSDateFormatter</span> *dateFormat = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line">    <span class="keyword">if</span> (currentYear == msgYear &amp;&amp; currentMonth == msgMonth &amp;&amp; currentDay == msgDay)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 今天</span></span><br><span class="line">        dateFormat.dateFormat= DateFormat_Hm;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(currentYear == msgYear &amp;&amp; currentMonth == msgMonth &amp;&amp; currentDay - <span class="number">1</span> == msgDay)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 昨天</span></span><br><span class="line">        dateFormat.dateFormat= [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"昨天 %@"</span>,DateFormat_Hm];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 昨天以前</span></span><br><span class="line">        dateFormat.dateFormat= DateFormat_yyyyMdHm;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> [dateFormat stringFromDate:msgDate];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较两个时间是否在同一个小时内,若是，返回YES,否返回NO</span></span><br><span class="line">+ (<span class="built_in">BOOL</span>)isSameHourTime:(<span class="keyword">long</span> <span class="keyword">long</span>)timeA time:(<span class="keyword">long</span> <span class="keyword">long</span>)timeB;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSDate</span> *dateA = [<span class="built_in">NSDate</span> dateWithTimeIntervalSince1970:timeA];</span><br><span class="line">     <span class="built_in">NSDate</span> *dateB = [<span class="built_in">NSDate</span> dateWithTimeIntervalSince1970:timeB];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取年月日</span></span><br><span class="line">    <span class="built_in">NSString</span> *tempStringA = [SYTimeManager getTimeWithDate:dateA format:DateFormat_yMd];</span><br><span class="line">    <span class="built_in">NSString</span> *tempStringB = [SYTimeManager getTimeWithDate:dateB format:DateFormat_yMd];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取小时</span></span><br><span class="line">    <span class="built_in">NSInteger</span> hourA = [SYTimeManager getHourWithDate:dateA];</span><br><span class="line">    <span class="built_in">NSInteger</span> hourB = [SYTimeManager getHourWithDate:dateB];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (hourA == hourB)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 日期也需要一样</span></span><br><span class="line">        <span class="keyword">if</span> ([tempStringA isEqualToString:tempStringB])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="消息背景图片的拉伸"><a href="#消息背景图片的拉伸" class="headerlink" title="消息背景图片的拉伸"></a>消息背景图片的拉伸</h3><p>一般UI设计师会切一张有四个角的小图片，我们应该根据消息文本的长度和高度进行拉伸，但是要保留四个角，只拉伸证件部分，有两种做法，一种是用代码实现，另一种是通过<code>Assets.xcasses</code>的<code>Show Slicing</code>实现，推荐使用第二种，直观和方便：<br><img src="http://liangjinggege.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%8B%89%E4%BC%B8.png?imageView2/0/w/700" alt=""><br><img src="http://liangjinggege.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%8B%89%E4%BC%B8Slices.png?imageView2/0/h/500/w/700" alt=""></p>
+<p>中间四条线框住的区域才是可以被拉伸的，其他四个角都是不会被拉伸，另外还可以在左边的属性栏中设置left,right,top,bottom四个方向上的值。拉伸的模式有平铺和拉伸两种。</p>
+<h3 id="动态增长输入框高度"><a href="#动态增长输入框高度" class="headerlink" title="动态增长输入框高度"></a>动态增长输入框高度</h3><p>当输入多行文本的时候，输入框的高度要随着输入文字的换行而自动增长，首先需要监听textView的<code>- (void)textViewDidChange:(UITextView *)textView</code>代理方法，当输入的文本换行时，动态增加输入框的高度：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 1.计算TextView的高度，</span></span><br><span class="line"> <span class="built_in">CGFloat</span> textViewH = <span class="number">0</span>;</span><br><span class="line"> <span class="built_in">CGFloat</span> minHeight = textViewDefaultHeight; <span class="comment">//textView最小的高度</span></span><br><span class="line"> <span class="built_in">CGFloat</span> maxHeight = textViewMaxHeight; <span class="comment">//textView最大的高度</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">// 2。获取contentSize的高度</span></span><br><span class="line"> <span class="built_in">CGFloat</span> contentHeight = textView.contentSize.height;</span><br><span class="line"> <span class="keyword">if</span> (contentHeight &lt; minHeight)</span><br><span class="line"> &#123;</span><br><span class="line">     textViewH = minHeight;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (contentHeight &gt; maxHeight)</span><br><span class="line"> &#123;</span><br><span class="line">     textViewH = maxHeight;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> &#123;</span><br><span class="line">     textViewH = contentHeight;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">// 3.加个动画</span></span><br><span class="line">[<span class="built_in">UIView</span> animateWithDuration:<span class="number">0.25</span> animations:^&#123;</span><br><span class="line">    <span class="built_in">CGRect</span> textViewF = textView.frame;</span><br><span class="line">    textViewF.size.height = textViewH;</span><br><span class="line">    textView.frame = textViewF;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.chatInputToolBarView mas_updateConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.height.mas_equalTo(textViewH + <span class="number">2</span> * margins_V);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.view layoutIfNeeded];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.光标回到原位</span></span><br><span class="line">[textView setContentOffset:<span class="built_in">CGPointZero</span> animated:<span class="literal">YES</span>];</span><br><span class="line">[textView scrollRangeToVisible:textView.selectedRange];</span><br></pre></td></tr></table></figure>
+<h2 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h2><h2 id="极光推送"><a href="#极光推送" class="headerlink" title="极光推送"></a>极光推送</h2><p>下载好极光最新的SDK，在极光官网创建应用，创建开发、生产环境的服务端证书，APP描述文件，配置好<code>AppKey</code>，<code>JPushChannel</code>，在应用程序<code>didFinishLaunchingWithOptions</code>启动极光推送，分8.0系统前后两种不同的方法，通知形式有Badge角标，Sound声音，Alert横幅：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([[<span class="built_in">UIDevice</span> currentDevice].systemVersion floatValue] &gt;= <span class="number">8.0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="comment">// categories</span></span><br><span class="line">       [JPUSHService registerForRemoteNotificationTypes:(<span class="built_in">UIUserNotificationTypeBadge</span> | <span class="built_in">UIUserNotificationTypeSound</span> | <span class="built_in">UIUserNotificationTypeAlert</span>)</span><br><span class="line">                                             categories:<span class="literal">nil</span>];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">   &#123;</span><br><span class="line">       <span class="comment">// categories nil</span></span><br><span class="line">       [JPUSHService registerForRemoteNotificationTypes:(<span class="built_in">UIRemoteNotificationTypeBadge</span> | <span class="built_in">UIRemoteNotificationTypeSound</span> | <span class="built_in">UIRemoteNotificationTypeAlert</span>)</span><br><span class="line">                                             categories:<span class="literal">nil</span>];</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// Required</span></span><br><span class="line">   <span class="comment">// [JPUSHService setupWithOption:launchOptions]</span></span><br><span class="line">   <span class="comment">// pushConfig.plist appKey</span></span><br><span class="line">   <span class="comment">// 有广告符标识IDFA（尽量不用，避免上架审核被拒）</span></span><br><span class="line"><span class="comment">// NSString *JPushAdvertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];</span></span><br><span class="line"><span class="comment">// [JPUSHService setupWithOption:JPushOptions</span></span><br><span class="line"><span class="comment">//                        appKey:JPushAppKey</span></span><br><span class="line"><span class="comment">//                       channel:JPushChannel</span></span><br><span class="line"><span class="comment">//              apsForProduction:JPushIsProduction</span></span><br><span class="line"><span class="comment">//         advertisingIdentifier:JPushAdvertisingId];</span></span><br><span class="line"><span class="comment">// 或无广告符标识IDFA（尽量不用，避免上架审核被拒）</span></span><br><span class="line">[JPUSHService setupWithOption:options</span><br><span class="line">                       appKey:JPushAppKey</span><br><span class="line">                      channel:JPushChannel</span><br><span class="line">             apsForProduction:JPushIsProduction];</span><br><span class="line">注册极光推送，传deviceToken过去：</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didRegisterForRemoteNotificationsWithDeviceToken:(<span class="built_in">NSData</span> *)deviceToken</span><br><span class="line">&#123;</span><br><span class="line">    [JPushManager JPushRegister:deviceToken];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="前台配置"><a href="#前台配置" class="headerlink" title="前台配置"></a>前台配置</h2><p>要想推送给指定的客户端，就需要绑定别名：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> 绑定别名（注意：1 登录成功或者自动登录后；2 去除绑定-退出登录后）</span></span><br><span class="line">+ (<span class="keyword">void</span>)JPushTagsAndAliasInbackgroundTags:(NSSet *)<span class="keyword">set</span> <span class="keyword">alias</span>:(NSString *)name</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 标签分组（表示没有值）</span></span><br><span class="line">    NSSet *tags = <span class="keyword">set</span>;</span><br><span class="line">    <span class="comment">// 用户别名（自定义值，nil是表示没有值）</span></span><br><span class="line">    NSString *<span class="keyword">alias</span> = name;</span><br><span class="line">    NSLog(<span class="string">@"tags = %@, alias = %@(registrationID = %@)"</span>, tags, <span class="keyword">alias</span>, [self registrationID]);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// tags、alias均无值时表示去除绑定</span></span><br><span class="line">    [<span class="meta">JPUSHService setTags:tags aliasInbackground:alias</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="后台配置"><a href="#后台配置" class="headerlink" title="后台配置"></a>后台配置</h2><p>需要和客户端这边协商，联调，设置同样的标签和别名，以JSON字符串的形式将消息内容推送过来<br><img src="http://liangjinggege.com/%E5%90%8E%E5%8F%B0%E6%8E%A8%E9%80%81%E7%9A%84%E6%B6%88%E6%81%AF.png?imageView2/0/h/250/w/750" alt=""></p>
+<h2 id="接收推送消息"><a href="#接收推送消息" class="headerlink" title="接收推送消息"></a>接收推送消息</h2><p>有新消息过来，需要去接收，然后显示在表格的最底部：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)receiveJPushMessage:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    NSDictionary *<span class="keyword">dict </span>= notification.object<span class="comment">;</span></span><br><span class="line">    NSString *<span class="keyword">dictString </span>= <span class="keyword">dict[@"objectId"];</span></span><br><span class="line"><span class="keyword"> </span>   NSDictionary *resultDict = [NSString <span class="keyword">jsonDictWithString:dictString];</span></span><br><span class="line"><span class="keyword"> </span>   ECSJPushContentModel *contentModel = [ECSJPushContentModel yy_modelWithJSON:resultDict]<span class="comment">;</span></span><br><span class="line">    VSTChatMessageModel *message = getChatMessageModel(contentModel.content, contentModel.sourceAccount, contentModel.account, contentModel.sendTime)<span class="comment">;</span></span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="跳转到指定页面"><a href="#跳转到指定页面" class="headerlink" title="跳转到指定页面"></a>跳转到指定页面</h2><p>当有消息进来，如果应用在后台或者被杀死，则需要点击推送消息横幅跳转到指定页面，总共有应用在前台，后台，应用被杀死三种情况需要考虑：</p>
+<h3 id="应用在前台，应用在后台"><a href="#应用在前台，应用在后台" class="headerlink" title="应用在前台，应用在后台"></a>应用在前台，应用在后台</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)<span class="string">application:</span>(UIApplication *)application <span class="string">didReceiveRemoteNotification:</span>(NSDictionary *)userInfo <span class="string">fetchCompletionHandler:</span>(<span class="keyword">void</span> (^)(UIBackgroundFetchResult))completionHandler</span><br><span class="line">&#123;</span><br><span class="line">    DLog(@<span class="string">"2-1 didReceiveRemoteNotification remoteNotification = %@"</span>, userInfo);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// apn 内容获取：</span></span><br><span class="line">    [JPushManager <span class="string">JPushHandleRemote:</span>userInfo <span class="string">fetchCompletionHandler:</span>completionHandler];</span><br><span class="line">    </span><br><span class="line">    DLog(@<span class="string">"2-2 didReceiveRemoteNotification remoteNotification = %@"</span>, userInfo);</span><br><span class="line">    <span class="keyword">if</span> ([userInfo <span class="string">isKindOfClass:</span>[NSDictionary <span class="class"><span class="keyword">class</span>]])</span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        NSDictionary *dict = userInfo[@<span class="string">"aps"</span>];</span><br><span class="line">        NSString *content = dict[@<span class="string">"alert"</span>];</span><br><span class="line">        DLog(@<span class="string">"content = %@"</span>, content);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//        [SYNotificationManager postNotificationJPush:dict];</span></span><br><span class="line">        [SYNotificationManager <span class="string">postNotificationJPush:</span>userInfo];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (application.applicationState == UIApplicationStateActive)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 程序当前正处于前台</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (application.applicationState == UIApplicationStateInactive)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 程序处于后台</span></span><br><span class="line">      <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="应用被杀死"><a href="#应用被杀死" class="headerlink" title="应用被杀死"></a>应用被杀死</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="comment">// Override point for customization after application launch.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保存推送信息启动APP</span></span><br><span class="line">    <span class="built_in">NSDictionary</span> *notification = [launchOptions objectForKey: <span class="built_in">UIApplicationLaunchOptionsRemoteNotificationKey</span>];</span><br><span class="line">    <span class="keyword">if</span> ([<span class="built_in">NSDictionary</span> isValidNSDictionary:notification])</span><br><span class="line">    &#123;</span><br><span class="line">        [SYUserDefaultManager SaveRemoteNotification:notification];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再视加载完毕后进行跳转</p>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><p>注意1：标签和别名的组成规则，之前用用户名设置，但是用户名出现了<code>.</code>这个非法字符，导致设置标签和别名失败，从而导致张三发给李四的消息，李四却收不到的问题。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">错误码定义</span><br><span class="line">Code	描述	详细解释</span><br><span class="line"><span class="number">6001</span>	无效的设置，tag/alias 不应参数都为 null	 </span><br><span class="line"><span class="number">6002</span>	设置超时	建议重试</span><br><span class="line"><span class="number">6003</span>	alias 字符串不合法	有效的别名、标签组成：字母（区分大小写）、数字、下划线、汉字。</span><br><span class="line"><span class="number">6004</span>	alias超长。最多 <span class="number">40</span>个字节	中文 UTF<span class="number">-8</span> 是 <span class="number">3</span> 个字节</span><br><span class="line"><span class="number">6005</span>	某一个 tag 字符串不合法	有效的别名、标签组成：字母（区分大小写）、数字、下划线、汉字。</span><br><span class="line"><span class="number">6006</span>	某一个 tag 超长。一个 tag 最多 <span class="number">40</span>个字符	中文 UTF<span class="number">-8</span> 是 <span class="number">3</span> 个字节</span><br><span class="line"><span class="number">6007</span>	tags 数量超出限制。最多 <span class="number">100</span>个	这是一台设备的限制。一个应用全局的标签数量无限制。</span><br><span class="line"><span class="number">6008</span>	tag/alias 超出总长度限制。总长度最多 <span class="number">1</span>K 字节</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意2：跳转要等视图控制器加载完了才能去做跳转，特别是应用被杀死后收到推送消息进行跳转，在APP完毕的方法里面可以先把推送消息保存起来，等到视图控制器加载完毕后，再执行跳转操作。</p>
+</blockquote>
+<blockquote>
+<p>注意3：算消息cell高度时,如果是用自动布局算的:</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用自动布局后,直接让系统自动算出cell高度</span></span><br><span class="line"><span class="keyword">self</span>.mainTableView.estimatedRowHeight = <span class="number">120.0</span>;</span><br><span class="line"><span class="keyword">self</span>.mainTableView.rowHeight = <span class="built_in">UITableViewAutomaticDimension</span>;</span><br></pre></td></tr></table></figure>
+<p>则将表格拉倒最底部或者最顶部的方法就会失效，所以，这个使用自动布局算cell高度只适用于cell只是静态展示，没有动态编辑的情况，如果cell需要动态的编辑，比如增删cell,cell上的控件有交互效果，就不能用系统自动去算高度了。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/聊天/" rel="tag"># 聊天</a>
+          
+            <a href="/Categorys/推送/" rel="tag"># 推送</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/21/2016苹果企业开发者账号申请实践/" rel="next" title="2016 苹果企业开发者账号申请实践">
+                <i class="fa fa-chevron-left"></i> 2016 苹果企业开发者账号申请实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/23/一点感受/" rel="prev" title="一点感受">
+                一点感受 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效果"><span class="nav-number">2.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-number">4.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#界面搭建"><span class="nav-number">4.1.</span> <span class="nav-text">界面搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#监听键盘弹出和隐藏"><span class="nav-number">4.1.1.</span> <span class="nav-text">监听键盘弹出和隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息的展示"><span class="nav-number">4.1.2.</span> <span class="nav-text">消息的展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息时间的处理"><span class="nav-number">4.1.3.</span> <span class="nav-text">消息时间的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息背景图片的拉伸"><span class="nav-number">4.1.4.</span> <span class="nav-text">消息背景图片的拉伸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态增长输入框高度"><span class="nav-number">4.1.5.</span> <span class="nav-text">动态增长输入框高度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送"><span class="nav-number">4.2.</span> <span class="nav-text">推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#极光推送"><span class="nav-number">4.3.</span> <span class="nav-text">极光推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前台配置"><span class="nav-number">4.4.</span> <span class="nav-text">前台配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台配置"><span class="nav-number">4.5.</span> <span class="nav-text">后台配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接收推送消息"><span class="nav-number">4.6.</span> <span class="nav-text">接收推送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跳转到指定页面"><span class="nav-number">4.7.</span> <span class="nav-text">跳转到指定页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用在前台，应用在后台"><span class="nav-number">4.7.1.</span> <span class="nav-text">应用在前台，应用在后台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用被杀死"><span class="nav-number">4.7.2.</span> <span class="nav-text">应用被杀死</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">5.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

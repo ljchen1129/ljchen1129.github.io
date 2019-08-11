@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="内存管理1. 内存管理的重要性 移动设备的内存极其有限，每个 app 所能占用的内存是有限制的 下列行为都会增加一个 app 的内存占用 创建一个 Objective-C 对象 定义一个变量 调用一个函数或者方法   当 app 所占用的内存较多时，系统会发出内存警告，这时得回收一些不需要再使用的内存空间，比如回收一些不需要使用的对象，变量等 如果 app 内存占用过大，系统可能会强制关闭 app">
+<meta name="keywords" content="iOS,Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C 语言基础（三、内存管理）">
+<meta property="og:url" content="http://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="内存管理1. 内存管理的重要性 移动设备的内存极其有限，每个 app 所能占用的内存是有限制的 下列行为都会增加一个 app 的内存占用 创建一个 Objective-C 对象 定义一个变量 调用一个函数或者方法   当 app 所占用的内存较多时，系统会发出内存警告，这时得回收一些不需要再使用的内存空间，比如回收一些不需要使用的对象，变量等 如果 app 内存占用过大，系统可能会强制关闭 app">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.314Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C 语言基础（三、内存管理）">
+<meta name="twitter:description" content="内存管理1. 内存管理的重要性 移动设备的内存极其有限，每个 app 所能占用的内存是有限制的 下列行为都会增加一个 app 的内存占用 创建一个 Objective-C 对象 定义一个变量 调用一个函数或者方法   当 app 所占用的内存较多时，系统会发出内存警告，这时得回收一些不需要再使用的内存空间，比如回收一些不需要使用的对象，变量等 如果 app 内存占用过大，系统可能会强制关闭 app">
+<meta name="twitter:image" content="http://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Objective-C 语言基础（三、内存管理） | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Objective-C 语言基础（三、内存管理）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-08 11:14:18" itemprop="dateCreated datePublished" datetime="2017-04-08T11:14:18+08:00">2017-04-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Objective-C/" itemprop="url" rel="index"><span itemprop="name">Objective-C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/08/Objective-C 语言基础（三、内存管理）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/08/Objective-C 语言基础（三、内存管理）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/08/Objective-C 语言基础（三、内存管理）/" class="leancloud_visitors" data-flag-title="Objective-C 语言基础（三、内存管理）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="1-内存管理的重要性"><a href="#1-内存管理的重要性" class="headerlink" title="1. 内存管理的重要性"></a>1. 内存管理的重要性</h3><ul>
+<li>移动设备的内存极其有限，每个 app 所能占用的内存是有限制的</li>
+<li>下列行为都会增加一个 app 的内存占用<ul>
+<li>创建一个 Objective-C 对象</li>
+<li>定义一个变量</li>
+<li>调用一个函数或者方法</li>
+</ul>
+</li>
+<li>当 app 所占用的内存较多时，系统会发出内存警告，这时得回收一些不需要再使用的内存空间，比如回收一些不需要使用的对象，变量等</li>
+<li>如果 app 内存占用过大，系统可能会强制关闭 app，造成闪退现象，影响用户体验</li>
+</ul>
+<h3 id="2-什么是内存管理"><a href="#2-什么是内存管理" class="headerlink" title="2. 什么是内存管理"></a>2. 什么是内存管理</h3><ul>
+<li>如何回收那些不需要再使用的对象</li>
+<li>内存管理，就是对内存进行管理，涉及的操作有<ul>
+<li>分配内存：比如<code>创建</code>一个对象，会<code>增加</code>内存占用</li>
+<li>清除内存：比如<code>销毁</code>一个对象，会<code>减小</code>内存占用</li>
+</ul>
+</li>
+<li>内存管理的管理范围<ul>
+<li>任何继承了 NSObject 的对象</li>
+<li>对其他非对象类型无效（int、char、float、double、struct、enum等）</li>
+</ul>
+</li>
+<li>只有对 Objective-C 对象才需要进行内存管理的本质原因<ul>
+<li>Objective-C 对象存放于<code>堆</code>里面</li>
+<li>非 Objective-C 对象一般放在<code>栈</code>里面（栈内存会被系统自动回收）<a id="more"></a>
+<h3 id="3-堆和栈"><a href="#3-堆和栈" class="headerlink" title="3. 堆和栈"></a>3. 堆和栈</h3></li>
+</ul>
+</li>
+<li>栈（操作系统）：由操作系统自动分配释放，存放函数的参数值，局部变量的值等，其操作方式类似于数据结构中的栈（先进后出）。</li>
+<li>堆（操作系统）：一般由程序员分配释放，若程序员不释放，程序结束时可能由系统回收，分配方式类似于链表。</li>
+<li>举例</li>
+</ul>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">// 局部变量：栈</span></span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">10</span>; <span class="comment">// 局部变量：栈</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// p（局部变量） ：栈</span></span><br><span class="line">        <span class="comment">// Person 对象（计数器 = 1）：堆</span></span><br><span class="line">        Person *p = [[Person alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 出了 &#125; 号，栈里面的变量 a/b/p 都会被回收</span></span><br><span class="line">    <span class="comment">// 但是堆里面的 Person 对象还会留在内存中，因为他的计数器依然是 1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300" alt=""></p>
+<h3 id="3-引用计数器"><a href="#3-引用计数器" class="headerlink" title="3. 引用计数器"></a>3. 引用计数器</h3><h4 id="什么是引用计数"><a href="#什么是引用计数" class="headerlink" title="#什么是引用计数"></a>#什么是引用计数</h4><ul>
+<li>系统是如何判断什么时候需要回收一个对象所占的内存？<ul>
+<li>通过对象的引用计数器</li>
+</ul>
+</li>
+<li>什么是引用计数器？<ul>
+<li>每个 Objective-C 独享都有自己的引用计数器</li>
+<li>引用计数器是一个整数</li>
+<li>从字面上理解，表示“<code>对象被引用的次数</code>”</li>
+<li>也可以理解为：表示有多少人正在使用这个对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="引用计数器的作用"><a href="#引用计数器的作用" class="headerlink" title="#引用计数器的作用"></a>#引用计数器的作用</h4><ul>
+<li>引用计数器表述有多少人正在使用这个对象</li>
+<li>当没有任何人使用这个对象时，系统才会回收这个对象<ul>
+<li>即当对象的引用计数器为 0 时，对象占用的内存会被系统回收</li>
+<li>如果对象的引用计数器不为 0，那么在整个程序运行过程中，它占用的内存就不可能被回收（除非整个程序已经退出）</li>
+</ul>
+</li>
+<li>任何一个对象，刚出生的时候，引用计数器都为 1<ul>
+<li>当使用 alloc/new/copy/mutableCopy 创建一个对象时，对象的引用计数器就是 1</li>
+</ul>
+</li>
+</ul>
+<h4 id="引用计数器的操作"><a href="#引用计数器的操作" class="headerlink" title="#引用计数器的操作"></a>#引用计数器的操作</h4><ul>
+<li>管理对象所占用的内存，就是再操作对象的引用计数器</li>
+<li>引用计数器常见操作<ul>
+<li>给对象发送一条 retain 消息，引用计数器 +1（retain 方法返回对象本身）</li>
+<li>给对象发送一条 release 消息，引用计数器 -1</li>
+<li>给对象发送一条 retainCount 消息，可以获得对象当前的引用计数器值</li>
+</ul>
+</li>
+<li>需要注意：release 并不代表销毁/回收对象，仅仅是将引用计数器 -1</li>
+</ul>
+<h3 id="4-dealloc"><a href="#4-dealloc" class="headerlink" title="4. dealloc"></a>4. dealloc</h3><ul>
+<li>当一个对象的引用计数器为 0 时，这个对象即将被销毁，其占用的内存被系统回收</li>
+<li>当对象即将被销毁时，系统会自动给对象发送一条 dealloc 消息（因此，从 delloc 方法有没有被调用，就可以判断出对象是否被销毁）</li>
+<li>dealloc 方法的重写<ul>
+<li>一般会重写 dealloc 方法，在这里释放相关的资源，dealloc 是对象的遗言</li>
+<li>一旦重写了 dealloc 方法，就必须调用 [super dealloc] 方法，并且在最后面调用</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-单个对象内存管理"><a href="#5-单个对象内存管理" class="headerlink" title="5. 单个对象内存管理"></a>5. 单个对象内存管理</h3><ul>
+<li>一个 alloc 对应一个 release</li>
+<li>一个 retain 对应一个 release</li>
+<li>ARC 不同与 Java 的垃圾回收机制（gc），ARC 是编译器做的事情， Java 的垃圾回收是系统做的事情。</li>
+</ul>
+<h3 id="6-野指针和空指针"><a href="#6-野指针和空指针" class="headerlink" title="6.野指针和空指针"></a>6.野指针和空指针</h3><h4 id="野指针"><a href="#野指针" class="headerlink" title="#野指针"></a>#野指针</h4><ul>
+<li>只要一个对象被释放了，就称这个对象为“<code>僵尸对象</code>”</li>
+<li>当一个指针指向一个<code>僵尸对象</code>，就称这个指针为“<code>野指针</code>”</li>
+<li>只要给一个<code>野指针</code>发送消息就会报错</li>
+</ul>
+<h4 id="Xcode-中监听僵尸对象"><a href="#Xcode-中监听僵尸对象" class="headerlink" title="#Xcode 中监听僵尸对象"></a>#Xcode 中监听僵尸对象</h4><p>Xcoder-&gt;Product-&gt;Scheme-&gt;Edit Scheme-&gt;Run-&gt;Diagnostics-&gt;Zombie Objects</p>
+<p><img src="http://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500" alt=""></p>
+<h4 id="空指针"><a href="#空指针" class="headerlink" title="#空指针"></a>#空指针</h4><ul>
+<li>空指针：nil 0</li>
+<li>为了避免给<code>野指针</code>发送消息会报错，一般情况下，当一个对象被释放后会将这个对象的指针设置为<code>空指针</code>，因为 Objective-C 中给<code>空指针</code>发送消息是<code>不会报错</code>的。</li>
+</ul>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">p</span> = nil<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-多对象内存管理"><a href="#7-多对象内存管理" class="headerlink" title="7. 多对象内存管理"></a>7. 多对象内存管理</h3><ul>
+<li>Objective-C 中不可避免的存在多个对象之间的内存管理，举个栗子：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Room</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">int</span> roomNo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Room</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __func__);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">super</span> dealloc];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line">&#123;</span><br><span class="line">    Room *_room;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setRoom:(Room *)room;</span><br><span class="line">- (Room *)room;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setRoom:(Room *)room</span><br><span class="line">&#123;</span><br><span class="line">    _room = room;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (Room *)room</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> _room;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __func__);</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">super</span> dealloc];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        Room *r = [[Room alloc] init];</span><br><span class="line">        r.roomNo = <span class="number">1111</span>;</span><br><span class="line">        </span><br><span class="line">        Person *p = [[Person alloc] init];</span><br><span class="line">        p.room = r;</span><br><span class="line">        </span><br><span class="line">        [r release];</span><br><span class="line">        [p release];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码里面有两个类。 Person 类和 Room 类，Person 类拥有房间，做这个两个对象之间的内存管理要满足两个条件：</p>
+<ol>
+<li>人需要使用房间，那么只要人在房间就一定要在</li>
+<li>人不在了，房间也要不在；</li>
+</ol>
+<p>要满足上述第一个个条件，就得在 Person 的 _room 的 setter 方法中对每一次传入的 room  引用计数器加 1 操作，要满足第二个条件，就得在 Person 的 dealloc 方法中，对 “_room” 做引用计数器减 1 操作：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setRoom:(Room *)room</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 对房间的引用计数器 +1</span></span><br><span class="line">    [<span class="meta">room retain</span>];</span><br><span class="line">    _room = room;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(<span class="string">@"%s"</span>, __func__);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 人释放了，那么房间也需要释放</span></span><br><span class="line">    [<span class="meta">_room release</span>];</span><br><span class="line">    [<span class="meta">super dealloc</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当 A 对象想使用 B 对象时，一定要对 B 对象进行一次 retain，这样才能保证 A 对象存在 B 对象就层，也就是说这样才能保证无论在什么时候在 A 对象中都可以使用 B 对象。</p>
+</blockquote>
+<blockquote>
+<p>当 A 对象释放的时候，一定要对 B 对象进行一次 release，这样才能保证 A 对象释放了， B 对象对应也会随之是否，避免内存泄漏。</p>
+</blockquote>
+<blockquote>
+<p>总之，对象引用计数器的加和减总是一一对应的，有加就有减。</p>
+</blockquote>
+<h3 id="8-set-方法内存管理"><a href="#8-set-方法内存管理" class="headerlink" title="8. set 方法内存管理"></a>8. set 方法内存管理</h3><p>上述对多对象的内存管理还不完善，如果人需要换房间，那么又会出现内存泄漏：</p>
+<p><img src="http://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350" alt=""></p>
+<p>问题的原因是：换房的时候，Person 的成员变量 _room 由房间 1111 指向 8888，没有指向房间 1111 了，但是却没有对房间 1111 引用计数器<code>减一操作</code>，所以导致最终房间 1111 没有被释放，导致<code>内存泄漏</code>。</p>
+<p>解决方法：每一次换房之前，都应该对以前的房间引用计数器减 1</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setRoom:(Room *)room</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 将以前的房间释放掉</span></span><br><span class="line">	_room <span class="built_in">release</span>];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 对房间的引用计数器 +1</span></span><br><span class="line">    [room retain];</span><br><span class="line">    _room = room;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200" alt=""></p>
+<p>上述内存管理方案还不够完善，如果出现<code>重复赋值</code>时，即又给人一间 1111 的房间，应用程序将会崩溃，崩溃原因是<code>野指针</code>异常。具体原因是，由于人原本就拥有一间 1111 的房间，即对房间 1111 有一个引用，当再次给人赋值 1111 房间时，先会对 1111 房间 release 一次，release 完 1111 房间引用计数器变为 0，称为僵尸对象，然后又要对整个僵尸对象进行 retain 操作，给僵尸对象发送消息，程序崩溃。</p>
+<p>解决方案：在每一个给 Person 的 _room 赋值之前，先判断新值是否和旧值一样，如果一样，什么都不做，如果不一样，才需要 release 旧值，retain 新值。</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)setRoom:(Room *)room</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 判断旧值和新值是否一样</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_room</span> != room)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// release 旧值</span></span><br><span class="line">        [<span class="variable">_room</span> release];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// retain 新值</span></span><br><span class="line">        <span class="comment">// retain 方法即让对象的引用计数器加 1，同时会返回当前对象</span></span><br><span class="line">        <span class="variable">_room</span> = [room retain];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="9-property-修饰符"><a href="#9-property-修饰符" class="headerlink" title="9. property 修饰符"></a>9. property 修饰符</h3><h4 id="1-控制-set-方法的内存管理"><a href="#1-控制-set-方法的内存管理" class="headerlink" title="1. 控制 set 方法的内存管理"></a>1. 控制 set 方法的内存管理</h4><ul>
+<li>retain：release 旧值，retain 新值（用于 Objective-C 对象），自动生成 getter/setter 方法内存管理代码</li>
+<li>assign：直接赋值，不做任何内存管理（默认，用于非 Objective-C 对象），不会生成 set 方法内存管理代码，仅仅只会生成普通的 getter / setter</li>
+<li>copy：release 旧值，copy 新值（一般用于 NSString *）</li>
+</ul>
+<h4 id="2-控制需不需要生成-set-方法"><a href="#2-控制需不需要生成-set-方法" class="headerlink" title="2. 控制需不需要生成 set 方法"></a>2. 控制需不需要生成 set 方法</h4><ul>
+<li>readwrite：同事生成 set 方法和 get 方法（默认）</li>
+<li>readonly：只会生成 get 方法</li>
+</ul>
+<h4 id="3-多线程管理"><a href="#3-多线程管理" class="headerlink" title="3. 多线程管理"></a>3. 多线程管理</h4><ul>
+<li>atomic：线程安全，性能低（默认）</li>
+<li>nonatomic：非线程安全，性能高</li>
+</ul>
+<h4 id="4-控制-set-方法和-get-方法的名称"><a href="#4-控制-set-方法和-get-方法的名称" class="headerlink" title="4. 控制 set 方法和 get 方法的名称"></a>4. 控制 set 方法和 get 方法的名称</h4><ul>
+<li>setter：设置 set 方法名称，一定有一个冒号：</li>
+<li>getter：设置 get 方法名称</li>
+</ul>
+<blockquote>
+<p>注意：不同类型的参数可以组合在一起使用。</p>
+</blockquote>
+<h3 id="10-class"><a href="#10-class" class="headerlink" title="10. @class"></a>10. @class</h3><ul>
+<li>作用<ul>
+<li>可以简单的引用一个类</li>
+</ul>
+</li>
+<li>简单实用<ul>
+<li>@class Person;</li>
+<li>仅仅是告诉编译器，Person 是一个类，并不会包含 Person 这个类的所有内容</li>
+</ul>
+</li>
+<li><p>具体使用</p>
+<ul>
+<li>在 .h 文件中使用 @class 引用一个类</li>
+<li>在 .m 文件中使用 #import 包含这个类的 .h 文件</li>
+</ul>
+</li>
+<li><p>其他应用场景</p>
+<ol>
+<li>解决循环引用，比如 A 类引用 B 类，B 类同时引用 A 类</li>
+<li></li>
+</ol>
+</li>
+<li><p>和 #import 的区别</p>
+<ul>
+<li>import 是一个预编译指令，会将 <code>&quot;&quot;</code> 中的文件拷贝到 import 所在的位置，并且只要  <code>&quot;&quot;</code> 中的文件发生了变化，那么 import 就会重新拷贝一次（更新操作）</li>
+<li>@class 仅仅是告诉编译器，@class 后面的名称是一个类，不会做拷贝操作。所以编译器并不知道这个类中有哪些属性和方法，所以在 .m 文件中使用这个类的时候需要 import 这个类，才能使用。</li>
+</ul>
+</li>
+<li><p>@class 好处</p>
+<ul>
+<li>编译效率更快</li>
+<li>解决两个类相互拷贝形成的<code>死循环</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="11-循环-retain"><a href="#11-循环-retain" class="headerlink" title="11. 循环 retain"></a>11. 循环 retain</h3><p>如果 A 对象要拥有 B 对象，而 B 对象有要拥有 A 对象，此时就会形成循环 retain</p>
+<p>解决方案：不要让 A retain B，B 又 retain A，让其中一方不要做 retain 操作。</p>
+<h3 id="12-集合中对象的内存管理"><a href="#12-集合中对象的内存管理" class="headerlink" title="12. 集合中对象的内存管理"></a>12. 集合中对象的内存管理</h3><ol>
+<li><p>如果将一个对象添加到一个数组中，那么数组会对对象进行一次 retain</p>
+<p> <img src="http://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250" alt=""></p>
+</li>
+<li><p>当数组对象释放后，会给数组中所有的对象发送一条 release 消息</p>
+<p> <img src="http://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250" alt=""></p>
+</li>
+<li><p>当数组移除一个对象之后，会给对象发送一条 release 消息</p>
+<p> <img src="http://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250" alt=""></p>
+</li>
+</ol>
+<h2 id="autorelease"><a href="#autorelease" class="headerlink" title="autorelease"></a>autorelease</h2><h3 id="1-autorelease-基本概念"><a href="#1-autorelease-基本概念" class="headerlink" title="1. autorelease 基本概念"></a>1. autorelease 基本概念</h3><ul>
+<li><p>autorelease 是一种致辞引用计数的内存管理方式，只要给对象发送一条 autorelease 消息，就会将对象放到一个自动释放池中，当自动释放池被销毁时，会对池子中的所有对象做一次 release 操作</p>
+<blockquote>
+<p>注意：这里只是发送 release 消息，如果当时的引用计数依然不为 0，则该对象依然不会被释放。</p>
+</blockquote>
+</li>
+<li><p>autorelease 对象会返回对象本身</p>
+</li>
+</ul>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Person</span> *p = <span class="comment">[<span class="comment">[Person alloc]</span> init]</span>;</span><br><span class="line">p = <span class="comment">[p autorelease]</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用完 autorelease 后，对象的引用计数器不变</li>
+</ul>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Person</span> *p = <span class="comment">[<span class="comment">[Person alloc]</span> init]</span>;</span><br><span class="line">p = <span class="comment">[p autorelease]</span>;</span><br><span class="line">NSLog(@<span class="string">"%lu"</span>, <span class="comment">[p retainCount]</span>); // 1</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>autorelease 的好处</p>
+<ul>
+<li>不用再关心对象的释放时间</li>
+<li>不用再关心什么时候调用 release</li>
+</ul>
+</li>
+<li><p>autorelease 的原理</p>
+<ul>
+<li>autorelease 实际上只是把 release 的调用延迟了，对于每一个 autorelease，系统只是把该对象放入了当前的 autorelease pool 中，该 pool 中的所有对象都会被调用 release。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-autorelease-pool"><a href="#2-autorelease-pool" class="headerlink" title="2. autorelease pool"></a>2. autorelease pool</h3><h4 id="autorelease-pool-使用"><a href="#autorelease-pool-使用" class="headerlink" title="#autorelease pool 使用"></a>#autorelease pool 使用</h4><ul>
+<li>iOS 5 以后</li>
+</ul>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool</span><br><span class="line">	&#123; // 创建一个自动释放池</span><br><span class="line">	    <span class="keyword">Person</span> *p = <span class="comment">[<span class="comment">[<span class="comment">[Person alloc]</span> init]</span> autorelease]</span>;</span><br><span class="line">	</span><br><span class="line">	&#125; // 销毁自动释放池（会给池子中的所有对象发送一条 release 消息）</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<ul>
+<li>iOS 5 以前</li>
+</ul>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 创建自动释放池</span><br><span class="line">NSAutoreleasePool *autoPool = <span class="comment">[<span class="comment">[NSAutoreleasePool alloc]</span> init]</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">Person</span> *p = <span class="comment">[<span class="comment">[<span class="comment">[Person alloc]</span> init]</span> autorelease]</span>;</span><br><span class="line">    </span><br><span class="line">// 销毁自动释放池</span><br><span class="line"><span class="comment">[autoPool drain]</span>;</span><br><span class="line">//    <span class="comment">[autoPool release]</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>autorelease pool 的嵌套使用</p>
+<ul>
+<li>自动释放池是以<code>栈</code>的形式存在</li>
+<li><p>由于栈只有一个入口，所以调用 autorelease 永远会将对象放到<code>栈顶</code>的自动释放池</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool &#123; // 栈底自动释放池</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        @autoreleasepool &#123; // 栈顶自动释放池</span><br><span class="line">            <span class="keyword">Person</span> *p = <span class="comment">[<span class="comment">[<span class="comment">[Person alloc]</span> init]</span> autorelease]</span>;</span><br><span class="line">            </span><br><span class="line">        &#125; // 销毁自动释放池（会给池子中的所有对象发送一条 release 消息）</span><br><span class="line">        <span class="keyword">Person</span> *p = <span class="comment">[<span class="comment">[<span class="comment">[Person alloc]</span> init]</span> autorelease]</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h4 id="autorelease-pool-注意事项"><a href="#autorelease-pool-注意事项" class="headerlink" title="#autorelease pool 注意事项"></a>#autorelease pool 注意事项</h4><ol>
+<li>一定要在自动释放池中调用 autorelease，才会将对象放入自动释放池中</li>
+<li><p>自动释放池中不适宜放占用内存较大的对象</p>
+<ul>
+<li>尽量避免对大内存使用该方法，对于这种延迟释放机制，还是尽量少用</li>
+<li>不要把大量循环操作放到同一个 @autorelease 之间，这样会造成内存峰值的上升</li>
+</ul>
+</li>
+<li><p>一个 alloc / new 对应一个 autorelease 或者 release，不要写多次 autorelease/release。</p>
+</li>
+</ol>
+<h4 id="autorelease-pool-应用场景"><a href="#autorelease-pool-应用场景" class="headerlink" title="#autorelease pool 应用场景"></a>#autorelease pool 应用场景</h4><ul>
+<li>类工厂方法</li>
+</ul>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSArray *<span class="keyword">array</span> = [NSArray <span class="keyword">array</span>];</span><br></pre></td></tr></table></figure>
+<p>内部实现是：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSArray *array = <span class="comment">[<span class="comment">[<span class="comment">[NSArray alloc]</span> init]</span> autorelease]</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ (instancetype)<span class="keyword">person</span></span><br><span class="line">&#123;</span><br><span class="line">    return <span class="comment">[<span class="comment">[<span class="comment">[self alloc]</span> init]</span> autorelease]</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h2><h3 id="1-ARC-基本概念"><a href="#1-ARC-基本概念" class="headerlink" title="1.ARC 基本概念"></a>1.ARC 基本概念</h3><h4 id="什么是-ARC"><a href="#什么是-ARC" class="headerlink" title="#什么是 ARC"></a>#什么是 ARC</h4><ul>
+<li>Automatic Reference Counting，自动引用计数，即 ARC。ARC 是 LLVM 3.0 编译器的一项特性，使用 ARC，基本一举解决了手动内存管理的麻烦问题。</li>
+<li>在工程中使用 ARC 非常简单，只需要和往常一样编写代autorelease码，只不过不用写 retain，release 三个关键字，这是 ARC 的基本原则。</li>
+<li>当开启 ARC 是，编译器将自动在代码合适的地方插入 retain，release，autorelease，而作为程序员，完全不用担心编译器会做错。</li>
+</ul>
+<h4 id="ARC-的注意点和有点"><a href="#ARC-的注意点和有点" class="headerlink" title="#ARC 的注意点和有点"></a>#ARC 的注意点和有点</h4><ul>
+<li>ARC 注意点<ul>
+<li>ARC 是编译器特性，不是运行时特性</li>
+<li>ARC 不是其他语言中的垃圾回收，有本质的区别</li>
+</ul>
+</li>
+<li>ARC 的有点<ul>
+<li>完全消除了手动管理内存的繁琐，让程序员更加专注于 app 的业务</li>
+<li>基本避免了内存泄漏</li>
+<li>有时还能更加快捷，因为编译器还可以执行某些优化</li>
+</ul>
+</li>
+</ul>
+<h4 id="ARC-的判断原则"><a href="#ARC-的判断原则" class="headerlink" title="#ARC 的判断原则"></a>#ARC 的判断原则</h4><ul>
+<li>ARC 的判断原则    <ul>
+<li>只有要有一个<code>强指针</code>变量指向对象，对象就会保存在内存中</li>
+</ul>
+</li>
+<li><p>强指针</p>
+<ul>
+<li>默认所有的指针都是<code>强指针</code></li>
+<li><p>被 __strong 修饰的指针</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person *p1 = [[Person alloc] init];</span><br><span class="line">   __strong Person *p2 = [[Person alloc] init];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>弱指针</p>
+<ul>
+<li><p>被 __weak 修饰的指针</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__weak <span class="keyword">Person</span> *p3 = <span class="comment">[<span class="comment">[Person alloc]</span> init]</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-ARC-中对多个对象内存管理"><a href="#2-ARC-中对多个对象内存管理" class="headerlink" title="2. ARC 中对多个对象内存管理"></a>2. ARC 中对多个对象内存管理</h3><h4 id="MRC"><a href="#MRC" class="headerlink" title="#MRC"></a>#MRC</h4><ul>
+<li>A 对象想要拥有 B 对象，就需要对 B 对象进行一次 retain</li>
+<li>A 对象不用 B 对象了，需要对 B 对象进行一次 release（property 的时候 retain，dealloc 时候 release）</li>
+</ul>
+<h4 id="ARC-1"><a href="#ARC-1" class="headerlink" title="#ARC"></a>#ARC</h4><ul>
+<li>A 对象想拥有 B 对象，就需要用一个强指针指向 B 对象</li>
+<li>A 对象不用 B 对象了，什么都不需要做，编译器会自动做这些事情</li>
+<li>在 ARC 中保存一个对象用 strong，相当于 MRC 中的 retain</li>
+</ul>
+<h4 id="循环引用"><a href="#循环引用" class="headerlink" title="#循环引用"></a>#循环引用</h4><ul>
+<li>对象之间的相互引用，如 A 对象引用 B 对象， B 对象 引用 A 对象，在 ARC 中也会发生循环引用</li>
+<li>解决方案<ul>
+<li>一边用 strong，一边用 weak，相当于 MRC 中的 assign</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-ARC-和-MRC-混编"><a href="#3-ARC-和-MRC-混编" class="headerlink" title="3. ARC 和 MRC 混编"></a>3. ARC 和 MRC 混编</h3><h4 id="MRC-转-ARC"><a href="#MRC-转-ARC" class="headerlink" title="#MRC 转 ARC"></a>#MRC 转 ARC</h4><ul>
+<li><p>在 ARC 环境下：</p>
+<ul>
+<li>target －&gt; build phases －&gt; compile sources －&gt; 单击MRC的文件将 compiler flags设置为：<code>－fno－objc－arc</code></li>
+</ul>
+</li>
+<li><p>通过 Xcode，Edit -&gt; Refactor -&gt; Convert to Objective-C ARC</p>
+</li>
+</ul>
+<h4 id="ARC-转-MRC"><a href="#ARC-转-MRC" class="headerlink" title="#ARC 转 MRC"></a>#ARC 转 MRC</h4><ul>
+<li><p>在 MRC 环境下：</p>
+<ul>
+<li>target －&gt; build phases －&gt; compile sources －&gt; 单击ARC的文件将compiler flags设置为：<code>－fobjc-arc</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Copy"><a href="#Copy" class="headerlink" title="Copy"></a>Copy</h2><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/Copy" target="_blank" rel="noopener">源码地址</a></p>
+<h3 id="1-Copy-基本使用（深浅拷贝）"><a href="#1-Copy-基本使用（深浅拷贝）" class="headerlink" title="1. Copy 基本使用（深浅拷贝）"></a>1. Copy 基本使用（深浅拷贝）</h3><h4 id="Copy-的基本概念"><a href="#Copy-的基本概念" class="headerlink" title="#Copy 的基本概念"></a>#Copy 的基本概念</h4><ul>
+<li><p>什么是 Copy</p>
+<ul>
+<li>字面意思是复制，拷贝，是产生一个<code>副本</code>的过程</li>
+</ul>
+</li>
+<li><p>常见的复制：文件复制</p>
+<ul>
+<li>作用：利用一个<code>源文件</code>产生一个<code>副本文件</code></li>
+<li>修改<code>副本文件</code>的内容，不会影响到<code>源文件</code></li>
+</ul>
+</li>
+<li><p>Objective-C 中的 Copy</p>
+<ul>
+<li>作用：利用一个<code>源对象</code>产生一个<code>副本对象</code></li>
+</ul>
+</li>
+<li><p>特点</p>
+<ul>
+<li>修改源对象的属性和行为，不会影响到副本对象</li>
+<li>修改副本对象的属性和行为，不会影响源对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="Copy-的使用"><a href="#Copy-的使用" class="headerlink" title="#Copy 的使用"></a>#Copy 的使用</h4><ul>
+<li><p>如何使用 copy 功能</p>
+<ul>
+<li>一个对象可以调用 copy 或 mutableCopy 方法来创建一个对象</li>
+<li>copy：创建的对象是<code>不可变副本</code>（如：NSString、NSArray、NSDictionary）</li>
+<li>mutableCopy：创建的对象是<code>可变副本</code>（如：NSMutableString、NSMutableArray、NSMutableDictionary）</li>
+</ul>
+</li>
+<li><p>使用 copy 的前提</p>
+<ul>
+<li><p>copy：需要遵守 NSCopying 协议，实现 copyWithZone 方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">NSCoping</span></span></span><br><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>使用 mutableCopy 的前提</p>
+<ul>
+<li><p>mutableCopy：需要遵守 NSMutableCoping 协议，实现 mutableCopyWithZone 方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">NSMutableCoping</span></span></span><br><span class="line">- (<span class="keyword">id</span>) mutableCopyWithZone:(<span class="built_in">NSZone</span> *)zone;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>几种情况分析</p>
+<ol>
+<li><p>可变对象调用 copy</p>
+<p> <img src="http://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230" alt=""></p>
+<blockquote>
+<p>结论： <code>可变对象</code>调用 copy 方法，<code>会生成</code>新的对象，并且新对象是<code>不可变</code>的。</p>
+</blockquote>
+</li>
+<li><p>可变对象调用 mutableCopy</p>
+<p> <img src="http://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240" alt=""></p>
+<blockquote>
+<p>结论： <code>可变对象</code>调用 mutableCopy，<code>会生成</code>新的对象，并且新对象是<code>可变的</code>。</p>
+</blockquote>
+</li>
+<li><p>不可变对象调用 mutableCopy</p>
+<p> <img src="http://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240" alt=""></p>
+<blockquote>
+<p>结论： <code>不可变对象</code>调用 mutableCopy，<code>会生成</code>新的对象，并且新对象是<code>可变的</code>。</p>
+</blockquote>
+</li>
+<li><p>不可变对象调用 copy</p>
+<p> <img src="http://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230" alt=""></p>
+<blockquote>
+<p>结论： <code>不可变对象</code>调用 copy，<code>不会生成</code>新的对象，并且新对象是<code>不可变的</code>。</p>
+</blockquote>
+<blockquote>
+<p>原因：因为原来的对象时不可变的，拷贝出来的对象也是不能修改的，既然两个都不能修改，所以永远也不能影响到另外一个对象，那么已经符合要求，Objective-C 为了对内存进行优化，所以就不会生成一个新的对象。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="#深浅拷贝"></a>#深浅拷贝</h4><p>正是因为调用 copy 方法有时候会生成一个新的对象，有时候不会生成一个新的对象，所以：如果没有生成新的对象，则称为<code>浅拷贝</code>，本质就是<code>指针拷贝</code>，如果生成了新的对象，则称为<code>深拷贝</code>，本质就是会创建一个新的对象</p>
+<blockquote>
+<p>只有<code>源对象和副本对象都不可变</code>时，才是<code>浅拷贝</code>，其他都是<code>深拷贝</code>。</p>
+</blockquote>
+<h3 id="2-Copy-的内存管理"><a href="#2-Copy-的内存管理" class="headerlink" title="2. Copy 的内存管理"></a>2. Copy 的内存管理</h3><ul>
+<li><p>如果是浅拷贝（源对象和副本对象都不可变），由于不会生成新的对象，所以系统会对源对象进行一次 retain。所以对源对象一次 copy 操作，就要相应的做一次 release 操作。</p>
+<p>  <img src="http://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230" alt=""></p>
+</li>
+<li><p>如果是深拷贝。真是因为生成了新的对象，所以系统不会对源对象进行 retain，但是因为生成了新对象，所以需要对新对象进行一次 release。</p>
+<p>  <img src="http://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260" alt=""></p>
+</li>
+</ul>
+<h3 id="3-Copy-和-Property"><a href="#3-Copy-和-Property" class="headerlink" title="3. Copy 和 Property"></a>3. Copy 和 Property</h3><h4 id="修饰字符串类型"><a href="#修饰字符串类型" class="headerlink" title="#修饰字符串类型"></a>#修饰字符串类型</h4><ul>
+<li>Copy 是 Property 中内存管理的关键字。主要修饰 NSString 类型的属性。作用：为了防止修改了外界变量，影响到了对象中的属性。</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br></pre></td></tr></table></figure>
+<p><img src="http://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260" alt=""></p>
+<h4 id="修饰-block"><a href="#修饰-block" class="headerlink" title="#修饰 block"></a>#修饰 block</h4><ul>
+<li>如果 block 存储在<code>栈</code>中，block 中访问了外界的对象，<code>不会</code>对对象进行一次 retain 操作</li>
+</ul>
+<p><img src="http://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220" alt=""></p>
+<ul>
+<li>如果 block 存储在<code>堆</code>中，block 中访问了外界的对象，<code>会</code>对对象进行一次 retain 操作</li>
+</ul>
+<p><img src="http://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220" alt=""></p>
+<ul>
+<li>修饰 block。可以使用 copy 来保存 block，这样可以让 block 中使用到的外界对象进行一次 retain 操作，避免以后调用 block 的时候，外界的对象已经释放了。（如果外界对象在调用 block 之前被释放了，那么程序就会崩溃）</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 注意：如果是 block 使用 <span class="keyword">copy</span><span class="bash"> 并不是拷贝，而是转移，将栈中的 block 转移到 堆中去</span></span><br><span class="line"><span class="bash">@property(nonatomic, copy) void (^myBlock)();</span></span><br></pre></td></tr></table></figure>
+<h4 id="copy-block之后引发的循环引用"><a href="#copy-block之后引发的循环引用" class="headerlink" title="#copy block之后引发的循环引用"></a>#copy block之后引发的循环引用</h4><ul>
+<li>如果对象中的 block 又用到了对象自己，那么此时会产生循环引用，发生内存泄漏，为避免这种情况，应该将对象修饰为 <code>__block</code>。</li>
+</ul>
+<p><img src="http://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250" alt=""></p>
+<h3 id="4-自定义类实现-Copy"><a href="#4-自定义类实现-Copy" class="headerlink" title="4. 自定义类实现 Copy"></a>4. 自定义类实现 Copy</h3><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%AE%9E%E7%8E%B0%20Copy" target="_blank" rel="noopener">源码地址</a></p>
+<h4 id="自定义类实现-copy-操作"><a href="#自定义类实现-copy-操作" class="headerlink" title="自定义类实现 copy 操作"></a>自定义类实现 copy 操作</h4><ul>
+<li>让类遵守 NSCopying 协议</li>
+<li>实现 copyWithZone:方法，在该方法中返回一个对象的副本即可</li>
+<li>在 copyWithZone:方法中，创建一个新的对象，并设置该对象的数据与现有对象一致，并返回该对象</li>
+</ul>
+<h4 id="无父类实现"><a href="#无父类实现" class="headerlink" title="#无父类实现"></a>#无父类实现</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span>&lt;<span class="title">NSCopying</span>&gt; // 遵守 <span class="title">NSCopying</span> 协议</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">   </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"><span class="comment">// 实现 copyWithZone:方法</span></span><br><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 创建一个新的对象</span></span><br><span class="line">    Person *p = [[[<span class="keyword">self</span> <span class="keyword">class</span>] alloc] init];</span><br><span class="line">    <span class="comment">// 2. 设置当前对象内容给新对象</span></span><br><span class="line">    p.name = _name;</span><br><span class="line">    <span class="comment">// 3. 返回新对象</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240" alt=""></p>
+<h4 id="有父类实现"><a href="#有父类实现" class="headerlink" title="#有父类实现"></a>#有父类实现</h4><p>如果想让子类在 copy 的时候保留子类的属性，那么必须重写copyWithZone: 方法，在该方法中，先调用父类创建副本设置值，然后再设置子类特有值</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">Person</span></span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">CGFloat</span> height;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">	</span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span></span></span><br><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 调用父类创建副本设置值</span></span><br><span class="line">    <span class="keyword">id</span> obj = [<span class="keyword">super</span> copyWithZone:zone];</span><br><span class="line">    <span class="comment">// 2. 设置数据给副本</span></span><br><span class="line">    [obj setHeight:_height];</span><br><span class="line">    <span class="comment">// 3. 返回新对象</span></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240" alt=""></p>
+<blockquote>
+<p>MatableCopy 和 Copy 实现类似，只要遵守 NSMutableCoping 协议，然后实现 mutableCopyWithZone:方法。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/Objective-C/" rel="tag"># Objective-C</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/Objective-C 语言基础（二、面向对象）/" rel="next" title="Objective-C 语言基础（二、面向对象）">
+                <i class="fa fa-chevron-left"></i> Objective-C 语言基础（二、面向对象）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/10/Objective-C 语言基础（四、Category&Extension&Block&Protocol）/" rel="prev" title="Objective-C 语言基础（四、Category&Extension&Block&Protocol）">
+                Objective-C 语言基础（四、Category&Extension&Block&Protocol） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理"><span class="nav-number">1.</span> <span class="nav-text">内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-内存管理的重要性"><span class="nav-number">1.1.</span> <span class="nav-text">1. 内存管理的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-什么是内存管理"><span class="nav-number">1.2.</span> <span class="nav-text">2. 什么是内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-堆和栈"><span class="nav-number">1.3.</span> <span class="nav-text">3. 堆和栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-引用计数器"><span class="nav-number">1.4.</span> <span class="nav-text">3. 引用计数器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是引用计数"><span class="nav-number">1.4.1.</span> <span class="nav-text">#什么是引用计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用计数器的作用"><span class="nav-number">1.4.2.</span> <span class="nav-text">#引用计数器的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用计数器的操作"><span class="nav-number">1.4.3.</span> <span class="nav-text">#引用计数器的操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-dealloc"><span class="nav-number">1.5.</span> <span class="nav-text">4. dealloc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-单个对象内存管理"><span class="nav-number">1.6.</span> <span class="nav-text">5. 单个对象内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-野指针和空指针"><span class="nav-number">1.7.</span> <span class="nav-text">6.野指针和空指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#野指针"><span class="nav-number">1.7.1.</span> <span class="nav-text">#野指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Xcode-中监听僵尸对象"><span class="nav-number">1.7.2.</span> <span class="nav-text">#Xcode 中监听僵尸对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空指针"><span class="nav-number">1.7.3.</span> <span class="nav-text">#空指针</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-多对象内存管理"><span class="nav-number">1.8.</span> <span class="nav-text">7. 多对象内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-set-方法内存管理"><span class="nav-number">1.9.</span> <span class="nav-text">8. set 方法内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-property-修饰符"><span class="nav-number">1.10.</span> <span class="nav-text">9. property 修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-控制-set-方法的内存管理"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 控制 set 方法的内存管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-控制需不需要生成-set-方法"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 控制需不需要生成 set 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-多线程管理"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 多线程管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-控制-set-方法和-get-方法的名称"><span class="nav-number">1.10.4.</span> <span class="nav-text">4. 控制 set 方法和 get 方法的名称</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-class"><span class="nav-number">1.11.</span> <span class="nav-text">10. @class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-循环-retain"><span class="nav-number">1.12.</span> <span class="nav-text">11. 循环 retain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-集合中对象的内存管理"><span class="nav-number">1.13.</span> <span class="nav-text">12. 集合中对象的内存管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#autorelease"><span class="nav-number">2.</span> <span class="nav-text">autorelease</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-autorelease-基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">1. autorelease 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-autorelease-pool"><span class="nav-number">2.2.</span> <span class="nav-text">2. autorelease pool</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#autorelease-pool-使用"><span class="nav-number">2.2.1.</span> <span class="nav-text">#autorelease pool 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#autorelease-pool-注意事项"><span class="nav-number">2.2.2.</span> <span class="nav-text">#autorelease pool 注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#autorelease-pool-应用场景"><span class="nav-number">2.2.3.</span> <span class="nav-text">#autorelease pool 应用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC"><span class="nav-number">3.</span> <span class="nav-text">ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ARC-基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">1.ARC 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-ARC"><span class="nav-number">3.1.1.</span> <span class="nav-text">#什么是 ARC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARC-的注意点和有点"><span class="nav-number">3.1.2.</span> <span class="nav-text">#ARC 的注意点和有点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARC-的判断原则"><span class="nav-number">3.1.3.</span> <span class="nav-text">#ARC 的判断原则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ARC-中对多个对象内存管理"><span class="nav-number">3.2.</span> <span class="nav-text">2. ARC 中对多个对象内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MRC"><span class="nav-number">3.2.1.</span> <span class="nav-text">#MRC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARC-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">#ARC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环引用"><span class="nav-number">3.2.3.</span> <span class="nav-text">#循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ARC-和-MRC-混编"><span class="nav-number">3.3.</span> <span class="nav-text">3. ARC 和 MRC 混编</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MRC-转-ARC"><span class="nav-number">3.3.1.</span> <span class="nav-text">#MRC 转 ARC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARC-转-MRC"><span class="nav-number">3.3.2.</span> <span class="nav-text">#ARC 转 MRC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copy"><span class="nav-number">4.</span> <span class="nav-text">Copy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Copy-基本使用（深浅拷贝）"><span class="nav-number">4.1.</span> <span class="nav-text">1. Copy 基本使用（深浅拷贝）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Copy-的基本概念"><span class="nav-number">4.1.1.</span> <span class="nav-text">#Copy 的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Copy-的使用"><span class="nav-number">4.1.2.</span> <span class="nav-text">#Copy 的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深浅拷贝"><span class="nav-number">4.1.3.</span> <span class="nav-text">#深浅拷贝</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Copy-的内存管理"><span class="nav-number">4.2.</span> <span class="nav-text">2. Copy 的内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Copy-和-Property"><span class="nav-number">4.3.</span> <span class="nav-text">3. Copy 和 Property</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修饰字符串类型"><span class="nav-number">4.3.1.</span> <span class="nav-text">#修饰字符串类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修饰-block"><span class="nav-number">4.3.2.</span> <span class="nav-text">#修饰 block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#copy-block之后引发的循环引用"><span class="nav-number">4.3.3.</span> <span class="nav-text">#copy block之后引发的循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-自定义类实现-Copy"><span class="nav-number">4.4.</span> <span class="nav-text">4. 自定义类实现 Copy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义类实现-copy-操作"><span class="nav-number">4.4.1.</span> <span class="nav-text">自定义类实现 copy 操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无父类实现"><span class="nav-number">4.4.2.</span> <span class="nav-text">#无父类实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有父类实现"><span class="nav-number">4.4.3.</span> <span class="nav-text">#有父类实现</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

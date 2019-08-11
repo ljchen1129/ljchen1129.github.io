@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="参考资料 Developing iOS 9 Apps with Swiftby Stanford   源代码">
+<meta name="keywords" content="iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福 iOS 开发课程学习笔记（计算器 demo）">
+<meta property="og:url" content="http://chenliangjing.me/2016/10/27/ 斯坦福 iOS 开发课程学习笔记（计算器 demo）/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="参考资料 Developing iOS 9 Apps with Swiftby Stanford   源代码">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/Portrait.png?imageView2/0/h/667/w/375">
+<meta property="og:image" content="http://liangjinggege.com/Horizontal.png?imageView2/0/h/375/w/667">
+<meta property="og:image" content="http://liangjinggege.com/newProject.png?imageView2/0/h/600/w/575">
+<meta property="og:image" content="http://liangjinggege.com/projectOptions.png?imageView2/0/h/600/w/575">
+<meta property="og:image" content="http://liangjinggege.com/btnAction.png?imageView2/0/h/400/w/575">
+<meta property="og:image" content="http://liangjinggege.com/calculator001.png?imageView2/0/h/600/w/375">
+<meta property="og:image" content="http://liangjinggege.com/calculator002.png?imageView2/0/h/300/w/375">
+<meta property="og:image" content="http://liangjinggege.com/Calculator003.png?imageView2/0/h/300/w/375">
+<meta property="og:image" content="http://liangjinggege.com/Calculator004.png?imageView2/0/h/300/w/375">
+<meta property="og:image" content="http://liangjinggege.com/Calculator005.png?imageView2/0/h/300/w/375">
+<meta property="og:image" content="http://liangjinggege.com/Calculator006.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator007.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator008.png?imageView2/0/h/300/w/375">
+<meta property="og:image" content="http://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator010.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator011.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator012.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator013.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator014.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator015.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator016.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator017.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator018.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/calculatorgif.gif?imageView2/0/h/500/w/575">
+<meta property="og:image" content="http://liangjinggege.com/classCall.001.png?imageView2/0/h/700/w/775">
+<meta property="og:image" content="http://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.308Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福 iOS 开发课程学习笔记（计算器 demo）">
+<meta name="twitter:description" content="参考资料 Developing iOS 9 Apps with Swiftby Stanford   源代码">
+<meta name="twitter:image" content="http://liangjinggege.com/Portrait.png?imageView2/0/h/667/w/375">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2016/10/27/ 斯坦福 iOS 开发课程学习笔记（计算器 demo）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>斯坦福 iOS 开发课程学习笔记（计算器 demo） | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2016/10/27/ 斯坦福 iOS 开发课程学习笔记（计算器 demo）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福 iOS 开发课程学习笔记（计算器 demo）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-10-27 20:24:30" itemprop="dateCreated datePublished" datetime="2016-10-27T20:24:30+08:00">2016-10-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/27/ 斯坦福 iOS 开发课程学习笔记（计算器 demo）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2016/10/27/ 斯坦福 iOS 开发课程学习笔记（计算器 demo）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/10/27/ 斯坦福 iOS 开发课程学习笔记（计算器 demo）/" class="leancloud_visitors" data-flag-title="斯坦福 iOS 开发课程学习笔记（计算器 demo）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
+<p><a href="https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id1104579961" target="_blank" rel="noopener">Developing iOS 9 Apps with Swift<br>by Stanford</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/ljchen1129/SwiftLearningProctice" target="_blank" rel="noopener">源代码</a><br><a id="more"></a></p>
+</blockquote>
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><blockquote>
+<p>系统：macOS Sierra 10.12</p>
+</blockquote>
+<blockquote>
+<p>x-code：Version 8.1 (8B62)</p>
+</blockquote>
+<blockquote>
+<p>Swift 3.0</p>
+</blockquote>
+<h1 id="实现？"><a href="#实现？" class="headerlink" title="实现？"></a>实现？</h1><h2 id="分析需求"><a href="#分析需求" class="headerlink" title="分析需求"></a>分析需求</h2><h3 id="UI-布局需求"><a href="#UI-布局需求" class="headerlink" title="UI 布局需求"></a>UI 布局需求</h3><ol>
+<li>界面 UI 需要做成这样：<div><br><center><br> <img src="http://liangjinggege.com/Portrait.png?imageView2/0/h/667/w/375"><br> </center><br></div></li>
+<li>还需要适配横屏：<div><br><center><br> <img src="http://liangjinggege.com/Horizontal.png?imageView2/0/h/375/w/667"><br> </center><br></div></li>
+<li><p>界面元素：</p>
+<ul>
+<li>标签（UILable）：显示输入的操作数和计算结果；</li>
+<li><p>按钮（UIButton）：输入操作数和运算符。按钮分类：</p>
+<blockquote>
+<p>数值型按钮： 0，1，2，3，4，5，6，7，8，9</p>
+</blockquote>
+<blockquote>
+<p>常量型按钮： π，e</p>
+</blockquote>
+<blockquote>
+<p>一元操作符按钮： √，cos</p>
+</blockquote>
+<blockquote>
+<p>二元操作符按钮： +，—，×，÷</p>
+</blockquote>
+<blockquote>
+<p>计算结果按钮： = </p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h3><ol>
+<li><p>输入显示：</p>
+<ul>
+<li>当没有在输入状态时，要将点击的按钮代表的操作数显示为标签的文本，如果是数值型按钮，直接显示按钮标题，如果是常量型按钮，显示常量代表的数值，其他类型的按钮按下后不要显示；</li>
+<li>当有在输入状态时，要将按下的按钮的标题拼接到标签文本上去，如输入先输入 1，再输入 2， 然后输入 3，则标签依次显示 1， 12， 123，如此类推；</li>
+<li>当按下常量型按钮时，要将常量型按钮的数值显示到标签文本上去，如按下 π，标签文本需显示 3.14159265358…；</li>
+<li>当按下一元操作符时，需要将一元操作后的计算结果显示到标签文本上去，如先按下 4，然后按下开方 √ 按钮，则应该把 4 开方后的计算结果 2 显示到标签文本上去；</li>
+<li>当按下二元操作符或 = 号时，要将当前的计算结果显示到标签文本上去；</li>
+</ul>
+</li>
+<li><p>计算结果：需要保证计算结果的正确。</p>
+</li>
+</ol>
+<h2 id="写代码"><a href="#写代码" class="headerlink" title="写代码"></a>写代码</h2><h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p><strong>实现点击数值型按钮，能够正确显示到标签文本中去：</strong></p>
+<p>新建一个 Single View Application:</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/newProject.png?imageView2/0/h/600/w/575"><br>  </center><br></div>
+
+<p>填写一下工程选项配置：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/projectOptions.png?imageView2/0/h/600/w/575"><br>  </center><br></div>
+
+<p>选择 Main.storyboard, 从 x-code 右下角的控件列表中拖拽一个 UIButton 进来，按住 Ctal 键，将按钮连线到 ViewController 控制器中来，选择 Connect 连接：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/btnAction.png?imageView2/0/h/400/w/575"><br>  </center><br></div>
+
+<p>选中按钮，按住 option 键，拖动鼠标，另外复制 8 个相同的按钮出来，效果如下：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/calculator001.png?imageView2/0/h/600/w/375"><br>  </center><br></div>
+
+<p>检查一下按钮的点击响应事件是否有效，在响应事件方法里打印一下按钮的标题，测试一下是否准确打印：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">touchDigit</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> digit = sender.currentTitle!</span><br><span class="line">     <span class="built_in">print</span>(<span class="string">"touch <span class="subst">\(digit)</span> digit"</span>)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再从控件列表里面拖拽一个 UILabel 标签控件进来，像按钮一个连线，如下图所示：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/calculator002.png?imageView2/0/h/300/w/375"><br>  </center><br></div>
+
+<p>x-code 自动生成一个<code>隐式解析可选类型(implicitly unwrapped optionals)</code>的 UIlabel 类型的属性：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator003.png?imageView2/0/h/300/w/375"><br>  </center><br></div>
+
+<p>接下来声明一个标识当前是否正在输入状态的变量 userIsInTheMiddleOfTyping 并初始化：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userIsInTheMiddleOfTyping = <span class="literal">false</span> <span class="comment">// 标识当前是否正在输入状态</span></span><br></pre></td></tr></table></figure>
+<p>实现点击按钮，能够正确显示到标签文本中去，没在输入状态时直接显示按钮标题，连续输入时，需要将按钮的标题拼接到标签文本上去：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@IBAction func touchDigit(_ sender: UIButton) &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="attr">digit</span> = sender.currentTitle!</span><br><span class="line">    <span class="keyword">if</span> userIsInTheMiddleOfTyping &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="attr">textCurrentlyInDispaly</span> = display.text!</span><br><span class="line">        display.<span class="attr">text</span> = textCurrentlyInDispaly + digit</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        display.<span class="attr">text</span> = digit</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="attr">userIsInTheMiddleOfTyping</span> = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h3><p><strong>填加常量型按钮，实现点击常量型按钮，标签文本显示正确常量值：</strong></p>
+<p>在 Main.storyboard 里复制两个按钮，修改按钮标题为 π 和 e，注意删掉存在的在 ViewController 中 touchDigit: 事件方法连线，重新拉拽到 ViewController 里去，选择 Action，命名为 performOpreation：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator004.png?imageView2/0/h/300/w/375"><br>  </center><br></div>
+
+<p>在 performOpreation：方法里写代码，实现功能：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@IBAction func performOpreation(_ sender: UIButton) &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="attr">methemtiaclSymbol</span> = sender.currentTitle!</span><br><span class="line">    <span class="keyword">if</span> <span class="attr">methemtiaclSymbol</span> == <span class="string">"π"</span> &#123;</span><br><span class="line">        display.<span class="attr">text</span> = String(M_PI)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> <span class="attr">methemtiaclSymbol</span> == <span class="string">"e"</span> &#123;</span><br><span class="line">        display.<span class="attr">text</span> = String(M_E)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="attr">userIsInTheMiddleOfTyping</span> = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h3><p><strong>增加一元操作符，点击一元操作符按钮，能将一元操作后的计算结果显示到标签文本上去：</strong></p>
+<p>在 Main.storyboard 增加一元运算 √ 和 cos，调取 Emoji &amp; Symbols 输入，快捷键：Ctrl + Commond + Shift，也可以像下图一样调取：</p>
+ <div><br><center><br>    <img src="http://liangjinggege.com/Calculator005.png?imageView2/0/h/300/w/375"><br>  </center><br></div>
+
+<p>在 performOpreation：方法里增加如下代码：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@IBAction func performOpreation(_ sender: UIButton) &#123;</span><br><span class="line">    let methemtiaclSymbol = sender.currentTitle!</span><br><span class="line">    <span class="built_in">if</span> methemtiaclSymbol == <span class="string">"π"</span> &#123;</span><br><span class="line">        <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(M_PI)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">else</span> <span class="built_in">if</span> methemtiaclSymbol == <span class="string">"e"</span> &#123;</span><br><span class="line">        <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(M_E)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">else</span> <span class="built_in">if</span> methemtiaclSymbol == <span class="string">"√"</span> &#123;</span><br><span class="line">        <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(<span class="built_in">sqrt</span>(Double(<span class="built_in">display</span>.<span class="built_in">text</span>!)!))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">else</span> <span class="built_in">if</span> methemtiaclSymbol == <span class="string">"cos"</span> &#123;</span><br><span class="line">        <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(<span class="built_in">cos</span>(Double(<span class="built_in">display</span>.<span class="built_in">text</span>!)!))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    userIsInTheMiddleOfTyping = false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以用 Switch 实现：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@IBAction func performOpreation(_ sender: UIButton) &#123;</span><br><span class="line">    let methemtiaclSymbol = sender.currentTitle!</span><br><span class="line">    <span class="built_in">switch</span> methemtiaclSymbol &#123;</span><br><span class="line">    <span class="built_in">case</span> <span class="string">"π"</span>: <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(M_PI)</span><br><span class="line">    <span class="built_in">case</span> <span class="string">"e"</span>: <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(M_E)</span><br><span class="line">    <span class="built_in">case</span> <span class="string">"√"</span>: <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(<span class="built_in">sqrt</span>(Double(<span class="built_in">display</span>.<span class="built_in">text</span>!)!))</span><br><span class="line">    <span class="built_in">case</span> <span class="string">"cos"</span>: <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(<span class="built_in">cos</span>(Double(<span class="built_in">display</span>.<span class="built_in">text</span>!)!))</span><br><span class="line">    <span class="built_in">default</span>: <span class="built_in">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    userIsInTheMiddleOfTyping = false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以使用 Ctrl + I 快捷键，快速让选中区域的代码按照苹果官方的代码风格对齐缩进。</p>
+</blockquote>
+<h3 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h3><p><strong>增加一个计算型属性，简化代码：</strong></p>
+<p>以上功能虽然实现了，但是发现计算每次都要将 String 类型的文本转换成 Double 类型的操作数，计算完成的 Double 类型的结果又要重新转换成 String 类型的文本，很麻烦，而且会造成代码冗余，可以定义一个计算性属性 displayValue，专门用来作计算结果和显示文本的数据类型之间的转换：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var displayValue: Double &#123;</span><br><span class="line">    <span class="built_in">get</span> &#123;</span><br><span class="line">        <span class="built_in">return</span> Double(<span class="built_in">display</span>.<span class="built_in">text</span>!)!</span><br><span class="line">    &#125;</span><br><span class="line">    set &#123;</span><br><span class="line">        <span class="built_in">display</span>.<span class="built_in">text</span> = <span class="keyword">String</span>(newValue)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来修改 performOpreation：方法里面的代码：</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">performOpreation</span><span class="params">(_ sender: UIButton)</span> &#123;</span></span><br><span class="line">    let methemtiaclSymbol = sender.currentTitle!</span><br><span class="line">    <span class="keyword">switch</span> methemtiaclSymbol &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"π"</span>: displayValue = M_PI</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"e"</span>: displayValue = M_E</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"√"</span>: displayValue = <span class="built_in">sqrt</span>(displayValue)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"cos"</span>: displayValue = <span class="built_in">cos</span>(displayValue)</span><br><span class="line">    <span class="keyword">default</span>: <span class="built_in">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    userIsInTheMiddleOfTyping = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h3><p><strong>新建一个类，专门负责计算：</strong></p>
+<p>以上虽然实现功能，但是不应该把计算相关的代码写到控制器里去，如果计算一复杂，控制器会多很多代码，可读性和逻辑容易混乱，控制器只应该负责把计算结果显示到相关的视图上去就行，其他的事情应该交给专门的类去实现：</p>
+ <div><br><center><br>    <img src="http://liangjinggege.com/Calculator006.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>选择 Swift File 文件，点 Next 下一步：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator007.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>新建一个类，命名为 CalculatorBrain，这个类专门负责接收操作数，执行运算，返回结果：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CalculatorBrain</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义属性和方法，accumulator 属性用来存储操作数以及计算结果，setOperand：方法用来接收操作数，performOperation：方法执行运算过程，result 只读属性返回计算结果：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CalculatorBrain</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> accumulator = <span class="number">0.0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setOperand</span><span class="params">(operand: Double)</span></span> &#123; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">performOperation</span><span class="params">(symbol: String)</span></span> &#123;  &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> result: <span class="type">Double</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> accumulator</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在 ViewController 里面实例化 CalculatorBrain 类，再到 performOpreation：方法里修改代码为：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> brain = <span class="type">CalculatorBrain</span>()</span><br><span class="line">    </span><br><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">performOpreation</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> userIsInTheMiddleOfTyping &#123;</span><br><span class="line">        brain.setOperand(operand: displayValue)</span><br><span class="line">        userIsInTheMiddleOfTyping = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> methemtiaclSymbol = sender.currentTitle &#123;</span><br><span class="line">        brain.performOperation(symbol: methemtiaclSymbol)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    displayValue = brain.result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相应地，实现 CalculatorBrain 中的方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CalculatorBrain</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> accumulator = <span class="number">0.0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setOperand</span><span class="params">(operand: Double)</span></span> &#123;</span><br><span class="line">        accumulator = operand</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">performOperation</span><span class="params">(symbol: String)</span></span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> symbol &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"π"</span>: accumulator = <span class="type">M_PI</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"e"</span>: accumulator = <span class="type">M_E</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"√"</span>: accumulator = sqrt(accumulator)</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"cos"</span>: accumulator = cos(accumulator)</span><br><span class="line">        <span class="keyword">default</span>: <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> result: <span class="type">Double</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> accumulator</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试下功能，看效果是不是一样。</p>
+<h3 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h3><p><strong>优化一下代码：</strong></p>
+<p>以上步骤虽然将计算相关的逻辑转移到 CalculatorBrain 类中去了，但是每次都要使用根据不同的运算符，然后在 Switch 中去执行不同的运算，能不能将运算类型进行抽象，使用枚举 Enum 来表示，不同的运算类型对应的运算再用一种数据结构 Dictionary 来表示和存储，这样代码可读性和可扩展性就能提高不少。 </p>
+<ol>
+<li><p>首先，定义一个关联值枚举，来存储抽象出的所有的运算类型：</p>
+ <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="class"><span class="keyword">enum</span> <span class="title">Operation</span> &#123;</span></span><br><span class="line">    <span class="keyword">case</span> Constrant(Double)</span><br><span class="line">    <span class="keyword">case</span> UnaryOperation((Double) -&gt; Double)</span><br><span class="line">    <span class="keyword">case</span> BinaryOperation((Double, Double) -&gt; Double)</span><br><span class="line">    <span class="keyword">case</span> Equals</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 该枚举将每一种运算类型对应到每一个枚举成员，并给枚举成员设置关联值类型，常量运算关联了一个 Double 类型，一元运算关联了一个 （Double）-&gt; Double 类型的闭包，二元操作运算关联了一个 （Double, Double） -&gt; Double 类型的闭包，Equals 运算没有设置关联值类型。</p>
+</li>
+<li><p>再定义一个字典，来存储不同的运算符以及对应的运算操作：</p>
+ <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> var operations: Dictionary&lt;<span class="keyword">String</span>, Operation&gt; = [</span><br><span class="line"><span class="string">"π"</span>: .Constrant(M_PI),</span><br><span class="line"><span class="string">"e"</span>: .Constrant(M_E),</span><br><span class="line"><span class="string">"√"</span>: Operation.UnaryOperation(<span class="built_in">sqrt</span>),</span><br><span class="line"><span class="string">"cos"</span>: Operation.UnaryOperation(<span class="built_in">cos</span>)</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+<p> 通过字典不同的 key, 来给枚举成员设置不同的关联值，并存储在字典里面。</p>
+</li>
+<li><p>最后修改 performOperation：方法中的代码：</p>
+ <figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func performOperation(symbol: String) &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> operation = operations[symbol] &#123;</span><br><span class="line">	    <span class="keyword">switch</span> operation &#123;</span><br><span class="line">	    <span class="keyword">case</span> .Constrant(<span class="keyword">let</span> <span class="keyword">value</span>): accumulator = <span class="keyword">value</span></span><br><span class="line">	    <span class="keyword">case</span> .UnaryOperation(<span class="keyword">let</span> <span class="keyword">function</span>): accumulator = <span class="keyword">function</span>(accumulator)</span><br><span class="line">	    <span class="keyword">default</span>: <span class="keyword">break</span></span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 在 Switch 语句中，关联值可以被提取出来作为 switch 语句的一部分，第一个 case, 关联值是一个 Double 类型的常量，那么提取出来的关联值就是这个常量的值， 第二个 case, 关联值是一个 （Double） -&gt; Double 类型的闭包，那么提取出来的关联值就是这个闭包。</p>
+<p> 最后，测试一下，看功能是否正常。</p>
+</li>
+</ol>
+<h3 id="第七步"><a href="#第七步" class="headerlink" title="第七步"></a>第七步</h3><p><strong>实现二元运算：</strong></p>
+<p>二元运算不同常量和一元运算，二元运算不是一点击运算符就能知道结果，他是一个表达式，需要两个操作数和操作符都输入了才能计算他的值，所以这里需要定一个一种数据结构来保存二元操作的中间状态，既保存第一个操作数以及运算类型，所以可以定义一个结构体：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct pendingBinaryOperationInfo &#123;</span><br><span class="line">    <span class="keyword">var</span> firstOperand: <span class="built_in">Double</span></span><br><span class="line">    <span class="keyword">var</span> binaryOperation: (<span class="built_in">Double</span>, <span class="built_in">Double</span>) -&gt; <span class="built_in">Double</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个这个结构体类型的属性，并让这个属性是可选类型，因为这个属性有时候需要为 nil,如每一次按 = 按钮计算结束后，这个属性就应该为 nil：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pending: pendingBinaryOperationInfo?</span><br></pre></td></tr></table></figure>
+<p>在 Main.storyboard 里添加二元操作加，减，乘，除，调整下布局：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator008.png?imageView2/0/h/300/w/375"><br>  </center><br></div>
+
+<p>相应地，在 operations 字典里添加二元操作的代码，先实现加法：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var operations: Dictionary&lt;<span class="keyword">String</span>, Operation&gt; = [</span><br><span class="line">   <span class="string">"π"</span>: .Constrant(M_PI),</span><br><span class="line">   <span class="string">"e"</span>: .Constrant(M_E),</span><br><span class="line">   <span class="string">"√"</span>: Operation.UnaryOperation(<span class="built_in">sqrt</span>),</span><br><span class="line">   <span class="string">"cos"</span>: Operation.UnaryOperation(<span class="built_in">cos</span>),</span><br><span class="line">   <span class="string">"+"</span>: Operation.BinaryOperation(<span class="built_in">add</span>),</span><br><span class="line">   <span class="string">"="</span>: Operation.Equals</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>加法方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(op1: Double, op2: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> op1 + op2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来，在 performOperation：里添加代码：</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func performOperation(symbol: String) &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> operation = operations[symbol] &#123;</span><br><span class="line">        <span class="keyword">switch</span> operation &#123;</span><br><span class="line">        <span class="keyword">case</span> .Constrant(<span class="keyword">let</span> <span class="keyword">value</span>): accumulator = <span class="keyword">value</span></span><br><span class="line">        <span class="keyword">case</span> .UnaryOperation(<span class="keyword">let</span> <span class="keyword">function</span>): accumulator = <span class="keyword">function</span>(accumulator)</span><br><span class="line">        <span class="keyword">case</span>.BinaryOperation(<span class="keyword">let</span> <span class="keyword">function</span>): pending = pendingBinaryOperationInfo(firstOperand: accumulator, binaryOperation: <span class="keyword">function</span>)</span><br><span class="line">        <span class="keyword">case</span>.Equals:</span><br><span class="line">            <span class="keyword">if</span> pending != nil &#123;</span><br><span class="line">                accumulator = pending!.binaryOperation(pending!.firstOperand, accumulator)</span><br><span class="line">                pending = nil</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优化一下，将执行二元运算的操作抽出一个方法来，并且实现只要按一下二元操作符就计算出计算出结果，而不用每次都要按等号：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">executePendingBinaryOperation</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> pending != <span class="literal">nil</span> &#123;</span><br><span class="line">        accumulator = pending!.binaryOperation(pending!.firstOperand, accumulator)</span><br><span class="line">        pending = <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>performOperation：方法里面代码变成这样：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">func performOperation(symbol: <span class="built_in">String</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> operation = operations[symbol] &#123;</span><br><span class="line">        <span class="keyword">switch</span> operation &#123;</span><br><span class="line">        <span class="keyword">case</span> .Constrant(<span class="keyword">let</span> value):</span><br><span class="line">            accumulator = value</span><br><span class="line">        <span class="keyword">case</span> .UnaryOperation(<span class="keyword">let</span> <span class="function"><span class="keyword">function</span>):</span></span><br><span class="line"><span class="function">            <span class="title">accumulator</span> = <span class="function"><span class="keyword">function</span>(<span class="params">accumulator</span>)</span></span></span><br><span class="line"><span class="function"><span class="function">        <span class="title">case</span>.<span class="title">BinaryOperation</span>(<span class="params"><span class="keyword">let</span> <span class="keyword">function</span></span>):</span></span></span><br><span class="line"><span class="function"><span class="function">            <span class="title">executePendingBinaryOperation</span>(<span class="params"></span>)</span></span></span><br><span class="line"><span class="function"><span class="function">            <span class="title">pending</span> = <span class="title">pendingBinaryOperationInfo</span>(<span class="params">firstOperand: accumulator, binaryOperation: <span class="keyword">function</span></span>)</span></span></span><br><span class="line"><span class="function"><span class="function">        <span class="title">case</span>.<span class="title">Equals</span>:</span></span></span><br><span class="line"><span class="function"><span class="function">            <span class="title">executePendingBinaryOperation</span>(<span class="params"></span>)</span></span></span><br><span class="line"><span class="function"><span class="function">        &#125;</span></span></span><br><span class="line"><span class="function"><span class="function">    &#125;</span></span></span><br><span class="line"><span class="function"><span class="function">&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="第八步"><a href="#第八步" class="headerlink" title="第八步"></a>第八步</h3><p><strong>利用闭包特性，简化代码：</strong></p>
+<p>可以将二元操作的实现用闭包来简化，如加法运算：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"+"</span>: Operation.BinaryOperation(&#123;(op1: <span class="built_in">Double</span>, op2: <span class="built_in">Double</span>) -&gt; <span class="built_in">Double</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">return</span> op1 + op2 &#125;)</span><br></pre></td></tr></table></figure>
+<p>由于使用的枚举成员关联了类型，所以编译器能够根据上下文推断出闭包的参数和返回值类型，于是可以省略掉参数和返回值类型以及箭头和参数周围的括号，简化为：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"+"</span>: Operation.BinaryOperation(&#123;op1, op2 in<span class="built_in"> return </span>op1 + op2 &#125;)</span><br></pre></td></tr></table></figure>
+<p>由于闭包函数体只包含了一个单一表达式 (op1 + op2)，按照闭包语法，单表达式闭包可以隐式返回，还可以省略掉 return 关键字：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"+"</span>: Operation.BinaryOperation(&#123;op1, op2 in op1 + op2 &#125;)</span><br></pre></td></tr></table></figure>
+<p>还可以简化，闭包自动为内联闭包提供了参数名称缩写功能,可以直接通过 $0, $1, $2 来顺序调用闭包的参数，又由于使用了参数名称缩写，又可以省略参数列表，in 关键字也同样可以被省略，因为此时闭包表达式完全由闭包函数体构成:</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"+"</span>: Operation.BinaryOperation(&#123;$0 + $1&#125;)</span><br></pre></td></tr></table></figure>
+<p>同理，实现其他的减，乘，除二元运算：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"−"</span>: Operation.BinaryOperation(&#123;$0 - $1&#125;),</span><br><span class="line"><span class="string">"×"</span>: Operation.BinaryOperation(&#123;$0 * $1&#125;),</span><br><span class="line"><span class="string">"÷"</span>: Operation.BinaryOperation(&#123;$0 / $1&#125;),</span><br></pre></td></tr></table></figure>
+<p>测试一下，看功能是否能实现？</p>
+<h3 id="第九步"><a href="#第九步" class="headerlink" title="第九步"></a>第九步</h3><p><strong>给各个方法属性添加访问权限：</strong></p>
+<p>其实这一步在每定义一个方法和属性的时候就应该做，最好刚开始都先添加 Privite 权限，这样后面如果调用需要再一个个修改成其他权限，这样影响比较小，也更安全，如果反过来，则会让很多已经调用该方法或者引用了该属性的其他对象瞬间报错。</p>
+<p>可以通过如下的操作查看类的公共接口：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator010.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>默认是 internal 权限，表示对外是可访问的</p>
+<p>而这里有些属性和方法是不应该暴露给外界的，所以应该设置为 private 访问权限，不让其他类访问。</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator011.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>对于 CalculatorBrain 类，只需要给外界暴露 setOperand：和 performOperation：方法还有 result 计算属性就可以了。</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator012.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<h3 id="第十步"><a href="#第十步" class="headerlink" title="第十步"></a>第十步</h3><p><strong>布局 UI，适配横竖屏</strong></p>
+<p>现在功能做完了，最后一步，需要把 UI 布局好，需要不管哪种屏幕，不管横竖屏，都要适配好。这里需要用到 iOS 推出的一个新的概念 UIStackView：</p>
+<p>首先选中最下面一排四个按钮，如下图操作，插入一个 StackView：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator013.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>接下来到右边的属性观察器里设置一些属性，Distribution 选择 Fill Equally，Spaceing 选择 10，</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator014.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>同理，重复这样的操作选择后面四排按钮，同样的操作分别设置好 StackView：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator015.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>接下来选择这五个设置好了的 StackView, 在给这五个 StackView 设置一个 StackView：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator016.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>然后，同时选中最上面的标签以及最大的那个 StackView，再给他们设置一个 StackView 进来：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator017.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>最后设置约束，首先选中最后设置的那个最大的那个 StackView，按住 Ctrl 键，向上拖线，放手，在弹出的选择视图里面选择对顶部的垂直距离固定，然后选中弹出的那个线，到右边属性观察器里面修改约束值为 0：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator018.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>依次同样的操作设置好左，右，底部的约束，然后就会变成这样，这样整个 UI 不管在横竖屏或者各种尺寸的设备都保持对上下左右的距离都固定。</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>好了，看下运行效果：</p>
+<div><br><center><br>    <img src="http://liangjinggege.com/calculatorgif.gif?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+<p>好，做完了……</p>
+<h2 id="设计-思路分析"><a href="#设计-思路分析" class="headerlink" title="设计 / 思路分析"></a>设计 / 思路分析</h2><h3 id="需要建哪些类？类的职能？"><a href="#需要建哪些类？类的职能？" class="headerlink" title="需要建哪些类？类的职能？"></a>需要建哪些类？类的职能？</h3><ol>
+<li>视图控制器 ViewController， 类职能：控制视图的生命周期，管理视图，响应视图上的各种点击、触摸等事件；</li>
+<li>CalculatorBrain，类职能：接收操作数和运算符，计算出结果，并返回出去；</li>
+</ol>
+<h3 id="类"><a href="#类" class="headerlink" title="类?"></a>类?</h3><p>类里面需要定义哪些属性，方法, 数据结构，类型、职能是什么？哪些是私有的，哪些是公有的？</p>
+<ol>
+<li><strong>ViewController</strong></li>
+</ol>
+<ul>
+<li>属性：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>职能</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>display</td>
+<td>UILable!</td>
+<td>显示文本</td>
+<td>private</td>
+</tr>
+<tr>
+<td>userIsInTheMiddleOfTyping</td>
+<td>Bool</td>
+<td>标识是否正在输入</td>
+<td>private</td>
+</tr>
+<tr>
+<td>displayValue</td>
+<td>Double</td>
+<td>计算型属性，将 display 显示的 String 类型文本返回为 Double，将输入的 Double 类型的操作数装换为 String 类型显示到 display 的文本</td>
+<td>private </td>
+</tr>
+<tr>
+<td>brain</td>
+<td>CalculatorBrain 类</td>
+<td>类实例，专门用来接收操作数和运算符，计算出结果，并返回出去</td>
+<td>private</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>方法    </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>类型</th>
+<th>职能</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>touchDigit</td>
+<td>Method 事件方法</td>
+<td>监听按钮的点击事件，用来输入操作数</td>
+<td>private</td>
+</tr>
+<tr>
+<td>performOperation</td>
+<td>Method 事件方法</td>
+<td>监听按钮的点击事件，用来执行计算过程</td>
+<td>private </td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li><strong>CalculatorBrain</strong></li>
+</ol>
+<ul>
+<li>属性：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>职能</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accumulator</td>
+<td>Double</td>
+<td>存储操作数</td>
+<td>private</td>
+</tr>
+<tr>
+<td>operations</td>
+<td>Dictionary&lt;String, Operation&gt;</td>
+<td>存储运算符以及运算符对应的实际运算操作</td>
+<td>private</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>PendingBinaryOperationInfo Struct 结构体</td>
+<td>存储二元操作的第一个操作数以及二元操作类型</td>
+<td>private </td>
+</tr>
+<tr>
+<td>result</td>
+<td>Double</td>
+<td>只读属性，返回计算结果</td>
+<td>public</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>方法</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>类型</th>
+<th>职能</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setOperand</td>
+<td>实例方法</td>
+<td>接收操作数</td>
+<td>public</td>
+</tr>
+<tr>
+<td>performOperation</td>
+<td>实例方法</td>
+<td>执行运算操作</td>
+<td>public </td>
+</tr>
+<tr>
+<td>executePendingBinaryOperation</td>
+<td>实例方法</td>
+<td>执行二元运算操作，并将运算结果赋值给 accumulator</td>
+<td>private </td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>结构体</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>结构体</th>
+<th>类型</th>
+<th>职能</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PendingBinaryOperationInfo</td>
+<td>Strcut</td>
+<td>保存二元操作的相关信息，包括是什么二元操作，和第一个操作数</td>
+<td>private</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>枚举</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>枚举</th>
+<th>类型</th>
+<th>职能</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operation</td>
+<td>Enum</td>
+<td>带关联值的枚举，存储运算的操作类型</td>
+<td>private</td>
+</tr>
+</tbody>
+</table>
+<h3 id="调用关系"><a href="#调用关系" class="headerlink" title="调用关系"></a>调用关系</h3><div><br><center><br>    <img src="http://liangjinggege.com/classCall.001.png?imageView2/0/h/700/w/775"><br>  </center><br></div>
+
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><ol>
+<li>是否适配好了横竖屏？</li>
+<li>所有的功能需求是否都已实现？</li>
+<li>边际值和异常情况是否考虑完全？</li>
+<li>是否编写单元函数测试？</li>
+</ol>
+<h1 id="优化？"><a href="#优化？" class="headerlink" title="优化？"></a>优化？</h1><h2 id="现在的代码有什么-bug"><a href="#现在的代码有什么-bug" class="headerlink" title="现在的代码有什么 bug ?"></a>现在的代码有什么 bug ?</h2><h2 id="是否存在代码冗余？"><a href="#是否存在代码冗余？" class="headerlink" title="是否存在代码冗余？"></a>是否存在代码冗余？</h2><h2 id="是否能重构？"><a href="#是否能重构？" class="headerlink" title="是否能重构？"></a>是否能重构？</h2><h1 id="总结？"><a href="#总结？" class="headerlink" title="总结？"></a>总结？</h1><h2 id="语法知识点"><a href="#语法知识点" class="headerlink" title="语法知识点"></a>语法知识点</h2><h3 id="隐式解析可选类型-implicitly-unwrapped-optionals"><a href="#隐式解析可选类型-implicitly-unwrapped-optionals" class="headerlink" title="隐式解析可选类型(implicitly unwrapped optionals)"></a>隐式解析可选类型(implicitly unwrapped optionals)</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>如果一个可选类型第一次被赋值之后,可以确定以后总会有值。就可以使用<code>隐式解析可选类型</code>。</p>
+<p>一个<code>隐式解析可选类型</code>其实就是一个普通的<code>可选类型</code>,但是可以被当做<code>非可选类型</code>来使用,并不需要每次都使用 ! 解析来获取可选值。</p>
+<p>可以把<code>隐式解析可选类型</code>当做一个可以自动解析的可选类型。</p>
+<blockquote>
+<p>注意：同样，在<code>隐式解析可选类型</code>没有值的时候尝试取值,会触发运行时错误。所以，如果一个变量之后可能变成 nil 的话请不要使用<code>隐式解析可选类型</code>。如果需要在变量的生命周期中判断是否是 nil 的话，请使用普通可选类型。</p>
+</blockquote>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><ol>
+<li><p>可选是一种枚举：</p>
+ <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enumOptional&lt;T&gt;&#123; </span><br><span class="line">	<span class="keyword">case</span> None</span><br><span class="line">   	<span class="keyword">case</span> <span class="keyword">Some</span>(T)</span><br><span class="line"> 	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可选可以成链式（chained）：</p>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="attribute">display</span>: UILabel? // 假设 display 没有被定义成隐式解析可选的 UILabel 类型  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> let <span class="selector-tag">label</span> = <span class="attribute">display</span> &#123;</span><br><span class="line">   	<span class="keyword">if</span> let text = <span class="selector-tag">label</span><span class="selector-class">.text</span> &#123;</span><br><span class="line">       	let x = text.hashValue</span><br><span class="line">		... </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 可以简化为：</p>
+ <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> let x = display?<span class="string">.text</span>?<span class="string">.hashValue</span> &#123; <span class="string">...</span> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可选的默认运算符 “??”(空合运算符)<br> 假设需求：给一个 UIlable 赋值一个 String 类型的文本，如果这个 String 为 nil, 则赋值为“ ”空格。一般需要这样做：</p>
+ <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let s: <span class="keyword">String</span>? = ... <span class="comment">// might be nil</span></span><br><span class="line"><span class="built_in">if</span> s != nil &#123;</span><br><span class="line">   	<span class="built_in">display</span>.<span class="built_in">text</span> = s</span><br><span class="line">&#125; <span class="built_in">else</span> &#123;</span><br><span class="line">   	<span class="built_in">display</span>.<span class="built_in">text</span> = “ “</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 但是有更简单的方式实现：</p>
+ <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">display</span>.<span class="built_in">text</span> = s ?? <span class="string">" "</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用空合运算符 ?? 需要满足两个条件： </p>
+<ul>
+<li>s 是可选类型；</li>
+<li>默认值的数据类型需要和可选类型的数据类型一致；</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h3 id="关联值枚举"><a href="#关联值枚举" class="headerlink" title="关联值枚举"></a>关联值枚举</h3><p><a href="http://chenliangjing.me/2016/10/08/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80-Enumerations%EF%BC%89/#关联值-Associated-Values">关联值枚举</a></p>
+<h3 id="Switch-值绑定"><a href="#Switch-值绑定" class="headerlink" title="Switch 值绑定"></a>Switch 值绑定</h3><p><a href="http://chenliangjing.me/2016/09/27/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80-Control-Flow/#值绑定（Value-Bindings）">Switch 值绑定</a></p>
+<h3 id="闭包简写"><a href="#闭包简写" class="headerlink" title="闭包简写"></a>闭包简写</h3><p><a href="http://chenliangjing.me/2016/09/29/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80-Closures%EF%BC%89/#单表达式闭包隐式返回-Implicit-Returns-From-Single-Expression-Closures">闭包简写</a></p>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><blockquote>
+<p>属性，类，函数等能够进行版本控制的统称为实体。</p>
+</blockquote>
+<ul>
+<li><em>open</em>：open 是 Swift 3 新增的访问控制符，相较于 public 更加开放。open 和 public 都是可以跨 Module 访问的，但在跨 Module 访问时， open 修饰的类可以继承，修饰的方法可以重写（此时，open 需同时修饰该方法以及所在类），而 public 不可以。至于 public final 与 public，前者在任何地方均不可重写，而后者可在本 Module 内重写。    </li>
+<li><p><em>public</em>：可以访问自己模块或应用中源文件的任何实体，别人也可以访问引入该模块中源文件里的所有实体。通常情况下，某个接口或 Framework 是可以被任何人使用时，可以设置为 public 级别；</p>
+</li>
+<li><p><em>internal</em>：可以访问自己模块或应用中源文件里的任何实体，但是别人不能访问该模块中源文件里的实体，通常情况下，某个接口或 Framework 作为内部结构使用时，可以将其设为 internal 级别；</p>
+</li>
+<li><p><em>fileprivate</em>：可在当前源文件内访问所有类的实体； </p>
+</li>
+<li><p><em>private</em>：只能在当前类中访问使用的实体，称为私有实体。使用 private 级别，可以用作隐藏某些功能的实现细节；</p>
+</li>
+</ul>
+<blockquote>
+<p>访问优先级：open &gt; public &gt; internal(默认) &gt; fileprivate &gt; private</p>
+</blockquote>
+<h3 id="UIStackView"><a href="#UIStackView" class="headerlink" title="UIStackView"></a>UIStackView</h3><p>Stack View 会自动为每个 subview 创建和添加 Auto Layout constraints。所以可以控制 subview 的大小和位置。可以通过选项配置 subview 的大小、排布以及彼此间的间距。</p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><ol>
+<li>使用 x-code 代码格式缩进对齐功能，选中一段代码，ctrl + I 组合键；</li>
+<li>使用 x-code 输入表情和特殊字符 Emoji &amp; Symbols，Ctrl + Commond + Shift 组合键；</li>
+<li>查看源文件的开放接口，如下操作：</li>
+</ol>
+<div><br><center><br>    <img src="http://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575"><br>  </center><br></div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/21/iOS开发小-tips-收集/" rel="next" title="iOS 开发小 tips 收集">
+                <i class="fa fa-chevron-left"></i> iOS 开发小 tips 收集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/09/Git-基本操作/" rel="prev" title="Git 基本操作">
+                Git 基本操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发环境"><span class="nav-number">2.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现？"><span class="nav-number">3.</span> <span class="nav-text">实现？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析需求"><span class="nav-number">3.1.</span> <span class="nav-text">分析需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UI-布局需求"><span class="nav-number">3.1.1.</span> <span class="nav-text">UI 布局需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能需求"><span class="nav-number">3.1.2.</span> <span class="nav-text">功能需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写代码"><span class="nav-number">3.2.</span> <span class="nav-text">写代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步"><span class="nav-number">3.2.1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步"><span class="nav-number">3.2.2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步"><span class="nav-number">3.2.3.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步"><span class="nav-number">3.2.4.</span> <span class="nav-text">第四步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步"><span class="nav-number">3.2.5.</span> <span class="nav-text">第五步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六步"><span class="nav-number">3.2.6.</span> <span class="nav-text">第六步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第七步"><span class="nav-number">3.2.7.</span> <span class="nav-text">第七步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第八步"><span class="nav-number">3.2.8.</span> <span class="nav-text">第八步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第九步"><span class="nav-number">3.2.9.</span> <span class="nav-text">第九步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十步"><span class="nav-number">3.2.10.</span> <span class="nav-text">第十步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计-思路分析"><span class="nav-number">3.3.</span> <span class="nav-text">设计 / 思路分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要建哪些类？类的职能？"><span class="nav-number">3.3.1.</span> <span class="nav-text">需要建哪些类？类的职能？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">3.3.2.</span> <span class="nav-text">类?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用关系"><span class="nav-number">3.3.3.</span> <span class="nav-text">调用关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化？"><span class="nav-number">5.</span> <span class="nav-text">优化？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现在的代码有什么-bug"><span class="nav-number">5.1.</span> <span class="nav-text">现在的代码有什么 bug ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是否存在代码冗余？"><span class="nav-number">5.2.</span> <span class="nav-text">是否存在代码冗余？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是否能重构？"><span class="nav-number">5.3.</span> <span class="nav-text">是否能重构？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结？"><span class="nav-number">6.</span> <span class="nav-text">总结？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法知识点"><span class="nav-number">6.1.</span> <span class="nav-text">语法知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式解析可选类型-implicitly-unwrapped-optionals"><span class="nav-number">6.1.1.</span> <span class="nav-text">隐式解析可选类型(implicitly unwrapped optionals)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展"><span class="nav-number">6.1.1.2.</span> <span class="nav-text">扩展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联值枚举"><span class="nav-number">6.1.2.</span> <span class="nav-text">关联值枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-值绑定"><span class="nav-number">6.1.3.</span> <span class="nav-text">Switch 值绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包简写"><span class="nav-number">6.1.4.</span> <span class="nav-text">闭包简写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问控制"><span class="nav-number">6.1.5.</span> <span class="nav-text">访问控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIStackView"><span class="nav-number">6.1.6.</span> <span class="nav-text">UIStackView</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tips"><span class="nav-number">6.2.</span> <span class="nav-text">tips</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

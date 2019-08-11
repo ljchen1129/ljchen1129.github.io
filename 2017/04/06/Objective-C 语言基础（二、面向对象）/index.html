@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="封装面向对象三大特性 封装性 继承性 多态性  什么是封装？ 封装性就是隐藏实现细节，仅对外公开接口  为什么要进行封装？ 如果没有封装，如果要访问成员变量，需要把成员变量声明为 public 的，也就是公开的，但是这样我们不能控制外界如何赋值，外界有可能赋值一些脏数据。   123Student *stu = [Student new];// 学生年龄不能为负数stu-&amp;gt;_age = -1">
+<meta name="keywords" content="iOS,Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C 语言基础（二、面向对象）">
+<meta property="og:url" content="http://chenliangjing.me/2017/04/06/Objective-C 语言基础（二、面向对象）/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="封装面向对象三大特性 封装性 继承性 多态性  什么是封装？ 封装性就是隐藏实现细节，仅对外公开接口  为什么要进行封装？ 如果没有封装，如果要访问成员变量，需要把成员变量声明为 public 的，也就是公开的，但是这样我们不能控制外界如何赋值，外界有可能赋值一些脏数据。   123Student *stu = [Student new];// 学生年龄不能为负数stu-&amp;gt;_age = -1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170407_1.png?imageView/0/h/220">
+<meta property="og:image" content="http://liangjinggege.com/class%20momory.001.jpeg?imageView/0/w/650">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170407_4.png">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.315Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C 语言基础（二、面向对象）">
+<meta name="twitter:description" content="封装面向对象三大特性 封装性 继承性 多态性  什么是封装？ 封装性就是隐藏实现细节，仅对外公开接口  为什么要进行封装？ 如果没有封装，如果要访问成员变量，需要把成员变量声明为 public 的，也就是公开的，但是这样我们不能控制外界如何赋值，外界有可能赋值一些脏数据。   123Student *stu = [Student new];// 学生年龄不能为负数stu-&amp;gt;_age = -1">
+<meta name="twitter:image" content="http://liangjinggege.com/Snip20170407_1.png?imageView/0/h/220">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2017/04/06/Objective-C 语言基础（二、面向对象）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Objective-C 语言基础（二、面向对象） | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/04/06/Objective-C 语言基础（二、面向对象）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Objective-C 语言基础（二、面向对象）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-06 23:40:18" itemprop="dateCreated datePublished" datetime="2017-04-06T23:40:18+08:00">2017-04-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Objective-C/" itemprop="url" rel="index"><span itemprop="name">Objective-C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/06/Objective-C 语言基础（二、面向对象）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/06/Objective-C 语言基础（二、面向对象）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/06/Objective-C 语言基础（二、面向对象）/" class="leancloud_visitors" data-flag-title="Objective-C 语言基础（二、面向对象）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="面向对象三大特性"><a href="#面向对象三大特性" class="headerlink" title="面向对象三大特性"></a>面向对象三大特性</h3><ul>
+<li>封装性</li>
+<li>继承性</li>
+<li>多态性</li>
+</ul>
+<h3 id="什么是封装？"><a href="#什么是封装？" class="headerlink" title="什么是封装？"></a>什么是封装？</h3><ul>
+<li>封装性就是隐藏实现细节，仅对外公开接口</li>
+</ul>
+<h3 id="为什么要进行封装？"><a href="#为什么要进行封装？" class="headerlink" title="为什么要进行封装？"></a>为什么要进行封装？</h3><ul>
+<li><p>如果没有封装，如果要访问成员变量，需要把成员变量声明为 public 的，也就是公开的，但是这样我们不能控制外界如何赋值，外界有可能赋值一些脏数据。</p>
+  <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Student *stu = [Student <span class="keyword">new</span><span class="type"></span>];</span><br><span class="line"><span class="comment">// 学生年龄不能为负数</span></span><br><span class="line">stu-&gt;_age = <span class="number">-10</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以利用封装来解决这一问题。通过封装来隐藏对象的属性和实现的细节，仅对外提供公共的访问方法。</p>
+<a id="more"></a>
+  <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@interface</span>  <span class="string">Student :</span> NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@implementation</span> Student</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (age &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        NSLog(@<span class="string">"学生年龄不能是负数"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        _age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, const <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  </span><br><span class="line">    Student *stu = [Student <span class="keyword">new</span>];</span><br><span class="line">    <span class="comment">// 通过封装的 set 方法给成员变量赋值</span></span><br><span class="line">    [stu <span class="string">setAge:</span><span class="number">10</span>];</span><br><span class="line">    NSLog(@<span class="string">"%zd"</span>, stu-&gt;_age); <span class="comment">// 10</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类是数据与功能的封装，数据就是成员变量，功能就是类方法或者对象方法。</p>
+</li>
+<li>对数据的封装，就是对成员变量的封装。</li>
+<li>不封装的缺点：当一个类把自己的成员变量暴露给外界的时候，那么该类就失去了对该成员变量的管理权，别人就可以任意的修改你的成员变量。</li>
+<li>封装就是将数据隐藏起来，只能用此类的方法才可以读取或者设置数据，不可被外部任意修改是面向对象设计的本质，降低了数据被误用的可能性，提高代码的灵活性。</li>
+</ul>
+<h3 id="封装的好处？"><a href="#封装的好处？" class="headerlink" title="封装的好处？"></a>封装的好处？</h3><ul>
+<li>好处<ul>
+<li>将变化隔离</li>
+<li>提高安全性</li>
+</ul>
+</li>
+<li>原则<ul>
+<li>将不需要对外提供的内容都隐藏起来，把属性都隐藏，提供公共的方法对其访问。</li>
+</ul>
+</li>
+</ul>
+<h3 id="getter-和-setter"><a href="#getter-和-setter" class="headerlink" title="getter 和 setter"></a>getter 和 setter</h3><p>由于经常需要定义一些方法来操作成员变量，而每个方法都必须有一个有意义的名称，而大量的起名字很麻烦，所以就有了 getter 和 setter 方法。</p>
+<p>getter 和 setter 方法的格式和写法都是固定的，所以有了 getter 和 setter 方法，就不用去想起名字的问题。同时，getter 和 setter 方法还是程序员之间交流的一种规范，以后被人只要想到给属性赋值就立刻会想到 getter 和 setter 方法，降低了程序员之间的沟通成本。</p>
+<ul>
+<li><p>setter 方法</p>
+<ul>
+<li>作用：设置成员变量的值，可以监听属性变化。</li>
+<li><p>写法：</p>
+<ol>
+<li>setter 方法一定是对象方法</li>
+<li>setter 方法一定没有返回值</li>
+<li>一定以 set 开头并且 set 后面跟上跟上需要设置的成员变量的名称去掉下划线，并且首字母大写。</li>
+<li><p>一定有参数，参数类型一定和需要设置的成员变量的类型一致，并且参数的名称就是成员变量去掉下划线。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setter 方法</span></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 成员变量以下划线开头的好处，用以区分局部变量和成员变量</span></span><br><span class="line">	_age = age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>getter 方法</p>
+<ul>
+<li>作用：获取成员变量的值</li>
+<li><p>写法：</p>
+<ol>
+<li>getter 方法一定是对象方法</li>
+<li>getter 方法一定有返回值，返回值类型一定和成员变量类型一致</li>
+<li>方法名称就是获取的成员变量名称去掉下划线。</li>
+<li><p>一定没有参数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// getter 方法</span></span><br><span class="line">- (<span class="keyword">int</span>)age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line">- (<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> _age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>只读属性</p>
+<ul>
+<li>如果某一个属性只提供了 getter 方法没有提供 setter 方法，称这个属性为<code>只读属性</code></li>
+</ul>
+</li>
+<li>只写属性<ul>
+<li>如果某一个属性只提供了 setter 方法没有提供 getter 方法，称这个属性为<code>只写属性</code></li>
+</ul>
+</li>
+<li>可读可写属性<ul>
+<li>如果某一个属性既提供了 getter 方法又提供 setter 方法，称这个属性为<code>可读可写属性</code></li>
+</ul>
+</li>
+<li>私有属性<ul>
+<li>如果某一个属性既没有提供了 setter 方法也没有提供 getter 方法，称这个属性为<code>私有属性</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="点语法"><a href="#点语法" class="headerlink" title="点语法"></a>点语法</h3><ul>
+<li>如果给属性提供了 getter 方法和 setter 方法，那么访问属性就多了一种方式，<code>点语法</code>。</li>
+<li><code>点语法</code>其实本质是调用了 setter 方法和 getter 方法。</li>
+<li><p><code>点语法</code>是一个<code>编译器特性</code>，会在程序翻译成二进制的时候，点语法自动转换为 setter 和 getter 方法。</p>
+<ul>
+<li><p>如果<code>点语法</code>在 = 号的左边，那么编译器会自动转换为 setter 方法</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">//</span> 给 age 赋值</span><br><span class="line">   stu.age = 10;</span><br><span class="line">   <span class="string">//</span> [stu <span class="keyword">set</span>Age<span class="function">:10</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果<code>点语法</code>在 = 号的右边，那么编译器会自动转换为 getter 方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取 age 的值</span></span><br><span class="line">   <span class="keyword">int</span> age = stu.age;</span><br><span class="line">   <span class="comment">// int age = [stu age]</span></span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"%zd"</span>, age); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意：<code>点语法</code>用于给成员变量赋值，如果不是给成员变量赋值一般情况下不建议使用，但是也可以使用。</p>
+</blockquote>
+<h3 id="self-关键字"><a href="#self-关键字" class="headerlink" title="self 关键字"></a>self 关键字</h3><ul>
+<li><code>self</code> 不能离开类，离开类之后没有任何意义。</li>
+<li>如果 <code>self</code> 在类方法中调用，那么 <code>self</code> 就代表调用当前类方法的那个类</li>
+<li>如果 <code>self</code> 在对象方法中调用，那么 <code>self</code> 就代表调用当前对象方法的那个对象<ul>
+<li>类方法中<code>可以</code>直接调用类方法</li>
+<li>类方法中<code>不可以</code>直接调用对象方法</li>
+<li>类方法中<code>不能</code>访问成员变量 </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意：<code>self</code> 会自动区分类方法和对象方法，如果在类方法中使用 <code>self</code> 调用对象方法，那么会直接报错。</p>
+</blockquote>
+<blockquote>
+<p>不能在对象方法或者类方法中利用 <code>self</code> 调用当前 <code>self</code> 所在的方法，会死循环。</p>
+</blockquote>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="继承基本概念"><a href="#继承基本概念" class="headerlink" title="继承基本概念"></a>继承基本概念</h3><ul>
+<li>可以利用<code>继承</code>来解决重复代码的问题</li>
+<li>只要 B 类集成了 A 类，那么 B 类就拥有 A 类所有的属性和方法</li>
+<li>如所有的类都继承自 NSObject，那么所有的类都拥有 NSObject 类的所有属性和方法，如： new 方法，isa 属性。</li>
+<li>继承语法：</li>
+</ul>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">interface</span>  Student : <span class="type">NSObject</span></span><br></pre></td></tr></table></figure>
+<h3 id="继承的其他特点"><a href="#继承的其他特点" class="headerlink" title="继承的其他特点"></a>继承的其他特点</h3><ul>
+<li>Objective-C 中的继承关系</li>
+</ul>
+<p><img src="http://liangjinggege.com/Snip20170407_1.png?imageView/0/h/220" alt=""></p>
+<ul>
+<li>继承了某个类的类称为子类</li>
+<li>被继承的类称为父类/超类</li>
+<li>如果子类中有和父类中同名的方法，那么称为方法重写</li>
+<li>继承的缺点<ul>
+<li>提高代码的复用性</li>
+<li>可以让类与类之间产生关系，正是因为继承让类与类之间产生了关系所以才有了<code>多态</code>。</li>
+</ul>
+</li>
+<li>继承的缺点<ul>
+<li>耦合性太强</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意：继承中方法调用的顺序，如果子类自己有就先调用自己的方法，如果自己没有就调用父类的方法，如果父类也没有，就找父类的父类，一直往上找，如果找得到就调用，如果直到找到根类 NSObject，也没有找到相应的方法，那么程序就会报错。</p>
+</blockquote>
+<blockquote>
+<p>具体过程描述是：首先一个类实例化，那么这个这个<code>实例对象</code>和<code>类对象</code>以及这个类<code>所有的父类的类对象</code>都会在堆中分配存储空间，当指向这个实例对象的指针给该实例对象发送消息时，先在堆内存中找到这个实例对象，再通过实例对象的 isa 指针找到这个类的类对象，先从这个类的类对象中找有没有这个方法，如果有，则执行，如果没有，继续往上找这个类的父类类对象，找到就执行，找不到就一直往上，如果一直找到根类 NSObject 都没有找到这个方法，那么应用程序就会报错。</p>
+</blockquote>
+<blockquote>
+<p>注意：在继承中，父类的方法（类方法和对象方法）在子类中可以重写，但是属性（成员变量）不能重写。</p>
+</blockquote>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>父类指针可以指向子类</p>
+<h2 id="私有变量和私有方法"><a href="#私有变量和私有方法" class="headerlink" title="私有变量和私有方法"></a>私有变量和私有方法</h2><h3 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h3><p>实例变量（成员变量）既可以在 @interface 中定义，也可以在 @implementation 中定义。</p>
+<p>写在 @implementation 中的成员变量，默认就是<code>私有的成员变量</code>，并且和利用 @private 修饰的不太一样，在 @implementation 中定义的成员变量在其他类中<code>无法查看</code>，也<code>无法访问</code>，在 @implementation 中定义的<code>私有变量</code>只能在<code>本类</code>中访问。</p>
+<h3 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><p>如果只有方法的实现，没有方法的声明，那么该方法就是<code>私有方法</code>。</p>
+<blockquote>
+<p>注意：在 Objective-C 中，没有真正的<code>私有方法</code>，因为 Objective-C 是消息机制。是在运行时才会去找接收消息的接受者发送消息。</p>
+</blockquote>
+<h2 id="property-amp-amp-synthesize"><a href="#property-amp-amp-synthesize" class="headerlink" title="property &amp;&amp; synthesize"></a>property &amp;&amp; synthesize</h2><h3 id="在-Xcode-4-4-以前："><a href="#在-Xcode-4-4-以前：" class="headerlink" title="在 Xcode 4.4 以前："></a>在 Xcode 4.4 以前：</h3><h4 id="property-基本使用"><a href="#property-基本使用" class="headerlink" title="#property 基本使用"></a>#property 基本使用</h4><ul>
+<li>@property 是一个编译器指令，可以简化 getter/setter 的声明。编译器只要看到 @property，就知道要产生某一个属性的 getter/setter 声明。</li>
+<li>好处是：免去手工书写 getter/setter 方法繁琐的代码。 </li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@property</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age;</span><br><span class="line">- (<span class="keyword">int</span>)age;</span><br></pre></td></tr></table></figure>
+<h4 id="synthesize-基本使用"><a href="#synthesize-基本使用" class="headerlink" title="#synthesize 基本使用"></a>#synthesize 基本使用</h4><ul>
+<li>@synthesize 是一个编译器指令，可以简化 getter/setter 的实现。编译器只要看到 @synthesize，就知道要产生某一个属性的 getter/setter 实现。<ol>
+<li>在 @synthesize 后面告诉编译器需要实现那个 @property 生成的声明</li>
+<li>告诉 @synthesize，需要告诉将传入的值赋值给谁和返回谁的值给调用者。</li>
+<li>如果在 @synthesize 后面没有告诉系统将传入的值赋值给谁，系统默认会赋值给和 @synthesize 后面写的名称相同的成员变量。</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@synthesize</span> age = _age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	_age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> _age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="在-Xcode-4-4-以后："><a href="#在-Xcode-4-4-以后：" class="headerlink" title="在 Xcode 4.4 以后："></a>在 Xcode 4.4 以后：</h3><ul>
+<li>在 Xcode 4.4 以后，苹果对 @property 进行了一个增强，以后只要利用 @property 就可以同时生成 setter/getter 方法的声明和实现。</li>
+<li>如果没有告诉 @property 要将传入的参数赋值给谁，默认 @property 会将传入的参数赋值给_开头的成员变量。</li>
+<li>@property 的弊端：@property 只会生成最简单的 getter/setter 方法，并不会对传入的值进行过过滤。如果想对闯入的数据进行过滤，就必须重写 getter/setter 方法。</li>
+<li>如果重写了 setter 方法，那么 @property 就只会生成 getter 方法，同样，如果如果重写了 getter 方法，那么 @property 就只会生成 setter 方法。</li>
+<li>如果利用 @property 来生成 setter/getter 方法，那么<code>可以不写</code>成员变量，系统会<code>自动</code>给我们生成一个_开头的成员变量。</li>
+<li>如果<code>同时重写</code>了 setter/getter 方法，那么系统就<code>不会</code>生成_开头的成员变量。</li>
+</ul>
+<blockquote>
+<p>@property 自动帮我们生成的成员变量是一个私有的成员变量，也就是说是在 .m 文件中生成的，而不是在 .h 文件中生成的。 </p>
+</blockquote>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@property</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age;</span><br><span class="line">- (<span class="keyword">int</span>)age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line">- (<span class="keyword">void</span>)<span class="string">setAge:</span>(<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	_age = age;</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> _age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="属性修饰符"><a href="#属性修饰符" class="headerlink" title="#属性修饰符"></a>#属性修饰符</h4><ul>
+<li>格式：@property (属性修饰符) 数据类型 变量名称;</li>
+<li>属性修饰符<ul>
+<li>readwrite：代表既生成 setter 方法，又生成 getter 方法。默认情况下，@property 的属性修饰符就是 readwrite</li>
+<li>readonly：代表只生成 getter 方法，不生成 setter 方法</li>
+<li>getter = getter 方法名：代表生成的 getter 方法名使用后面的名称。一般情况下，获取 BOOL 类型的属性值，都会将获取的方法名改为 isXXX</li>
+<li>setter = setter 方法名：代表生成的 setter 方法名使用后面的名称</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 是否通过</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">getter</span>=isPassed) <span class="built_in">BOOL</span> passed;</span><br><span class="line"></span><br><span class="line">Student *stu = [Student new];</span><br><span class="line"><span class="built_in">BOOL</span> passed = stu.isPassed;</span><br></pre></td></tr></table></figure>
+<h2 id="动态数据类型"><a href="#动态数据类型" class="headerlink" title="动态数据类型"></a>动态数据类型</h2><h3 id="静态类型和动态类型"><a href="#静态类型和动态类型" class="headerlink" title="静态类型和动态类型"></a>静态类型和动态类型</h3><h4 id="静态类型"><a href="#静态类型" class="headerlink" title="#静态类型"></a>#静态类型</h4><ul>
+<li>将一个指针变量定义为特定类对象时，使用的是静态类型，在编译的时候就知道这个指针变量所属的类，这个变量总是存储特定类的对象。</li>
+<li>默认情况下，所有的数据类型都是<code>静态数据类型</code>，静态数据类型特点：<ul>
+<li>在编译的时候就知道变量的类型</li>
+<li>知道变量中有哪些属性和方法</li>
+<li>在编译的时候就可以访问这些属性和方法</li>
+<li>如果通过静态数据类型定义变量，如果访问了不是静态数据类型定义的属性和方法，那么编译器<code>将会报错</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person *p = [Person <span class="keyword">new</span><span class="type"></span>];</span><br></pre></td></tr></table></figure>
+<h4 id="动态类型"><a href="#动态类型" class="headerlink" title="#动态类型"></a>#动态类型</h4><ul>
+<li>程序直到执行才确定对象所属的类，在编译的时候编译器并不知道变量的真实类型，只有在运行的时候才知道他的真实类型</li>
+<li>如果通过<code>动态数据类型</code>定义变量，如果访问了不属于动态数据类型的属性和方法，编译器<code>不会报错</code></li>
+<li>通过动态数据类型定义的变量，可以调用子类特有的方法，而静态类型不行</li>
+<li>通过动态数据类型定义的变量，还可以调用私用方法</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">id obj = [Person <span class="keyword">new</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 调用子类特有方法</span></span><br><span class="line">[<span class="meta">obj eat</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 调用私有方法</span></span><br><span class="line">[<span class="meta">obj privateMethod</span>];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>动态类型弊端：由于动态数据类型可以调用任意方法，所以有可能调用到不属于自己的方法，而编译时又不会报错，所以可能导致运行时错误</p>
+</blockquote>
+<blockquote>
+<p>应用场景：多态。可以减少代码量，避免调用子类特有的方法需要强制类型转换</p>
+</blockquote>
+<h3 id="为什么要有动态类型？"><a href="#为什么要有动态类型？" class="headerlink" title="为什么要有动态类型？"></a>为什么要有动态类型？</h3><ul>
+<li>NSObject 是 Objective-C 中的基类，任何对象的 NSObject 类型的指针都可以指向任何对象，但是如果 NSObject 是静态类型，如果通过它直接调用 NSObject 上面不存在的方法，编译器会报错。</li>
+<li><code>id</code> 是一个数据类型，并且是一个<code>动态数据类型</code></li>
+<li><p>作用</p>
+<ol>
+<li>定义变量</li>
+<li>作为函数的参数</li>
+<li>作为函数的返回值</li>
+</ol>
+</li>
+<li><p>id 是一种通用的对象类型，他可以指向属于任何类的对象，可以理解为是“万能指针”，相当于 C 语言中的 <code>void *</code></p>
+</li>
+<li>因为 id 是动态数据类型，所以可以通过 id 类型直接调用指向对象中的方法，编译器不会报错</li>
+<li>注意<ul>
+<li>在 id 的定义中，已经包含了 * 号，id 指针只能指向 Objective-C 中的对象</li>
+<li>为了尽可能的减少编程中的错误，Xcode 做了一个检查，当使用 id 类型调用本项目中所有类上都没有的方法，编译器会报错。</li>
+<li>id 类型不能使用<code>点语法</code>，因为<code>点语法</code>是编译时特性，而 id 是运行时特性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="id-数据类型与静态类型"><a href="#id-数据类型与静态类型" class="headerlink" title="id 数据类型与静态类型"></a>id 数据类型与静态类型</h3><ul>
+<li>不要滥用这种通用类型<ul>
+<li>如果没有使用到<code>多态</code>尽量使用静态类型</li>
+<li>静态类型可以更早的法相错误（在编译时而不是运行时）</li>
+<li>静态类型能够提高程序的可读性</li>
+<li>使用动态类型前最好知道其真实类型</li>
+</ul>
+</li>
+<li><p>动态类型判断</p>
+<ul>
+<li><ul>
+<li>(BOOL)isKindOfClass:(Class)aClass 判断实例对象是否是这个类或者这个类的子类的实例</li>
+</ul>
+</li>
+<li><p>为了避免动态数据类型引发的运行时错误，一般情况下如果使用动态数据类型变量，在调用这个变量的方法之前会做一次判断，判断当前变量是否能够调用这个方法</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">id obj = [Student <span class="keyword">new</span>];</span><br><span class="line"><span class="comment">// 1. 判断指定对象是否是当前指定类或者他的子类</span></span><br><span class="line">   <span class="keyword">if</span> ([obj <span class="string">isKindOfClass:</span>[Student <span class="class"><span class="keyword">class</span>]])</span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       [obj eat];</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 或者</span></span><br><span class="line">   <span class="comment">// 2. 判断指定对象是否是当前指定类的实例</span></span><br><span class="line">   <span class="keyword">if</span> ([obj <span class="string">isMemberOfClass:</span>[Student <span class="class"><span class="keyword">class</span>]])</span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       [obj eat];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="new-实现原理"><a href="#new-实现原理" class="headerlink" title="new 实现原理"></a>new 实现原理</h2><ul>
+<li>new 做了三件事情<ol>
+<li>开辟存储空间，+ (instancetype)alloc 类方法</li>
+<li>初始化所有属性（成员变量）- (instancetype)init 对象方法</li>
+<li>返回对象的地址</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSObject *obj = [Student <span class="keyword">new</span><span class="type"></span>];</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">NSObject *obj = [[Student alloc] init];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>alloc 类方法做了什么事情</p>
+<ol>
+<li>开辟存储空间</li>
+<li>将所有的属性设置为 0</li>
+<li>返回当前实例对象的地址</li>
+</ol>
+</li>
+<li><p>init 对象方法做了什么事情</p>
+<ul>
+<li>初始化成员变量，但是默认情况下 init 的实现是什么都没有做</li>
+<li>返回初始化后的实例对象的地址</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意：alloc 返回的地址和 init 返回的地址是同一个地址</p>
+</blockquote>
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><h3 id="构造方法基本概念"><a href="#构造方法基本概念" class="headerlink" title="构造方法基本概念"></a>构造方法基本概念</h3><h4 id="1-重写-init-方法"><a href="#1-重写-init-方法" class="headerlink" title="#1. 重写 init 方法"></a>#1. 重写 init 方法</h4><ul>
+<li>想在对象创建完毕后，成员变量马上就有一些默认的值就可以重写 init 方法</li>
+<li>重写 init 方法格式</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)<span class="keyword">init</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> <span class="keyword">init</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 初始化操作</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>[super init] 的作用，面向对象的体现，先利用父类的 init 方法为子类实例的父类不分数线初始化</li>
+<li>self 为什么要赋值为 [super init]：简单来说是为了防止父类的初始化方法 release 掉了 self 指向的空间并重新 alloc 了一块空间，还有 [super init] 可能 alloc 失败，这时就不要再执行 if 中的语句。 </li>
+</ul>
+<h4 id="2-instancetype-和-id-的区别"><a href="#2-instancetype-和-id-的区别" class="headerlink" title="#2. instancetype 和 id 的区别"></a>#2. instancetype 和 id 的区别</h4><ul>
+<li>相同点：instancetype 和 id 都是万能指针，都可以指向一个对象</li>
+<li>不同点：<ol>
+<li>id 在编译时不能判断对象的真实类型，instancetype 在编译时可以判断对象的真实类型</li>
+<li>id 可以用来定义变量，可以作为返回值，可以当做形参，instancetype 只能当做返回值来使用</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>注意：以后凡是自定义构造方法，返回值尽量使用 instancetype，不要使用 id</p>
+</blockquote>
+<h3 id="自定义构造方法"><a href="#自定义构造方法" class="headerlink" title="自定义构造方法"></a>自定义构造方法</h3><ul>
+<li>其实就是自定义一个 init 方法<ol>
+<li>一定是一个对象方法</li>
+<li>一定返回 id / instancetype</li>
+<li>方法名称一定以 init 开头</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student *stu = [[Student alloc] <span class="string">initWithAge:</span><span class="number">25</span>];</span><br><span class="line">NSLog(@<span class="string">"%i"</span>, stu.age); <span class="comment">// 25</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>一个类可以有 0 个或者多个自定义构造方法</li>
+<li>一个自定义构造方法可以有 1 个或者多个参数</li>
+</ul>
+<h3 id="自定义构造方法在继承中的表现"><a href="#自定义构造方法在继承中的表现" class="headerlink" title="自定义构造方法在继承中的表现"></a>自定义构造方法在继承中的表现</h3><p>原则：子类只负责初始化自己的成员变量，父类的成员变量初始化工作交给父类去完成</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">instancetype</span>)initWithAge:(<span class="keyword">int</span>)age name:(<span class="built_in">NSString</span> *)name</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 交给父类去初始化</span></span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithAge:age];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        _name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Student *stu = [[Student alloc] initWithAge:<span class="number">25</span> name:<span class="string">@"chenlj"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"age=%i,name=%@"</span>, stu.age,stu.name); <span class="comment">// age=25,name=chenlj</span></span><br></pre></td></tr></table></figure>
+<h3 id="自定义构造方法及成员变量名称注意点"><a href="#自定义构造方法及成员变量名称注意点" class="headerlink" title="自定义构造方法及成员变量名称注意点"></a>自定义构造方法及成员变量名称注意点</h3><ol>
+<li>自定义构造方法中的 init 后面的 With 首字母必须要大写。</li>
+<li>属性名称或者方法名称不要 new 开头，有可能会引发一些未知错误。</li>
+</ol>
+<h2 id="类工厂方法"><a href="#类工厂方法" class="headerlink" title="类工厂方法"></a>类工厂方法</h2><h3 id="类工厂方法基本概念"><a href="#类工厂方法基本概念" class="headerlink" title="类工厂方法基本概念"></a>类工厂方法基本概念</h3><ul>
+<li><p>什么是类工厂方法？</p>
+<ul>
+<li>用于快速创建对象的类方法，称为类工厂方法</li>
+<li>类工厂方法主要用于给对象分配存储空间以及初始化这块存储空间</li>
+</ul>
+</li>
+<li><p>规范</p>
+<ol>
+<li>一定是类方法</li>
+<li>方法名称以类的名称开头，首字母小写</li>
+<li>一定有返回值，返回值是 id/instancetype</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明</span></span><br><span class="line">+ (instancetype)<span class="string">personWithAge:</span>(<span class="keyword">int</span>)age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line">+ (instancetype)<span class="string">personWithAge:</span>(<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 注意：在自定义类工程方法时，在类工厂方法中创建的对象一定不要使用类名来创建，一定要使用 self</span></span><br><span class="line">	Person *p = [self alloc] init];</span><br><span class="line">	<span class="comment">// Person *p = [Person alloc] init];</span></span><br><span class="line">	p.age = age;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">Person *p = [Person <span class="string">personWithAge:</span><span class="number">25</span>];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>自定义类工厂方法是苹果的一个非凡，一般情况下，会给一个类提供自定义构造方法和自定义类工厂方法用于创建对象。</p>
+</blockquote>
+<h3 id="类工厂方法在继承中的注意点"><a href="#类工厂方法在继承中的注意点" class="headerlink" title="类工厂方法在继承中的注意点"></a>类工厂方法在继承中的注意点</h3><ul>
+<li>在自定义类工程方法时，在类工厂方法中创建的对象一定不要使用类名来创建，一定要使用 self</li>
+<li>self 在类方法中代表类对象，谁调用这个类方法，self 就代表谁</li>
+</ul>
+<h2 id="类的本质及存储细节"><a href="#类的本质及存储细节" class="headerlink" title="类的本质及存储细节"></a>类的本质及存储细节</h2><h3 id="类的本质"><a href="#类的本质" class="headerlink" title="类的本质"></a>类的本质</h3><ul>
+<li>类的本质其实也是一个对象（类对象）</li>
+<li>程序中第一次使用该类的时候被创建，在整个程序中只有一份</li>
+<li>伺候每次使用都是这个类对象，他在程序运行时一直存在</li>
+<li>类对象是一种数据结构，存储类的基本信息：类大小，类名称，类的版本，继承层次，以及消息与函数的映射表等</li>
+<li>类对象代表类，Class 类型，对象方法属于类对象</li>
+<li>如果消息的接受者是类名，则类名代表类对象</li>
+<li><p>所有类的实例都是由<code>类对象</code>生成，类对象会把实例的 isa 指针的值修改成自己的地址，每个实例的 isa 指针都指向该实例的类对象</p>
+</li>
+<li><p>假设有一个 Person 类</p>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span>  <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象方法</span></span><br><span class="line">- (<span class="keyword">void</span>)instanceMethod;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类方法</span></span><br><span class="line">+ (<span class="keyword">void</span>)classMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象方法</span></span><br><span class="line">- (<span class="keyword">void</span>)instanceMethod</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"instanceMethod"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类方法</span></span><br><span class="line">+ (<span class="keyword">void</span>)classMethod</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"classMethod"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  </span><br><span class="line">    Person *p = [[Person alloc] init];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 调用对象方法</span></span><br><span class="line">    [p instanceMethod];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 调用类方法</span></span><br><span class="line">    [Person classMethod];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Person 类在内存中的表现是：</p>
+<p><img src="http://liangjinggege.com/class%20momory.001.jpeg?imageView/0/w/650" alt=""></p>
+<h4 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h4><ul>
+<li>程序一启动，就会将 Person 类加载到代码区，会调用类的 load 方法，当程序第一次使用 Person 类时，会在<code>堆</code>中创建 Person 类对象。类对象在程序运行时一直存在，并且在整个程序中只有一份。</li>
+<li>对象方法保存在<code>类对象</code>中</li>
+<li>类方法保存在<code>元类对象</code>中</li>
+<li>所有<code>实例对象</code>都是通过<code>类对象</code>生成，<code>类对象</code>会把实例的 isa 指针的值修改成自己的地址。并且把类中的所有属性（成员变量）拷贝一份到实例变量。</li>
+</ul>
+<p><br></p>
+<h4 id="对象方法调用顺序"><a href="#对象方法调用顺序" class="headerlink" title="#对象方法调用顺序"></a>#对象方法调用顺序</h4><p>首先创建一个实例对象，会在堆中给实例对象分配存储空间，然后将实例对象中的所有属性初始化为 0，最后返回实例对象的地址给指针变量 p。当发生对象方法调用时，指针变量 p 会先到堆中找到相应的实例变量的存储空间，然后通过<code>实例变量</code>的 isa 指针找到对应的<code>类对象</code>，找到类对象中对象方法列表中的相应的对象方法，最后执行。</p>
+<p><br></p>
+<h4 id="类方法调用顺序"><a href="#类方法调用顺序" class="headerlink" title="#类方法调用顺序"></a>#类方法调用顺序</h4><p>当类方法调用发生时，首先会去堆中找到相应的<code>类对象</code>，然后通过<code>类对象</code>中 isa 指针找到指向的<code>元类对象</code>，最后找元类对象中类方法列表中的相应的类方法，如果找到，执行，如果没有找到，继续向上找<code>根元类对象（NSObject 元类对象）</code>。</p>
+<p><br></p>
+<h4 id="对象模型图"><a href="#对象模型图" class="headerlink" title="#对象模型图"></a>#对象模型图</h4><p><img src="http://liangjinggege.com/Snip20170407_4.png" alt=""></p>
+<p><br></p>
+<blockquote>
+<p>所有类的“<code>类对象</code>”的继承关系就是“<code>元类对象</code>”的继承关系。这样便于方法的查找。首先<code>实例对象</code>的 isa 指针指向<code>类对象</code>，<code>类对象</code>的 isa 指针指向<code>元类对象</code>，<code>元类对象</code>的 isa 指针指向<code>根元类对象</code>，<code>根元类对象</code>的 isa 指针<code>指向自己</code>。其次在<code>类对象</code>中存储着对象方法，<code>元类对象</code>中存储着类方法。当一个子类要执行一个对象方法时，先到自己<code>类对象</code>中找，如果找到就执行，找不到就要去<code>类对象的父类对象</code>中找。同理，如果一个子类要执行一个类方法时，先到自己的元类对象中找，如果找到就执行，找不到就要去<code>元类对象</code>的<code>父类元类对象</code>中找。</p>
+</blockquote>
+<h3 id="如何获取类对象-amp-类对象的应用场景"><a href="#如何获取类对象-amp-类对象的应用场景" class="headerlink" title="如何获取类对象 &amp; 类对象的应用场景"></a>如何获取类对象 &amp; 类对象的应用场景</h3><ul>
+<li>通过实例对象获取</li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">格式：[实例对象 <span class="class"><span class="keyword">class</span>]；</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过类名获取（类名其实就是类对象）</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">格式：[类对象 <span class="class"><span class="keyword">class</span>];</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>类对象的应用场景<ol>
+<li>用于创建对象实例</li>
+<li>用于调用类方法</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取类对象</span></span><br><span class="line"><span class="comment">// 1. 通过实例获取</span></span><br><span class="line"><span class="keyword">Class</span> c1 = [p <span class="keyword">class</span>];</span><br><span class="line"><span class="comment">// 2. 通过类对象获取</span></span><br><span class="line"><span class="keyword">Class</span> c2 = [Person <span class="keyword">class</span>];</span><br><span class="line">NSLog(@<span class="string">"c1 = %p, c2 = %p"</span>, c1, c2); <span class="comment">//  c1 = 0x100001260, c2 = 0x100001260</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 类对象应用场景</span></span><br><span class="line"><span class="comment">// 1. 用于创建实例对象</span></span><br><span class="line">Person *p2 = [[c1 alloc] init];</span><br><span class="line">p2.age = <span class="number">25</span>;</span><br><span class="line">NSLog(@<span class="string">"%i"</span>, p2.age); <span class="comment">// 25</span></span><br><span class="line"><span class="comment">// 2. 用于调用类方法</span></span><br><span class="line">[c1 classMethod]; <span class="comment">// classMethod</span></span><br></pre></td></tr></table></figure>
+<h2 id="类的启动过程"><a href="#类的启动过程" class="headerlink" title="类的启动过程"></a>类的启动过程</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只要程序启动就会将类的代码加载到内存中，放到代码区</span></span><br><span class="line"><span class="comment">// load 方法会在当前类被加载到内存的时候调用，有且仅会调用一次</span></span><br><span class="line"><span class="comment">// 如果存在继承关系，会先调用父类的 load 方法，再调用子类的 load 方法</span></span><br><span class="line">+ (<span class="keyword">void</span>)load</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前类第一次被使用时调用（创建类对象的时候）</span></span><br><span class="line"><span class="comment">// initialize 方法在整个程序运行过程中只会调用一次，无论使用多少次真个类都只会调用一次</span></span><br><span class="line"><span class="comment">// initialize 用于对某一个类进行一次性的初始化</span></span><br><span class="line"><span class="comment">// 如果存在继承关系，会先调用父类的 initialize 方法，再调用子类的 initialize 方法</span></span><br><span class="line">+ (<span class="keyword">void</span>)initialize</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/Objective-C/" rel="tag"># Objective-C</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/Objective-C 语言基础（一、基础知识）/" rel="next" title="Objective-C 语言基础（一、基础知识）">
+                <i class="fa fa-chevron-left"></i> Objective-C 语言基础（一、基础知识）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/08/Objective-C 语言基础（三、内存管理）/" rel="prev" title="Objective-C 语言基础（三、内存管理）">
+                Objective-C 语言基础（三、内存管理） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象三大特性"><span class="nav-number">1.1.</span> <span class="nav-text">面向对象三大特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是封装？"><span class="nav-number">1.2.</span> <span class="nav-text">什么是封装？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要进行封装？"><span class="nav-number">1.3.</span> <span class="nav-text">为什么要进行封装？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装的好处？"><span class="nav-number">1.4.</span> <span class="nav-text">封装的好处？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getter-和-setter"><span class="nav-number">1.5.</span> <span class="nav-text">getter 和 setter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点语法"><span class="nav-number">1.6.</span> <span class="nav-text">点语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self-关键字"><span class="nav-number">1.7.</span> <span class="nav-text">self 关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">继承基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承的其他特点"><span class="nav-number">2.2.</span> <span class="nav-text">继承的其他特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">3.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有变量和私有方法"><span class="nav-number">4.</span> <span class="nav-text">私有变量和私有方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#私有变量"><span class="nav-number">4.1.</span> <span class="nav-text">私有变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有方法"><span class="nav-number">4.2.</span> <span class="nav-text">私有方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#property-amp-amp-synthesize"><span class="nav-number">5.</span> <span class="nav-text">property &amp;&amp; synthesize</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Xcode-4-4-以前："><span class="nav-number">5.1.</span> <span class="nav-text">在 Xcode 4.4 以前：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#property-基本使用"><span class="nav-number">5.1.1.</span> <span class="nav-text">#property 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synthesize-基本使用"><span class="nav-number">5.1.2.</span> <span class="nav-text">#synthesize 基本使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Xcode-4-4-以后："><span class="nav-number">5.2.</span> <span class="nav-text">在 Xcode 4.4 以后：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性修饰符"><span class="nav-number">5.2.1.</span> <span class="nav-text">#属性修饰符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态数据类型"><span class="nav-number">6.</span> <span class="nav-text">动态数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态类型和动态类型"><span class="nav-number">6.1.</span> <span class="nav-text">静态类型和动态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态类型"><span class="nav-number">6.1.1.</span> <span class="nav-text">#静态类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态类型"><span class="nav-number">6.1.2.</span> <span class="nav-text">#动态类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要有动态类型？"><span class="nav-number">6.2.</span> <span class="nav-text">为什么要有动态类型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#id-数据类型与静态类型"><span class="nav-number">6.3.</span> <span class="nav-text">id 数据类型与静态类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new-实现原理"><span class="nav-number">7.</span> <span class="nav-text">new 实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">8.</span> <span class="nav-text">构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法基本概念"><span class="nav-number">8.1.</span> <span class="nav-text">构造方法基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-重写-init-方法"><span class="nav-number">8.1.1.</span> <span class="nav-text">#1. 重写 init 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-instancetype-和-id-的区别"><span class="nav-number">8.1.2.</span> <span class="nav-text">#2. instancetype 和 id 的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义构造方法"><span class="nav-number">8.2.</span> <span class="nav-text">自定义构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义构造方法在继承中的表现"><span class="nav-number">8.3.</span> <span class="nav-text">自定义构造方法在继承中的表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义构造方法及成员变量名称注意点"><span class="nav-number">8.4.</span> <span class="nav-text">自定义构造方法及成员变量名称注意点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类工厂方法"><span class="nav-number">9.</span> <span class="nav-text">类工厂方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类工厂方法基本概念"><span class="nav-number">9.1.</span> <span class="nav-text">类工厂方法基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类工厂方法在继承中的注意点"><span class="nav-number">9.2.</span> <span class="nav-text">类工厂方法在继承中的注意点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的本质及存储细节"><span class="nav-number">10.</span> <span class="nav-text">类的本质及存储细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的本质"><span class="nav-number">10.1.</span> <span class="nav-text">类的本质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">10.1.1.</span> <span class="nav-text">#说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象方法调用顺序"><span class="nav-number">10.1.2.</span> <span class="nav-text">#对象方法调用顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类方法调用顺序"><span class="nav-number">10.1.3.</span> <span class="nav-text">#类方法调用顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模型图"><span class="nav-number">10.1.4.</span> <span class="nav-text">#对象模型图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取类对象-amp-类对象的应用场景"><span class="nav-number">10.2.</span> <span class="nav-text">如何获取类对象 &amp; 类对象的应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的启动过程"><span class="nav-number">11.</span> <span class="nav-text">类的启动过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="UIApplicationDelegate几个角色：  UIApplication 对象  处理用户与 iOS 设备交互时产生的事件（Multitouch Events，Motion Event，Remote Control Event）交由 UIApplication 对象来分发给 UIControl 对应的 target 对象来处理并且管理整个事件，而一些关于 App 运行时重要事件委托给 A">
+<meta name="keywords" content="iOS,生命周期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIApplication &amp;&amp; UIViewController &amp;&amp; UIView 生命周期">
+<meta property="og:url" content="http://chenliangjing.me/2017/06/02/UIApplicationDelegate & UIViewController & UIView 生命周期/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="UIApplicationDelegate几个角色：  UIApplication 对象  处理用户与 iOS 设备交互时产生的事件（Multitouch Events，Motion Event，Remote Control Event）交由 UIApplication 对象来分发给 UIControl 对应的 target 对象来处理并且管理整个事件，而一些关于 App 运行时重要事件委托给 A">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/1933920-acb1107656c1a483.png">
+<meta property="og:image" content="http://liangjinggege.com/5588c94641d3a.jpg">
+<meta property="og:image" content="http://liangjinggege.com/5588d15fc4c41.gif">
+<meta property="og:image" content="http://liangjinggege.com/5588d259ba79b.gif">
+<meta property="og:image" content="http://liangjinggege.com/5588d2941520f.gif">
+<meta property="og:image" content="http://liangjinggege.com/5588d2a8aa73a.gif">
+<meta property="og:image" content="http://liangjinggege.com/1354776680_2123.png">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.318Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIApplication &amp;&amp; UIViewController &amp;&amp; UIView 生命周期">
+<meta name="twitter:description" content="UIApplicationDelegate几个角色：  UIApplication 对象  处理用户与 iOS 设备交互时产生的事件（Multitouch Events，Motion Event，Remote Control Event）交由 UIApplication 对象来分发给 UIControl 对应的 target 对象来处理并且管理整个事件，而一些关于 App 运行时重要事件委托给 A">
+<meta name="twitter:image" content="http://liangjinggege.com/1933920-acb1107656c1a483.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2017/06/02/UIApplicationDelegate & UIViewController & UIView 生命周期/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>UIApplication && UIViewController && UIView 生命周期 | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/06/02/UIApplicationDelegate & UIViewController & UIView 生命周期/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UIApplication && UIViewController && UIView 生命周期
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-02 09:23:26" itemprop="dateCreated datePublished" datetime="2017-06-02T09:23:26+08:00">2017-06-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/UIApplication/" itemprop="url" rel="index"><span itemprop="name">UIApplication</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/UIApplication/UIViewController/" itemprop="url" rel="index"><span itemprop="name">UIViewController</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/UIApplication/UIViewController/UIView/" itemprop="url" rel="index"><span itemprop="name">UIView</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/02/UIApplicationDelegate & UIViewController & UIView 生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/06/02/UIApplicationDelegate & UIViewController & UIView 生命周期/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/02/UIApplicationDelegate & UIViewController & UIView 生命周期/" class="leancloud_visitors" data-flag-title="UIApplication && UIViewController && UIView 生命周期">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="UIApplicationDelegate"><a href="#UIApplicationDelegate" class="headerlink" title="UIApplicationDelegate"></a>UIApplicationDelegate</h2><p><strong>几个角色：</strong></p>
+<ul>
+<li><p>UIApplication 对象</p>
+<ol>
+<li>处理用户与 iOS 设备交互时产生的事件（Multitouch Events，Motion Event，Remote Control Event）交由 UIApplication 对象来分发给 UIControl 对应的 target 对象来处理并且管理整个事件，而一些关于 App 运行时重要事件委托给 App delegate 来处理。</li>
+<li>负责初始化并显示 UIWindow，并负责加载应用程序的第一个 UIView 到 UIWindow 窗体中。</li>
+<li>帮助管理应用程序的生命周期，通过 UIApplicationDelegate 代理类来实现，UIApplication 对象接收这些生命周期事件，UIApplicationDelegate 决定如何响应这些事件(应用程序的生命周期事件（比如程序启动和关闭）、系统事件（比如来电、记事项警告）)</li>
+</ol>
+</li>
+<li><p>App delegate 对象</p>
+<a id="more"></a>
+<ul>
+<li>遵循 UIApplicationDelegate 协议，响应 app 运行时重要事件（App 启动、App 内存不足、App 终止、切换到另一个 App、切回 App），主要用于在 App 启动时初始化一些重要的数据结构，如：初始化 UIWindow，设置一些属性，为 window 添加 rootViewController（self.window.rootViewController = [[XXXViewController alloc] init] 相当于 [self.window addSubview: [[XXXViewController alloc] init].view]）。</li>
+</ul>
+</li>
+<li><p>UIWidow 对象</p>
+<ul>
+<li>UIWidow 对象位于 view 层次结构中的最顶层，充当一个基本容器但不显示内容的角色，如显示内容要添加一个 content view 到 window。</li>
+</ul>
+</li>
+<li><p>View、Control、Layer 对象</p>
+<ul>
+<li>View：通过 addSubview 和 removeFromSuperView 等方法管理 view 的层次结构，使用 layoutSubviews、layoutIfNeeded 和 setNeedsLayout 等方法布局 view 的层次结构，通过重写 drawRect 方法或通过 layer 属性来构造更复杂的图形界面和动画，UIView 继承自 UIResponder，同样能够处理用户事件。</li>
+<li>Control：通常是处理特定类型用户交互的 View，常用有 button、switch、textField 等。</li>
+<li>Layer：Core Animation 框架的 Layer 对象，可以用来渲染 view 的界面和构建复杂的动画。</li>
+</ul>
+</li>
+<li><p>ViewController 对象</p>
+<ul>
+<li>ViewController 有一个 view 属性是 view 层次结构中的根 view，可以添加子 view 来构建复杂的 view，ViewController 的一些 ViewDidLoad、ViewWillAppear、ViewDidAppear、ViewWillDisAppear、ViewDidDisAppear、LoadView 方法来管理 view 的生命周期，ViewController 还继承自 UIResponser，还可以响应和处理用户事件。</li>
+</ul>
+</li>
+</ul>
+<p><strong>应用程序启动：</strong></p>
+<p><img src="http://liangjinggege.com/1933920-acb1107656c1a483.png" alt=""></p>
+<p>应用程序启动 -&gt; 执行 main 函数 -&gt; 执行 UIApplicationMain 函数 -&gt; 初始化 UIApplication 对象（创建和设置代理对象，开启主线程 ranloop）-&gt; 代理对象监听系统事件（程序加载完毕、程序获取焦点、程序进入后台、程序失去焦点、程序从后台回到前台、内存警告、程序即将退出）-&gt; 结束程序</p>
+<p><strong>应用程序的状态和多任务：</strong><br>应用程序有好几种状态，当按下 Home 键，锁屏、电话打来，切换 App 等中断情况时都会造成应用程序的状态发生改变。</p>
+<p><img src="http://liangjinggege.com/5588c94641d3a.jpg" alt=""></p>
+<ul>
+<li>Not running：App 还没运行</li>
+<li>Inactive：App 运行在前台但没有接收事件</li>
+<li>Active：App 运行在前台和正在接收事件</li>
+<li>Running：App 运行在后台和正在执行代码</li>
+<li>Suspended：App 运行在后台但没有执行代码</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个方法是在程序启动时的第一次机会执行代码</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application willFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序将要启动完成%s"</span>, __func__);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个方法允许在显示 app 给用户之前执行最后的初始化操作</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序启动完成%s"</span>, __func__);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 将要从前台切换到后台时需要执行的操作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillResignActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"程序将要失去焦点%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 已经进入后台后需要执行的操作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序已经进入后台%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 将要从后台切换到前台需要执行的操作，但 app 还不是 active 状态</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillEnterForeground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序即将进入前台%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 已经切换到 active 状态后需要执行的操作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidBecomeActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序已经获得焦点%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app将要结束时需要执行的操作， 可以做一些数据保存工作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillTerminate:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序将要退出%s"</span>, __func__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>App 启动和 active/inactive</p>
+<p>  App 一启动，由    Not running 状态变成 Inactive 状态，调用 <code>application didFinishLaunchingWithOptions</code> 方法，然后由 Inactive 状态变成 Active 状态，调用 <code>applicationDidBecomeActive</code> 方法<br>  <img src="http://liangjinggege.com/5588d15fc4c41.gif" alt=""></p>
+</li>
+</ul>
+<pre><code>当 App 由于一些原因（来电等系统事件）发生中断时，由 Active 状态变成 Inactive 状态，调用 `applicationWillResignActive` 方法。
+![](http://liangjinggege.com/5588d56cdc36a.gif)
+</code></pre><ul>
+<li><p>来回切换App</p>
+<p>  当 App 切换到另一个 App 时，先由 Active 状态变成 Inactive 状态，调用 <code>applicationWillResignActive</code> 方法，然后再从 Inactive 状态变成 running 状态，调用 <code>applicationDidEnterBackground</code> 方法。<br>  <img src="http://liangjinggege.com/5588d259ba79b.gif" alt=""></p>
+<p>  当切换回本 App 时，先由 running 状态变为 Inactive 状态，调用 <code>applicationWillEnterForeground</code> 方法，然后由 Inactive 状态变为 Active 状态，调用 <code>applicationDidBecomeActive</code> 方法。<br>  <img src="http://liangjinggege.com/5588d2941520f.gif" alt=""></p>
+</li>
+<li><p>锁屏</p>
+<p>  锁屏时，先由 Active 状态变成 Inactive 状态，调用 <code>applicationWillResignActive</code> 方法，然后由 Inactive 状态变为 Running 状态，调用 <code>applicationDidEnterBackground</code> 方法。<br>  <img src="http://liangjinggege.com/5588d2a8aa73a.gif" alt=""></p>
+</li>
+<li><p>应用程序终止</p>
+<p>  当应用程序由于内存警告或长时间驻留后台等一些原因需要被操作系统终止时，系统还在应用程序终止前调用一次 <code>applicationWillTerminate</code> 方法，用来保存用户的一些重要数据以便于下次启动时恢复到 app 原来的状态。</p>
+</li>
+</ul>
+<h2 id="UIViewController"><a href="#UIViewController" class="headerlink" title="UIViewController"></a>UIViewController</h2><p><strong>UIView 的加载</strong></p>
+<p><img src="http://liangjinggege.com/1354776680_2123.png" alt=""></p>
+<p>控制器 view 的加载时懒加载的，只用用到时才会去加载，首先调用的 loadView 方法，</p>
+<p><strong>UIView 的卸载</strong></p>
+<h3 id="1-通过-XIB-加载"><a href="#1-通过-XIB-加载" class="headerlink" title="1. 通过 XIB 加载"></a>1. 通过 XIB 加载</h3><p>通过 XIB 这种方式加载视图，需要调用 UIViewController 类的<code>initWithNibName:bundle:</code> 方法</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TestVC_XIB *vc = [[TestVC_XIB alloc] <span class="string">initWithNibName:</span>@<span class="string">"TestVC_XIB"</span> <span class="string">bundle:</span>nil];</span><br><span class="line">[self.navigationController <span class="string">pushViewController:</span>vc <span class="string">animated:</span>YES];</span><br></pre></td></tr></table></figure>
+<p><strong>打印结果：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.971</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB initWithNibName:bundle:]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.973</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB loadView]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.973</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB viewDidLoad]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.974</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB viewWillAppear:]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.978</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB viewWillLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.978</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB viewDidLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.979</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB viewWillLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:45.979</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB viewDidLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:10</span><span class="selector-pseudo">:46.551</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12890:696585]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_XIB viewDidAppear:]</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-通过-StoryBoard-加载"><a href="#2-通过-StoryBoard-加载" class="headerlink" title="2. 通过 StoryBoard 加载"></a>2. 通过 StoryBoard 加载</h3><p>通过这种方式创建 UIViewController 对象的话，首先生成 <code>UIStoryboard 类型的对象，然后调用这个对象的</code>instantiateViewControllerWithIdentifier:` 方法</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UIStoryboard *<span class="keyword">sb </span>= [UIStoryboard storyboardWithName:@<span class="string">"TestVC_SB"</span> <span class="keyword">bundle:nil];</span></span><br><span class="line"><span class="keyword"> </span>   TestVC_SB *<span class="keyword">sbVC </span>= [<span class="keyword">sb </span><span class="keyword">instantiateViewControllerWithIdentifier:@"TestVC_SB"];</span></span><br><span class="line"><span class="keyword"> </span>   [self.navigationController pushViewController:<span class="keyword">sbVC </span>animated:YES]<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><strong>打印结果：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.326</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB initWithCoder:]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.326</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB awakeFromNib]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.328</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB loadView]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.329</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB viewDidLoad]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.329</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB viewWillAppear:]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.334</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB viewWillLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.335</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB viewDidLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.335</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB viewWillLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.335</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB viewDidLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:13</span><span class="selector-pseudo">:40.894</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12957:699432]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_SB viewDidAppear:]</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-通过-NSCoding-协议加载"><a href="#3-通过-NSCoding-协议加载" class="headerlink" title="3. 通过 NSCoding 协议加载"></a>3. 通过 NSCoding 协议加载</h3><h3 id="4-通过代码加载"><a href="#4-通过代码加载" class="headerlink" title="4. 通过代码加载"></a>4. 通过代码加载</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.799</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code initWithNibName:bundle:]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.800</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code init]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.802</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code loadView]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.803</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code viewDidLoad]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.803</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code viewWillAppear:]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.809</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code viewWillLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.809</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code viewDidLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.809</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code viewWillLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:03.810</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code viewDidLayoutSubviews]</span></span><br><span class="line">2017<span class="selector-tag">-06-07</span> 16<span class="selector-pseudo">:07</span><span class="selector-pseudo">:04.373</span> <span class="selector-tag">UIApplicationDelegate</span> &amp; <span class="selector-tag">UIViewController</span> &amp; <span class="selector-tag">UIView</span> 生命周期<span class="selector-attr">[12823:692994]</span> <span class="selector-tag">-</span><span class="selector-attr">[TestVC_Code viewDidAppear:]</span></span><br></pre></td></tr></table></figure>
+<h2 id="UIView"><a href="#UIView" class="headerlink" title="UIView"></a>UIView</h2><h3 id="1-通过-Xib-加载"><a href="#1-通过-Xib-加载" class="headerlink" title="1. 通过 Xib 加载"></a>1. 通过 Xib 加载</h3><h3 id="2-通过代码加载"><a href="#2-通过代码加载" class="headerlink" title="2. 通过代码加载"></a>2. 通过代码加载</h3><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.imlifengfeng.com/blog/?p=478" target="_blank" rel="noopener">iOS UIApplicationDelegate与UIViewController生命周期</a><br><a href="https://bestswifter.com/uiviewlifetime/" target="_blank" rel="noopener">UIView的生命周期总结</a><br><a href="http://www.csdn.net/article/2015-06-23/2825023/1" target="_blank" rel="noopener">深度解析iOS应用程序的生命周期</a><br><a href="http://www.jianshu.com/p/73879a117d2d" target="_blank" rel="noopener">UIViewController和UIView不同加载方式的生命周期函数</a><br><a href="http://www.jianshu.com/p/b3b4f08e88c4" target="_blank" rel="noopener">iOS-控制器View的创建和生命周期</a><br><a href="http://www.jianshu.com/p/9d98fad685c8" target="_blank" rel="noopener">UIView的生命周期</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/生命周期/" rel="tag"># 生命周期</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/20/数据结构-线性表（数组和链表）/" rel="next" title="数据结构-线性表（数组和链表）">
+                <i class="fa fa-chevron-left"></i> 数据结构-线性表（数组和链表）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/23/深度学习笔记-理论入门（一）/" rel="prev" title="深度学习笔记-理论入门（一）">
+                深度学习笔记-理论入门（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UIApplicationDelegate"><span class="nav-number">1.</span> <span class="nav-text">UIApplicationDelegate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIViewController"><span class="nav-number">2.</span> <span class="nav-text">UIViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通过-XIB-加载"><span class="nav-number">2.1.</span> <span class="nav-text">1. 通过 XIB 加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-通过-StoryBoard-加载"><span class="nav-number">2.2.</span> <span class="nav-text">2. 通过 StoryBoard 加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-通过-NSCoding-协议加载"><span class="nav-number">2.3.</span> <span class="nav-text">3. 通过 NSCoding 协议加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-通过代码加载"><span class="nav-number">2.4.</span> <span class="nav-text">4. 通过代码加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView"><span class="nav-number">3.</span> <span class="nav-text">UIView</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通过-Xib-加载"><span class="nav-number">3.1.</span> <span class="nav-text">1. 通过 Xib 加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-通过代码加载"><span class="nav-number">3.2.</span> <span class="nav-text">2. 通过代码加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

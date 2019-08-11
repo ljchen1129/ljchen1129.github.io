@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）。指内存管理中对引用采取自动计数的技术。只要在 LLVM 编译器中设置了 ARC 为有效状态，那么编译器将自动进行内存管理。 内存管理/引用计数举个栗子">
+<meta name="keywords" content="iOS,Objective-C,内存管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Objective-C 高级编程》读书笔记-内存管理">
+<meta property="og:url" content="http://chenliangjing.me/2017/03/30/《Objective-C-高级编程》读书笔记-内存管理/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）。指内存管理中对引用采取自动计数的技术。只要在 LLVM 编译器中设置了 ARC 为有效状态，那么编译器将自动进行内存管理。 内存管理/引用计数举个栗子">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170330_2.png?imageView/0/h/200">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170330_3.png?imageView/0/h/100">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170330_4.png?imageView/0/h/80">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170330_6.png?imageView/0/h/200">
+<meta property="og:image" content="http://liangjinggege.com/Snip20170330_7.png?imageView/0/h/200">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Objective-C 高级编程》读书笔记-内存管理">
+<meta name="twitter:description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）。指内存管理中对引用采取自动计数的技术。只要在 LLVM 编译器中设置了 ARC 为有效状态，那么编译器将自动进行内存管理。 内存管理/引用计数举个栗子">
+<meta name="twitter:image" content="http://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2017/03/30/《Objective-C-高级编程》读书笔记-内存管理/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《Objective-C 高级编程》读书笔记-内存管理 | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/03/30/《Objective-C-高级编程》读书笔记-内存管理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Objective-C 高级编程》读书笔记-内存管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-30 12:41:27" itemprop="dateCreated datePublished" datetime="2017-03-30T12:41:27+08:00">2017-03-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Objective-C/" itemprop="url" rel="index"><span itemprop="name">Objective-C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/30/《Objective-C-高级编程》读书笔记-内存管理/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/30/《Objective-C-高级编程》读书笔记-内存管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/30/《Objective-C-高级编程》读书笔记-内存管理/" class="leancloud_visitors" data-flag-title="《Objective-C 高级编程》读书笔记-内存管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是自动引用计数？"><a href="#什么是自动引用计数？" class="headerlink" title="什么是自动引用计数？"></a>什么是自动引用计数？</h2><p><code>自动引用计数</code>（ARC，Automatic Reference Counting）。指内存管理中对引用采取自动计数的技术。只要在 LLVM 编译器中设置了 ARC 为有效状态，那么编译器将自动进行内存管理。</p>
+<h2 id="内存管理-引用计数"><a href="#内存管理-引用计数" class="headerlink" title="内存管理/引用计数"></a>内存管理/引用计数</h2><h3 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h3><a id="more"></a>
+<p>以开关房间的灯为实例，假设房间的灯只有一盏，上班进入办公室需要开灯，下班离开办公室需要关灯。但是，办公室一般有多人一起上班，上下班时间上各自有前后顺序，只有来的最早的人才需要开灯，走的最晚的人才需要关灯，同时所有人都需要照明。分解需求如下：</p>
+<ol>
+<li>最早进入办公室的人需要开灯；</li>
+<li>之后进入办公室的人需要照明；</li>
+<li>下班离开办公室的人不需要照明；</li>
+<li>最后离开办公室的人需要关灯（此时无人需要照明）；</li>
+</ol>
+<p>此时为了判断是否还有人在办公室，需要导入一个计数变量来记录<code>需要照明的人数</code>，看一下对应关系：</p>
+<ol>
+<li>当第一个人进入办公室，<code>需要照明的人数</code>加 1。计数值从 0 变为 1，因此需要开灯；</li>
+<li>之后每当有人进入办公室，<code>需要照明的人数</code>就加 1；</li>
+<li>每当有人下班离开办公室，<code>需要照明的人数</code>就减 1；</li>
+<li>最后一个人下班离开办公室，<code>需要照明的人数</code>减 1，这时计数值从 1 变为 0，因此需要关灯；</li>
+</ol>
+<p>对应 Objective-C 中对象的内存管理如下表：</p>
+<p><img src="http://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200" alt=""></p>
+<h3 id="内存管理的思考方式"><a href="#内存管理的思考方式" class="headerlink" title="内存管理的思考方式"></a>内存管理的思考方式</h3><blockquote>
+<p>注意：以下代码在 MRC 环境下。</p>
+</blockquote>
+<ul>
+<li>自己生成的对象，自己所持有</li>
+<li>非自己生成的对象，自己也能持有</li>
+<li>不再需要自己持有的对象时，释放对象</li>
+<li>非自己持有的对象无法释放</li>
+</ul>
+<p>对象操作与 Objective-C 中方法对应如下：</p>
+<p><img src="http://liangjinggege.com/Snip20170330_2.png?imageView/0/h/200" alt=""></p>
+<blockquote>
+<p>注意：Objective-C 中对象的<code>内存管理方法</code>都在所有类的基类 NSObject 中定义，包括 alloc 类方法，retain/release/dealloc 对象方法。</p>
+</blockquote>
+<h4 id="自己生成的对象，自己持有"><a href="#自己生成的对象，自己持有" class="headerlink" title="#自己生成的对象，自己持有"></a>#自己生成的对象，自己持有</h4><p>使用以下名称开头的方法名生成的对象只有自己持有：</p>
+<ul>
+<li>alloc</li>
+<li>new</li>
+<li>copy</li>
+<li>mutableCopy</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 自己生成并持有对象-alloc</span></span><br><span class="line"><span class="built_in">NSObject</span> *obj1 = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line">    </span><br><span class="line"><span class="comment">/// 自己生成并持有对象-new</span></span><br><span class="line"><span class="built_in">NSObject</span> *obj2 = [<span class="built_in">NSObject</span> new];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[[NSObject alloc] init] 和 [NSObject new] 两种方法的效果一致。</p>
+</blockquote>
+<p>copy 方法利用基于 <code>&lt;NSCopying&gt;</code> 协议约定，由各类实现 copyWithZone：方法生成并持有对象的副本。同样，mutableCopy 方法利用基于 <code>&lt;NSMutableCopying&gt;</code> 协议，由各类实现 mutableCopyWithZone: 方法生成并持有对象的副本，两者的区别是：copy 方法生成不可变的对象，mutableCopy 方法生成可变的对象。其中 Foundation 类已经遵守了 <code>&lt;NSCopying&gt;</code> 和 <code>&lt;NSMutableCopying&gt;</code> 协议。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LJStudent *stu1 = [[LJStudent alloc] init];</span><br><span class="line">/// 自己生成并持有对象</span><br><span class="line">LJStudent *stu2 = [stu1 <span class="keyword">copy</span><span class="bash">];</span></span><br><span class="line"><span class="bash">NSLog(@<span class="string">"stu1:%p---stu2:%p"</span>,stu1, stu2);</span></span><br></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<p><img src="http://liangjinggege.com/Snip20170330_3.png?imageView/0/h/100" alt=""></p>
+<p>mutableCopy 方法类似。</p>
+<p>除了这些方法，使用<code>以下名称开头的方法名</code>也意味着自己<code>生成并持有对象</code>：</p>
+<ul>
+<li><strong>alloc</strong>MyObject</li>
+<li><strong>new</strong>ThatObject</li>
+<li><strong>copy</strong>This</li>
+<li><strong>mutableCopy</strong>YourObject</li>
+</ul>
+<h4 id="非自己生成的对象，自己也能持有"><a href="#非自己生成的对象，自己也能持有" class="headerlink" title="#非自己生成的对象，自己也能持有"></a>#非自己生成的对象，自己也能持有</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 取得非自己生成但自己持有的对象</span></span><br><span class="line"><span class="keyword">id</span> obj = [<span class="built_in">NSMutableArray</span> array]; <span class="comment">// 取得的对象存在，但变量 obj 并不持有</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"Reference Count=%lu"</span>,[obj retainCount]);</span><br><span class="line">[obj <span class="keyword">retain</span>]; <span class="comment">// obj 变量自己持有对象</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"Reference Count=%lu"</span>,[obj retainCount]);</span><br></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<p><img src="http://liangjinggege.com/Snip20170330_4.png?imageView/0/h/80" alt=""></p>
+<blockquote>
+<p>为什么打印结果是 1 和 2，不是 0 和 1 ?不解？？？？？？？？？。做个标记<del>~</del>~~~</p>
+</blockquote>
+<blockquote>
+<p>答案：因为类似<code>[NSMutableArray array]</code>方法生成的对象，内部是使用了 <code>autorelease</code> 方法实现，将其注册到 <code>artoreleasepool</code> 中去了，所以第一次打印也是 1。如何证明，通过给对象发送 release 消息，应用程序将会崩溃。</p>
+</blockquote>
+<p>这种<code>能够取得对象但又不持有对象</code>的方法内部实现是：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> obj = [[[<span class="keyword">self</span> <span class="keyword">class</span>] alloc] init]; <span class="comment">// 生成对象并自己持有</span></span><br><span class="line">[obj autorelease]; <span class="comment">// 对象存在但自己不持有对象</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">return</span> obj;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>autorelease</code> 能够使对象在超出指定生存范围时能够自动并正确的释放。（也是通过对对象调用 release 方法实现）</p>
+</blockquote>
+<h4 id="不再需要自己持有的对象时，释放对象"><a href="#不再需要自己持有的对象时，释放对象" class="headerlink" title="#不再需要自己持有的对象时，释放对象"></a>#不再需要自己持有的对象时，释放对象</h4><p>自己持有的对象，一旦不再需要，持有者有义务释放该对象，使用 release 方法：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 通过alloc/new/copy/mutableCopy 方法生成并持有的对象</span></span><br><span class="line"><span class="keyword">id</span> obj1 = [[<span class="built_in">NSObject</span> alloc] init]; <span class="comment">// Reference Count 等于 1</span></span><br><span class="line">[obj1 release]; <span class="comment">// Reference Count 等于 0</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">/// 通过 retain 持有的对象</span></span><br><span class="line"><span class="keyword">id</span> obj2 = [<span class="built_in">NSMutableArray</span> array]; <span class="comment">// Reference Count 等于 2</span></span><br><span class="line">[obj2 <span class="keyword">retain</span>]; <span class="comment">// Reference Count 等于 2</span></span><br><span class="line">[obj2 release]; <span class="comment">// Reference Count 等于 1，对象不可再调用 release 方法释放</span></span><br></pre></td></tr></table></figure>
+<h4 id="非自己持有的对象无法释放"><a href="#非自己持有的对象无法释放" class="headerlink" title="#非自己持有的对象无法释放"></a>#非自己持有的对象无法释放</h4><p>释放非自己持有的对象时应用程序会发生崩溃:</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 1. 释放完后不再需要的对象</span></span><br><span class="line">id obj1 = [[NSObject alloc] init];</span><br><span class="line">[obj1 <span class="built_in">release</span>]; <span class="comment">// 对象已释放</span></span><br><span class="line">[obj1 <span class="built_in">release</span>]; <span class="comment">// 再次释放，程序崩溃</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">/// 2. 取得的对象存在，但自己不持有</span></span><br><span class="line">id obj2 = [NSMutableArray <span class="keyword">array</span>];</span><br><span class="line">[obj2 <span class="built_in">release</span>]; <span class="comment">// 程序崩溃</span></span><br></pre></td></tr></table></figure>
+<h3 id="alloc-retain-release-dealloc-实现"><a href="#alloc-retain-release-dealloc-实现" class="headerlink" title="alloc/retain/release/dealloc 实现"></a>alloc/retain/release/dealloc 实现</h3><p>可以使用能够和 Cocoa 框架互换的 <a href="https://github.com/gnustep/base/blob/master/Source/NSObject.m" target="_blank" rel="noopener">GNUstep 框架源码</a>中 <code>NSObject 类的 .m 文件</code>进行分析，来分析 alloc/retain/release/dealloc 的实现。代码经过简化处理，只保留相关联的部分。</p>
+<h4 id="alloc"><a href="#alloc" class="headerlink" title="#alloc"></a>#alloc</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// alloc 生成对象</span></span><br><span class="line">+ (<span class="keyword">id</span>)alloc</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="keyword">self</span> allocWithZone: <span class="built_in">NSDefaultMallocZone</span>()];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 给对象分配内存</span></span><br><span class="line">+ (<span class="keyword">id</span>)allocWithZone: (<span class="built_in">NSZone</span>*)z</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">NSAllocateObject</span> (<span class="keyword">self</span>, <span class="number">0</span>, z);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 内联函数</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">id</span></span><br><span class="line"><span class="built_in">NSAllocateObject</span> (Class aClass, <span class="built_in">NSUInteger</span> extraBytes, <span class="built_in">NSZone</span> *zone)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">id</span>	new;</span><br><span class="line">	<span class="keyword">int</span>	size;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 计算所需要的内存空间	大小，包括对象大小、 obj_layout 的大小、额外的字节</span></span><br><span class="line">	size = class_getInstanceSize(aClass) + extraBytes + <span class="keyword">sizeof</span>(<span class="keyword">struct</span> obj_layout);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 分配存放对象所需的内存空间	</span></span><br><span class="line">	new = <span class="built_in">NSZoneMalloc</span>(zone, size);</span><br><span class="line">	<span class="comment">// 将该内存空间置 0</span></span><br><span class="line">	memset (new, <span class="number">0</span>, size);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 返回作为对象而使用的指针</span></span><br><span class="line">	new = (<span class="keyword">id</span>)&amp;((<span class="keyword">struct</span> obj_layout *)new)[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> new;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// obj_layout 结构体</span></span><br><span class="line"><span class="keyword">struct</span> obj_layout &#123;</span><br><span class="line">	<span class="comment">// 不懂这个东东是干什么的</span></span><br><span class="line">	<span class="keyword">char</span>	padding[__BIGGEST_ALIGNMENT__ - ((UNP % __BIGGEST_ALIGNMENT__)</span><br><span class="line">	? (UNP % __BIGGEST_ALIGNMENT__) : __BIGGEST_ALIGNMENT__)];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 这个东东是一个 long 类型</span></span><br><span class="line">	gsrefcount_t	retained;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>NSDefaultMallocZone、NSZoneMalloc 中包含的 NSZone 是为了防止内存碎片化而引入的结构，通过对内存分配的区域本身进行多重化管理，根据使用对象的目的、对象的大小分配内存，从而提高了内存管理的效率。</p>
+</blockquote>
+<p>去掉 NSZone 之后的简化代码：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+ (id)alloc</span><br><span class="line">&#123;	</span><br><span class="line">	<span class="comment">// 计算所需要的内存空间	大小，包括 obj_layout 的大小</span></span><br><span class="line">	int size = <span class="keyword">sizeof</span>(<span class="class"><span class="keyword">struct</span> <span class="title">obj_layout</span></span>) + 对象大小;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// obj_layout 结构体的指针，calloc() 函数用来动态的分配内存空间，并将每一个字节都初始化为 0，空间大小等于 1 * size，分配成功返回指向该内存的地址</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">obj_layout</span></span> *p = (<span class="class"><span class="keyword">struct</span> <span class="title">obj_layout</span></span> *)calloc(<span class="number">1</span>, size);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 返回作为对象而使用的指针</span></span><br><span class="line">	<span class="keyword">return</span> (id)(p + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// obj_layout 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">obj_layout</span></span> &#123;</span><br><span class="line">	<span class="comment">// 这个东东是一个 long 类型</span></span><br><span class="line">	gsrefcount_t	retained;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>alloc 类方法用 struct obj_layout 中 long 类型整数 <code>retained</code> 来保存<code>引用计数</code>，并将其写入对象内存头部，该对象内存块全部置 0 后返回。</p>
+</blockquote>
+<p><img src="http://liangjinggege.com/Snip20170330_6.png?imageView/0/h/200" alt=""></p>
+<center>alloc 返回对象内存图</center>
+
+<p>对象的引用计数可以通过 <code>retainCount</code> 实例方法得到，来看对象 alloc 后 <code>retainCount</code> 实例方法做了什么：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="built_in">NSUInteger</span>)retainCount</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 让 struct obj_layout 中保存的 retained 变量加 1 后返回，最开始 retained 的值为 0</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">NSExtraRefCount</span>(<span class="keyword">self</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 内联函数 </span></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">NSUInteger</span></span><br><span class="line"><span class="built_in">NSExtraRefCount</span>(<span class="keyword">id</span> anObject)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 返回 struct obj_layout 中的 retained 变量</span></span><br><span class="line">	<span class="keyword">return</span> ((<span class="keyword">struct</span> obj_layout *)anObject)[<span class="number">-1</span>].retained;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://liangjinggege.com/Snip20170330_7.png?imageView/0/h/200" alt=""></p>
+<blockquote>
+<p>由对象寻址找到对象内存头部，从而访问其中的 retained 变量。由于分配时全部置为 0，所以 retained 的值为 0。</p>
+</blockquote>
+<h4 id="retain"><a href="#retain" class="headerlink" title="#retain"></a>#retain</h4><p>再看 retain 是怎么实现的：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)<span class="keyword">retain</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">NSIncrementExtraRefCount</span>(<span class="keyword">self</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 内联函数，去除了一些异常判断和线程安全的代码</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span></span><br><span class="line"><span class="built_in">NSIncrementExtraRefCount</span>(<span class="keyword">id</span> anObject)</span><br><span class="line">&#123;</span><br><span class="line">	((<span class="keyword">struct</span> obj_layout)anObject)[<span class="number">-1</span>].retained++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以发现：对对象 retain 操作就是对 struct obj_layout 中的 retained 变量进行 ++ 操作。</p>
+</blockquote>
+<h4 id="release"><a href="#release" class="headerlink" title="#release"></a>#release</h4><p>看对对象 release 操作发生了什么：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">oneway</span> <span class="keyword">void</span>)release</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 判断当前 retained 变量的值是否为 0，如果为 0，直接调用 dealloc 方法销毁对象</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">NSDecrementExtraRefCountWasZero</span>(<span class="keyword">self</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="meta">#	ifdef OBJC_CAP_ARC</span></span><br><span class="line">		objc_delete_weak_refs(<span class="keyword">self</span>);</span><br><span class="line">		<span class="meta">#	endif</span></span><br><span class="line">		[<span class="keyword">self</span> dealloc];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 内联函数</span></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">BOOL</span></span><br><span class="line"><span class="built_in">NSDecrementExtraRefCountWasZero</span>(<span class="keyword">id</span> anObject)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (((<span class="keyword">struct</span> obj_layout)anObject)[<span class="number">-1</span>].retained == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		((<span class="keyword">struct</span> obj_layout)anObject)[<span class="number">-1</span>].retained--;</span><br><span class="line">		    </span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对对象 release 操作的内部实现是：判断当前 <code>retained</code> 变量的值，如果大于 0 就减 1，等于 0，等于 0 就调用 dealloc 方法销毁对象。</p>
+</blockquote>
+<h4 id="dealloc"><a href="#dealloc" class="headerlink" title="#dealloc"></a>#dealloc</h4><p>最后，看一下对对象执行 dealloc 操作背后的实现：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dealloc</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">NSDeallocateObject</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// inline 标识内联函数，用于经常会使用到的函数，可以提高性能</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span></span><br><span class="line"><span class="built_in">NSDeallocateObject</span>(<span class="keyword">id</span> anObject)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">struct</span> obj_layout *o = &amp;((<span class="keyword">struct</span> obj_layout)anObject)[<span class="number">-1</span>];</span><br><span class="line">		</span><br><span class="line">	free(o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对对象执行 dealloc 操作，相当于会释放掉由 alloc 方法申请分配的内存。</p>
+<p>以上就是 alloc/retain/release/dealloc 方法在 GNUstep 框架中的实现，具体总结如下：</p>
+<ul>
+<li>在 Objective-C 的对象中存在<code>引用计数</code>这一整数值；</li>
+<li>调用 <code>alloc</code> 或是 <code>retain</code> 方法后，引用计数<code>加 1</code>；</li>
+<li>调用 <code>release</code> 方法后，引用计数<code>减 1</code>；</li>
+<li>当引用计数为 <code>0</code> 时，调用 <code>dealloc</code> 方法<code>销毁对象</code>；</li>
+</ul>
+<h3 id="apple-的实现"><a href="#apple-的实现" class="headerlink" title="apple 的实现"></a>apple 的实现</h3><p><a href="https://opensource.apple.com/source/objc4/objc4-706/" target="_blank" rel="noopener">源码地址</a>，先来看 alloc 类方法实现：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">+ (id)alloc &#123;</span><br><span class="line">    <span class="keyword">return</span> _objc_rootAlloc(self);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">id</span><br><span class="line">_objc_rootAlloc(<span class="keyword">Class</span> cls)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> callAlloc(cls, <span class="keyword">false</span>, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> ALWAYS_INLINE id</span><br><span class="line">callAlloc(<span class="keyword">Class</span> cls, bool checkNil, bool allocWithZone=<span class="keyword">false</span>)</span><br><span class="line">&#123;</span><br><span class="line">    id obj = class_createInstance(cls, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">id class_createInstance(<span class="keyword">Class</span> cls, size_t extraBytes)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (*_alloc)(cls, extraBytes);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">id (*_alloc)(<span class="keyword">Class</span>, size_t) = _class_createInstance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> id _class_createInstance(<span class="keyword">Class</span> cls, size_t extraBytes)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> _class_createInstanceFromZone (cls, extraBytes, nil);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">id </span><br><span class="line">_class_createInstanceFromZone(<span class="keyword">Class</span> cls, size_t extraBytes, <span class="keyword">void</span> *zone)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">void</span> *bytes;</span><br><span class="line">    size_t <span class="keyword">size</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Allocate and initialize</span></span><br><span class="line">    <span class="keyword">size</span> = cls-&gt;alignedInstanceSize() + extraBytes;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// CF requires all objects be at least 16 bytes.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">size</span> &lt; <span class="number">16</span>) <span class="keyword">size</span> = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (zone) &#123;</span><br><span class="line">        bytes = malloc_zone_calloc((malloc_zone_t *)zone, <span class="number">1</span>, <span class="keyword">size</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        bytes = calloc(<span class="number">1</span>, <span class="keyword">size</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> objc_constructInstance(cls, bytes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>retainCount</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">- (NSUInteger)retainCount &#123;</span><br><span class="line">    <span class="keyword">return</span> ((id)self)-&gt;rootRetainCount();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">uintptr_t</span> </span><br><span class="line">objc_object::rootRetainCount()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (isTaggedPointer()) <span class="keyword">return</span> (<span class="keyword">uintptr_t</span>)<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> sidetable_retainCount();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uintptr_t</span></span><br><span class="line">objc_object::sidetable_retainCount()</span><br><span class="line">&#123;</span><br><span class="line">    SideTable&amp; table = SideTables()[<span class="keyword">this</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> refcnt_result = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    table.lock();</span><br><span class="line">    RefcountMap::iterator it = table.refcnts.find(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">if</span> (it != table.refcnts.end()) &#123;</span><br><span class="line">        <span class="comment">// this is valid for SIDE_TABLE_RC_PINNED too</span></span><br><span class="line">        refcnt_result += it-&gt;second &gt;&gt; SIDE_TABLE_RC_SHIFT;</span><br><span class="line">    &#125;</span><br><span class="line">    table.unlock();</span><br><span class="line">    <span class="keyword">return</span> refcnt_result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="autorelease"><a href="#autorelease" class="headerlink" title="autorelease"></a>autorelease</h3><h3 id="autorelease-实现"><a href="#autorelease-实现" class="headerlink" title="autorelease 实现"></a>autorelease 实现</h3><h3 id="apple-实现"><a href="#apple-实现" class="headerlink" title="apple 实现"></a>apple 实现</h3><h2 id="ARC-规则"><a href="#ARC-规则" class="headerlink" title="ARC 规则"></a>ARC 规则</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><h3 id="内存管理的思考方式-1"><a href="#内存管理的思考方式-1" class="headerlink" title="内存管理的思考方式"></a>内存管理的思考方式</h3><h3 id="所有权修饰符"><a href="#所有权修饰符" class="headerlink" title="所有权修饰符"></a>所有权修饰符</h3><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h2 id="ARC实现"><a href="#ARC实现" class="headerlink" title="ARC实现"></a>ARC实现</h2><h3 id="strong-修饰符"><a href="#strong-修饰符" class="headerlink" title="__strong 修饰符"></a>__strong 修饰符</h3><h3 id="weak-修饰符"><a href="#weak-修饰符" class="headerlink" title="__weak 修饰符"></a>__weak 修饰符</h3><h3 id="autoreleasing-修饰符"><a href="#autoreleasing-修饰符" class="headerlink" title="__autoreleasing 修饰符"></a>__autoreleasing 修饰符</h3><h3 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/Categorys/内存管理/" rel="tag"># 内存管理</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/《Effective-Objective-C-2-0》（一）-熟悉-Objective-C/" rel="next" title="《Effective Objective-C 2.0》读书笔记（第一章：熟悉 Objective-C）">
+                <i class="fa fa-chevron-left"></i> 《Effective Objective-C 2.0》读书笔记（第一章：熟悉 Objective-C）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/Objective-C 语言基础（一、基础知识）/" rel="prev" title="Objective-C 语言基础（一、基础知识）">
+                Objective-C 语言基础（一、基础知识） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是自动引用计数？"><span class="nav-number">1.</span> <span class="nav-text">什么是自动引用计数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理-引用计数"><span class="nav-number">2.</span> <span class="nav-text">内存管理/引用计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.1.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理的思考方式"><span class="nav-number">2.2.</span> <span class="nav-text">内存管理的思考方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自己生成的对象，自己持有"><span class="nav-number">2.2.1.</span> <span class="nav-text">#自己生成的对象，自己持有</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非自己生成的对象，自己也能持有"><span class="nav-number">2.2.2.</span> <span class="nav-text">#非自己生成的对象，自己也能持有</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不再需要自己持有的对象时，释放对象"><span class="nav-number">2.2.3.</span> <span class="nav-text">#不再需要自己持有的对象时，释放对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非自己持有的对象无法释放"><span class="nav-number">2.2.4.</span> <span class="nav-text">#非自己持有的对象无法释放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#alloc-retain-release-dealloc-实现"><span class="nav-number">2.3.</span> <span class="nav-text">alloc/retain/release/dealloc 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#alloc"><span class="nav-number">2.3.1.</span> <span class="nav-text">#alloc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#retain"><span class="nav-number">2.3.2.</span> <span class="nav-text">#retain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#release"><span class="nav-number">2.3.3.</span> <span class="nav-text">#release</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dealloc"><span class="nav-number">2.3.4.</span> <span class="nav-text">#dealloc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apple-的实现"><span class="nav-number">2.4.</span> <span class="nav-text">apple 的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autorelease"><span class="nav-number">2.5.</span> <span class="nav-text">autorelease</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autorelease-实现"><span class="nav-number">2.6.</span> <span class="nav-text">autorelease 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apple-实现"><span class="nav-number">2.7.</span> <span class="nav-text">apple 实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC-规则"><span class="nav-number">3.</span> <span class="nav-text">ARC 规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要"><span class="nav-number">3.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理的思考方式-1"><span class="nav-number">3.2.</span> <span class="nav-text">内存管理的思考方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有权修饰符"><span class="nav-number">3.3.</span> <span class="nav-text">所有权修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规则"><span class="nav-number">3.4.</span> <span class="nav-text">规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">3.5.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">3.6.</span> <span class="nav-text">数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC实现"><span class="nav-number">4.</span> <span class="nav-text">ARC实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#strong-修饰符"><span class="nav-number">4.1.</span> <span class="nav-text">__strong 修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-修饰符"><span class="nav-number">4.2.</span> <span class="nav-text">__weak 修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autoreleasing-修饰符"><span class="nav-number">4.3.</span> <span class="nav-text">__autoreleasing 修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数"><span class="nav-number">4.4.</span> <span class="nav-text">引用计数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

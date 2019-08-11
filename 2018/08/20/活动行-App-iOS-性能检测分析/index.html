@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="性能检测使用到的相关工具 instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；">
+<meta name="keywords" content="iOS,性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="活动行 App_iOS 性能检测分析">
+<meta property="og:url" content="http://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/index.html">
+<meta property="og:site_name" content="青争哥哥">
+<meta property="og:description" content="性能检测使用到的相关工具 instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_19-21-39.png">
+<meta property="og:image" content="http://liangjinggege.com/Jietu20180627-152429.jpg">
+<meta property="og:image" content="http://liangjinggege.com/Jietu20180627-162633.jpg">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-06-28_16-12-22.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-06-28_16-30-12.png">
+<meta property="og:image" content="http://liangjinggege.com/2122663-461126cdd47bbe16%20%281%29.png?imageView2/2/w/600">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-06-28_001.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-06-28_002.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-06-28_003.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_19-27-12.png?imageView2/2/w/375">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_19-52-59.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_19-52-41.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_19-56-14.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_20-15-39.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_20-25-07.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_15-54-58.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_19-09-50.png">
+<meta property="og:image" content="http://liangjinggege.com/Xnip2018-07-13_19-10-33.png">
+<meta property="og:updated_time" content="2019-06-04T14:05:38.344Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="活动行 App_iOS 性能检测分析">
+<meta name="twitter:description" content="性能检测使用到的相关工具 instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；">
+<meta name="twitter:image" content="http://liangjinggege.com/Xnip2018-07-13_19-21-39.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>活动行 App_iOS 性能检测分析 | 青争哥哥</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青争哥哥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青争哥哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">活动行 App_iOS 性能检测分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-20 11:12:29" itemprop="dateCreated datePublished" datetime="2018-08-20T11:12:29+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/性能优化/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/20/活动行-App-iOS-性能检测分析/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/20/活动行-App-iOS-性能检测分析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/20/活动行-App-iOS-性能检测分析/" class="leancloud_visitors" data-flag-title="活动行 App_iOS 性能检测分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="性能检测"><a href="#性能检测" class="headerlink" title="性能检测"></a>性能检测</h2><h3 id="使用到的相关工具"><a href="#使用到的相关工具" class="headerlink" title="使用到的相关工具"></a>使用到的相关工具</h3><ul>
+<li>instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；</li>
+</ul>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_19-21-39.png" alt=""></p>
+<a id="more"></a>
+<ul>
+<li><a href="https://github.com/Tencent/MLeaksFinder" target="_blank" rel="noopener">MLeaksFinder</a>：微信读书开源的一款 debeg 模式下精准 iOS 内存泄露检测工具；</li>
+<li><a href="https://github.com/beiliao-mobile/BLStopwatch" target="_blank" rel="noopener">BLStopwatch</a>：代码耗时打点计时器</li>
+<li><a href="https://github.com/ImageOptim/ImageOptim" target="_blank" rel="noopener">ImageOptim</a>：图片压缩工具；</li>
+<li><a href="https://github.com/tinymind/LSUnusedResources" target="_blank" rel="noopener">LSUnusedResources</a>：扫描项目中未使用到的无用资源，一键清除；</li>
+<li><a href="https://github.com/huanxsd/LinkMap" target="_blank" rel="noopener">LinkMap</a>：检测出每个类在最终的可执行文件中占据的大小；</li>
+<li><a href="https://github.com/jvjishou/FHHFPSIndicator" target="_blank" rel="noopener">FHHFPSIndicator</a>：debug 模式下实时显示页面的滑动帧率；</li>
+</ul>
+<h3 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h3><ul>
+<li>真机：iPhone 6 plus</li>
+<li>系统：iOS 11.4</li>
+<li>模式：release</li>
+</ul>
+<h3 id="1-启动时间"><a href="#1-启动时间" class="headerlink" title="1. 启动时间"></a>1. 启动时间</h3><blockquote>
+<p>启动时间是从用户点击 App 图标开始，到用户看到第一个界面总耗费的时间。</p>
+<p>iOS App 的启动时间可以分为一下两个部分：</p>
+</blockquote>
+<ol>
+<li>preMain 耗时</li>
+<li>main 函数调用到第一个 ViewController 的 viewDidAppear 调用耗时</li>
+</ol>
+<h4 id="1-1-preMain-耗时测量"><a href="#1-1-preMain-耗时测量" class="headerlink" title="#1.1 preMain 耗时测量"></a>#1.1 preMain 耗时测量</h4><p>preMain 耗时可以在 XCode -&gt; Product -&gt; Scheme -&gt; Edit Shchem -&gt; Run -&gt; Environment Variables -&gt; + -&gt; 添加 name 为 <code>DYLD_PRINT_STATISTICS</code>，Value 为 <code>1</code> 的<code>环境变量</code>。</p>
+<p><img src="http://liangjinggege.com/Jietu20180627-152429.jpg" alt=""></p>
+<p>在控制台就可以打印出 preMain 耗时的相关信息</p>
+<p><img src="http://liangjinggege.com/Jietu20180627-162633.jpg" alt=""></p>
+<p><strong>信息解读</strong></p>
+<ul>
+<li>main()函数之前总共使用了 533.97 ms；</li>
+<li>在 533.97 ms中，加载动态库用了 108.68ms，指针重定位使用了 74.48ms，ObjC 类初始化使用了56.81ms，各种初始化使用了 293.49 ms；</li>
+<li>在初始化耗费的 293.49ms 中，用时最多的五个初始化是 libSystem.B.dylib、libBacktraceRecording.dylib、libMainThreadChecker.dylib、libglInterpose.dylib以及 hdx；</li>
+</ul>
+<blockquote>
+<p><strong>说明：</strong>preMain 时间在小于 400ms 是最佳的，因为从点击图标到显示启动图，再到启动图消失这段时间是 400ms。同时启动时间不可以大于 20s，否则会被系统杀掉。</p>
+</blockquote>
+<h4 id="1-2-main-函数调用之到第一个-ViewController-的-viewDidAppear-调用耗时测量"><a href="#1-2-main-函数调用之到第一个-ViewController-的-viewDidAppear-调用耗时测量" class="headerlink" title="#1.2 main 函数调用之到第一个 ViewController 的 viewDidAppear 调用耗时测量"></a>#1.2 main 函数调用之到第一个 ViewController 的 viewDidAppear 调用耗时测量</h4><ol>
+<li>手写统计耗时代码<br><img src="http://liangjinggege.com/Xnip2018-06-28_16-12-22.png" alt=""><br><img src="http://liangjinggege.com/Xnip2018-06-28_16-30-12.png" alt=""></li>
+</ol>
+<ol start="2">
+<li>使用<a href="https://github.com/beiliao-mobile/BLStopwatch" target="_blank" rel="noopener">打点计时器</a>工具进行打点</li>
+</ol>
+<p><img src="http://liangjinggege.com/2122663-461126cdd47bbe16%20%281%29.png?imageView2/2/w/600" alt=""></p>
+<blockquote>
+<p><strong>工作原理：</strong> 只需要在 main 函数中开启 start 方法计时，然后在 <code>didFinishLaunchingWithOptions</code> 方法中对启动时调用的相关方法做打点，最后在首页控制器 viewDidAppear 中结束打点计时，从而可以根据每个节点，统计出打点方法的调用时间以及总时间。</p>
+</blockquote>
+<p><img src="http://liangjinggege.com/Xnip2018-06-28_001.png" alt=""><br><img src="http://liangjinggege.com/Xnip2018-06-28_002.png" alt=""><br><img src="http://liangjinggege.com/Xnip2018-06-28_003.png" alt=""></p>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_19-27-12.png?imageView2/2/w/375" alt=""></p>
+<h4 id="1-3-测量数据统计分析"><a href="#1-3-测量数据统计分析" class="headerlink" title="#1.3 测量数据统计分析"></a>#1.3 测量数据统计分析</h4><blockquote>
+<p>总共测试 5 次。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">次数</th>
+<th style="text-align:center">preMain</th>
+<th style="text-align:center">mian 到首屏控制器 viewDidAppear</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">第一次</td>
+<td style="text-align:center">584.76ms</td>
+<td style="text-align:center">4.276s</td>
+</tr>
+<tr>
+<td style="text-align:center">第二次</td>
+<td style="text-align:center">628.80ms</td>
+<td style="text-align:center">4.173s</td>
+</tr>
+<tr>
+<td style="text-align:center">第三次</td>
+<td style="text-align:center">815.88ms</td>
+<td style="text-align:center">4.334s</td>
+</tr>
+<tr>
+<td style="text-align:center">第四次</td>
+<td style="text-align:center">610.94ms</td>
+<td style="text-align:center">4.331s</td>
+</tr>
+<tr>
+<td style="text-align:center">第五次</td>
+<td style="text-align:center">590.88ms</td>
+<td style="text-align:center">4.357s</td>
+</tr>
+<tr>
+<td style="text-align:center">平均值</td>
+<td style="text-align:center">646.25ms</td>
+<td style="text-align:center">4.294s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-4-优化方向"><a href="#1-4-优化方向" class="headerlink" title="#1.4 优化方向"></a>#1.4 优化方向</h4><ul>
+<li><p>preMain</p>
+<ul>
+<li>preMain 时间在小于 400ms 是最佳的，因为从点击图标到显示启动图，再到启动图消失这段时间是 400ms。同时启动时间不可以大于 20s，否则会被系统杀掉。</li>
+<li>这里面主要做了一些 iOS 系统动态库的链接、App 中 objc 类的加载。</li>
+<li>针对这里的优化：<ul>
+<li>合并自己添加的动态库，减少动态库的数量，目前我们没有使用自己添加的动态库；</li>
+<li>合并 Category 和功能类似的类，这个确实存在不少；</li>
+<li>删除无用的方法和类；</li>
+<li>用 initialize 方法替代 load，减少每个类的 load 方法的执行时间；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>main()函数 -&gt; 第一个页面渲染完成，用户看到界面的时间。这里可以做的优化有：</p>
+<ul>
+<li>从几次测试数据可以看出，主要的耗时一个是在第三方 SDK 的初始化上，耗时超过 1s，另一个是根控制器极其相关控制器的初始化上。所以优化性价比最高的地方应该是这两个地方<ul>
+<li>能延迟执行的就延迟执行。比如 SDK 的初始化，界面的创建，将页面请求加载数据、渲染等操作转移到viewWillAppear 方法中去；</li>
+<li>不能延迟执行的，尽量放到后台执行，比如一些读取沙盒用户偏好缓存的数据操作；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-安装包体积"><a href="#2-安装包体积" class="headerlink" title="2. 安装包体积"></a>2. 安装包体积</h3><h3 id="2-1-包体积检测和分析"><a href="#2-1-包体积检测和分析" class="headerlink" title="#2.1 包体积检测和分析"></a>#2.1 包体积检测和分析</h3><p>打包后的 ipa 包体积：</p>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_19-52-59.png" alt=""></p>
+<p>解压缩后右键显示包内容：</p>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_19-52-41.png" alt=""></p>
+<p>可以看到安装包主要构成：</p>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_19-56-14.png" alt=""></p>
+<p>其中，主要的体积消耗在：</p>
+<ol>
+<li>二进制代码：31.2 M</li>
+<li>.car 资源文件：11.2 M</li>
+<li>图片等资源文件：4.7 M</li>
+</ol>
+<h3 id="2-2-包体积优化"><a href="#2-2-包体积优化" class="headerlink" title="#2.2 包体积优化"></a>#2.2 包体积优化</h3><ul>
+<li>图片优化：使用 <a href="https://github.com/ImageOptim/ImageOptim" target="_blank" rel="noopener">ImageOptim</a> 图片压缩工具对工程中的图片做一次压缩处理；</li>
+<li>清除无用的资源：使用 <a href="https://github.com/tinymind/LSUnusedResources" target="_blank" rel="noopener">LSUnusedResources</a> 工具，清除掉工程中未使用到的资源文件；</li>
+</ul>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_20-15-39.png" alt=""></p>
+<blockquote>
+<p>可以看到无用的资源文件特别多。</p>
+</blockquote>
+<ul>
+<li>二进制文件优化：使用 <a href="https://github.com/huanxsd/LinkMap" target="_blank" rel="noopener">LinkMap</a> 工具检测出每个类或者库在最终的可执行文件中所占用的空间大小（代码段+数据段），进行针对性的优化；</li>
+</ul>
+<p>编译后 arm 7 架构下每个库或者类在最终的可执行文件中所占用的空间大小：</p>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_20-25-07.png" alt=""></p>
+<ul>
+<li>一些编译选项优化的开关开启；</li>
+</ul>
+<h3 id="3-内存"><a href="#3-内存" class="headerlink" title="3. 内存"></a>3. 内存</h3><ul>
+<li>Xcode Analyze 静态分析工具分析可疑泄露点，有些真的存在，有些不存在，可以通过结合 Instruments 动态分析工具以及代码上下文排除解决</li>
+</ul>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_15-54-58.png" alt=""></p>
+<ul>
+<li><p>主要包含以下几个部分：</p>
+<ul>
+<li>面向用户的文本应该使用本地化;</li>
+<li>无效数据监测;</li>
+<li>逻辑错误：访问空指针或未初始化的变量等；</li>
+<li>内存管理错误：如内存泄漏等；</li>
+<li>声明错误：从未使用过的变量；</li>
+<li>API 调用错误：未包含使用的库和框架;</li>
+</ul>
+</li>
+<li><p>Xcode Instruments 动态分析工具中的 Leaks 和 Allocations 跟踪模板进行动态跟踪分析, 确认这些点是否真的泄漏, 或者是否有新的泄漏点出现</p>
+</li>
+</ul>
+<p><img src="http://liangjinggege.com/Xnip2018-07-13_19-09-50.png" alt=""><br><img src="http://liangjinggege.com/Xnip2018-07-13_19-10-33.png" alt=""></p>
+<h3 id="3-1-内存方面可做的优化"><a href="#3-1-内存方面可做的优化" class="headerlink" title="#3.1. 内存方面可做的优化"></a>#3.1. 内存方面可做的优化</h3><p>一般在占用系统内存超过 20% 的时候会有内存警告，而超过 50% 的时候，就很容易被系统 Crash。</p>
+<ul>
+<li><p>iOS 中内存问题主要包含两个部分:</p>
+</li>
+<li><p>循环引用</p>
+<ul>
+<li>Delegate：检查所有用到的代理对象属性是否是使用weak内存管理策略</li>
+<li>NSTimer：使用 GCD 定时器代替 NSTimer，GCD 定时器的优点是时间误差小，不会发生循环引用；</li>
+<li>Block: 检查所有用到 Block 的地方，是否存在循环引用问题；</li>
+<li>NSNotificationCenter：检查 NSNotification addObserver 后是否有移除；</li>
+</ul>
+</li>
+<li><p>大量数据加载及使用导致的内存警告</p>
+<ul>
+<li>处理每个单独页面以及整个 App 收到的内存警告，及时释放掉相关的资源；</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-页面卡顿"><a href="#4-页面卡顿" class="headerlink" title="4. 页面卡顿"></a>4. 页面卡顿</h3><p>根据苹果官方说法，当 FPS 低于 45 的时候，用户就会察觉到到滑动有卡顿</p>
+<ul>
+<li><p>日常开发时，做好 FPS 实时监控，可使用 <a href="https://github.com/jvjishou/FHHFPSIndicator" target="_blank" rel="noopener">FHHFPSIndicator</a> 工具在 debug 模式下运行，在出现掉帧的页面，可做如下优化：</p>
+<ul>
+<li>清除在主线程中进行的耗时操作</li>
+<li>建立缓存机制，如缓存表格视图中 cell 的高度；</li>
+<li>避免离屏渲染，尽量避免使用 layer 的 border、corner、shadow、mask 等属性，在后台线程预先绘制好对应内容；</li>
+</ul>
+</li>
+</ul>
+<h2 id="性能优化原则"><a href="#性能优化原则" class="headerlink" title="性能优化原则"></a>性能优化原则</h2><p>过早的优化是万恶之源。优化要站在实际的需求角度出发，不能为了优化而优化，应该优化那些真正的性能瓶颈，体验落后，性价比最高、最值得优化的地方，同时又要站在整体的角度，做一些取舍和权衡，比如为了卡顿优化，往往需要缓存一些数据到内存中，从而会引起内存增长，如果内存中缓存的数据过多，内存就容易出现性能瓶颈，为了更好更快的监控一些数据，往往会集成一些第三方 SDK，这就又会导致安装包体积的增加。</p>
+<p>具体应该通过检测到的性能数据指标来做具体优化，可以使用苹果自带的 instruments 工具来检测，找到突破点，优化一点，检测一下，观察性能数据的变化，如此反复。</p>
+<p><a href="https://juejin.im/post/5ac216075188255c93237306" target="_blank" rel="noopener">性能优化原则</a></p>
+<h2 id="如何提高应用的质量"><a href="#如何提高应用的质量" class="headerlink" title="如何提高应用的质量"></a>如何提高应用的质量</h2><h3 id="1-开发日常避免"><a href="#1-开发日常避免" class="headerlink" title="1. 开发日常避免"></a>1. 开发日常避免</h3><ul>
+<li>制定代码规范，严格遵守</li>
+<li>定期代码审查（code review）</li>
+<li>编写单元测试</li>
+<li>引入一些 debeg 模式下的工具，如内存泄漏监控，FPS 等，在开发调试阶段将问题暴露出来；</li>
+<li>定期进行代码重构，及时清理删除一些没有使用到的资源和代码；</li>
+</ul>
+<h3 id="2-测试保障体系"><a href="#2-测试保障体系" class="headerlink" title="2. 测试保障体系"></a>2. 测试保障体系</h3><ul>
+<li>将一些关键性能指标纳入测试上线标准</li>
+<li>引入一些自动化测试，自动化打包，自动化代码集成的工具脚本，提高日常开发测试工作效率</li>
+</ul>
+<h3 id="3-线上APM监控"><a href="#3-线上APM监控" class="headerlink" title="3. 线上APM监控"></a>3. 线上APM监控</h3><ul>
+<li>自研或者借助第三方的 APM 工具。对线上应用进行监控、预警、快速修复。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/38183046" target="_blank" rel="noopener">即刻 iOS App 启动速度研究实践</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1071732" target="_blank" rel="noopener">腾讯 wifi 管家 iOS App 启动性能优化-</a></li>
+<li><a href="https://techblog.toutiao.com/2017/01/17/iosspeed/" target="_blank" rel="noopener">今日头条 iOS 客户端启动速度优化</a></li>
+<li><a href="https://techblog.toutiao.com/2016/12/27/iphone/" target="_blank" rel="noopener">今日头条 iPhone 安装包的优化</a></li>
+<li><a href="http://www.cocoachina.com/ios/20170102/18490.html" target="_blank" rel="noopener">iOS 内存泄漏监测自动化</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/性能优化/" rel="tag"># 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/16/记最近几次的面试/" rel="next" title="记最近几次的面试">
+                <i class="fa fa-chevron-left"></i> 记最近几次的面试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/20/团队-git-flow-开发流程/" rel="prev" title="团队 git-flow 开发流程">
+                团队 git-flow 开发流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能检测"><span class="nav-number">1.</span> <span class="nav-text">性能检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用到的相关工具"><span class="nav-number">1.1.</span> <span class="nav-text">使用到的相关工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试环境"><span class="nav-number">1.2.</span> <span class="nav-text">测试环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-启动时间"><span class="nav-number">1.3.</span> <span class="nav-text">1. 启动时间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-preMain-耗时测量"><span class="nav-number">1.3.1.</span> <span class="nav-text">#1.1 preMain 耗时测量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-main-函数调用之到第一个-ViewController-的-viewDidAppear-调用耗时测量"><span class="nav-number">1.3.2.</span> <span class="nav-text">#1.2 main 函数调用之到第一个 ViewController 的 viewDidAppear 调用耗时测量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-测量数据统计分析"><span class="nav-number">1.3.3.</span> <span class="nav-text">#1.3 测量数据统计分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-优化方向"><span class="nav-number">1.3.4.</span> <span class="nav-text">#1.4 优化方向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装包体积"><span class="nav-number">1.4.</span> <span class="nav-text">2. 安装包体积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-包体积检测和分析"><span class="nav-number">1.5.</span> <span class="nav-text">#2.1 包体积检测和分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-包体积优化"><span class="nav-number">1.6.</span> <span class="nav-text">#2.2 包体积优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-内存"><span class="nav-number">1.7.</span> <span class="nav-text">3. 内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-内存方面可做的优化"><span class="nav-number">1.8.</span> <span class="nav-text">#3.1. 内存方面可做的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-页面卡顿"><span class="nav-number">1.9.</span> <span class="nav-text">4. 页面卡顿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化原则"><span class="nav-number">2.</span> <span class="nav-text">性能优化原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何提高应用的质量"><span class="nav-number">3.</span> <span class="nav-text">如何提高应用的质量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-开发日常避免"><span class="nav-number">3.1.</span> <span class="nav-text">1. 开发日常避免</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-测试保障体系"><span class="nav-number">3.2.</span> <span class="nav-text">2. 测试保障体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-线上APM监控"><span class="nav-number">3.3.</span> <span class="nav-text">3. 线上APM监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>
