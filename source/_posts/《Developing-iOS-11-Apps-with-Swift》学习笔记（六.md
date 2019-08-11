@@ -43,7 +43,7 @@ categories:
 - 参数：target 是获取手势通知对象
 - 参数：action 是手势响应时的方法，方法的参数是手势 recognizer 对象
 
-![](http://liangjinggege.com/Xnip2019-01-18_10-21-04.png?imageView2/2/w/700)
+![](https://liangjinggege.com/Xnip2019-01-18_10-21-04.png?imageView2/2/w/700)
 
 #### 2. 处理手势
 
@@ -60,7 +60,7 @@ func setTranslation(CGPoint, in: UIView?)
 
 抽象父类也提供了诸如手势状态的一些属性，描述手势的状态信息
 
-![](http://liangjinggege.com/Xnip2019-01-18_16-11-47.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-11-47.png)
 
 ### 手势分类
 
@@ -123,29 +123,29 @@ var allowableMovement: CGFloat
 
 ### 自定义实现对象的打印日志
 
-![](http://liangjinggege.com/Xnip2019-01-18_16-38-00.png)
-![](http://liangjinggege.com/Xnip2019-01-18_16-38-30.png)
-![](http://liangjinggege.com/Xnip2019-01-18_16-39-01.png)
-![](http://liangjinggege.com/Xnip2019-01-18_16-39-22.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-38-00.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-38-30.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-39-01.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-39-22.png)
 
 ### 设置字体大小随系统设置改变而即时改变
 
-![](http://liangjinggege.com/Xnip2019-01-18_17-08-42.png)
-![](http://liangjinggege.com/Xnip2019-01-18_17-09-10.png)
+![](https://liangjinggege.com/Xnip2019-01-18_17-08-42.png)
+![](https://liangjinggege.com/Xnip2019-01-18_17-09-10.png)
 
 ### AutoLayout 设置约束优先级
 
-![](http://liangjinggege.com/Xnip2019-01-18_16-59-58.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-59-58.png)
 
 ### @IBDesignable 和 @IBInspectable
 
 - `@IBDesignable`： 将代码的设置显示到IB监视器中去，直接在IB中观察而不用重新运行模拟器
 - `@IBInspectable`：将属性显示到IB监视器中去设置
 
-![](http://liangjinggege.com/Xnip2019-01-18_16-54-12.png)
-![](http://liangjinggege.com/Xnip2019-01-18_16-55-47.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-54-12.png)
+![](https://liangjinggege.com/Xnip2019-01-18_16-55-47.png)
 
 
 ### 将图片绘制到视图上
 
-![](http://liangjinggege.com/Xnip2019-01-18_17-11-56.png)
+![](https://liangjinggege.com/Xnip2019-01-18_17-11-56.png)

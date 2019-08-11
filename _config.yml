@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 青争哥哥
+title: 在水一方
 subtitle: 记录个人成长历程
 # description: 运动，饮食，睡眠，运动，相结合，成就崭新的自己！
 description: 跑得了马，写得了码！
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://chenliangjing.me
+url: https://chenliangjing.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

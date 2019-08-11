@@ -57,7 +57,7 @@ int main(int argc, const char * argv[]) {
 
 ```
 
-![](http://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300)
+![](https://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300)
 
 
 ### 3. 引用计数器
@@ -112,7 +112,7 @@ int main(int argc, const char * argv[]) {
 
 Xcoder->Product->Scheme->Edit Scheme->Run->Diagnostics->Zombie Objects
 
-![](http://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500)
+![](https://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500)
 
 
 #### #空指针
@@ -232,7 +232,7 @@ int main(int argc, const char * argv[]) {
 
 上述对多对象的内存管理还不完善，如果人需要换房间，那么又会出现内存泄漏：
 
-![](http://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350)
+![](https://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350)
 
 问题的原因是：换房的时候，Person 的成员变量 _room 由房间 1111 指向 8888，没有指向房间 1111 了，但是却没有对房间 1111 引用计数器`减一操作`，所以导致最终房间 1111 没有被释放，导致`内存泄漏`。
 
@@ -250,7 +250,7 @@ int main(int argc, const char * argv[]) {
 }
 
 ```
-![](http://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200)
+![](https://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200)
 
 上述内存管理方案还不够完善，如果出现`重复赋值`时，即又给人一间 1111 的房间，应用程序将会崩溃，崩溃原因是`野指针`异常。具体原因是，由于人原本就拥有一间 1111 的房间，即对房间 1111 有一个引用，当再次给人赋值 1111 房间时，先会对 1111 房间 release 一次，release 完 1111 房间引用计数器变为 0，称为僵尸对象，然后又要对整个僵尸对象进行 retain 操作，给僵尸对象发送消息，程序崩溃。
 
@@ -323,15 +323,15 @@ int main(int argc, const char * argv[]) {
 ### 12. 集合中对象的内存管理
 1. 如果将一个对象添加到一个数组中，那么数组会对对象进行一次 retain
 
-	![](http://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250)
+	![](https://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250)
 	
 2. 当数组对象释放后，会给数组中所有的对象发送一条 release 消息
 
-	![](http://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250)
+	![](https://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250)
 
 3. 当数组移除一个对象之后，会给对象发送一条 release 消息
 	
-	![](http://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250)
+	![](https://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250)
 
 ## autorelease
 ### 1. autorelease 基本概念
@@ -563,25 +563,25 @@ NSArray *array = [[[NSArray alloc] init] autorelease];
 - 几种情况分析
 	1. 可变对象调用 copy
 	
-		![](http://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230)
+		![](https://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230)
 	
 	>结论： `可变对象`调用 copy 方法，`会生成`新的对象，并且新对象是`不可变`的。
 	
 	2. 可变对象调用 mutableCopy
 	
-		![](http://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240)
+		![](https://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240)
 	
 	>结论： `可变对象`调用 mutableCopy，`会生成`新的对象，并且新对象是`可变的`。
 	
 	3. 不可变对象调用 mutableCopy
 	
-		![](http://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240)
+		![](https://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240)
 	
 	>结论： `不可变对象`调用 mutableCopy，`会生成`新的对象，并且新对象是`可变的`。
 	
 	4. 不可变对象调用 copy
 	
-		![](http://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230)
+		![](https://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230)
 	
 	>结论： `不可变对象`调用 copy，`不会生成`新的对象，并且新对象是`不可变的`。
 	
@@ -596,11 +596,11 @@ NSArray *array = [[[NSArray alloc] init] autorelease];
 ### 2. Copy 的内存管理
 - 如果是浅拷贝（源对象和副本对象都不可变），由于不会生成新的对象，所以系统会对源对象进行一次 retain。所以对源对象一次 copy 操作，就要相应的做一次 release 操作。
 
-	![](http://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230)
+	![](https://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230)
 
 - 如果是深拷贝。真是因为生成了新的对象，所以系统不会对源对象进行 retain，但是因为生成了新对象，所以需要对新对象进行一次 release。
 
-	![](http://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260)
+	![](https://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260)
 
 
 ### 3. Copy 和 Property
@@ -612,17 +612,17 @@ NSArray *array = [[[NSArray alloc] init] autorelease];
 
 ```
 	
-![](http://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260)
+![](https://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260)
 
 
 #### #修饰 block
 - 如果 block 存储在`栈`中，block 中访问了外界的对象，`不会`对对象进行一次 retain 操作
 	
-![](http://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220)
+![](https://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220)
 		
 - 如果 block 存储在`堆`中，block 中访问了外界的对象，`会`对对象进行一次 retain 操作
 	
-![](http://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220)
+![](https://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220)
 
 
 - 修饰 block。可以使用 copy 来保存 block，这样可以让 block 中使用到的外界对象进行一次 retain 操作，避免以后调用 block 的时候，外界的对象已经释放了。（如果外界对象在调用 block 之前被释放了，那么程序就会崩溃）
@@ -636,7 +636,7 @@ NSArray *array = [[[NSArray alloc] init] autorelease];
 #### #copy block之后引发的循环引用
 - 如果对象中的 block 又用到了对象自己，那么此时会产生循环引用，发生内存泄漏，为避免这种情况，应该将对象修饰为 `__block`。
 	
-![](http://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250)
+![](https://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250)
 	
 ### 4. 自定义类实现 Copy
 [源码地址](https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%AE%9E%E7%8E%B0%20Copy)
@@ -668,7 +668,7 @@ NSArray *array = [[[NSArray alloc] init] autorelease];
 
 ```
 	
-![](http://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240)
+![](https://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240)
 	
 	
 #### #有父类实现
@@ -693,7 +693,7 @@ NSArray *array = [[[NSArray alloc] init] autorelease];
 
 ```
 	
-![](http://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240)
+![](https://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240)
 	
 
 > MatableCopy 和 Copy 实现类似，只要遵守 NSMutableCoping 协议，然后实现 mutableCopyWithZone:方法。

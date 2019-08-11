@@ -35,7 +35,7 @@ categories:
 
 ## MVC 设计模式
 
-![](http://liangjinggege.com/Snip20180208_14.png?imageView2/2/w/600)
+![](https://liangjinggege.com/Snip20180208_14.png?imageView2/2/w/600)
 
 MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角色组成。View、Controller、Model 组成。各个角色的分工如下：
 <!-- more -->
@@ -53,13 +53,13 @@ MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角�
 - Controller 和 Model
 	- Controller 持有模型，可以直接主动和 Model 通信，获取 Model 的数据，但 Model 不能直接和 Controller 通信。Model 发生数据改变想要主动告诉 Controller，Controller 可以通过` KVO` 监听 Model 属性的方式。
 	
-![](http://liangjinggege.com/Snip20180208_15.png?imageView2/2/w/600)
+![](https://liangjinggege.com/Snip20180208_15.png?imageView2/2/w/600)
 
 **MVCS：**
 
 单个页面可以是 MVC，一个 App 通常有多个页面，这些 MVC 组合成一起，就是 `MVCS`。
 
-![](http://liangjinggege.com/Snip20180208_16.png?imageView2/2/w/600)
+![](https://liangjinggege.com/Snip20180208_16.png?imageView2/2/w/600)
 
 ## struct（结构体）和 class（类）
 
@@ -70,43 +70,43 @@ MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角�
 	1. struct（结构体）`没有继承`。
 	2. struct（结构体）是值类型（Value Type），class（类）是引用类型（refrence Type）。Swift 中大部分的数据类型都是`值类型`，除了`类和闭包`。值类型的数据传递是通过复制进行的，但不是每次传递都会真正的复制，Swift 有一种智能的机制，只有当值真正被修改了才会被复制传递，这种机制叫做`写时复制（copy on write）`。引用类型是一种存储在`堆（heap）`里面，使用指针指向的数据类型，传递值时，是传递该值的`引用指针`，也即时传递的是`值的地址`。
 
-![](http://liangjinggege.com/Snip20180209_18.png?imageView2/2/w/700)
+![](https://liangjinggege.com/Snip20180209_18.png?imageView2/2/w/700)
 
 
 ## static methods（静态方法）和 properties（属性）
 在结构体中可以定义` static methods（静态方法）` 和`静态变量`，用 `static 关键字`修饰,静态方法和静态变量只有结构体的类型才有的方法，不是实例拥有的，只有该结构体的类型才能调用。
 
-![](http://liangjinggege.com/Snip20180209_22.png?imageView2/2/w/700)
+![](https://liangjinggege.com/Snip20180209_22.png?imageView2/2/w/700)
 
 ## _ 忽略下标
 1. 当遍历一个 `sequence` 的下标，不需要用到该下标值。
 2. 省略`函数`的外部参数（external parameter）
 
-![](http://liangjinggege.com/Snip20180209_23.png?imageView2/2/w/700)
+![](https://liangjinggege.com/Snip20180209_23.png?imageView2/2/w/700)
 
-![](http://liangjinggege.com/Snip20180209_28.png?imageView2/2/w/500)
+![](https://liangjinggege.com/Snip20180209_28.png?imageView2/2/w/500)
 
 ## 数组拼接元素
 
 直接通过` + `运算符就可以对数组进行拼接操作。
 
-![](http://liangjinggege.com/Snip20180209_23.png?imageView2/2/w/700)
+![](https://liangjinggege.com/Snip20180209_23.png?imageView2/2/w/700)
 
 ## lazy 懒加载
 
 用时加载，没有使用到时不加载。
 
-![](http://liangjinggege.com/Snip20180209_25.png?imageView2/2/w/700)
+![](https://liangjinggege.com/Snip20180209_25.png?imageView2/2/w/700)
 
-![](http://liangjinggege.com/Snip20180209_24.png?imageView2/2/w/700)
+![](https://liangjinggege.com/Snip20180209_24.png?imageView2/2/w/700)
 
 ## 并列表达式
 可以将多个条件表达式并列在一起写，用 `,` 隔开，表示这几个表达式的逻辑值都要为真。
 
-![](http://liangjinggege.com/Snip20180209_26.png?imageView2/2/w/500)
+![](https://liangjinggege.com/Snip20180209_26.png?imageView2/2/w/500)
 
 
 ## 空合运算符 ??
 和三目运算符相似。`??` 前面是一个可选类型的值，表示解包这个可选值，如果解包成功，就返回可选类型的值，如果解包失败就返回 `??` 后面的`默认值`。
 
-![](http://liangjinggege.com/Snip20180209_27.png?imageView2/2/w/400) 
+![](https://liangjinggege.com/Snip20180209_27.png?imageView2/2/w/400) 

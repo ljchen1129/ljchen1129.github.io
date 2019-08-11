@@ -31,7 +31,7 @@ categories:
 
 对应 Objective-C 中对象的内存管理如下表：
 
-![](http://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200)
+![](https://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200)
 
 ### 内存管理的思考方式
 > 注意：以下代码在 MRC 环境下。
@@ -43,7 +43,7 @@ categories:
 
 对象操作与 Objective-C 中方法对应如下：
 
-![](http://liangjinggege.com/Snip20170330_2.png?imageView/0/h/200)
+![](https://liangjinggege.com/Snip20170330_2.png?imageView/0/h/200)
 
 >注意：Objective-C 中对象的`内存管理方法`都在所有类的基类 NSObject 中定义，包括 alloc 类方法，retain/release/dealloc 对象方法。
 
@@ -80,7 +80,7 @@ NSLog(@"stu1:%p---stu2:%p",stu1, stu2);
 
 打印结果：
 
-![](http://liangjinggege.com/Snip20170330_3.png?imageView/0/h/100)
+![](https://liangjinggege.com/Snip20170330_3.png?imageView/0/h/100)
 
 mutableCopy 方法类似。
 
@@ -105,7 +105,7 @@ NSLog(@"Reference Count=%lu",[obj retainCount]);
 
 打印结果：
 
-![](http://liangjinggege.com/Snip20170330_4.png?imageView/0/h/80)
+![](https://liangjinggege.com/Snip20170330_4.png?imageView/0/h/80)
 
 >为什么打印结果是 1 和 2，不是 0 和 1 ?不解？？？？？？？？？。做个标记~~~~~~~~
 
@@ -234,7 +234,7 @@ struct obj_layout {
 > alloc 类方法用 struct obj_layout 中 long 类型整数 `retained` 来保存`引用计数`，并将其写入对象内存头部，该对象内存块全部置 0 后返回。
 
 
-![](http://liangjinggege.com/Snip20170330_6.png?imageView/0/h/200)
+![](https://liangjinggege.com/Snip20170330_6.png?imageView/0/h/200)
 <center>alloc 返回对象内存图</center>
 
 对象的引用计数可以通过 `retainCount` 实例方法得到，来看对象 alloc 后 `retainCount` 实例方法做了什么：
@@ -257,7 +257,7 @@ NSExtraRefCount(id anObject)
 
 ```
 
-![](http://liangjinggege.com/Snip20170330_7.png?imageView/0/h/200)
+![](https://liangjinggege.com/Snip20170330_7.png?imageView/0/h/200)
 
 >由对象寻址找到对象内存头部，从而访问其中的 retained 变量。由于分配时全部置为 0，所以 retained 的值为 0。
 

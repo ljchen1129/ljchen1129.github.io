@@ -38,7 +38,7 @@ categories:
 1. 确实创建了一个新的线程；
 2. 参数也已经成功传递过去了；
 
-![](http://liangjinggege.com/Snip20170316_11.png?imageView2/0/h/45/)
+![](https://liangjinggege.com/Snip20170316_11.png?imageView2/0/h/45/)
 
 > 注意：NSThread 创建的线程对象，系统会保证他的生命周期直到线程要执行的任务完成。
 
@@ -68,7 +68,7 @@ categories:
 
 查看控制台输出：
 
-![](http://liangjinggege.com/Snip20170316_12.png?imageView2/0/h/120/)
+![](https://liangjinggege.com/Snip20170316_12.png?imageView2/0/h/120/)
 
 ## 方法二
 创建线程后自动启动线程：
@@ -124,9 +124,9 @@ NSThread *currentThread = [NSThread currentThread];
 4. **阻塞（Blocked）：**处于`运行状态`的线程调用了 sleep 方法或者在等待同步锁时会进入到`阻塞状态`
 5. **死亡（Dead）：**线程任务执行完毕、或异常退出、强制退出时线程会进入到`死亡状态`
 
-![](http://liangjinggege.com/Snip20170316_14.png?imageView2/0/h/350/)
+![](https://liangjinggege.com/Snip20170316_14.png?imageView2/0/h/350/)
 
-![](http://liangjinggege.com/Snip20170316_15.png?imageView2/0/h/170/)
+![](https://liangjinggege.com/Snip20170316_15.png?imageView2/0/h/170/)
 
 ## 控制线程状态
 
@@ -168,11 +168,11 @@ NSThread *currentThread = [NSThread currentThread];
 
 >当多个线程访问同一块资源时，很容易引发`数据错乱和数据安全`问题
 
-![](http://liangjinggege.com/Snip20170316_100.png?imageView2/0/h/350/)
+![](https://liangjinggege.com/Snip20170316_100.png?imageView2/0/h/350/)
 
 ## 解决方案 - `互斥锁`
 
-![](http://liangjinggege.com/Snip20170316_102.png?imageView2/0/h/350/)
+![](https://liangjinggege.com/Snip20170316_102.png?imageView2/0/h/350/)
 
 ### #互斥锁使用格式
 
@@ -262,7 +262,7 @@ NSThread *currentThread = [NSThread currentThread];
 
 看控制台打印：
 
-![](http://liangjinggege.com/Snip20170316_16.png?imageView2/0/h/350/)
+![](https://liangjinggege.com/Snip20170316_16.png?imageView2/0/h/350/)
 
 很明显出现了`数据错乱和数据安全`问题
 
@@ -299,7 +299,7 @@ NSThread *currentThread = [NSThread currentThread];
 
 再看控制台打印：
 
-![](http://liangjinggege.com/Snip20170316_17.png?imageView2/0/h/350/)
+![](https://liangjinggege.com/Snip20170316_17.png?imageView2/0/h/350/)
 
 # 线程间通信
 ## 什么叫做线程间通信？
@@ -322,11 +322,11 @@ performSelector:@selector(setImage:) onThread: withObject:image waitUntilDone:
 - NSMessagePort
 - NSMachPort
 	
-![](http://liangjinggege.com/Snip20170316_105.png?imageView2/0/h/320/)
+![](https://liangjinggege.com/Snip20170316_105.png?imageView2/0/h/320/)
 
 ## 线程间通信示例 - 图片下载
 
-![](http://liangjinggege.com/Snip20170316_103.png?imageView2/0/h/350/)
+![](https://liangjinggege.com/Snip20170316_103.png?imageView2/0/h/350/)
 
 
 ```
@@ -350,7 +350,7 @@ self.imageView.image = [UIImage imageWithData:data];
 
 可以发现下载图片这段耗时操作耗时：
 
-![](http://liangjinggege.com/Snip20170316_18.png?imageView2/0/h/60/)
+![](https://liangjinggege.com/Snip20170316_18.png?imageView2/0/h/60/)
 
 而这种耗时操作不应该放在主线程中进行
 

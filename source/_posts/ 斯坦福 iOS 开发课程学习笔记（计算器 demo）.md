@@ -25,13 +25,13 @@ by Stanford](https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id11
 1. 界面 UI 需要做成这样：
 <div >
 <center>
-    <img src="http://liangjinggege.com/Portrait.png?imageView2/0/h/667/w/375" >
+    <img src="https://liangjinggege.com/Portrait.png?imageView2/0/h/667/w/375" >
     </center>
 </div>
 2. 还需要适配横屏：
 <div >
 <center>
-    <img src="http://liangjinggege.com/Horizontal.png?imageView2/0/h/375/w/667" >
+    <img src="https://liangjinggege.com/Horizontal.png?imageView2/0/h/375/w/667" >
     </center>
 </div>
 3. 界面元素：
@@ -65,7 +65,7 @@ by Stanford](https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id11
 新建一个 Single View Application:
 <div >
 <center>
-    <img src="http://liangjinggege.com/newProject.png?imageView2/0/h/600/w/575" >
+    <img src="https://liangjinggege.com/newProject.png?imageView2/0/h/600/w/575" >
   </center>
 </div>
 
@@ -73,7 +73,7 @@ by Stanford](https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id11
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/projectOptions.png?imageView2/0/h/600/w/575" >
+    <img src="https://liangjinggege.com/projectOptions.png?imageView2/0/h/600/w/575" >
   </center>
 </div>
 
@@ -81,7 +81,7 @@ by Stanford](https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id11
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/btnAction.png?imageView2/0/h/400/w/575" >
+    <img src="https://liangjinggege.com/btnAction.png?imageView2/0/h/400/w/575" >
   </center>
 </div>
 
@@ -89,7 +89,7 @@ by Stanford](https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id11
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/calculator001.png?imageView2/0/h/600/w/375" >
+    <img src="https://liangjinggege.com/calculator001.png?imageView2/0/h/600/w/375" >
   </center>
 </div>
 
@@ -106,7 +106,7 @@ by Stanford](https://itunes.apple.com/us/course/developing-ios-9-apps-swift/id11
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/calculator002.png?imageView2/0/h/300/w/375" >
+    <img src="https://liangjinggege.com/calculator002.png?imageView2/0/h/300/w/375" >
   </center>
 </div>
 
@@ -114,7 +114,7 @@ x-code 自动生成一个`隐式解析可选类型(implicitly unwrapped optional
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator003.png?imageView2/0/h/300/w/375" >
+    <img src="https://liangjinggege.com/Calculator003.png?imageView2/0/h/300/w/375" >
   </center>
 </div>
 
@@ -147,7 +147,7 @@ var userIsInTheMiddleOfTyping = false // 标识当前是否正在输入状态
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator004.png?imageView2/0/h/300/w/375" >
+    <img src="https://liangjinggege.com/Calculator004.png?imageView2/0/h/300/w/375" >
   </center>
 </div>
 
@@ -174,7 +174,7 @@ var userIsInTheMiddleOfTyping = false // 标识当前是否正在输入状态
 
  <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator005.png?imageView2/0/h/300/w/375" >
+    <img src="https://liangjinggege.com/Calculator005.png?imageView2/0/h/300/w/375" >
   </center>
 </div>
 
@@ -257,7 +257,7 @@ var displayValue: Double {
 
  <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator006.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator006.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -265,7 +265,7 @@ var displayValue: Double {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator007.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator007.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -414,7 +414,7 @@ var pending: pendingBinaryOperationInfo?
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator008.png?imageView2/0/h/300/w/375" >
+    <img src="https://liangjinggege.com/Calculator008.png?imageView2/0/h/300/w/375" >
   </center>
 </div>
 
@@ -533,13 +533,13 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator010.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator010.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -549,7 +549,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator011.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator011.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -557,7 +557,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator012.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator012.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -570,7 +570,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator013.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator013.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -578,7 +578,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator014.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator014.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -586,7 +586,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator015.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator015.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -594,7 +594,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator016.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator016.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -602,7 +602,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator017.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator017.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -610,13 +610,13 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator018.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator018.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -624,7 +624,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator019.png?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -632,7 +632,7 @@ func performOperation(symbol: String) {
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/calculatorgif.gif?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/calculatorgif.gif?imageView2/0/h/500/w/575" >
   </center>
 </div>
 
@@ -697,7 +697,7 @@ Operation |Enum | 带关联值的枚举，存储运算的操作类型 | private
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/classCall.001.png?imageView2/0/h/700/w/775" >
+    <img src="https://liangjinggege.com/classCall.001.png?imageView2/0/h/700/w/775" >
   </center>
 </div>
 
@@ -811,6 +811,6 @@ Stack View 会自动为每个 subview 创建和添加 Auto Layout constraints。
 
 <div >
 <center>
-    <img src="http://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575" >
+    <img src="https://liangjinggege.com/Calculator009.png?imageView2/0/h/500/w/575" >
   </center>
 </div>

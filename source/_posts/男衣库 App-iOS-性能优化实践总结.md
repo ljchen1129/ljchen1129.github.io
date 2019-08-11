@@ -38,12 +38,12 @@ categories:
 
 - App Store 统计数据，过去 90 天，主包的崩溃次数，89 次
 
-	![](http://liangjinggege.com/Jietu20180425-102203.jpg?imageView2/2/w/700)
+	![](https://liangjinggege.com/Jietu20180425-102203.jpg?imageView2/2/w/700)
 
 - 具体崩溃详情
 
-	![](http://liangjinggege.com/Jietu20180425-102051.jpg?imageView2/2/w/700)
-	![](http://liangjinggege.com/Jietu20180425-103323.jpg?imageView2/2/w/700)
+	![](https://liangjinggege.com/Jietu20180425-102051.jpg?imageView2/2/w/700)
+	![](https://liangjinggege.com/Jietu20180425-103323.jpg?imageView2/2/w/700)
 	
 ### 启动时间
 `启动时间是用户点击 App 图标，到第一个界面展示的时间。`
@@ -52,7 +52,7 @@ iOS App 的启动时间分为两个部分，一个是 main 函数执行之前的
 
 - preMain 时间
 
-	![](http://liangjinggege.com/屏幕快照 2018-04-18 上午9.44.20.png)
+	![](https://liangjinggege.com/屏幕快照 2018-04-18 上午9.44.20.png)
 	
 	- main 函数之前总共使用了 730 ms;
 	
@@ -62,7 +62,7 @@ iOS App 的启动时间分为两个部分，一个是 main 函数执行之前的
 
 - main 函数 -> 第一个页面渲染完成，用户看到界面的时间，这一个阶段通过在相关函数执行的地方打点计时可以测量出来：
 	
-	![](http://liangjinggege.com/lanchTime.png?imageView2/2/w/300)
+	![](https://liangjinggege.com/lanchTime.png?imageView2/2/w/300)
 	- 这个阶段主要有第三方 SDK 的初始化，获取系统的配置，初始化页面tabbar，总共耗时 0.481s;
 
 - 启动总耗时：`0.73 s + 0.481 s = 1.211 s`
@@ -71,7 +71,7 @@ iOS App 的启动时间分为两个部分，一个是 main 函数执行之前的
 
 - Xcode Analyze 静态分析工具分析可疑泄露点，有些真的存在，有些不存在，可以通过结合 Instruments 动态分析工具以及代码上下文排除解决
 	
-	![](http://liangjinggege.com/Jietu20180423-141346.jpg?imageView2/2/w/700)
+	![](https://liangjinggege.com/Jietu20180423-141346.jpg?imageView2/2/w/700)
 	- 663 个隐藏泄露点，主要包含以下几个部分：
 	- 面向用户的文本应该使用本地化;
 	- 无效数据监测;
@@ -82,28 +82,28 @@ iOS App 的启动时间分为两个部分，一个是 main 函数执行之前的
   
 - Xcode Instruments 动态分析工具中的 Leaks 和 Allocations 跟踪模板进行动态跟踪分析, 确认这些点是否真的泄漏, 或者是否有新的泄漏点出现
 
-	![](http://liangjinggege.com/Jietu20180423-160117.jpg?imageView2/2/w/700)
+	![](https://liangjinggege.com/Jietu20180423-160117.jpg?imageView2/2/w/700)
 
-	![](http://liangjinggege.com/Jietu20180423-161838.jpg?imageView2/2/w/700)
+	![](https://liangjinggege.com/Jietu20180423-161838.jpg?imageView2/2/w/700)
 	
 - 使用 Instruments 中 Time Profile 工具检测耗时严重的方法
 
-	![](http://liangjinggege.com/Jietu20180425-154721.jpg)	
+	![](https://liangjinggege.com/Jietu20180425-154721.jpg)	
 		
 ### 页面刷新帧率
 
- ![](http://liangjinggege.com/Jietu20180425-141007.gif)
+ ![](https://liangjinggege.com/Jietu20180425-141007.gif)
 
 - 首页、买家秀列表页快速滑动的时候有轻微出现掉帧现象。
 
 ### 安装包体积
 
-![](http://liangjinggege.com/Jietu20180424-142406.jpg)
+![](https://liangjinggege.com/Jietu20180424-142406.jpg)
 
 
 - 安装包构成
 
-	![](http://liangjinggege.com/Jietu20180425-193322.jpg?imageView2/2/w/500)
+	![](https://liangjinggege.com/Jietu20180425-193322.jpg?imageView2/2/w/500)
 	
 	- 二进制代码文件
 	- 资源（图片、文档）
@@ -111,11 +111,11 @@ iOS App 的启动时间分为两个部分，一个是 main 函数执行之前的
 
 - 工程中没有使用到的资源文件
 
-	![](http://liangjinggege.com/Jietu20180424-144901.jpg?imageView2/2/w/500)
+	![](https://liangjinggege.com/Jietu20180424-144901.jpg?imageView2/2/w/500)
 
 - 编译后 arm64 架构各个类所占空间大小：
 
-	![](http://liangjinggege.com/Jietu20180424-153029.jpg?imageView2/2/w/500)
+	![](https://liangjinggege.com/Jietu20180424-153029.jpg?imageView2/2/w/500)
 
 ### 子线程 UI 操作
 
@@ -123,13 +123,13 @@ iOS App 的启动时间分为两个部分，一个是 main 函数执行之前的
 
 目前男衣库 iOS App 中有多处存在子线程刷新 UI 的情况，分别在首页，个人中心都存在。
 
-![](http://liangjinggege.com/Jietu20180424-155631.jpg?imageView2/2/w/700)
+![](https://liangjinggege.com/Jietu20180424-155631.jpg?imageView2/2/w/700)
 
 ### 布局约束警告
 
 使用 Autolayout 进行页面布局，目前男衣库 App 存在多处约束警告，约束警告指对控件或者视图添加了重复或者多余的约束，不处理的话有可能引起页面显示错乱，多次重复布局等不必要的 CPU 操作等问题。
 
-![](http://liangjinggege.com/Jietu20180424-160133.jpg?imageView2/2/w/700)
+![](https://liangjinggege.com/Jietu20180424-160133.jpg?imageView2/2/w/700)
 	
 ## 优化方案和目标
 过早的优化是万恶之源。优化要站在实际的需求角度出发，不能为了优化而优化，应该优化那些真正的性能瓶颈，体验落后，性价比最高、最值得优化的地方，同时又要站在整体的角度，做一些取舍和权衡，比如为了卡顿优化，往往需要缓存一些数据到内存中，从而会引起内存增长，如果内存中缓存的数据过多，内存就容易出现性能瓶颈，为了更好更快的监控一些数据，往往会集成一些第三方 SDK，这就又会导致安装包体积的增加。

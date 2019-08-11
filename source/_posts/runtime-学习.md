@@ -50,11 +50,11 @@ p = objc_msgSend(p, init);
 
 ```
 
-![](http://liangjinggege.com/Snip20170510_2.png)
+![](https://liangjinggege.com/Snip20170510_2.png)
 
 >注意：1. 导入头文件 `<objc/message.h>`
 >
->注意：2. ![](http://liangjinggege.com/Snip20170510_1.png)
+>注意：2. ![](https://liangjinggege.com/Snip20170510_1.png)
 
 ## 动态方法解析
 
@@ -99,14 +99,14 @@ method_exchangeImplementations(oldMethod, currentMethod);
 
 ```
 
-![](http://liangjinggege.com/Snip20170510_3.png)
+![](https://liangjinggege.com/Snip20170510_3.png)
 
 ## 动态添加方法
 如果一个给一个对象发送一条没有实现的消息，那么应用程序将会崩溃，利用 runtime 可以给对象`动态的添加方法`。
 
 如果一个类方法非常多，加载类到内存的时候也比较耗费资源，需要给每个方法生成映射表，可以使用 runtime 动态给某个类，添加方法解决。
 
-![](http://liangjinggege.com/Snip20170510_4.png)
+![](https://liangjinggege.com/Snip20170510_4.png)
 
 
 >注意：`class_addMethod(Class cls, SEL name, IMP imp, const char *types)` 方法最后一个参数 types 的字符对应可参照[这里](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100)。
@@ -260,7 +260,7 @@ NSDictionary *dic = [dict[@"statuses"] firstObject];
 
 **打印：**
 
-![](http://liangjinggege.com/Snip20170510_7.png)
+![](https://liangjinggege.com/Snip20170510_7.png)
 
 >扩展：进一步的话，可以考虑写一个自动生成模型属性的小工具，通过后台返回的 JSON 等数据格式转化为模型属性，并直接写入到模型 .h 文件中，自动对应数据类型，内存管理策略，以及添加注释。
 
@@ -378,7 +378,7 @@ void setName(id self, SEL _cmd, NSString *newName)
 
 打印：
 
-![](http://liangjinggege.com/Snip20170510_7.png)
+![](https://liangjinggege.com/Snip20170510_7.png)
 
 
 ## 字典转模型
@@ -416,7 +416,7 @@ void setName(id self, SEL _cmd, NSString *newName)
 
 **调用和打印：**
 
-![](http://liangjinggege.com/Snip20170510_8.png)
+![](https://liangjinggege.com/Snip20170510_8.png)
 
 
 ### 2.runtime 实现
@@ -559,4 +559,4 @@ void setName(id self, SEL _cmd, NSString *newName)
 
 **调用：**
 
-![](http://liangjinggege.com/Snip20170510_9.png)
+![](https://liangjinggege.com/Snip20170510_9.png)

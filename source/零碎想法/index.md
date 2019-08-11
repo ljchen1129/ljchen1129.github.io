@@ -3,10 +3,39 @@ title: 零碎想法
 date: 2017-05-28 23:27:40
 ---
 
+
+
+### 2019.8.11
+
+博客瞎折腾，有给弄挂了，deploy 不上去，报错：
+
+```bash
+error: failed to push some refs to 'https://github.com/ljchen1129/ljchen1129.github.io.git'
+FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
+Error: Spawn failed
+    at ChildProcess.<anonymous> (/Users/chenliangjing/Documents/myBlog/node_modules/hexo-util/lib/spawn.js:52:19)
+    at ChildProcess.emit (events.js:189:13)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)
+```
+
+**解决方案：**
+
+```bash
+# 删除 .deploy_git 文件夹
+rm -rf .deploy_git
+# 重新部署
+hexo d
+```
+
+
+
+
+
 ### 2019.5.2
+
 生活很艰难！
 
-{% aplayer "硬币" "汪峰" "http://liangjinggege.com/%E7%A1%AC%E5%B8%81.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg" %}
+{% aplayer "硬币" "汪峰" "https://liangjinggege.com/%E7%A1%AC%E5%B8%81.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg" %}
 
 除了阳光
 没有什么可以笼罩世界
@@ -112,7 +141,7 @@ App 开发的发展方向判断。
 
 ### 2018.3.31
 
-{% aplayer "借我" "谢春花" "http://liangjinggege.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000" %}
+{% aplayer "借我" "谢春花" "https://liangjinggege.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000" %}
 
 借我十年
 借我亡命天涯的勇敢
@@ -131,7 +160,7 @@ App 开发的发展方向判断。
 
 ### 2018.3.7
 
-{% aplayer "彼岸" "汪峰" "http://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
+{% aplayer "彼岸" "汪峰" "https://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
 
 <br></br>
 
@@ -175,7 +204,7 @@ AI。入个门，把需要的基础知识复习下、搞个模型弄弄就行，
 * 汪峰-->是一个奇才 写了太多好听的歌了 也许正是一定的年龄和阶段才最能听懂汪峰的音乐吧
 
 
-{% aplayer "觉醒" "汪峰" "http://liangjinggege.com/M800002HocyJ3ad9Uh.mp3" "http://i.gtimg.cn/music/photo/mid_album_500/V/I/003k3pNG0KpRVI.jpg" %}
+{% aplayer "觉醒" "汪峰" "https://liangjinggege.com/M800002HocyJ3ad9Uh.mp3" "http://i.gtimg.cn/music/photo/mid_album_500/V/I/003k3pNG0KpRVI.jpg" %}
 
 ### 2017.5.28
 <!--* _检讨自己：_
@@ -185,4 +214,4 @@ AI。入个门，把需要的基础知识复习下、搞个模型弄弄就行，
 * 三十岁之前的时间很珍贵很珍贵！-->
 
 
-<!--{% aplayer "彼岸" "汪峰" "http://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
+<!--{% aplayer "彼岸" "汪峰" "https://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
