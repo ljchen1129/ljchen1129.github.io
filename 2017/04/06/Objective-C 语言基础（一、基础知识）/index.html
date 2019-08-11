@@ -123,25 +123,25 @@
 <meta name="keywords" content="iOS,Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C 语言基础（一、基础知识）">
-<meta property="og:url" content="http://chenliangjing.me/2017/04/06/Objective-C 语言基础（一、基础知识）/index.html">
-<meta property="og:site_name" content="青争哥哥">
+<meta property="og:url" content="https://chenliangjing.me/2017/04/06/Objective-C 语言基础（一、基础知识）/index.html">
+<meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="Objective-C 简介 Objective-C 是一门面向对象的计算机语言 Objective-C 是在 C 语言的基础上增加了一层面向对象的语法 Objective-C 完全兼容 C 语言 可以在 Objective-C 中混入 C 语言代码 可以使用 Objective-C 开发 Mac OS 平台和 iOS 平台的应用程序  C 和 Objective-C 比较1. 源文件对比 C 语">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://liangjinggege.com/object%20memory.001.jpeg?imageView/0/h/450">
-<meta property="og:updated_time" content="2019-06-04T14:05:38.313Z">
+<meta property="og:image" content="https://liangjinggege.com/object%20memory.001.jpeg?imageView/0/h/450">
+<meta property="og:updated_time" content="2019-08-11T07:39:47.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 语言基础（一、基础知识）">
 <meta name="twitter:description" content="Objective-C 简介 Objective-C 是一门面向对象的计算机语言 Objective-C 是在 C 语言的基础上增加了一层面向对象的语法 Objective-C 完全兼容 C 语言 可以在 Objective-C 中混入 C 语言代码 可以使用 Objective-C 开发 Mac OS 平台和 iOS 平台的应用程序  C 和 Objective-C 比较1. 源文件对比 C 语">
-<meta name="twitter:image" content="http://liangjinggege.com/object%20memory.001.jpeg?imageView/0/h/450">
+<meta name="twitter:image" content="https://liangjinggege.com/object%20memory.001.jpeg?imageView/0/h/450">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://chenliangjing.me/2017/04/06/Objective-C 语言基础（一、基础知识）/">
+  <link rel="canonical" href="https://chenliangjing.me/2017/04/06/Objective-C 语言基础（一、基础知识）/">
 
 
 
@@ -151,7 +151,7 @@
   };
 </script>
 
-  <title>Objective-C 语言基础（一、基础知识） | 青争哥哥</title>
+  <title>Objective-C 语言基础（一、基础知识） | 在水一方</title>
   
 
 
@@ -211,7 +211,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">青争哥哥</span>
+        <span class="site-title">在水一方</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -451,7 +451,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/04/06/Objective-C 语言基础（一、基础知识）/">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/04/06/Objective-C 语言基础（一、基础知识）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈良静">
@@ -460,7 +460,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青争哥哥">
+      <meta itemprop="name" content="在水一方">
     </span>
 
     
@@ -510,7 +510,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
               
             
           </span>
@@ -856,7 +856,7 @@ continue 语句
 </blockquote>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person *p = [Person <span class="keyword">new</span><span class="type"></span>];</span><br></pre></td></tr></table></figure>
 <p>在内存中的存储情况：</p>
-<p><img src="http://liangjinggege.com/object%20memory.001.jpeg?imageView/0/h/450" alt=""></p>
+<p><img src="https://liangjinggege.com/object%20memory.001.jpeg?imageView/0/h/450" alt=""></p>
 <h3 id="过程描述："><a href="#过程描述：" class="headerlink" title="过程描述："></a>过程描述：</h3><p>首先程序启动，Person 类代码被加载进<code>代码区</code>， 系统会自动根据 Person 类代码在<code>堆</code>中分配存储空间创建一个 <code>Person 类对象</code>，里面保存着 Person 类所有的方法。 接着调用 new 方法，从  <code>Person 类对象</code>里面查找 new 方法，也是在<code>堆</code>中分配存储空间创建一个 <code>Person 实例对象</code>，<code>实例对象</code>默认的第 0 个属性就是一个 <code>isa</code> 指针，这个指针就是指向 <code>Person 类对象</code>，接着初始化 Person 类中的所有属性，其中<code>isa</code> 指针会被初始化为指向创建他的对象地址，初始化完成后返回 <code>Person 实例对象</code> 的地址，保存在<code>栈</code>中的指针变量 p。</p>
 <h2 id="局部变量-amp-amp-全局变量-amp-amp-成员变量"><a href="#局部变量-amp-amp-全局变量-amp-amp-成员变量" class="headerlink" title="局部变量&amp;&amp;全局变量&amp;&amp;成员变量"></a>局部变量&amp;&amp;全局变量&amp;&amp;成员变量</h2><h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><ul>
 <li>写在函数或者代码块中的变量，称为局部变量</li>
@@ -1168,7 +1168,7 @@ continue 语句
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

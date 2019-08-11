@@ -123,25 +123,25 @@
 <meta name="keywords" content="iOS,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 设计模式-单例模式">
-<meta property="og:url" content="http://chenliangjing.me/2017/03/17/iOS-设计模式-单例模式/index.html">
-<meta property="og:site_name" content="青争哥哥">
+<meta property="og:url" content="https://chenliangjing.me/2017/03/17/iOS-设计模式-单例模式/index.html">
+<meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="单例简介 作用  保证类在程序运行过程中只有一个实例，而且该实例易于外界访问。 方便地控制了实例的个数，节约系统资源。   使用场景  在整个应用程序中，共享一份资源（这份资源只需要创建初始化 1 次）    源代码地址 怎么实现？ 保证外界每次调用 alloc 方法时要只非配一次内存。 保证外界调用 copy 方法时不会创建新的对象实例。 提供给外界一个快速方便获取单例的类方法，同时要保证返回同">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170502_1.png?imageView/0/h/400">
-<meta property="og:updated_time" content="2019-06-04T14:05:38.324Z">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170502_1.png?imageView/0/h/400">
+<meta property="og:updated_time" content="2019-08-11T07:39:47.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 设计模式-单例模式">
 <meta name="twitter:description" content="单例简介 作用  保证类在程序运行过程中只有一个实例，而且该实例易于外界访问。 方便地控制了实例的个数，节约系统资源。   使用场景  在整个应用程序中，共享一份资源（这份资源只需要创建初始化 1 次）    源代码地址 怎么实现？ 保证外界每次调用 alloc 方法时要只非配一次内存。 保证外界调用 copy 方法时不会创建新的对象实例。 提供给外界一个快速方便获取单例的类方法，同时要保证返回同">
-<meta name="twitter:image" content="http://liangjinggege.com/Snip20170502_1.png?imageView/0/h/400">
+<meta name="twitter:image" content="https://liangjinggege.com/Snip20170502_1.png?imageView/0/h/400">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://chenliangjing.me/2017/03/17/iOS-设计模式-单例模式/">
+  <link rel="canonical" href="https://chenliangjing.me/2017/03/17/iOS-设计模式-单例模式/">
 
 
 
@@ -151,7 +151,7 @@
   };
 </script>
 
-  <title>iOS 设计模式-单例模式 | 青争哥哥</title>
+  <title>iOS 设计模式-单例模式 | 在水一方</title>
   
 
 
@@ -211,7 +211,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">青争哥哥</span>
+        <span class="site-title">在水一方</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -451,7 +451,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/03/17/iOS-设计模式-单例模式/">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/03/17/iOS-设计模式-单例模式/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈良静">
@@ -460,7 +460,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青争哥哥">
+      <meta itemprop="name" content="在水一方">
     </span>
 
     
@@ -510,7 +510,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
               
             
           </span>
@@ -634,7 +634,7 @@
 <ul>
 <li>外界调用</li>
 </ul>
-<p><img src="http://liangjinggege.com/Snip20170502_1.png?imageView/0/h/400" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170502_1.png?imageView/0/h/400" alt=""></p>
 <h2 id="非-GCD-实现"><a href="#非-GCD-实现" class="headerlink" title="非 GCD 实现"></a>非 GCD 实现</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">id</span> _instance;</span><br><span class="line"></span><br><span class="line">+(<span class="keyword">instancetype</span>)allocWithZone:(<span class="keyword">struct</span> _NSZone *)zone</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 加锁，保证线程安全</span></span><br><span class="line">    <span class="keyword">@synchronized</span> (<span class="keyword">self</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (_instance == <span class="literal">nil</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            _instance = [<span class="keyword">super</span> allocWithZone:zone];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> _instance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 加锁，保证线程安全</span></span><br><span class="line">    <span class="keyword">@synchronized</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (_instance == <span class="literal">nil</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            _instance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> _instance;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> _instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -844,7 +844,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

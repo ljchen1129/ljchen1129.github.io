@@ -119,26 +119,26 @@
 
 
 
-  <meta name="description" content="2019.5.2生活很艰难！                                                    var ap = new APlayer({             element: document.getElementById(&quot;aplayer-oHHXjYhC&quot;),             narrow: false,             autopl">
+  <meta name="description" content="2019.8.11博客瞎折腾，有给弄挂了，deploy 不上去，报错： 123456error: failed to push some refs to &apos;https://github.com/ljchen1129/ljchen1129.github.io.git&apos;FATAL Something&apos;s wrong. Maybe you can find the solution here: http">
 <meta property="og:type" content="website">
 <meta property="og:title" content="零碎想法">
-<meta property="og:url" content="http://chenliangjing.me/零碎想法/index.html">
-<meta property="og:site_name" content="青争哥哥">
-<meta property="og:description" content="2019.5.2生活很艰难！                                                    var ap = new APlayer({             element: document.getElementById(&quot;aplayer-oHHXjYhC&quot;),             narrow: false,             autopl">
+<meta property="og:url" content="https://chenliangjing.me/零碎想法/index.html">
+<meta property="og:site_name" content="在水一方">
+<meta property="og:description" content="2019.8.11博客瞎折腾，有给弄挂了，deploy 不上去，报错： 123456error: failed to push some refs to &apos;https://github.com/ljchen1129/ljchen1129.github.io.git&apos;FATAL Something&apos;s wrong. Maybe you can find the solution here: http">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-04T14:05:38.352Z">
+<meta property="og:updated_time" content="2019-08-11T07:41:26.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零碎想法">
-<meta name="twitter:description" content="2019.5.2生活很艰难！                                                    var ap = new APlayer({             element: document.getElementById(&quot;aplayer-oHHXjYhC&quot;),             narrow: false,             autopl">
+<meta name="twitter:description" content="2019.8.11博客瞎折腾，有给弄挂了，deploy 不上去，报错： 123456error: failed to push some refs to &apos;https://github.com/ljchen1129/ljchen1129.github.io.git&apos;FATAL Something&apos;s wrong. Maybe you can find the solution here: http">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://chenliangjing.me/零碎想法/">
+  <link rel="canonical" href="https://chenliangjing.me/零碎想法/">
 
 
 
@@ -148,7 +148,7 @@
   };
 </script>
 
-  <title>零碎想法 | 青争哥哥</title>
+  <title>零碎想法 | 在水一方</title>
   
 
 
@@ -210,7 +210,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">青争哥哥</span>
+        <span class="site-title">在水一方</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -490,21 +490,25 @@
       <div class="post-body">
         
         
-          <h3 id="2019-5-2"><a href="#2019-5-2" class="headerlink" title="2019.5.2"></a>2019.5.2</h3><p>生活很艰难！</p>
+          <h3 id="2019-8-11"><a href="#2019-8-11" class="headerlink" title="2019.8.11"></a>2019.8.11</h3><p>博客瞎折腾，有给弄挂了，deploy 不上去，报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">error: failed to push some refs to <span class="string">'https://github.com/ljchen1129/ljchen1129.github.io.git'</span></span><br><span class="line">FATAL Something<span class="string">'s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: Spawn failed</span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/Users/chenliangjing/Documents/myBlog/node_modules/hexo-util/lib/spawn.js:52:19)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:189:13)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决方案：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除 .deploy_git 文件夹</span></span><br><span class="line">rm -rf .deploy_git</span><br><span class="line"><span class="comment"># 重新部署</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h3 id="2019-5-2"><a href="#2019-5-2" class="headerlink" title="2019.5.2"></a>2019.5.2</h3><p>生活很艰难！</p>
 
-        <div id="aplayer-oHHXjYhC" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-offuyVGG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-oHHXjYhC"),
+            element: document.getElementById("aplayer-offuyVGG"),
             narrow: false,
             autoplay: false,
             showlrc: false,
             music: {
               title: "硬币",
               author: "汪峰",
-              url: "http://liangjinggege.com/%E7%A1%AC%E5%B8%81.mp3",
+              url: "https://liangjinggege.com/%E7%A1%AC%E5%B8%81.mp3",
               pic: "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg",
               lrc: ""
             }
@@ -547,19 +551,19 @@
 <li>coredata 用过吗？</li>
 </ol>
 <h3 id="2018-3-31"><a href="#2018-3-31" class="headerlink" title="2018.3.31"></a>2018.3.31</h3>
-        <div id="aplayer-geeNTBOi" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-eTJUdWPg" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-geeNTBOi"),
+            element: document.getElementById("aplayer-eTJUdWPg"),
             narrow: false,
             autoplay: false,
             showlrc: false,
             music: {
               title: "借我",
               author: "谢春花",
-              url: "http://liangjinggege.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3",
+              url: "https://liangjinggege.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3",
               pic: "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000",
               lrc: ""
             }
@@ -570,19 +574,19 @@
 <p>借我十年<br>借我亡命天涯的勇敢<br>借我说得出口的旦旦誓言<br>借我孤绝如初见<br>借我不惧碾压的鲜活<br>借我生猛与莽撞不问明天<br>借我一束光照亮黯淡<br>借我笑颜灿烂如春天<br>借我杀死庸碌的情怀<br>借我纵容的悲怆与哭喊<br>借我怦然心动如往昔<br>借我安适的清晨与傍晚</p>
 <p>三月份，离职，找工作，面试，入职，找房子，搬家，维护旧项目，接手新项目，新业务，新环境，新同事。</p>
 <h3 id="2018-3-7"><a href="#2018-3-7" class="headerlink" title="2018.3.7"></a>2018.3.7</h3>
-        <div id="aplayer-OCNUQYec" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-jtWOQeYj" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-OCNUQYec"),
+            element: document.getElementById("aplayer-jtWOQeYj"),
             narrow: false,
             autoplay: false,
             showlrc: false,
             music: {
               title: "彼岸",
               author: "汪峰",
-              url: "http://liangjinggege.com/M800002FiXZh2vto9Q.mp3",
+              url: "https://liangjinggege.com/M800002FiXZh2vto9Q.mp3",
               pic: "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000",
               lrc: ""
             }
@@ -613,19 +617,19 @@
 </li>
 </ul>
 
-        <div id="aplayer-IFECxuhC" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-BSknumqI" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-IFECxuhC"),
+            element: document.getElementById("aplayer-BSknumqI"),
             narrow: false,
             autoplay: false,
             showlrc: false,
             music: {
               title: "觉醒",
               author: "汪峰",
-              url: "http://liangjinggege.com/M800002HocyJ3ad9Uh.mp3",
+              url: "https://liangjinggege.com/M800002HocyJ3ad9Uh.mp3",
               pic: "http://i.gtimg.cn/music/photo/mid_album_500/V/I/003k3pNG0KpRVI.jpg",
               lrc: ""
             }
@@ -639,19 +643,19 @@
 * 越往后压力越大，如果还是这个样子，人生就要废了！只有用自己不断的进步来堵住那些悠悠众口，聪明和勤奋的人太多了，千万不能自己感动自己！
 * 三十岁之前的时间很珍贵很珍贵！-->
 <!--
-        <div id="aplayer-zDcjKLgM" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-fQwtIPAx" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-zDcjKLgM"),
+            element: document.getElementById("aplayer-fQwtIPAx"),
             narrow: false,
             autoplay: true,
             showlrc: false,
             music: {
               title: "彼岸",
               author: "汪峰",
-              url: "http://liangjinggege.com/M800002FiXZh2vto9Q.mp3",
+              url: "https://liangjinggege.com/M800002FiXZh2vto9Q.mp3",
               pic: "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000",
               lrc: ""
             }
@@ -732,7 +736,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1001,7 +1005,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2019-5-2"><span class="nav-number">1.</span> <span class="nav-text">2019.5.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-12-28"><span class="nav-number">2.</span> <span class="nav-text">2018.12.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-12-13"><span class="nav-number">3.</span> <span class="nav-text">2018.12.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-12-4"><span class="nav-number">4.</span> <span class="nav-text">2018.12.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-9-7"><span class="nav-number">5.</span> <span class="nav-text">2018.9.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-9-2"><span class="nav-number">6.</span> <span class="nav-text">2018.9.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-7-7"><span class="nav-number">7.</span> <span class="nav-text">2018.7.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-6-26"><span class="nav-number">8.</span> <span class="nav-text">2018.6.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-6-6"><span class="nav-number">9.</span> <span class="nav-text">2018.6.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-6-1"><span class="nav-number">10.</span> <span class="nav-text">2018.6.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-5-22"><span class="nav-number">11.</span> <span class="nav-text">2018.5.22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-3-31"><span class="nav-number">12.</span> <span class="nav-text">2018.3.31</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-3-7"><span class="nav-number">13.</span> <span class="nav-text">2018.3.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-2-17"><span class="nav-number">14.</span> <span class="nav-text">2018.2.17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-2-7"><span class="nav-number">15.</span> <span class="nav-text">2018.2.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-7-27"><span class="nav-number">16.</span> <span class="nav-text">2017.7.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-6-12"><span class="nav-number">17.</span> <span class="nav-text">2017.6.12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-5-30"><span class="nav-number">18.</span> <span class="nav-text">2017.5.30</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-5-28"><span class="nav-number">19.</span> <span class="nav-text">2017.5.28</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2019-8-11"><span class="nav-number">1.</span> <span class="nav-text">2019.8.11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2019-5-2"><span class="nav-number">2.</span> <span class="nav-text">2019.5.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-12-28"><span class="nav-number">3.</span> <span class="nav-text">2018.12.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-12-13"><span class="nav-number">4.</span> <span class="nav-text">2018.12.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-12-4"><span class="nav-number">5.</span> <span class="nav-text">2018.12.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-9-7"><span class="nav-number">6.</span> <span class="nav-text">2018.9.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-9-2"><span class="nav-number">7.</span> <span class="nav-text">2018.9.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-7-7"><span class="nav-number">8.</span> <span class="nav-text">2018.7.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-6-26"><span class="nav-number">9.</span> <span class="nav-text">2018.6.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-6-6"><span class="nav-number">10.</span> <span class="nav-text">2018.6.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-6-1"><span class="nav-number">11.</span> <span class="nav-text">2018.6.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-5-22"><span class="nav-number">12.</span> <span class="nav-text">2018.5.22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-3-31"><span class="nav-number">13.</span> <span class="nav-text">2018.3.31</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-3-7"><span class="nav-number">14.</span> <span class="nav-text">2018.3.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-2-17"><span class="nav-number">15.</span> <span class="nav-text">2018.2.17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-2-7"><span class="nav-number">16.</span> <span class="nav-text">2018.2.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-7-27"><span class="nav-number">17.</span> <span class="nav-text">2017.7.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-6-12"><span class="nav-number">18.</span> <span class="nav-text">2017.6.12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-5-30"><span class="nav-number">19.</span> <span class="nav-text">2017.5.30</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-5-28"><span class="nav-number">20.</span> <span class="nav-text">2017.5.28</span></a></li></ol></div>
             
 
           </div>

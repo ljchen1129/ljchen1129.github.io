@@ -123,28 +123,28 @@
 <meta name="keywords" content="iOS,网络编程,socket">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 网络编程-Socket 通信">
-<meta property="og:url" content="http://chenliangjing.me/2017/05/18/iOS-网络编程-Socket-通信/index.html">
-<meta property="og:site_name" content="青争哥哥">
+<meta property="og:url" content="https://chenliangjing.me/2017/05/18/iOS-网络编程-Socket-通信/index.html">
+<meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="通信三个要素 IP 地址（主机名）  网络中设备的标识 可以用主机名 本地主机地址：127.0.0.1 主机名：localhost   端口号（port）  用于标识应用程序的逻辑地址，不同进程的标识 有效端口号 0~65535 其中 0~1024 为系统使用或者保留端口，开发中不要使用，使用 1024 以下的端口   传输协议  TCP UDP">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://liangjinggege.com/1170656-fe177ff611c71d76.jpg">
-<meta property="og:image" content="http://liangjinggege.com/1170656-a3120a20b9393a94.png">
-<meta property="og:image" content="http://liangjinggege.com/1170656-26cc9a86da3d9a68.jpg">
-<meta property="og:image" content="http://liangjinggege.com/1170656-6b9392fad31b711d.png">
-<meta property="og:updated_time" content="2019-06-04T14:05:38.323Z">
+<meta property="og:image" content="https://liangjinggege.com/1170656-fe177ff611c71d76.jpg">
+<meta property="og:image" content="https://liangjinggege.com/1170656-a3120a20b9393a94.png">
+<meta property="og:image" content="https://liangjinggege.com/1170656-26cc9a86da3d9a68.jpg">
+<meta property="og:image" content="https://liangjinggege.com/1170656-6b9392fad31b711d.png">
+<meta property="og:updated_time" content="2019-08-11T07:39:47.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 网络编程-Socket 通信">
 <meta name="twitter:description" content="通信三个要素 IP 地址（主机名）  网络中设备的标识 可以用主机名 本地主机地址：127.0.0.1 主机名：localhost   端口号（port）  用于标识应用程序的逻辑地址，不同进程的标识 有效端口号 0~65535 其中 0~1024 为系统使用或者保留端口，开发中不要使用，使用 1024 以下的端口   传输协议  TCP UDP">
-<meta name="twitter:image" content="http://liangjinggege.com/1170656-fe177ff611c71d76.jpg">
+<meta name="twitter:image" content="https://liangjinggege.com/1170656-fe177ff611c71d76.jpg">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://chenliangjing.me/2017/05/18/iOS-网络编程-Socket-通信/">
+  <link rel="canonical" href="https://chenliangjing.me/2017/05/18/iOS-网络编程-Socket-通信/">
 
 
 
@@ -154,7 +154,7 @@
   };
 </script>
 
-  <title>iOS 网络编程-Socket 通信 | 青争哥哥</title>
+  <title>iOS 网络编程-Socket 通信 | 在水一方</title>
   
 
 
@@ -214,7 +214,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">青争哥哥</span>
+        <span class="site-title">在水一方</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -454,7 +454,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/05/18/iOS-网络编程-Socket-通信/">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/05/18/iOS-网络编程-Socket-通信/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈良静">
@@ -463,7 +463,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青争哥哥">
+      <meta itemprop="name" content="在水一方">
     </span>
 
     
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
               
             
           </span>
@@ -636,7 +636,7 @@
 </li>
 </ul>
 <p><code>HTTP 协议</code>对应于<code>应用层</code>，<code>TCP 协议</code>对应于<code>传输层</code>，<code>IP 协议</code>对应于<code>网络层</code>，<code>HTTP 协议</code>是基于 <code>TCP 连接</code>的，三者本质上没有可比性。 <code>TCP/IP</code> 是<code>传输层协议</code>，主要解决数据如何在网络中传输；而 HTTP 是应用层协议，主要解决如何包装数据。<code>Socket 是应用层与 TCP/IP 协议族通信的中间软件抽象层，是它的一组接口</code>。</p>
-<p><img src="http://liangjinggege.com/1170656-fe177ff611c71d76.jpg" alt=""></p>
+<p><img src="https://liangjinggege.com/1170656-fe177ff611c71d76.jpg" alt=""></p>
 <h2 id="UDP-和-TCP"><a href="#UDP-和-TCP" class="headerlink" title="UDP 和 TCP"></a>UDP 和 TCP</h2><ul>
 <li><p>UPD（用户数据报协议）</p>
 <ul>
@@ -666,12 +666,12 @@
 <p>第二次握手：服务器收到 syn 包，必须确认客户的 SYN（ack=j+1），同时自己也发送一个 SYN包（syn=k），即 SYN+ACK 包，此时服务器进入 SYN_RECV 状态；</p>
 <p>第三次握手：客户端收到服务器的 SYN＋ACK 包，向服务器发送确认包 ACK(ack=k+1)，此包发送完毕，客户端和服务器进入 ESTABLISHED 状态，完成三次握手。</p>
 <p><code>三次握手(Three-way Handshake)</code>即建立一个 TCP 连接时，需要客户端和服务器总共发送 3 个包。三次握手的目的是<code>连接服务器指定端口</code>，建立 TCP 连接，并同步连接双方的序列号和确认号并交换 TCP 窗口大小信息。<code>在 socket 编程中，客户端执行 connect() 时,将触发三次握手</code>。</p>
-<p><img src="http://liangjinggege.com/1170656-a3120a20b9393a94.png" alt=""></p>
+<p><img src="https://liangjinggege.com/1170656-a3120a20b9393a94.png" alt=""></p>
 <ul>
 <li>TCP 断开连接<code>四次握手</code></li>
 </ul>
 <p>TCP 连接的拆除需要发送四个包，因此称为四次握手(four-way handshake)。<code>在 socket 编程中，任何一方执行 close() 操作即可产生握手（有地方称为“挥手”）操作</code>。</p>
-<p><img src="http://liangjinggege.com/1170656-26cc9a86da3d9a68.jpg" alt=""></p>
+<p><img src="https://liangjinggege.com/1170656-26cc9a86da3d9a68.jpg" alt=""></p>
 <h2 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h2><p><strong>Socket：</strong>套接字层、插座</p>
 <ul>
 <li><p>Socket 是为网络服务提供的一种机制</p>
@@ -689,7 +689,7 @@
 <ul>
 <li>Socket 通信示意图</li>
 </ul>
-<p><img src="http://liangjinggege.com/1170656-6b9392fad31b711d.png" alt=""> </p>
+<p><img src="https://liangjinggege.com/1170656-6b9392fad31b711d.png" alt=""> </p>
 <h2 id="Socket-库函数"><a href="#Socket-库函数" class="headerlink" title="Socket 库函数"></a>Socket 库函数</h2><ol>
 <li>导入系统库 <code>&lt;sys/socket.h&gt;</code>、 <code>&lt;netinet/in.h&gt;</code>、<code>&lt;arpa/inet.h&gt;</code></li>
 <li>创建 socket</li>
@@ -909,7 +909,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

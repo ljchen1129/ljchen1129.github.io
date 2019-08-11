@@ -123,43 +123,43 @@
 <meta name="keywords" content="iOS,Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C 语言基础（三、内存管理）">
-<meta property="og:url" content="http://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/index.html">
-<meta property="og:site_name" content="青争哥哥">
+<meta property="og:url" content="https://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/index.html">
+<meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="内存管理1. 内存管理的重要性 移动设备的内存极其有限，每个 app 所能占用的内存是有限制的 下列行为都会增加一个 app 的内存占用 创建一个 Objective-C 对象 定义一个变量 调用一个函数或者方法   当 app 所占用的内存较多时，系统会发出内存警告，这时得回收一些不需要再使用的内存空间，比如回收一些不需要使用的对象，变量等 如果 app 内存占用过大，系统可能会强制关闭 app">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240">
-<meta property="og:updated_time" content="2019-06-04T14:05:38.314Z">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240">
+<meta property="og:updated_time" content="2019-08-11T07:39:47.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 语言基础（三、内存管理）">
 <meta name="twitter:description" content="内存管理1. 内存管理的重要性 移动设备的内存极其有限，每个 app 所能占用的内存是有限制的 下列行为都会增加一个 app 的内存占用 创建一个 Objective-C 对象 定义一个变量 调用一个函数或者方法   当 app 所占用的内存较多时，系统会发出内存警告，这时得回收一些不需要再使用的内存空间，比如回收一些不需要使用的对象，变量等 如果 app 内存占用过大，系统可能会强制关闭 app">
-<meta name="twitter:image" content="http://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300">
+<meta name="twitter:image" content="https://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/">
+  <link rel="canonical" href="https://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/">
 
 
 
@@ -169,7 +169,7 @@
   };
 </script>
 
-  <title>Objective-C 语言基础（三、内存管理） | 青争哥哥</title>
+  <title>Objective-C 语言基础（三、内存管理） | 在水一方</title>
   
 
 
@@ -229,7 +229,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">青争哥哥</span>
+        <span class="site-title">在水一方</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -469,7 +469,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈良静">
@@ -478,7 +478,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青争哥哥">
+      <meta itemprop="name" content="在水一方">
     </span>
 
     
@@ -528,7 +528,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
               
             
           </span>
@@ -641,7 +641,7 @@
 <li>举例</li>
 </ul>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">// 局部变量：栈</span></span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">10</span>; <span class="comment">// 局部变量：栈</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// p（局部变量） ：栈</span></span><br><span class="line">        <span class="comment">// Person 对象（计数器 = 1）：堆</span></span><br><span class="line">        Person *p = [[Person alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 出了 &#125; 号，栈里面的变量 a/b/p 都会被回收</span></span><br><span class="line">    <span class="comment">// 但是堆里面的 Person 对象还会留在内存中，因为他的计数器依然是 1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170408_1.png?imageView/0/h/300" alt=""></p>
 <h3 id="3-引用计数器"><a href="#3-引用计数器" class="headerlink" title="3. 引用计数器"></a>3. 引用计数器</h3><h4 id="什么是引用计数"><a href="#什么是引用计数" class="headerlink" title="#什么是引用计数"></a>#什么是引用计数</h4><ul>
 <li>系统是如何判断什么时候需要回收一个对象所占的内存？<ul>
 <li>通过对象的引用计数器</li>
@@ -697,7 +697,7 @@
 <li>只要给一个<code>野指针</code>发送消息就会报错</li>
 </ul>
 <h4 id="Xcode-中监听僵尸对象"><a href="#Xcode-中监听僵尸对象" class="headerlink" title="#Xcode 中监听僵尸对象"></a>#Xcode 中监听僵尸对象</h4><p>Xcoder-&gt;Product-&gt;Scheme-&gt;Edit Scheme-&gt;Run-&gt;Diagnostics-&gt;Zombie Objects</p>
-<p><img src="http://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170408_2.png?imageView/0/h/500" alt=""></p>
 <h4 id="空指针"><a href="#空指针" class="headerlink" title="#空指针"></a>#空指针</h4><ul>
 <li>空指针：nil 0</li>
 <li>为了避免给<code>野指针</code>发送消息会报错，一般情况下，当一个对象被释放后会将这个对象的指针设置为<code>空指针</code>，因为 Objective-C 中给<code>空指针</code>发送消息是<code>不会报错</code>的。</li>
@@ -724,11 +724,11 @@
 <p>总之，对象引用计数器的加和减总是一一对应的，有加就有减。</p>
 </blockquote>
 <h3 id="8-set-方法内存管理"><a href="#8-set-方法内存管理" class="headerlink" title="8. set 方法内存管理"></a>8. set 方法内存管理</h3><p>上述对多对象的内存管理还不完善，如果人需要换房间，那么又会出现内存泄漏：</p>
-<p><img src="http://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170410_4.png?imageView/0/h/350" alt=""></p>
 <p>问题的原因是：换房的时候，Person 的成员变量 _room 由房间 1111 指向 8888，没有指向房间 1111 了，但是却没有对房间 1111 引用计数器<code>减一操作</code>，所以导致最终房间 1111 没有被释放，导致<code>内存泄漏</code>。</p>
 <p>解决方法：每一次换房之前，都应该对以前的房间引用计数器减 1</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setRoom:(Room *)room</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 将以前的房间释放掉</span></span><br><span class="line">	_room <span class="built_in">release</span>];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 对房间的引用计数器 +1</span></span><br><span class="line">    [room retain];</span><br><span class="line">    _room = room;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170410_5.png?imageView/0/h/200" alt=""></p>
 <p>上述内存管理方案还不够完善，如果出现<code>重复赋值</code>时，即又给人一间 1111 的房间，应用程序将会崩溃，崩溃原因是<code>野指针</code>异常。具体原因是，由于人原本就拥有一间 1111 的房间，即对房间 1111 有一个引用，当再次给人赋值 1111 房间时，先会对 1111 房间 release 一次，release 完 1111 房间引用计数器变为 0，称为僵尸对象，然后又要对整个僵尸对象进行 retain 操作，给僵尸对象发送消息，程序崩溃。</p>
 <p>解决方案：在每一个给 Person 的 _room 赋值之前，先判断新值是否和旧值一样，如果一样，什么都不做，如果不一样，才需要 release 旧值，retain 新值。</p>
 <figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)setRoom:(Room *)room</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 判断旧值和新值是否一样</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_room</span> != room)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// release 旧值</span></span><br><span class="line">        [<span class="variable">_room</span> release];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// retain 新值</span></span><br><span class="line">        <span class="comment">// retain 方法即让对象的引用计数器加 1，同时会返回当前对象</span></span><br><span class="line">        <span class="variable">_room</span> = [room retain];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -791,13 +791,13 @@
 <p>解决方案：不要让 A retain B，B 又 retain A，让其中一方不要做 retain 操作。</p>
 <h3 id="12-集合中对象的内存管理"><a href="#12-集合中对象的内存管理" class="headerlink" title="12. 集合中对象的内存管理"></a>12. 集合中对象的内存管理</h3><ol>
 <li><p>如果将一个对象添加到一个数组中，那么数组会对对象进行一次 retain</p>
-<p> <img src="http://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170411_10.png?imageView/0/h/250" alt=""></p>
 </li>
 <li><p>当数组对象释放后，会给数组中所有的对象发送一条 release 消息</p>
-<p> <img src="http://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170411_11.png?imageView/0/h/250" alt=""></p>
 </li>
 <li><p>当数组移除一个对象之后，会给对象发送一条 release 消息</p>
-<p> <img src="http://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170411_12.png?imageView/0/h/250" alt=""></p>
 </li>
 </ol>
 <h2 id="autorelease"><a href="#autorelease" class="headerlink" title="autorelease"></a>autorelease</h2><h3 id="1-autorelease-基本概念"><a href="#1-autorelease-基本概念" class="headerlink" title="1. autorelease 基本概念"></a>1. autorelease 基本概念</h3><ul>
@@ -990,25 +990,25 @@
 <li><p>几种情况分析</p>
 <ol>
 <li><p>可变对象调用 copy</p>
-<p> <img src="http://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170412_2.png?imageView/0/h/230" alt=""></p>
 <blockquote>
 <p>结论： <code>可变对象</code>调用 copy 方法，<code>会生成</code>新的对象，并且新对象是<code>不可变</code>的。</p>
 </blockquote>
 </li>
 <li><p>可变对象调用 mutableCopy</p>
-<p> <img src="http://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170412_3.png?imageView/0/h/240" alt=""></p>
 <blockquote>
 <p>结论： <code>可变对象</code>调用 mutableCopy，<code>会生成</code>新的对象，并且新对象是<code>可变的</code>。</p>
 </blockquote>
 </li>
 <li><p>不可变对象调用 mutableCopy</p>
-<p> <img src="http://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170412_4.png?imageView/0/h/240" alt=""></p>
 <blockquote>
 <p>结论： <code>不可变对象</code>调用 mutableCopy，<code>会生成</code>新的对象，并且新对象是<code>可变的</code>。</p>
 </blockquote>
 </li>
 <li><p>不可变对象调用 copy</p>
-<p> <img src="http://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170412_5.png?imageView/0/h/230" alt=""></p>
 <blockquote>
 <p>结论： <code>不可变对象</code>调用 copy，<code>不会生成</code>新的对象，并且新对象是<code>不可变的</code>。</p>
 </blockquote>
@@ -1025,25 +1025,25 @@
 </blockquote>
 <h3 id="2-Copy-的内存管理"><a href="#2-Copy-的内存管理" class="headerlink" title="2. Copy 的内存管理"></a>2. Copy 的内存管理</h3><ul>
 <li><p>如果是浅拷贝（源对象和副本对象都不可变），由于不会生成新的对象，所以系统会对源对象进行一次 retain。所以对源对象一次 copy 操作，就要相应的做一次 release 操作。</p>
-<p>  <img src="http://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230" alt=""></p>
+<p>  <img src="https://liangjinggege.com/Snip20170412_6.png?imageView/0/h/230" alt=""></p>
 </li>
 <li><p>如果是深拷贝。真是因为生成了新的对象，所以系统不会对源对象进行 retain，但是因为生成了新对象，所以需要对新对象进行一次 release。</p>
-<p>  <img src="http://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260" alt=""></p>
+<p>  <img src="https://liangjinggege.com/Snip20170412_8.png?imageView/0/h/260" alt=""></p>
 </li>
 </ul>
 <h3 id="3-Copy-和-Property"><a href="#3-Copy-和-Property" class="headerlink" title="3. Copy 和 Property"></a>3. Copy 和 Property</h3><h4 id="修饰字符串类型"><a href="#修饰字符串类型" class="headerlink" title="#修饰字符串类型"></a>#修饰字符串类型</h4><ul>
 <li>Copy 是 Property 中内存管理的关键字。主要修饰 NSString 类型的属性。作用：为了防止修改了外界变量，影响到了对象中的属性。</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br></pre></td></tr></table></figure>
-<p><img src="http://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170412_9.png?imageView/0/h/260" alt=""></p>
 <h4 id="修饰-block"><a href="#修饰-block" class="headerlink" title="#修饰 block"></a>#修饰 block</h4><ul>
 <li>如果 block 存储在<code>栈</code>中，block 中访问了外界的对象，<code>不会</code>对对象进行一次 retain 操作</li>
 </ul>
-<p><img src="http://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170412_16.png?imageView/0/h/220" alt=""></p>
 <ul>
 <li>如果 block 存储在<code>堆</code>中，block 中访问了外界的对象，<code>会</code>对对象进行一次 retain 操作</li>
 </ul>
-<p><img src="http://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170412_15.png?imageView/0/h/220" alt=""></p>
 <ul>
 <li>修饰 block。可以使用 copy 来保存 block，这样可以让 block 中使用到的外界对象进行一次 retain 操作，避免以后调用 block 的时候，外界的对象已经释放了。（如果外界对象在调用 block 之前被释放了，那么程序就会崩溃）</li>
 </ul>
@@ -1051,7 +1051,7 @@
 <h4 id="copy-block之后引发的循环引用"><a href="#copy-block之后引发的循环引用" class="headerlink" title="#copy block之后引发的循环引用"></a>#copy block之后引发的循环引用</h4><ul>
 <li>如果对象中的 block 又用到了对象自己，那么此时会产生循环引用，发生内存泄漏，为避免这种情况，应该将对象修饰为 <code>__block</code>。</li>
 </ul>
-<p><img src="http://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170412_17.png?imageView/0/h/250" alt=""></p>
 <h3 id="4-自定义类实现-Copy"><a href="#4-自定义类实现-Copy" class="headerlink" title="4. 自定义类实现 Copy"></a>4. 自定义类实现 Copy</h3><p><a href="https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%AE%9E%E7%8E%B0%20Copy" target="_blank" rel="noopener">源码地址</a></p>
 <h4 id="自定义类实现-copy-操作"><a href="#自定义类实现-copy-操作" class="headerlink" title="自定义类实现 copy 操作"></a>自定义类实现 copy 操作</h4><ul>
 <li>让类遵守 NSCopying 协议</li>
@@ -1059,10 +1059,10 @@
 <li>在 copyWithZone:方法中，创建一个新的对象，并设置该对象的数据与现有对象一致，并返回该对象</li>
 </ul>
 <h4 id="无父类实现"><a href="#无父类实现" class="headerlink" title="#无父类实现"></a>#无父类实现</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span>&lt;<span class="title">NSCopying</span>&gt; // 遵守 <span class="title">NSCopying</span> 协议</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">   </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"><span class="comment">// 实现 copyWithZone:方法</span></span><br><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 创建一个新的对象</span></span><br><span class="line">    Person *p = [[[<span class="keyword">self</span> <span class="keyword">class</span>] alloc] init];</span><br><span class="line">    <span class="comment">// 2. 设置当前对象内容给新对象</span></span><br><span class="line">    p.name = _name;</span><br><span class="line">    <span class="comment">// 3. 返回新对象</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170412_18.png?imageView/0/h/240" alt=""></p>
 <h4 id="有父类实现"><a href="#有父类实现" class="headerlink" title="#有父类实现"></a>#有父类实现</h4><p>如果想让子类在 copy 的时候保留子类的属性，那么必须重写copyWithZone: 方法，在该方法中，先调用父类创建副本设置值，然后再设置子类特有值</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">Person</span></span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">CGFloat</span> height;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">	</span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span></span></span><br><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 调用父类创建副本设置值</span></span><br><span class="line">    <span class="keyword">id</span> obj = [<span class="keyword">super</span> copyWithZone:zone];</span><br><span class="line">    <span class="comment">// 2. 设置数据给副本</span></span><br><span class="line">    [obj setHeight:_height];</span><br><span class="line">    <span class="comment">// 3. 返回新对象</span></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170412_19.png?imageView/0/h/240" alt=""></p>
 <blockquote>
 <p>MatableCopy 和 Copy 实现类似，只要遵守 NSMutableCoping 协议，然后实现 mutableCopyWithZone:方法。</p>
 </blockquote>
@@ -1275,7 +1275,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

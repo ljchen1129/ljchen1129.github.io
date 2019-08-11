@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>青争哥哥</title>
+  <title>在水一方</title>
   
   <subtitle>记录个人成长历程</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://chenliangjing.me/"/>
-  <updated>2019-06-04T14:05:38.335Z</updated>
-  <id>http://chenliangjing.me/</id>
+  <link href="https://chenliangjing.me/"/>
+  <updated>2019-08-11T07:39:47.154Z</updated>
+  <id>https://chenliangjing.me/</id>
   
   <author>
     <name>陈良静</name>
@@ -17,84 +17,103 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>《算法图解》读书笔记—像小说一样有趣的算法入门书</title>
-    <link href="http://chenliangjing.me/2019/05/02/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E5%83%8F%E5%B0%8F%E8%AF%B4%E4%B8%80%E6%A0%B7%E6%9C%89%E8%B6%A3%E7%9A%84%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E4%B9%A6/"/>
-    <id>http://chenliangjing.me/2019/05/02/《算法图解》读书笔记—像小说一样有趣的算法入门书/</id>
-    <published>2019-05-02T00:29:08.000Z</published>
-    <updated>2019-06-04T14:05:38.335Z</updated>
+    <title></title>
+    <link href="https://chenliangjing.me/2019/08/11/iOS%20%E7%AB%AF%20h5%20%E9%A1%B5%E9%9D%A2%E7%A7%92%E5%BC%80%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
+    <id>https://chenliangjing.me/2019/08/11/iOS 端 h5 页面秒开优化实践/</id>
+    <published>2019-08-11T04:36:53.505Z</published>
+    <updated>2019-08-11T07:39:47.154Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《算法图解》读书笔记—像小说一样有趣的算法入门书</title>
+    <link href="https://chenliangjing.me/2019/05/02/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E5%83%8F%E5%B0%8F%E8%AF%B4%E4%B8%80%E6%A0%B7%E6%9C%89%E8%B6%A3%E7%9A%84%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E4%B9%A6/"/>
+    <id>https://chenliangjing.me/2019/05/02/《算法图解》读书笔记—像小说一样有趣的算法入门书/</id>
+    <published>2019-05-02T00:29:08.000Z</published>
+    <updated>2019-08-11T07:39:47.157Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;学习算法课程的时候，老师推荐了两本算法和数据结构入门书，一本是&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;、一本是&lt;a href=&quot;https://book.douban.com/subject/6424904/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《大话数据结构》&lt;/a&gt;，&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;这本书最近读完了，读完的最大感受就是对算法不再感到畏惧和陌生，对常用的算法和数据结构都会在心里有个基本的概念，这篇文章记录下这本书的主要内容和知识点。&lt;/p&gt;
 &lt;p&gt;总的来说，这本书是一本不错的算法入门书，作者以从实际开发场景出发，介绍了软件开发中最基本、最常用的一些&lt;code&gt;数据结构&lt;/code&gt;和&lt;code&gt;算法思想&lt;/code&gt;，同时作者写得非常深入浅出，联系实际应用场景，并结合了大量的算法推演图示，举例生动形象，循序渐进，使读者易于理解，能够很大地培养读者对算法的兴趣，从而引导读者进一步地进行学习研究。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
-      <category term="算法" scheme="http://chenliangjing.me/Tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Tags/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>《当我谈跑步时，我谈些什么》读书笔记--我跑，故我在</title>
-    <link href="http://chenliangjing.me/2019/04/30/%E3%80%8A%E5%BD%93%E6%88%91%E8%B0%88%E8%B7%91%E6%AD%A5%E6%97%B6%EF%BC%8C%E6%88%91%E8%B0%88%E4%BA%9B%E4%BB%80%E4%B9%88%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%88%91%E8%B7%91%EF%BC%8C%E6%95%85%E6%88%91%E5%9C%A8/"/>
-    <id>http://chenliangjing.me/2019/04/30/《当我谈跑步时，我谈些什么》读书笔记-我跑，故我在/</id>
+    <link href="https://chenliangjing.me/2019/04/30/%E3%80%8A%E5%BD%93%E6%88%91%E8%B0%88%E8%B7%91%E6%AD%A5%E6%97%B6%EF%BC%8C%E6%88%91%E8%B0%88%E4%BA%9B%E4%BB%80%E4%B9%88%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%88%91%E8%B7%91%EF%BC%8C%E6%95%85%E6%88%91%E5%9C%A8/"/>
+    <id>https://chenliangjing.me/2019/04/30/《当我谈跑步时，我谈些什么》读书笔记-我跑，故我在/</id>
     <published>2019-04-30T13:17:08.000Z</published>
-    <updated>2019-06-04T14:05:38.334Z</updated>
+    <updated>2019-08-11T07:39:47.172Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/timg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/timg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://book.douban.com/subject/3369600/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这本书&lt;/a&gt;是村上春树写得一本关于自己跑步的随笔集，记录了村上几十年来跑步训练、马拉松比赛的一些心情日志和对跑步的感悟，其实大学时期就读过了，不过那时候刚刚跑步不久，读完也没啥印象了，现在跑步也已经七八年了，马拉松也跑了快十场，再读这本书，就稍微有点感觉了，如果你也是一个爱跑步的人，我想也会有一些相似的体会吧，于我而言，觉得有感觉的地方有以下几点：&lt;/p&gt;
 &lt;h2 id=&quot;为什么是跑步？&quot;&gt;&lt;a href=&quot;#为什么是跑步？&quot; class=&quot;headerlink&quot; title=&quot;为什么是跑步？&quot;&gt;&lt;/a&gt;为什么是跑步？&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;跑步简单。跑步对人类而言是一种天生的本能，每个人基因里天生就会跑，而且不需要同伴，一点不复杂，只需要一双合脚的跑鞋，说跑就跑了。&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
     
     </summary>
     
-      <category term="读书笔记" scheme="http://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="https://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="跑步" scheme="http://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%B7%91%E6%AD%A5/"/>
+      <category term="跑步" scheme="https://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%B7%91%E6%AD%A5/"/>
     
     
-      <category term="读书笔记" scheme="http://chenliangjing.me/Categorys/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="https://chenliangjing.me/Categorys/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="跑步" scheme="http://chenliangjing.me/Categorys/%E8%B7%91%E6%AD%A5/"/>
+      <category term="跑步" scheme="https://chenliangjing.me/Categorys/%E8%B7%91%E6%AD%A5/"/>
     
   </entry>
   
   <entry>
     <title>《人类简史》读书笔记-一切并不是那么理所当然</title>
-    <link href="http://chenliangjing.me/2019/03/29/%E3%80%8A%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%B8%80%E5%88%87%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%82%A3%E4%B9%88%E7%90%86%E6%89%80%E5%BD%93%E7%84%B6/"/>
-    <id>http://chenliangjing.me/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/</id>
+    <link href="https://chenliangjing.me/2019/03/29/%E3%80%8A%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%B8%80%E5%88%87%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%82%A3%E4%B9%88%E7%90%86%E6%89%80%E5%BD%93%E7%84%B6/"/>
+    <id>https://chenliangjing.me/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/</id>
     <published>2019-03-29T11:29:09.000Z</published>
-    <updated>2019-06-04T14:05:38.333Z</updated>
+    <updated>2019-08-11T07:39:47.160Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/IMG_3219.jpg?imageView2/2/w/200&quot; alt=&quot;&quot;&gt;&lt;br&gt;作者：[以色列] 尤瓦尔·赫拉利&lt;br&gt;翻译：林俊宏&lt;br&gt;出版年份：2014-11&lt;br&gt;&lt;/p&gt;
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/IMG_3219.jpg?imageView2/2/w/200&quot; alt=&quot;&quot;&gt;&lt;br&gt;作者：[以色列] 尤瓦尔·赫拉利&lt;br&gt;翻译：林俊宏&lt;br&gt;出版年份：2014-11&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
-      <category term="读书笔记" scheme="http://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="https://chenliangjing.me/Tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="http://chenliangjing.me/Categorys/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="https://chenliangjing.me/Categorys/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>C 语言拾遗</title>
-    <link href="http://chenliangjing.me/2019/03/09/C-%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/"/>
-    <id>http://chenliangjing.me/2019/03/09/C-语言拾遗/</id>
+    <link href="https://chenliangjing.me/2019/03/09/C-%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/"/>
+    <id>https://chenliangjing.me/2019/03/09/C-语言拾遗/</id>
     <published>2019-03-09T11:29:09.000Z</published>
-    <updated>2019-06-04T14:05:38.309Z</updated>
+    <updated>2019-08-11T07:39:47.131Z</updated>
     
     <summary type="html">
     
@@ -103,21 +122,21 @@
     
     </summary>
     
-      <category term="C" scheme="http://chenliangjing.me/Tags/C/"/>
+      <category term="C" scheme="https://chenliangjing.me/Tags/C/"/>
     
     
-      <category term="C" scheme="http://chenliangjing.me/Categorys/C/"/>
+      <category term="C" scheme="https://chenliangjing.me/Categorys/C/"/>
     
-      <category term="指针" scheme="http://chenliangjing.me/Categorys/%E6%8C%87%E9%92%88/"/>
+      <category term="指针" scheme="https://chenliangjing.me/Categorys/%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
   <entry>
     <title>数据结构与算法学习-链表下</title>
-    <link href="http://chenliangjing.me/2019/03/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8B/"/>
-    <id>http://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/</id>
+    <link href="https://chenliangjing.me/2019/03/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8B/"/>
+    <id>https://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/</id>
     <published>2019-03-08T03:49:59.000Z</published>
-    <updated>2019-06-04T14:05:38.343Z</updated>
+    <updated>2019-08-11T07:39:47.170Z</updated>
     
     <summary type="html">
     
@@ -126,23 +145,23 @@
     
     </summary>
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>数据结构与算法学习-链表上</title>
-    <link href="http://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/"/>
-    <id>http://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/</id>
+    <link href="https://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/"/>
+    <id>https://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/</id>
     <published>2019-03-07T07:52:20.000Z</published>
-    <updated>2019-06-04T14:05:38.343Z</updated>
+    <updated>2019-08-11T07:39:47.182Z</updated>
     
     <summary type="html">
     
@@ -151,23 +170,23 @@
     
     </summary>
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>数据结构与算法学习-数组</title>
-    <link href="http://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/"/>
-    <id>http://chenliangjing.me/2019/02/15/数据结构与算法学习-数组/</id>
+    <link href="https://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/"/>
+    <id>https://chenliangjing.me/2019/02/15/数据结构与算法学习-数组/</id>
     <published>2019-02-15T08:43:24.000Z</published>
-    <updated>2019-06-04T14:05:38.342Z</updated>
+    <updated>2019-08-11T07:39:47.186Z</updated>
     
     <summary type="html">
     
@@ -176,25 +195,25 @@
     
     </summary>
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="线性表" scheme="http://chenliangjing.me/Categorys/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
+      <category term="线性表" scheme="https://chenliangjing.me/Categorys/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>数据结构与算法学习-复杂度分析</title>
-    <link href="http://chenliangjing.me/2019/02/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"/>
-    <id>http://chenliangjing.me/2019/02/14/数据结构与算法学习-复杂度分析/</id>
+    <link href="https://chenliangjing.me/2019/02/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"/>
+    <id>https://chenliangjing.me/2019/02/14/数据结构与算法学习-复杂度分析/</id>
     <published>2019-02-14T06:43:24.000Z</published>
-    <updated>2019-06-04T14:05:38.341Z</updated>
+    <updated>2019-08-11T07:39:47.153Z</updated>
     
     <summary type="html">
     
@@ -203,23 +222,23 @@
     
     </summary>
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>数据结构与算法学习-开篇</title>
-    <link href="http://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/"/>
-    <id>http://chenliangjing.me/2019/02/13/数据结构与算法学习-开篇/</id>
+    <link href="https://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/"/>
+    <id>https://chenliangjing.me/2019/02/13/数据结构与算法学习-开篇/</id>
     <published>2019-02-13T06:43:24.000Z</published>
-    <updated>2019-06-04T14:05:38.341Z</updated>
+    <updated>2019-08-11T07:39:47.144Z</updated>
     
     <summary type="html">
     
@@ -227,23 +246,23 @@
     
     </summary>
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构" scheme="http://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://chenliangjing.me/Categorys/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="算法" scheme="http://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://chenliangjing.me/Categorys/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>《Developing-iOS-11-Apps-with-Swift》学习笔记（七)</title>
-    <link href="http://chenliangjing.me/2019/01/18/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83/"/>
-    <id>http://chenliangjing.me/2019/01/18/《Developing-iOS-11-Apps-with-Swift》学习笔记（七/</id>
+    <link href="https://chenliangjing.me/2019/01/18/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83/"/>
+    <id>https://chenliangjing.me/2019/01/18/《Developing-iOS-11-Apps-with-Swift》学习笔记（七/</id>
     <published>2019-01-18T09:19:08.000Z</published>
-    <updated>2019-06-04T14:05:38.326Z</updated>
+    <updated>2019-08-11T07:39:47.142Z</updated>
     
     <summary type="html">
     
@@ -254,23 +273,23 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Tags/iOS/Swift/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
     
   </entry>
   
   <entry>
     <title>《Developing-iOS-11-Apps-with-Swift》学习笔记（六)</title>
-    <link href="http://chenliangjing.me/2019/01/17/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD/"/>
-    <id>http://chenliangjing.me/2019/01/17/《Developing-iOS-11-Apps-with-Swift》学习笔记（六/</id>
+    <link href="https://chenliangjing.me/2019/01/17/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD/"/>
+    <id>https://chenliangjing.me/2019/01/17/《Developing-iOS-11-Apps-with-Swift》学习笔记（六/</id>
     <published>2019-01-17T08:43:23.000Z</published>
-    <updated>2019-06-04T14:05:38.329Z</updated>
+    <updated>2019-08-11T07:39:47.142Z</updated>
     
     <summary type="html">
     
@@ -282,23 +301,23 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Tags/iOS/Swift/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
     
   </entry>
   
   <entry>
     <title>《Developing-iOS-11-Apps-with-Swift》学习笔记（五)</title>
-    <link href="http://chenliangjing.me/2019/01/04/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94)/"/>
-    <id>http://chenliangjing.me/2019/01/04/《Developing-iOS-11-Apps-with-Swift》学习笔记（五)/</id>
+    <link href="https://chenliangjing.me/2019/01/04/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94)/"/>
+    <id>https://chenliangjing.me/2019/01/04/《Developing-iOS-11-Apps-with-Swift》学习笔记（五)/</id>
     <published>2019-01-04T07:30:16.000Z</published>
-    <updated>2019-06-04T14:05:38.328Z</updated>
+    <updated>2019-08-11T07:39:47.166Z</updated>
     
     <summary type="html">
     
@@ -310,23 +329,23 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Tags/iOS/Swift/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
     
   </entry>
   
   <entry>
     <title>iOS JS-Native 交互方案总结</title>
-    <link href="http://chenliangjing.me/2018/12/28/iOS-JS-Native-%E4%BA%A4%E4%BA%92%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/"/>
-    <id>http://chenliangjing.me/2018/12/28/iOS-JS-Native-交互方案总结/</id>
+    <link href="https://chenliangjing.me/2018/12/28/iOS-JS-Native-%E4%BA%A4%E4%BA%92%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/"/>
+    <id>https://chenliangjing.me/2018/12/28/iOS-JS-Native-交互方案总结/</id>
     <published>2018-12-28T02:31:27.000Z</published>
-    <updated>2019-06-04T14:05:38.319Z</updated>
+    <updated>2019-08-11T07:39:47.177Z</updated>
     
     <summary type="html">
     
@@ -337,19 +356,19 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
   </entry>
   
   <entry>
     <title>团队 git-flow 开发流程</title>
-    <link href="http://chenliangjing.me/2018/10/20/%E5%9B%A2%E9%98%9F-git-flow-%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    <id>http://chenliangjing.me/2018/10/20/团队-git-flow-开发流程/</id>
+    <link href="https://chenliangjing.me/2018/10/20/%E5%9B%A2%E9%98%9F-git-flow-%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    <id>https://chenliangjing.me/2018/10/20/团队-git-flow-开发流程/</id>
     <published>2018-10-20T06:50:06.000Z</published>
-    <updated>2019-06-04T14:05:38.337Z</updated>
+    <updated>2019-08-11T07:39:47.159Z</updated>
     
     <summary type="html">
     
@@ -359,46 +378,46 @@
     
     </summary>
     
-      <category term="软件工程" scheme="http://chenliangjing.me/Tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+      <category term="软件工程" scheme="https://chenliangjing.me/Tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
     
-      <category term="软件工程" scheme="http://chenliangjing.me/Categorys/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+      <category term="软件工程" scheme="https://chenliangjing.me/Categorys/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>活动行 App_iOS 性能检测分析</title>
-    <link href="http://chenliangjing.me/2018/08/20/%E6%B4%BB%E5%8A%A8%E8%A1%8C-App-iOS-%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%90/"/>
-    <id>http://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/</id>
+    <link href="https://chenliangjing.me/2018/08/20/%E6%B4%BB%E5%8A%A8%E8%A1%8C-App-iOS-%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%90/"/>
+    <id>https://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/</id>
     <published>2018-08-20T03:12:29.000Z</published>
-    <updated>2019-06-04T14:05:38.344Z</updated>
+    <updated>2019-08-11T07:39:47.174Z</updated>
     
     <summary type="html">
     
       &lt;h2 id=&quot;性能检测&quot;&gt;&lt;a href=&quot;#性能检测&quot; class=&quot;headerlink&quot; title=&quot;性能检测&quot;&gt;&lt;/a&gt;性能检测&lt;/h2&gt;&lt;h3 id=&quot;使用到的相关工具&quot;&gt;&lt;a href=&quot;#使用到的相关工具&quot; class=&quot;headerlink&quot; title=&quot;使用到的相关工具&quot;&gt;&lt;/a&gt;使用到的相关工具&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Xnip2018-07-13_19-21-39.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/Xnip2018-07-13_19-21-39.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
-      <category term="性能优化" scheme="http://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="https://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
-      <category term="性能优化" scheme="http://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="https://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>记最近几次的面试</title>
-    <link href="http://chenliangjing.me/2018/06/16/%E8%AE%B0%E6%9C%80%E8%BF%91%E5%87%A0%E6%AC%A1%E7%9A%84%E9%9D%A2%E8%AF%95/"/>
-    <id>http://chenliangjing.me/2018/06/16/记最近几次的面试/</id>
+    <link href="https://chenliangjing.me/2018/06/16/%E8%AE%B0%E6%9C%80%E8%BF%91%E5%87%A0%E6%AC%A1%E7%9A%84%E9%9D%A2%E8%AF%95/"/>
+    <id>https://chenliangjing.me/2018/06/16/记最近几次的面试/</id>
     <published>2018-06-16T14:36:07.000Z</published>
-    <updated>2019-06-04T14:05:38.346Z</updated>
+    <updated>2019-08-11T07:39:47.154Z</updated>
     
     <summary type="html">
     
@@ -437,19 +456,19 @@
     
     </summary>
     
-      <category term="面试" scheme="http://chenliangjing.me/Tags/%E9%9D%A2%E8%AF%95/"/>
+      <category term="面试" scheme="https://chenliangjing.me/Tags/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="面试" scheme="http://chenliangjing.me/Categorys/%E9%9D%A2%E8%AF%95/"/>
+      <category term="面试" scheme="https://chenliangjing.me/Categorys/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>男衣库 App_iOS 性能优化实践总结</title>
-    <link href="http://chenliangjing.me/2018/05/16/%E7%94%B7%E8%A1%A3%E5%BA%93%20App-iOS-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
-    <id>http://chenliangjing.me/2018/05/16/男衣库 App-iOS-性能优化实践总结/</id>
+    <link href="https://chenliangjing.me/2018/05/16/%E7%94%B7%E8%A1%A3%E5%BA%93%20App-iOS-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
+    <id>https://chenliangjing.me/2018/05/16/男衣库 App-iOS-性能优化实践总结/</id>
     <published>2018-05-16T14:10:55.000Z</published>
-    <updated>2019-06-04T14:05:38.345Z</updated>
+    <updated>2019-08-11T07:39:47.145Z</updated>
     
     <summary type="html">
     
@@ -492,23 +511,23 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
-      <category term="性能优化" scheme="http://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="https://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
-      <category term="性能优化" scheme="http://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="https://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>《Developing iOS 11 Apps with Swift》学习笔记（四）</title>
-    <link href="http://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
-    <id>http://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（四）/</id>
+    <link href="https://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>https://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（四）/</id>
     <published>2018-02-09T14:16:58.000Z</published>
-    <updated>2019-06-04T14:05:38.330Z</updated>
+    <updated>2019-08-11T07:39:47.133Z</updated>
     
     <summary type="html">
     
@@ -521,23 +540,23 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Tags/iOS/Swift/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
     
   </entry>
   
   <entry>
     <title>《Developing iOS 11 Apps with Swift》学习笔记（三）</title>
-    <link href="http://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>http://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（三）/</id>
+    <link href="https://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>https://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（三）/</id>
     <published>2018-02-09T04:16:46.000Z</published>
-    <updated>2019-06-04T14:05:38.327Z</updated>
+    <updated>2019-08-11T07:39:47.131Z</updated>
     
     <summary type="html">
     
@@ -547,49 +566,18 @@
 &lt;p&gt;这一节课主要讲的是 Swift 的一些语法。如 Tuples(元组)、Computed Propertys (计算属性)、Access Control(访问控制)、Assertions(断言)、extensions(扩展)、enum(枚举）以及一些界面布局相关的 UIStackView 、 autolayout（自动布局）知识点。&lt;/p&gt;
 &lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;#UIStackView&quot;&gt;UIStackView&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Range（区间）&quot;&gt;Range（区间）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Tuples（元组）&quot;&gt;Tuples（元组）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Computed Properties（计算属性）&quot;&gt;Computed Properties（计算属性）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Access Control（访问控制）&quot;&gt;Access Control（访问控制）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Assertions(断言&quot;&gt;Assertions(断言)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Extensions（扩展）&quot;&gt;Extensions（扩展）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#enum(枚举&quot;&gt;enum(枚举)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Optionals(可选&quot;&gt;Optionals(可选)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Memory Management(内存管理&quot;&gt;Memory Management(内存管理)&lt;/a&gt;)&lt;/p&gt;
 &lt;h2 id=&quot;UIStackView&quot;&gt;&lt;a href=&quot;#UIStackView&quot; class=&quot;headerlink&quot; title=&quot;UIStackView&quot;&gt;&lt;/a&gt;UIStackView&lt;/h2&gt;&lt;p&gt;&lt;code&gt;UIStackView&lt;/code&gt; 是 iOS 9 推出的一项用于自动布局的技术。只要将需要布局的控件放入到 UIStackView 容器中，容器里面的控件的约束就不需要管理了，UIStackView 会自动管理。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Snip20180209_29.png?imageView2/2/w/600&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/Snip20180209_29.png?imageView2/2/w/600&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
-    
-    
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
-    
-      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《Developing iOS 11 Apps with Swift》学习笔记（二）</title>
-    <link href="http://chenliangjing.me/2018/02/08/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://chenliangjing.me/2018/02/08/《Developing-iOS-11-Apps-with-Swift》学习笔记（二）/</id>
-    <published>2018-02-08T08:58:20.000Z</published>
-    <updated>2019-06-04T14:05:38.328Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这一节课主要将的是 MVC 设计模式，以及优化上节课的翻纸牌游戏 demo，在优化 Demo 中讲解了 Swift 中的几个语法。Initialization(构造器)、struct（结构体）和 class（类）、static methods（静态方法）和 properties（属性）、optionals（可选）Dictionary&amp;lt;KeyType,ValueType&amp;gt;(字典)、UIStackView 、 autolayout（自动布局）&lt;/p&gt;
-&lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;#MVC 设计模式&quot;&gt;MVC 设计模式&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#struct（结构体）和 class（类）&quot;&gt;struct（结构体）和 class（类）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#static methods（静态方法）和 properties（属性）&quot;&gt;static methods（静态方法）和 properties（属性）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#_ 忽略下标&quot;&gt;_ 忽略下标&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#数组拼接元素&quot;&gt;数组拼接元素&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#lazy 懒加载&quot;&gt;lazy 懒加载&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#并列表达式&quot;&gt;并列表达式&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#空合运算符 ??&quot;&gt;空合运算符 ??&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;MVC-设计模式&quot;&gt;&lt;a href=&quot;#MVC-设计模式&quot; class=&quot;headerlink&quot; title=&quot;MVC 设计模式&quot;&gt;&lt;/a&gt;MVC 设计模式&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/Snip20180208_14.png?imageView2/2/w/600&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;MVC 是苹果官方推荐的构建 App 的一种设计模式。它由三个角色组成。View、Controller、Model 组成。各个角色的分工如下：&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://chenliangjing.me/Tags/iOS/"/>
-    
-      <category term="Swift" scheme="http://chenliangjing.me/Tags/iOS/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Tags/iOS/Swift/"/>
     
     
-      <category term="iOS" scheme="http://chenliangjing.me/Categorys/iOS/"/>
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
-      <category term="Swift" scheme="http://chenliangjing.me/Categorys/Swift/"/>
+      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
     
   </entry>
   

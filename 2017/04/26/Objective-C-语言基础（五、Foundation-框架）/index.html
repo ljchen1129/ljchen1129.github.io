@@ -123,26 +123,26 @@
 <meta name="keywords" content="iOS,Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C  语言基础（五、Foundation 框架）">
-<meta property="og:url" content="http://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/index.html">
-<meta property="og:site_name" content="青争哥哥">
+<meta property="og:url" content="https://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/index.html">
+<meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="Foundation 简介Foundation 框架是 Mac/iOS 中其他框架的基础，Foundation 框架包含了很多开发中常用的数据类型（结构体、枚举、类） 字符串源码地址一源码地址二 1.NSString#创建字符串12345678// 1. 通过字符串常量创建，存储在`常量区`中NSString *str1 = @&quot;张三&quot;;    // 2. 通过对象方法创建NSString *st">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170416_5.png">
-<meta property="og:image" content="http://liangjinggege.com/Snip20170426_1.png">
-<meta property="og:updated_time" content="2019-06-04T14:05:38.316Z">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170416_5.png">
+<meta property="og:image" content="https://liangjinggege.com/Snip20170426_1.png">
+<meta property="og:updated_time" content="2019-08-11T07:39:47.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C  语言基础（五、Foundation 框架）">
 <meta name="twitter:description" content="Foundation 简介Foundation 框架是 Mac/iOS 中其他框架的基础，Foundation 框架包含了很多开发中常用的数据类型（结构体、枚举、类） 字符串源码地址一源码地址二 1.NSString#创建字符串12345678// 1. 通过字符串常量创建，存储在`常量区`中NSString *str1 = @&quot;张三&quot;;    // 2. 通过对象方法创建NSString *st">
-<meta name="twitter:image" content="http://liangjinggege.com/Snip20170416_5.png">
+<meta name="twitter:image" content="https://liangjinggege.com/Snip20170416_5.png">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="青争哥哥" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/">
+  <link rel="canonical" href="https://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/">
 
 
 
@@ -152,7 +152,7 @@
   };
 </script>
 
-  <title>Objective-C  语言基础（五、Foundation 框架） | 青争哥哥</title>
+  <title>Objective-C  语言基础（五、Foundation 框架） | 在水一方</title>
   
 
 
@@ -212,7 +212,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">青争哥哥</span>
+        <span class="site-title">在水一方</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -452,7 +452,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/04/26/Objective-C-语言基础（五、Foundation-框架）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈良静">
@@ -461,7 +461,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青争哥哥">
+      <meta itemprop="name" content="在水一方">
     </span>
 
     
@@ -511,7 +511,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-04 22:05:38" itemprop="dateModified" datetime="2019-06-04T22:05:38+08:00">2019-06-04</time>
+                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
               
             
           </span>
@@ -596,7 +596,7 @@
 <p>通过不同的方式创建的字符串，字符串对象存储的位置不一样<br><a id="more"></a></p>
 <ol>
 <li><p>通过字符串常量创建：字符串对象存储在<code>常量区</code>中，并且如果多个字符串对象，多个字符串对象指向同一块存储空间。</p>
-<p> <img src="http://liangjinggege.com/Snip20170416_5.png" alt=""></p>
+<p> <img src="https://liangjinggege.com/Snip20170416_5.png" alt=""></p>
 </li>
 <li><p>通过对象方法以及类工厂方法创建：字符串对象存储在<code>堆区</code>中。</p>
 </li>
@@ -613,7 +613,7 @@
 <blockquote>
 <p>注意：如果 URL 中含有中文，通过 fileURLWithPath: 方法创建 URL 会自动将中文进行百分号编码，而如果通过 UrlWithString: 方法，不会自动进行中文的处理，需手动进行中文百分号编码：</p>
 </blockquote>
-<p><img src="http://liangjinggege.com/Snip20170426_1.png" alt=""></p>
+<p><img src="https://liangjinggege.com/Snip20170426_1.png" alt=""></p>
 <h5 id="文件写"><a href="#文件写" class="headerlink" title="文件写"></a>文件写</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件写入</span></span><br><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"chenliangjing"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/chenliangjing/Desktop/test.txt"</span>;</span><br><span class="line"><span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line">[str writeToURL:[<span class="built_in">NSURL</span> fileURLWithPath:path] atomically:<span class="literal">YES</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入失败"</span>);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"error = %@"</span>, error);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意：如果多次往同一个文件中写入内容，那么最后一次写入的内容会覆盖掉以前的内容。</p>
@@ -1015,7 +1015,7 @@ NSLog(@&quot;newArr = %@&quot;, newArr); // ewArr = (zhangsan, lisi, wangwu)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
