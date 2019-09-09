@@ -5,9 +5,41 @@ date: 2017-05-28 23:27:40
 
 
 
+### 2019.9.8
+
+Mac 用了两年多，256 G 的硬盘经常提示存储不够。
+
+![image-20190908160619537](http://liangjinggege.com/2019-09-08-080619.png)
+
+看了下存储分布，系统占用接近 200 g 了，找下罪魁祸首，打开终端，根目录输入：
+
+```shell
+du -sh *
+```
+
+
+
+![image-20190908160534269](http://liangjinggege.com/2019-09-08-080534.png)
+
+![image-20190908161730060](http://liangjinggege.com/2019-09-08-081730.png)
+
+
+
+![image-20190908161939991](http://liangjinggege.com/2019-09-08-081940.png)
+
+大部分是 Xcode 的锅，日积月累，存储了各种 iOS 的系统，模拟器，IPA 包文件，将其中不需要的删除即可。
+
+
+
+清理后结果：
+
+![image-20190908162907372](http://liangjinggege.com/2019-09-08-082907.png)
+
+
+
 ### 2019.8.11
 
-博客瞎折腾，有给弄挂了，deploy 不上去，报错：
+博客瞎折腾，又给弄挂了，deploy 不上去，报错：
 
 ```bash
 error: failed to push some refs to 'https://github.com/ljchen1129/ljchen1129.github.io.git'
