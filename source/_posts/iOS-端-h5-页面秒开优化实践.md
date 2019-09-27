@@ -13,6 +13,10 @@ categories:
 
 最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。
 
+### 先看效果
+
+![ezgif.com-optimize](http://liangjinggege.com/2019-09-27-074217.gif)
+
 ### 优化思路
 
 首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：
@@ -70,7 +74,7 @@ func prepareWebView() {
 
 ##### #拦截请求
 
-在 iOS 11 系统上可以 WKWebView 提供的 `setURLSchemeHandler` 方法添加自定义的 Scheme，然后就可以在 WKURLSchemeHandler 协议里面拦截所有的自定义请求了：
+在 iOS 11 及其以上系统上可以 WKWebView 提供的 `setURLSchemeHandler` 方法添加自定义的 Scheme，相比较NSURLProtocol 私有 api 的方案没有审核风险，然后就可以在 WKURLSchemeHandler 协议里面拦截所有的自定义请求了：
 
 ```swift
 // 自定义拦截请求开始
@@ -122,12 +126,12 @@ func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
 
 ##### #实现资源缓存
 
-这里使用 swift 实现了内存和磁盘两种缓存逻辑，主要参(chao)考(xi)了 YYCache 的思路和源码，内存缓存利用`双链表（逻辑） + hashMap（存储）` 实现` LRU`缓存淘汰算法 ，增删改查都是 O(1) 时间复杂度，磁盘缓存使用了沙盒文件存储。两种缓存都实现了缓存时长、缓存数量、缓存大小三个维度的缓存管理。
+这里使用 swift 实现了内存和磁盘两种缓存逻辑，主要参(chao)考(xi)了 [YYCache](https://github.com/ibireme/YYCache) 的思路和源码，内存缓存利用`双链表（逻辑） + hashMap（存储）` 实现` LRU`缓存淘汰算法 ，增删改查都是 O(1) 时间复杂度，磁盘缓存使用了沙盒文件存储。两种缓存都实现了缓存时长、缓存数量、缓存大小三个维度的缓存管理。
 
 使用协议的方式定义了接口 API：
 
 ```swift
-protocol NYCacheable {
+protocol Cacheable {
     associatedtype ObjectType
     
     /// 缓存总数量
@@ -186,7 +190,7 @@ protocol NYCacheable {
     func trim(withAge age: TimeInterval)
 }
 
-extension NYCacheable {
+extension Cacheable {
     func setObject(_ object: ObjectType, forKey key: AnyHashable) {
         setObject(object, forKey: key, withCost: 0)
     }
@@ -197,22 +201,22 @@ extension NYCacheable {
 
 ```swift
 /// h5 页面资源缓存
-class NYH5ResourceCache: NSObject {
-    /// 内存缓存大小：50M
-    private let kMemoryCacheCostLimit: UInt = 50 * 1024 * 1024
-    /// 磁盘文件缓存大小： 200M
-    private let kDiskCacheCostLimit: UInt = 200 * 1024 * 1024
+class H5ResourceCache: NSObject {
+    /// 内存缓存大小：10M
+    private let kMemoryCacheCostLimit: UInt = 10 * 1024 * 1024
+    /// 磁盘文件缓存大小： 10M
+    private let kDiskCacheCostLimit: UInt = 10 * 1024 * 1024
     /// 磁盘文件缓存时长：30 分钟
     private let kDiskCacheAgeLimit: TimeInterval = 30 * 60
     
-    private var memoryCache: NYMemoryCache
-    private var diskCache: NYDiskFileCache
+    private var memoryCache: MemoryCache
+    private var diskCache: DiskFileCache
     
     override init() {
-        memoryCache = NYMemoryCache.shared
+        memoryCache = MemoryCache.shared
         memoryCache.costLimit = kMemoryCacheCostLimit
             
-        diskCache = NYDiskFileCache(cacheDirectoryName: "H5ResourceCache")
+        diskCache = DiskFileCache(cacheDirectoryName: "H5ResourceCache")
         diskCache.costLimit = kDiskCacheCostLimit
         diskCache.ageLimit = kDiskCacheAgeLimit
         
