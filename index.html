@@ -493,7 +493,7 @@
                 
               
 
-              <time title="创建时间：2019-09-27 12:41:37 / 修改时间：12:45:11" itemprop="dateCreated datePublished" datetime="2019-09-27T12:41:37+08:00">2019-09-27</time>
+              <time title="创建时间：2019-09-27 12:41:37 / 修改时间：15:45:26" itemprop="dateCreated datePublished" datetime="2019-09-27T12:41:37+08:00">2019-09-27</time>
             
 
             
@@ -579,195 +579,13 @@
       
         
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。</p>
+<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="http://liangjinggege.com/2019-09-27-074217.gif" alt="ezgif.com-optimize"></p>
 <h3 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h3><p>首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：</p>
 <p>初始化 webview -&gt; 请求页面 -&gt; 下载数据 -&gt; 解析HTML -&gt; 请求 js/css 资源 -&gt; dom 渲染 -&gt; 解析 JS 执行 -&gt; JS 请求数据 -&gt; 解析渲染 -&gt; 下载渲染图片</p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/09/27/iOS-端-h5-页面秒开优化实践/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/08/11/iOS 端 h5 页面秒开优化实/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/11/iOS 端 h5 页面秒开优化实/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-11 12:36:53" itemprop="dateCreated datePublished" datetime="2019-08-11T12:36:53+08:00">2019-08-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-09-27 12:41:59" itemprop="dateModified" datetime="2019-09-27T12:41:59+08:00">2019-09-27</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/08/11/iOS 端 h5 页面秒开优化实/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/11/iOS 端 h5 页面秒开优化实/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/08/11/iOS 端 h5 页面秒开优化实/" class="leancloud_visitors" data-flag-title="">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。</p>
-<h3 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h3><p>首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：</p>
-<p>初始化 webview -&gt; 请求页面 -&gt; 下载数据 -&gt; 解析HTML -&gt; 请求 js/css 资源 -&gt; dom 渲染 -&gt; 解析 JS 执行 -&gt; JS 请求数据 -&gt; 解析渲染 -&gt; 下载渲染图片</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/11/iOS 端 h5 页面秒开优化实/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2456,6 +2274,212 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/02/13/数据结构与算法学习-开篇/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/13/数据结构与算法学习-开篇/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">数据结构与算法学习-开篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-13 14:43:24" itemprop="dateCreated datePublished" datetime="2019-02-13T14:43:24+08:00">2019-02-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/13/数据结构与算法学习-开篇/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/13/数据结构与算法学习-开篇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/13/数据结构与算法学习-开篇/" class="leancloud_visitors" data-flag-title="数据结构与算法学习-开篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>数据结构和算法这门课一直是计算机专业最基础的一门课，大学时期掌握的不够好，毕业后长期写业务，也没有特别的花时间好好攻克一下，一直是自己的短板。这次在极客时间上订阅了两门数据结构和算法方面的专栏，一是 Google 工程师王争老师主讲的<a href="https://time.geekbang.org/column/126?utm_term=nyre2019_app_zhuanlanxiangqingye" target="_blank" rel="noopener">《数据结构与算法之美》</a>专栏，另一篇是前 Facebook 工程师覃超老师主讲的视频专栏<a href="https://time.geekbang.org/course/intro/130?utm_term=nyre2019_app_zhuanlanxiangqingye" target="_blank" rel="noopener">《算法面试通关40讲》</a>，计划将这两个专栏配合着学习，相互补充，并适时输出学习笔记。这是第一篇学习笔记，主要回答了数据结构和算法是什么？为什么要学习？以及怎么样学习？这三个问题。<br></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/13/数据结构与算法学习-开篇/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2505,7 +2529,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

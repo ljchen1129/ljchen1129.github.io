@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.me/"/>
-  <updated>2019-09-27T04:45:11.581Z</updated>
+  <updated>2019-09-27T07:45:26.598Z</updated>
   <id>https://chenliangjing.me/</id>
   
   <author>
@@ -21,11 +21,12 @@
     <link href="https://chenliangjing.me/2019/09/27/iOS-%E7%AB%AF-h5-%E9%A1%B5%E9%9D%A2%E7%A7%92%E5%BC%80%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
     <id>https://chenliangjing.me/2019/09/27/iOS-端-h5-页面秒开优化实践/</id>
     <published>2019-09-27T04:41:37.000Z</published>
-    <updated>2019-09-27T04:45:11.581Z</updated>
+    <updated>2019-09-27T07:45:26.598Z</updated>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。&lt;/p&gt;
+&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/2019-09-27-074217.gif&quot; alt=&quot;ezgif.com-optimize&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;优化思路&quot;&gt;&lt;a href=&quot;#优化思路&quot; class=&quot;headerlink&quot; title=&quot;优化思路&quot;&gt;&lt;/a&gt;优化思路&lt;/h3&gt;&lt;p&gt;首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：&lt;/p&gt;
 &lt;p&gt;初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -&amp;gt; 解析 JS 执行 -&amp;gt; JS 请求数据 -&amp;gt; 解析渲染 -&amp;gt; 下载渲染图片&lt;/p&gt;
     
@@ -39,24 +40,6 @@
       <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
       <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://chenliangjing.me/2019/08/11/iOS%20%E7%AB%AF%20h5%20%E9%A1%B5%E9%9D%A2%E7%A7%92%E5%BC%80%E4%BC%98%E5%8C%96%E5%AE%9E/"/>
-    <id>https://chenliangjing.me/2019/08/11/iOS 端 h5 页面秒开优化实/</id>
-    <published>2019-08-11T04:36:53.505Z</published>
-    <updated>2019-09-27T04:41:59.847Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。&lt;/p&gt;
-&lt;h3 id=&quot;优化思路&quot;&gt;&lt;a href=&quot;#优化思路&quot; class=&quot;headerlink&quot; title=&quot;优化思路&quot;&gt;&lt;/a&gt;优化思路&lt;/h3&gt;&lt;p&gt;首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：&lt;/p&gt;
-&lt;p&gt;初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -&amp;gt; 解析 JS 执行 -&amp;gt; JS 请求数据 -&amp;gt; 解析渲染 -&amp;gt; 下载渲染图片&lt;/p&gt;
-    
-    </summary>
-    
     
   </entry>
   
@@ -562,6 +545,36 @@
 &lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这节课主要讲述了 Swift 中 protocols(协议) 和 Closures（闭包）、NSAttributedString 的语法和注意点。&lt;/p&gt;
 &lt;h2 id=&quot;mutating-关键字&quot;&gt;&lt;a href=&quot;#mutating-关键字&quot; class=&quot;headerlink&quot; title=&quot;mutating 关键字&quot;&gt;&lt;/a&gt;mutating 关键字&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Swift" scheme="https://chenliangjing.me/Tags/iOS/Swift/"/>
+    
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Developing iOS 11 Apps with Swift》学习笔记（三）</title>
+    <link href="https://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>https://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（三）/</id>
+    <published>2018-02-09T04:16:46.000Z</published>
+    <updated>2019-08-11T07:39:47.131Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这一节课主要讲的是 Swift 的一些语法。如 Tuples(元组)、Computed Propertys (计算属性)、Access Control(访问控制)、Assertions(断言)、extensions(扩展)、enum(枚举）以及一些界面布局相关的 UIStackView 、 autolayout（自动布局）知识点。&lt;/p&gt;
+&lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;#UIStackView&quot;&gt;UIStackView&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Range（区间）&quot;&gt;Range（区间）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Tuples（元组）&quot;&gt;Tuples（元组）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Computed Properties（计算属性）&quot;&gt;Computed Properties（计算属性）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Access Control（访问控制）&quot;&gt;Access Control（访问控制）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#Assertions(断言&quot;&gt;Assertions(断言)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Extensions（扩展）&quot;&gt;Extensions（扩展）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#enum(枚举&quot;&gt;enum(枚举)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Optionals(可选&quot;&gt;Optionals(可选)&lt;/a&gt;)&lt;br&gt;&lt;a href=&quot;#Memory Management(内存管理&quot;&gt;Memory Management(内存管理)&lt;/a&gt;)&lt;/p&gt;
+&lt;h2 id=&quot;UIStackView&quot;&gt;&lt;a href=&quot;#UIStackView&quot; class=&quot;headerlink&quot; title=&quot;UIStackView&quot;&gt;&lt;/a&gt;UIStackView&lt;/h2&gt;&lt;p&gt;&lt;code&gt;UIStackView&lt;/code&gt; 是 iOS 9 推出的一项用于自动布局的技术。只要将需要布局的控件放入到 UIStackView 容器中，容器里面的控件的约束就不需要管理了，UIStackView 会自动管理。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/Snip20180209_29.png?imageView2/2/w/600&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
