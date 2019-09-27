@@ -1,19 +1,17 @@
-```
+---
 title: iOS 端 h5 页面秒开优化实践
-date: 2019-09-27 12:29:08
+date: 2019-09-27 12:41:37
 tags:
 - iOS
-- swift
+- Swift
 categories:
 - iOS
-- swift
-```
-
-
+- Swift
+---
 
 ### 前言
 
-最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。
+最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。
 
 ### 优化思路
 
@@ -23,7 +21,7 @@ categories:
 
 <!--more-->
 
-![WebViewå¯å¨æ¶é´](http://liangjinggege.com/2019-09-27-030625.png)
+![WebViewå¯å¨æ¶é´](http://liangjinggege.com/2019-09-27-44204.png)
 
 由于在 dom 渲染前的用户看到的页面都是白屏，优化思路具体也是去分析在 dom 渲染前每个步骤的耗时，去优化性价比最高的部分。这里面又可以分为前端能做的优化，以及客户端能做的优化，前端这个需要前端那边配合，暂且不在这篇文章中讨论，这边文章主要讨论的是客户端能做的优化思路。总体思路大概也是这样：
 
@@ -35,7 +33,7 @@ categories:
 
 在客户端加载一个 网页和在 PC 上加载一个网页不太一样，在 PC 上，直接在浏览器中输入一个 url 就开始建立连接了，而在客户端上需要先`启动浏览器内核`，初始化一些 webview 的`全局服务和资源`，再开始`建立连接`，可以看一下[美团](https://tech.meituan.com/2017/06/09/webviewperf.html)测试的这个阶段的耗时大概是多少：
 
-![image-20190927112358207](http://liangjinggege.com/2019-09-27-032358.png)
+![image-20190927112358207](http://liangjinggege.com/2019-09-27-044203.png)
 
 在客户端第一次打开 h5 页面，会有一个 webview 初始化的耗时，
 
@@ -128,7 +126,7 @@ func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
 
 使用协议的方式定义了接口 API：
 
-```
+```swift
 protocol NYCacheable {
     associatedtype ObjectType
     
@@ -257,15 +255,15 @@ class NYH5ResourceCache: NSObject {
 
 ### 效果
 
-![image-20190927122508611](http://liangjinggege.com/2019-09-27-042509.png)
+![image-20190927122508611](http://liangjinggege.com/2019-09-27-044205.png)
 
 ### 注意事项
 
 #### #1. WKURLSchemeHandler 对象实例被释放后，网络加载回调依然访问了，这个时候就会出现崩溃`The task has already been stopped`的错误
 
-![image-20190926190443221](http://liangjinggege.com/2019-09-26-110443.png)
+![image-20190926190443221](http://liangjinggege.com/2019-09-27-044204.png)
 
-![image-20190926190652788](http://liangjinggege.com/2019-09-26-110653.png)
+![image-20190926190652788](http://liangjinggege.com/2019-09-27-044206.png)
 
 ##### 解决方案：用一个字典持有 WKURLSchemeTask 实例的状态，分别在拦截请求开始的地方和拦截请求结束的地方分别记录
 
@@ -316,6 +314,12 @@ func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
 
 
 
+### 源代码
+
+[https://github.com/ljchen1129/SecondsOpenH5](https://github.com/ljchen1129/SecondsOpenH5)
+
+
+
 ### TODOList
 
 1. 撰写单元测试
@@ -332,3 +336,10 @@ func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
 2. https://mp.weixin.qq.com/s/0OR4HJQSDq7nEFUAaX1x5A
 3. https://juejin.im/post/5c9c664ff265da611624764d
 4. https://tech.meituan.com/2017/06/09/webviewperf.html
+
+
+
+---
+分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「青争哥哥」。
+
+![青争哥哥](http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg)
