@@ -119,22 +119,22 @@
 
 
 
-  <meta name="description" content="前言最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。 优化思路首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤： 初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -">
+  <meta name="description" content="12345678title: iOS 端 h5 页面秒开优化实践date: 2019-09-27 12:29:08tags:- iOS- swiftcategories:- iOS- swift 前言最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。 优化思路首先来看，在 iOS 平台加载一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在水一方">
 <meta property="og:url" content="https://chenliangjing.me/2019/08/11/iOS 端 h5 页面秒开优化实践/index.html">
 <meta property="og:site_name" content="在水一方">
-<meta property="og:description" content="前言最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。 优化思路首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤： 初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -">
+<meta property="og:description" content="12345678title: iOS 端 h5 页面秒开优化实践date: 2019-09-27 12:29:08tags:- iOS- swiftcategories:- iOS- swift 前言最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。 优化思路首先来看，在 iOS 平台加载一">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://liangjinggege.com/2019-09-27-030625.png">
 <meta property="og:image" content="http://liangjinggege.com/2019-09-27-032358.png">
 <meta property="og:image" content="http://liangjinggege.com/2019-09-27-042509.png">
 <meta property="og:image" content="http://liangjinggege.com/2019-09-26-110443.png">
 <meta property="og:image" content="http://liangjinggege.com/2019-09-26-110653.png">
-<meta property="og:updated_time" content="2019-09-27T04:26:31.930Z">
+<meta property="og:updated_time" content="2019-09-27T04:36:28.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在水一方">
-<meta name="twitter:description" content="前言最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。 优化思路首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤： 初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -">
+<meta name="twitter:description" content="12345678title: iOS 端 h5 页面秒开优化实践date: 2019-09-27 12:29:08tags:- iOS- swiftcategories:- iOS- swift 前言最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。 优化思路首先来看，在 iOS 平台加载一">
 <meta name="twitter:image" content="http://liangjinggege.com/2019-09-27-030625.png">
 
 
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-27 12:26:31" itemprop="dateModified" datetime="2019-09-27T12:26:31+08:00">2019-09-27</time>
+                <time title="修改时间：2019-09-27 12:36:28" itemprop="dateModified" datetime="2019-09-27T12:36:28+08:00">2019-09-27</time>
               
             
           </span>
@@ -567,9 +567,11 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。</p>
+        <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: iOS 端 h5 页面秒开优化实践</span><br><span class="line">date: 2019<span class="string">-09</span><span class="string">-27</span> 12:29:08</span><br><span class="line"><span class="keyword">tags:</span></span><br><span class="line">- iOS</span><br><span class="line">- swift</span><br><span class="line">categories:</span><br><span class="line">- iOS</span><br><span class="line">- swift</span><br></pre></td></tr></table></figure>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。</p>
 <h3 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h3><p>首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：</p>
 <p>初始化 webview -&gt; 请求页面 -&gt; 下载数据 -&gt; 解析HTML -&gt; 请求 js/css 资源 -&gt; dom 渲染 -&gt; 解析 JS 执行 -&gt; JS 请求数据 -&gt; 解析渲染 -&gt; 下载渲染图片</p>
+<a id="more"></a>
 <p><img src="http://liangjinggege.com/2019-09-27-030625.png" alt="WebViewå¯å¨æ¶é´"></p>
 <p>由于在 dom 渲染前的用户看到的页面都是白屏，优化思路具体也是去分析在 dom 渲染前每个步骤的耗时，去优化性价比最高的部分。这里面又可以分为前端能做的优化，以及客户端能做的优化，前端这个需要前端那边配合，暂且不在这篇文章中讨论，这边文章主要讨论的是客户端能做的优化思路。总体思路大概也是这样：</p>
 <ol>

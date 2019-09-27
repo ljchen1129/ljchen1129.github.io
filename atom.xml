@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.me/"/>
-  <updated>2019-09-27T04:26:31.930Z</updated>
+  <updated>2019-09-27T04:36:28.104Z</updated>
   <id>https://chenliangjing.me/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="https://chenliangjing.me/2019/08/11/iOS%20%E7%AB%AF%20h5%20%E9%A1%B5%E9%9D%A2%E7%A7%92%E5%BC%80%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
     <id>https://chenliangjing.me/2019/08/11/iOS 端 h5 页面秒开优化实践/</id>
     <published>2019-08-11T04:36:53.505Z</published>
-    <updated>2019-09-27T04:26:31.930Z</updated>
+    <updated>2019-09-27T04:36:28.104Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
+      &lt;figure class=&quot;highlight subunit&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;title: iOS 端 h5 页面秒开优化实践&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;date: 2019&lt;span class=&quot;string&quot;&gt;-09&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;-27&lt;/span&gt; 12:29:08&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;tags:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- iOS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- swift&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;categories:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- iOS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- swift&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录。&lt;/p&gt;
+&lt;h3 id=&quot;优化思路&quot;&gt;&lt;a href=&quot;#优化思路&quot; class=&quot;headerlink&quot; title=&quot;优化思路&quot;&gt;&lt;/a&gt;优化思路&lt;/h3&gt;&lt;p&gt;首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：&lt;/p&gt;
+&lt;p&gt;初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -&amp;gt; 解析 JS 执行 -&amp;gt; JS 请求数据 -&amp;gt; 解析渲染 -&amp;gt; 下载渲染图片&lt;/p&gt;
     
     </summary>
     
