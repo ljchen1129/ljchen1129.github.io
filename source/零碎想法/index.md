@@ -5,6 +5,10 @@ date: 2017-05-28 23:27:40
 
 
 
+### 2019.9.27
+
+<img src="http://liangjinggege.com/2019-09-27-124101.jpg" alt="IMG_F9F49ABD4B40-1" style="zoom:50%;" />
+
 ### 2019.9.8
 
 Mac 用了两年多，256 G 的硬盘经常提示存储不够。
