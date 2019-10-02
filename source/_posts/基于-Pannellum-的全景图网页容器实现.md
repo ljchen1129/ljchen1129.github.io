@@ -17,9 +17,7 @@ categories:
 
 ### 先看效果
 
-左边是在微信小程序中显示，右边是在 App 中显示
-
-<img src="http://liangjinggege.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;" /><img src="/Users/chenliangjing/Downloads/ezgif.com-video-to-gif (2).gif" alt="ezgif.com-video-to-gif (http://liangjinggege.com/2019-10-02-113443.gif)" style="zoom:67%;" />
+<img src="http://liangjinggege.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;" />
 
 
 
