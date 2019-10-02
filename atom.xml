@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.me/"/>
-  <updated>2019-10-02T13:32:44.738Z</updated>
+  <updated>2019-10-02T13:37:49.990Z</updated>
   <id>https://chenliangjing.me/</id>
   
   <author>
@@ -21,14 +21,12 @@
     <link href="https://chenliangjing.me/2019/10/02/%E5%9F%BA%E4%BA%8E-Pannellum-%E7%9A%84%E5%85%A8%E6%99%AF%E5%9B%BE%E7%BD%91%E9%A1%B5%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0/"/>
     <id>https://chenliangjing.me/2019/10/02/基于-Pannellum-的全景图网页容器实现/</id>
     <published>2019-10-02T04:22:17.000Z</published>
-    <updated>2019-10-02T13:32:44.738Z</updated>
+    <updated>2019-10-02T13:37:49.990Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;2017 年由于公司需要，做过一个支持全景图显示的网页，这篇文章主要回顾和记录一下当初开发这个功能时的一些情景。&lt;/p&gt;
+&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/2019-10-02-113357.gif&quot; alt=&quot;ezgif.com-video-to-gif&quot; style=&quot;zoom:67%;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
