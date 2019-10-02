@@ -21,6 +21,8 @@ categories:
 
 
 
+<!--more-->
+
 ### 实现了哪些功能
 
 基于 [Pannellum](https://pannellum.org/) 实现
@@ -61,7 +63,7 @@ viewer.addScene('roomScene',{
  viewer.loadScene('roomScene');
 ```
 
-#### 4. 和原生 App 的交互
+
 
 #### 3. 和微信小程序的交互
 
