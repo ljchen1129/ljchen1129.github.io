@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.me/"/>
-  <updated>2019-10-02T13:37:49.990Z</updated>
+  <updated>2019-10-30T11:22:52.524Z</updated>
   <id>https://chenliangjing.me/</id>
   
   <author>
@@ -15,6 +15,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS 源代码是怎样成为 App 的</title>
+    <link href="https://chenliangjing.me/2019/10/28/iOS-%E6%BA%90%E4%BB%A3%E7%A0%81%E6%98%AF%E6%80%8E%E6%A0%B7%E6%88%90%E4%B8%BA-App-%E7%9A%84/"/>
+    <id>https://chenliangjing.me/2019/10/28/iOS-源代码是怎样成为-App-的/</id>
+    <published>2019-10-28T02:24:52.000Z</published>
+    <updated>2019-10-30T11:22:52.524Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这篇文章想要探究一下在 iOS 开发中，iOS 源代码是怎样变成用户手机上的一个个 App 的，Xcode 里面 Command + B 具体发生了什么？&lt;/p&gt;
+&lt;p&gt;我想可以分为两个部分，第一个部分是 iOS 源代码是怎样打包上架市场并安装到到用户手机上的，第二部分是用户当点击 App Icon 到 App 启动经历了哪些过程？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="编译" scheme="https://chenliangjing.me/Tags/%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="链接" scheme="https://chenliangjing.me/Tags/%E7%BC%96%E8%AF%91/%E9%93%BE%E6%8E%A5/"/>
+    
+    
+      <category term="编译" scheme="https://chenliangjing.me/Categorys/%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="链接" scheme="https://chenliangjing.me/Categorys/%E9%93%BE%E6%8E%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Swift 代码编译流程</title>
+    <link href="https://chenliangjing.me/2019/10/11/Swift-%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B/"/>
+    <id>https://chenliangjing.me/2019/10/11/Swift-代码编译流程/</id>
+    <published>2019-10-11T01:37:14.000Z</published>
+    <updated>2019-10-28T02:25:15.711Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;### &lt;/p&gt;
+&lt;h3 id=&quot;编程语言分类&quot;&gt;&lt;a href=&quot;#编程语言分类&quot; class=&quot;headerlink&quot; title=&quot;编程语言分类&quot;&gt;&lt;/a&gt;编程语言分类&lt;/h3&gt;&lt;p&gt;编程语言按照不同的角度可以有不同的分类。&lt;/p&gt;
+&lt;h4 id=&quot;按与硬件的距离分：&quot;&gt;&lt;a href=&quot;#按与硬件的距离分：&quot; class=&quot;headerlink&quot; title=&quot;按与硬件的距离分：&quot;&gt;&lt;/a&gt;按&lt;code&gt;与硬件的距离&lt;/code&gt;分：&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;机器语言：根据硬件指令集的 0101 &lt;/li&gt;
+&lt;li&gt;汇编语言：对机器语言做了简单的封装&lt;/li&gt;
+&lt;li&gt;高级语言：C/C++/Java/Python/JavaScript/Swift 等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;按编程范式分：&quot;&gt;&lt;a href=&quot;#按编程范式分：&quot; class=&quot;headerlink&quot; title=&quot;按编程范式分：&quot;&gt;&lt;/a&gt;按&lt;code&gt;编程范式&lt;/code&gt;分：&lt;/h4&gt;
+    
+    </summary>
+    
+      <category term="Swift" scheme="https://chenliangjing.me/Tags/Swift/"/>
+    
+      <category term="编译" scheme="https://chenliangjing.me/Tags/Swift/%E7%BC%96%E8%AF%91/"/>
+    
+    
+      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
+    
+      <category term="编译" scheme="https://chenliangjing.me/Categorys/%E7%BC%96%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Playground Markup 语法</title>
+    <link href="https://chenliangjing.me/2019/10/11/Playground-Markup-%E8%AF%AD%E6%B3%95/"/>
+    <id>https://chenliangjing.me/2019/10/11/Playground-Markup-语法/</id>
+    <published>2019-10-11T01:24:42.000Z</published>
+    <updated>2019-10-11T01:38:37.261Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;学习 Swift 语法最好的工具是 Xcode 配套的 Playground，所见即所得。除了实时显示变量的值，还可以加载资源，呈现视图，多文件管理等。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/2019-10-11-013609.png&quot; alt=&quot;image-20191011093609289&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="others" scheme="https://chenliangjing.me/Tags/others/"/>
+    
+    
+      <category term="others" scheme="https://chenliangjing.me/Categorys/others/"/>
+    
+  </entry>
   
   <entry>
     <title>基于 Pannellum 的全景图网页容器实现</title>
@@ -443,145 +520,6 @@
       <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
       <category term="性能优化" scheme="https://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记最近几次的面试</title>
-    <link href="https://chenliangjing.me/2018/06/16/%E8%AE%B0%E6%9C%80%E8%BF%91%E5%87%A0%E6%AC%A1%E7%9A%84%E9%9D%A2%E8%AF%95/"/>
-    <id>https://chenliangjing.me/2018/06/16/记最近几次的面试/</id>
-    <published>2018-06-16T14:36:07.000Z</published>
-    <updated>2019-08-11T07:39:47.154Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近部门被裁员了，虽然不情愿，但这并不以我的意志为转移，生活还要继续，于是重新写简历，找工作。&lt;/p&gt;
-&lt;p&gt;记录一下最近几次面试遇到的一些问题。&lt;/p&gt;
-&lt;h2 id=&quot;国内某电商大厂电话面试&quot;&gt;&lt;a href=&quot;#国内某电商大厂电话面试&quot; class=&quot;headerlink&quot; title=&quot;国内某电商大厂电话面试&quot;&gt;&lt;/a&gt;国内某电商大厂电话面试&lt;/h2&gt;&lt;p&gt;很意外，收到投递简历的邀请，下午 5 点投递，20 分钟后杭州的电话就打过来了，直接说晚上电话面试，很强势。说是要组建一个全新的研发部，要将国内的电商成功模式复制到东南亚，大量招人。&lt;/p&gt;
-&lt;p&gt;这些大厂的面试确实面试官都会提前准备，如提前下载好你的项目 App，阅读你简历上写的博客中的文章，提问也是由浅入深，从你做过的项目入手，然后根据你的回答情况再提问，主要分为项目经验和 iOS 基础部分。虽然结果也是 gg 了，但今年能收到这些大公司的面试邀请也算是看到了一点希望呢！再努努力也许能够得着！&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;说一下做过的项目中最有难度的一个技术点？&lt;/li&gt;
-&lt;li&gt;Google 的 Flutter 的原理有了解过吗？和 RN 的区别？&lt;/li&gt;
-&lt;li&gt;原生 App 中的网页容器？RN 这些有了解过吗？&lt;/li&gt;
-&lt;li&gt;Runloop 是什么？你是怎么理解的？&lt;/li&gt;
-&lt;li&gt;RunTime 是什么？在项目中具体那些地方用到过吗？&lt;/li&gt;
-&lt;li&gt;GPU 渲染和 CPU 渲染的区别？&lt;/li&gt;
-&lt;li&gt;tableview 如何做性能优化？&lt;/li&gt;
-&lt;li&gt;平常项目中怎么切圆角？&lt;/li&gt;
-&lt;li&gt;MVC 和 MVVM 这些架构模式有了解过吗？MVVM 的双向绑定是怎么做的？&lt;/li&gt;
-&lt;li&gt;安装包瘦身是怎么做的？用到的相关清理工具的原理是什么？&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;某图片美化公司&quot;&gt;&lt;a href=&quot;#某图片美化公司&quot; class=&quot;headerlink&quot; title=&quot;某图片美化公司&quot;&gt;&lt;/a&gt;某图片美化公司&lt;/h2&gt;&lt;p&gt;该公司海外事业部的技术总监电话面试。没有问到很具体的技术问题，主要是聊了下工作和项目经历，主要有两个问题，一个是项目中最有挑战性的一个技术点，另外一个是项目中遇到过的多线程相关的问题？聊外直接约公司面试了。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;二面，三面&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;手写算法实现找出两个视图实例的公共父视图，有则输出，没有则输出nil？&lt;/li&gt;
-&lt;li&gt;手写算法实现找出一个视图所有的子视图？&lt;/li&gt;
-&lt;li&gt;手写算法实现冒泡、条件、选择、堆排序中的一种？&lt;/li&gt;
-&lt;li&gt;代码纠错，一段代码中的纠错？&lt;/li&gt;
-&lt;li&gt;tableview 的优化？&lt;/li&gt;
-&lt;li&gt;算法实现一个字符串中最长的不重复的子串的长度？&lt;/li&gt;
-&lt;li&gt;你做过最有技术难点的一个项目？&lt;/li&gt;
-&lt;li&gt;你做过最复杂的一个业务是什么？&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;算法面试官评价：表现在候选人里面很平均。&lt;br&gt;技术负责人评价：技术面较窄。&lt;/p&gt;
-&lt;h2 id=&quot;某南极动物厂电话面试&quot;&gt;&lt;a href=&quot;#某南极动物厂电话面试&quot; class=&quot;headerlink&quot; title=&quot;某南极动物厂电话面试&quot;&gt;&lt;/a&gt;某南极动物厂电话面试&lt;/h2&gt;&lt;p&gt;首先，非常感谢以前公司的老大帮我内推简历，于是在某一个晚上如愿收到了相关技术部门打来的面试电话。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="面试" scheme="https://chenliangjing.me/Tags/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-      <category term="面试" scheme="https://chenliangjing.me/Categorys/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>男衣库 App_iOS 性能优化实践总结</title>
-    <link href="https://chenliangjing.me/2018/05/16/%E7%94%B7%E8%A1%A3%E5%BA%93%20App-iOS-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
-    <id>https://chenliangjing.me/2018/05/16/男衣库 App-iOS-性能优化实践总结/</id>
-    <published>2018-05-16T14:10:55.000Z</published>
-    <updated>2019-08-11T07:39:47.145Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;随着业务开发的不停迭代，如果没有很严格的执行代码开发规范、性能监控、测试覆盖等。容易引发一些 App 的性能问题，如崩溃率高、内存占用过高，安装包体积过大、启动时间过长，页面卡顿等一些性能问题，进而影响 App 的整体使用体验。 其中，主要优化的几个常见场景如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;业务优化&lt;ul&gt;
-&lt;li&gt;未使用到的业务代码，以前旧版本的一些业务逻辑，没有及时删除。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;内存优化&lt;ul&gt;
-&lt;li&gt;内存泄漏和大量数据加载导致收到系统内存警告&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;卡顿优化&lt;ul&gt;
-&lt;li&gt;监控页面实时滑动帧率 FPS&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;布局优化&lt;ul&gt;
-&lt;li&gt;大量的布局重复运算，没有适当的缓存设计     &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;电量优化&lt;ul&gt;
-&lt;li&gt;一些硬件的操作、持续后台定位等     &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;安装包体积优化&lt;ul&gt;
-&lt;li&gt;无用资源、如图片、文档等数据，无用的代码，图片未压缩处理&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;启动时间优化&lt;ul&gt;
-&lt;li&gt;大量的业务逻辑代码堆积在启动的时候执行&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;网络优化&lt;ul&gt;
-&lt;li&gt;网络安全&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;现状&quot;&gt;&lt;a href=&quot;#现状&quot; class=&quot;headerlink&quot; title=&quot;现状&quot;&gt;&lt;/a&gt;现状&lt;/h2&gt;&lt;p&gt;&lt;code&gt;以下所有测试都是使用 iphone 6/iOS 8.3 版本测试真机在 release 环境下测试的。&lt;/code&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
-    
-      <category term="性能优化" scheme="https://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
-    
-      <category term="性能优化" scheme="https://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《Developing iOS 11 Apps with Swift》学习笔记（四）</title>
-    <link href="https://chenliangjing.me/2018/02/09/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
-    <id>https://chenliangjing.me/2018/02/09/《Developing-iOS-11-Apps-with-Swift》学习笔记（四）/</id>
-    <published>2018-02-09T14:16:58.000Z</published>
-    <updated>2019-08-11T07:39:47.133Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/cn/podcast/developing-ios-11-apps-with-swift/id1315130780?mt=2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/ljchen1129/-Developing-iOS-11-Apps-with-Swift-Demos/tree/master&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Demo 示例地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料一：官方文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnswift.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料二：官方文档中文翻译&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这节课主要讲述了 Swift 中 protocols(协议) 和 Closures（闭包）、NSAttributedString 的语法和注意点。&lt;/p&gt;
-&lt;h2 id=&quot;mutating-关键字&quot;&gt;&lt;a href=&quot;#mutating-关键字&quot; class=&quot;headerlink&quot; title=&quot;mutating 关键字&quot;&gt;&lt;/a&gt;mutating 关键字&lt;/h2&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
-    
-      <category term="Swift" scheme="https://chenliangjing.me/Tags/iOS/Swift/"/>
-    
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
-    
-      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
     
   </entry>
   

@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言这篇文章想要探究一下在 iOS 开发中，iOS 源代码是怎样变成用户手机上的一个个 App 的，Xcode 里面 Command + B 具体发生了什么？ 我想可以分为两个部分，第一个部分是 iOS 源代码是怎样打包上架市场并安装到到用户手机上的，第二部分是用户当点击 App Icon 到 App 启动经历了哪些过程？">
+<meta name="keywords" content="编译,链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 源代码是怎样成为 App 的">
+<meta property="og:url" content="https://chenliangjing.me/2019/10/28/iOS-源代码是怎样成为-App-的/index.html">
+<meta property="og:site_name" content="在水一方">
+<meta property="og:description" content="前言这篇文章想要探究一下在 iOS 开发中，iOS 源代码是怎样变成用户手机上的一个个 App 的，Xcode 里面 Command + B 具体发生了什么？ 我想可以分为两个部分，第一个部分是 iOS 源代码是怎样打包上架市场并安装到到用户手机上的，第二部分是用户当点击 App Icon 到 App 启动经历了哪些过程？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-28-101309.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-28-101312.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-28-050818.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-28-080347.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-28-094817.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-28-152925.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-28-153148.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-29-061550.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-30-040417.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-30-061806.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-30-062207.png">
+<meta property="og:image" content="http://liangjinggege.com/2019-10-30-112243.png">
+<meta property="og:image" content="http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg">
+<meta property="og:updated_time" content="2019-10-30T11:22:52.524Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 源代码是怎样成为 App 的">
+<meta name="twitter:description" content="前言这篇文章想要探究一下在 iOS 开发中，iOS 源代码是怎样变成用户手机上的一个个 App 的，Xcode 里面 Command + B 具体发生了什么？ 我想可以分为两个部分，第一个部分是 iOS 源代码是怎样打包上架市场并安装到到用户手机上的，第二部分是用户当点击 App Icon 到 App 启动经历了哪些过程？">
+<meta name="twitter:image" content="http://liangjinggege.com/2019-10-28-101309.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://chenliangjing.me/2019/10/28/iOS-源代码是怎样成为-App-的/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS 源代码是怎样成为 App 的 | 在水一方</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">在水一方</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/10/28/iOS-源代码是怎样成为-App-的/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS 源代码是怎样成为 App 的
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-28 10:24:52" itemprop="dateCreated datePublished" datetime="2019-10-28T10:24:52+08:00">2019-10-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-30 19:22:52" itemprop="dateModified" datetime="2019-10-30T19:22:52+08:00">2019-10-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/编译/" itemprop="url" rel="index"><span itemprop="name">编译</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/编译/链接/" itemprop="url" rel="index"><span itemprop="name">链接</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/28/iOS-源代码是怎样成为-App-的/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/28/iOS-源代码是怎样成为-App-的/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/10/28/iOS-源代码是怎样成为-App-的/" class="leancloud_visitors" data-flag-title="iOS 源代码是怎样成为 App 的">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章想要探究一下在 iOS 开发中，iOS 源代码是怎样变成用户手机上的一个个 App 的，Xcode 里面 Command + B 具体发生了什么？</p>
+<p>我想可以分为两个部分，第一个部分是 iOS 源代码是怎样打包上架市场并安装到到用户手机上的，第二部分是用户当点击 App Icon 到 App 启动经历了哪些过程？</p>
+<a id="more"></a>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="编程语言分类"><a href="#编程语言分类" class="headerlink" title="编程语言分类"></a>编程语言分类</h3><p>编程语言按照不同的角度可以有不同的分类。</p>
+<h4 id="按与硬件的距离分："><a href="#按与硬件的距离分：" class="headerlink" title="按与硬件的距离分："></a>按<code>与硬件的距离</code>分：</h4><ul>
+<li>机器语言：根据硬件指令集的 0101 </li>
+<li>汇编语言：对机器语言做了简单的封装</li>
+<li>高级语言：C/C++/Java/Python/JavaScript/Swift 等</li>
+</ul>
+<h4 id="按编程范式分："><a href="#按编程范式分：" class="headerlink" title="按编程范式分："></a>按<code>编程范式</code>分：</h4><ul>
+<li>面向过程：<ul>
+<li>C</li>
+</ul>
+</li>
+<li>面向对象：<ul>
+<li>C++/Java</li>
+</ul>
+</li>
+<li>函数式</li>
+</ul>
+<blockquote>
+<p>现在的很多高级语言都具备<code>多种编程范式</code>。</p>
+</blockquote>
+<h4 id="按是否需要编译分："><a href="#按是否需要编译分：" class="headerlink" title="按是否需要编译分："></a>按<code>是否需要编译</code>分：</h4><ul>
+<li><p>编译型语言 Compiled Language，编译后可直接执行，执行效率高</p>
+<ul>
+<li>C/C++/Objective-C/Swift（不依赖虚拟机）</li>
+<li>Java (依赖虚拟机)，Java 源代码会先编译成为 .class（字节码）文件，再经过 JVM 一行一行的解释执行</li>
+</ul>
+</li>
+<li><p>解释型语言 Interpreted Language，也叫脚本语言 Scripting Language，运行在解释器上，解释一行代码，执行一行，执行效率相对编译型语言更低，但容易移植</p>
+<ul>
+<li>Python/Ruby/JavaScript</li>
+</ul>
+</li>
+</ul>
+<p>Swift 是一门编译型语言，编译型语言的源代码要运行，首先是需要编译器（Complier）把源文件进行编译成目标文件，然后经过链接器（Linker）链接后才能够执行的。这篇主要记录的是 Swift 代码的编译过程。</p>
+<h3 id="LLVM-编译器架构"><a href="#LLVM-编译器架构" class="headerlink" title="LLVM 编译器架构"></a>LLVM 编译器架构</h3><p><img src="http://liangjinggege.com/2019-10-28-101309.png" alt="img"></p>
+<ul>
+<li>Frontend 前端<ul>
+<li>词法分析、语法分析、语义分析、生成中间代码</li>
+</ul>
+</li>
+<li>Optimizer 优化器<ul>
+<li>中间代码优化</li>
+</ul>
+</li>
+<li>Backend 后端<ul>
+<li>生成不同硬件平台的机器码</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://liangjinggege.com/2019-10-28-101312.png" alt="img"></p>
+<blockquote>
+<p>LLVM 编译器三层式的架构，前后端依赖统一格式的中间代码(IR)，使得前后端可以独立的变化。新增一门语言只需要修改前端，而新增一个 CPU 架构只需要修改后端即可。</p>
+</blockquote>
+<p>Objective C/C/C++使用的编译器前端是<a href="https://clang.llvm.org/docs/index.html" target="_blank" rel="noopener">clang</a>，swift是<a href="https://swift.org/compiler-stdlib/#compiler-architecture" target="_blank" rel="noopener">swift</a>，后端都是<a href="https://llvm.org/" target="_blank" rel="noopener">LLVM</a>。</p>
+<h2 id="第一部分：源代码-gt-App-阶段"><a href="#第一部分：源代码-gt-App-阶段" class="headerlink" title="第一部分：源代码 -&gt; App 阶段"></a>第一部分：源代码 -&gt; App 阶段</h2><h3 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h3><p>先来看程序员都会写的第一行代码 hello world!，先看一下这行代码是如何变成可执行文件的，在终端打印出 <code>Hello, World</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello, World!\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-预编译"><a href="#1-预编译" class="headerlink" title="1. 预编译"></a>1. 预编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用 gcc 编译器编译这个文件，-E 表示只进行预编译</span></span><br><span class="line">gcc -E main.c -o main.i</span><br></pre></td></tr></table></figure>
+<p>预编译阶段主要是处理源代码中以 <code>#</code> 号开始的预编译指令，如 <code>#include</code>、<code>#define</code>等，主要的规则有：</p>
+<ol>
+<li>删除所有<code>#define</code> ，展开所有宏定义</li>
+<li>处理条件编译，如 <code>#if</code>、<code>#ifdef</code>、<code>#elif</code>、 <code>#else</code>、<code>#endif</code> 等</li>
+<li>处理  <code>#include</code> 指令，<code>递归</code>地将被包含的文件插入到该预编译指令的位置</li>
+<li>删除所有的注释</li>
+<li>添加行号和文件名标识</li>
+<li>保留所有 <code>#pragma</code> 预编译指令</li>
+</ol>
+<h4 id="2-编译"><a href="#2-编译" class="headerlink" title="2. 编译"></a>2. 编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># 将预编译后的源代码编译成汇编代码</span><br><span class="line">gcc -S main.i -o main.s</span><br><span class="line">  </span><br><span class="line"># 生成的汇编代码文件main.s</span><br><span class="line">	.section	__TEXT,__text,regular,pure_instructions</span><br><span class="line">	.build_version macos, 10, 15	sdk_version 10, 15</span><br><span class="line">	.globl	_main                   ## -- Begin function main</span><br><span class="line">	.p2align	4, 0x90</span><br><span class="line">_main:                                  ## @main</span><br><span class="line">	.cfi_startproc</span><br><span class="line">## %bb.0:</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset %rbp, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register %rbp</span><br><span class="line">	subq	$32, %rsp</span><br><span class="line">	movl	$0, -4(%rbp)</span><br><span class="line">	movl	%edi, -8(%rbp)</span><br><span class="line">	movq	%rsi, -16(%rbp)</span><br><span class="line">	leaq	L_.str(%rip), %rdi</span><br><span class="line">	movb	$0, %al</span><br><span class="line">	callq	_printf</span><br><span class="line">	xorl	%ecx, %ecx</span><br><span class="line">	movl	%eax, -20(%rbp)         ## 4-byte Spill</span><br><span class="line">	movl	%ecx, %eax</span><br><span class="line">	addq	$32, %rsp</span><br><span class="line">	popq	%rbp</span><br><span class="line">	retq</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ## -- End function</span><br><span class="line">	.section	__TEXT,__cstring,cstring_literals</span><br><span class="line">L_.str:                                 ## @.str</span><br><span class="line">	.asciz	&quot;Hello, World!\n&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.subsections_via_symbols</span><br></pre></td></tr></table></figure>
+<h4 id="3-汇编"><a href="#3-汇编" class="headerlink" title="3. 汇编"></a>3. 汇编</h4><p>这个阶段由汇编器将汇编代码 main.s 变成机器指令，即生成目标文件 main.o</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 生成目标文件 main.o</span></span><br><span class="line">gcc -c main.s -o main.o</span><br></pre></td></tr></table></figure>
+<h4 id="4-链接"><a href="#4-链接" class="headerlink" title="4. 链接"></a>4. 链接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> clang 编译器前端链接main.o，生成一个 a.out 可执行文件</span></span><br><span class="line">clang main.o</span><br><span class="line"></span><br><span class="line">➜  HelloWorld ls</span><br><span class="line">a.out  main.c main.i main.o main.s</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行</span></span><br><span class="line">➜  HelloWorld ./a.out </span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>上面只是简单的描述了一下程序员的第一行代码 Hello World 程序是怎样变成可执行文件的，其实在编译和链接阶段还有着更复杂更细致的操作，如在编译阶段就有词法分析、语法分析、语义分析、中间语言生成、目标代码生成和优化过程。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看用 clang 编译源代码的过程</span></span><br><span class="line">➜  HelloWorld clang -ccc-print-phases main.c </span><br><span class="line">0: input, "main.c", c # 输入</span><br><span class="line">1: preprocessor, &#123;0&#125;, cpp-output # 预处理 -&gt; 输出 cpp 文件 .cpp</span><br><span class="line">2: compiler, &#123;1&#125;, ir # 编译 -&gt; 输出中间代码 </span><br><span class="line">3: backend, &#123;2&#125;, assembler # 编译器后端将中间代码转成汇编代码 -&gt; 输出汇编代码 </span><br><span class="line">4: assembler, &#123;3&#125;, object # 汇编器，将汇编代码转成机器代码 -&gt; 输出目标文件代码 .o</span><br><span class="line">5: linker, &#123;4&#125;, image # 链接器，生成机器无关的二进制代码 -&gt; 输出机器无关二进制代码</span><br><span class="line">6: bind-arch, "x86_64", &#123;5&#125;, image # 绑定机器架构，生成具体机器的二进制代码 -&gt; 输出具体机型二进制代码</span><br></pre></td></tr></table></figure>
+<p>下面就写一段简单的两数求和的加法代码来分析一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = sum(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h4><p>词法分析就是将源代码的字符序列使用一个叫做 lex 的程序运用一种类似于有限状态机的算法（Finite Source Machine）分割成一系列的记号（token）的过程。</p>
+<p>产生的 token 一般可以分为以下几类：关键字、标识符、字面量（数字、字符串）、特殊符号。在识别记号 token 的同时，也会将标识符放到符号表、将数字、字符串常量放到文字表等。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用 clang 对 main.c 源代码只进行词法分析</span></span><br><span class="line">xcrun clang -fmodules -fsyntax-only -Xclang -dump-tokens main.c</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果</span></span><br><span class="line">annot_module_include '#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int sum(int a, int b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">    int result = sum(1, 2);</span><br><span class="line">'		Loc=&lt;main.c:9:1&gt; // 标识位于源文件的第 9 行，从第 1 个字符开始</span><br><span class="line">int 'int'	 [StartOfLine]	Loc=&lt;main.c:11:1&gt; // 标识位于源文件的第 11 行，从第 1 个字符开始</span><br><span class="line">identifier 'sum'	 [LeadingSpace]	Loc=&lt;main.c:11:5&gt;</span><br><span class="line">l_paren '('		Loc=&lt;main.c:11:8&gt;</span><br><span class="line">int 'int'		Loc=&lt;main.c:11:9&gt;</span><br><span class="line">identifier 'a'	 [LeadingSpace]	Loc=&lt;main.c:11:13&gt;</span><br><span class="line">comma ','		Loc=&lt;main.c:11:14&gt;</span><br><span class="line">int 'int'	 [LeadingSpace]	Loc=&lt;main.c:11:16&gt;</span><br><span class="line">identifier 'b'	 [LeadingSpace]	Loc=&lt;main.c:11:20&gt;</span><br><span class="line">r_paren ')'		Loc=&lt;main.c:11:21&gt;</span><br><span class="line">l_brace '&#123;'	 [LeadingSpace]	Loc=&lt;main.c:11:23&gt;</span><br><span class="line">return 'return'	 [StartOfLine] [LeadingSpace]	Loc=&lt;main.c:12:5&gt;</span><br><span class="line">identifier 'a'	 [LeadingSpace]	Loc=&lt;main.c:12:12&gt;</span><br><span class="line">plus '+'	 [LeadingSpace]	Loc=&lt;main.c:12:14&gt;</span><br><span class="line">identifier 'b'	 [LeadingSpace]	Loc=&lt;main.c:12:16&gt;</span><br><span class="line">semi ';'		Loc=&lt;main.c:12:17&gt;</span><br><span class="line">r_brace '&#125;'	 [StartOfLine]	Loc=&lt;main.c:13:1&gt;</span><br><span class="line">int 'int'	 [StartOfLine]	Loc=&lt;main.c:15:1&gt;</span><br><span class="line">identifier 'main'	 [LeadingSpace]	Loc=&lt;main.c:15:5&gt;</span><br><span class="line">l_paren '('		Loc=&lt;main.c:15:9&gt;</span><br><span class="line">int 'int'		Loc=&lt;main.c:15:10&gt;</span><br><span class="line">identifier 'argc'	 [LeadingSpace]	Loc=&lt;main.c:15:14&gt;</span><br><span class="line">comma ','		Loc=&lt;main.c:15:18&gt;</span><br><span class="line">const 'const'	 [LeadingSpace]	Loc=&lt;main.c:15:20&gt;</span><br><span class="line">char 'char'	 [LeadingSpace]	Loc=&lt;main.c:15:26&gt;</span><br><span class="line">star '*'	 [LeadingSpace]	Loc=&lt;main.c:15:31&gt;</span><br><span class="line">identifier 'argv'	 [LeadingSpace]	Loc=&lt;main.c:15:33&gt;</span><br><span class="line">l_square '['		Loc=&lt;main.c:15:37&gt;</span><br><span class="line">r_square ']'		Loc=&lt;main.c:15:38&gt;</span><br><span class="line">r_paren ')'		Loc=&lt;main.c:15:39&gt;</span><br><span class="line">l_brace '&#123;'	 [LeadingSpace]	Loc=&lt;main.c:15:41&gt;</span><br><span class="line">int 'int'	 [StartOfLine] [LeadingSpace]	Loc=&lt;main.c:16:5&gt;</span><br><span class="line">identifier 'result'	 [LeadingSpace]	Loc=&lt;main.c:16:9&gt;</span><br><span class="line">equal '='	 [LeadingSpace]	Loc=&lt;main.c:16:16&gt;</span><br><span class="line">identifier 'sum'	 [LeadingSpace]	Loc=&lt;main.c:16:18&gt; // 标识位于源文件的第 16 行，从第 18 个字符开始</span><br><span class="line">l_paren '('		Loc=&lt;main.c:16:21&gt;</span><br><span class="line">numeric_constant '1'		Loc=&lt;main.c:16:22&gt;</span><br><span class="line">comma ','		Loc=&lt;main.c:16:23&gt;</span><br><span class="line">numeric_constant '2'	 [LeadingSpace]	Loc=&lt;main.c:16:25&gt;</span><br><span class="line">r_paren ')'		Loc=&lt;main.c:16:26&gt;</span><br><span class="line">semi ';'		Loc=&lt;main.c:16:27&gt;</span><br><span class="line">return 'return'	 [StartOfLine] [LeadingSpace]	Loc=&lt;main.c:17:5&gt;</span><br><span class="line">numeric_constant '0'	 [LeadingSpace]	Loc=&lt;main.c:17:12&gt;</span><br><span class="line">semi ';'		Loc=&lt;main.c:17:13&gt;</span><br><span class="line">r_brace '&#125;'	 [StartOfLine]	Loc=&lt;main.c:18:1&gt;</span><br><span class="line">eof ''		Loc=&lt;main.c:18:2&gt;</span><br></pre></td></tr></table></figure>
+<p><code>identifier &#39;sum&#39;     [LeadingSpace]    Loc=&lt;main.c:16:18</code>&gt;   表示位于源文件的第 16 行，从第 18 个字符开始</p>
+<p><img src="http://liangjinggege.com/2019-10-28-050818.png" alt="image-20191028130818220"></p>
+<p>经过词法分析后，源代码就变成了一个个记号 token，并且记录了每一个记号 token 的在源代码中的位置信息。</p>
+<h4 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h4><p>语法分析就是语法分析器对词法分析输出的记号 token 进行语法分析，输出一颗<code>以表达式为节点</code>的<code>抽象语法树(abstract syntax tree - AST)</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> clang 语法分析生成抽象语法树</span></span><br><span class="line">xcrun clang -fmodules -fsyntax-only -Xclang -dump-tokens main.c</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> sum 函数</span></span><br><span class="line">|-FunctionDecl 0x7fdd2a0126f0 &lt;main.c:11:1, line:13:1&gt; line:11:5 used sum 'int (int, int)'</span><br><span class="line">| |-ParmVarDecl 0x7fdd2a010590 &lt;col:9, col:13&gt; col:13 used a 'int'</span><br><span class="line">| |-ParmVarDecl 0x7fdd2a012618 &lt;col:16, col:20&gt; col:20 used b 'int'</span><br><span class="line">| `-CompoundStmt 0x7fdd2a012838 &lt;col:23, line:13:1&gt;</span><br><span class="line">|   `-ReturnStmt 0x7fdd2a012828 &lt;line:12:5, col:16&gt;</span><br><span class="line">|     `-BinaryOperator 0x7fdd2a012808 &lt;col:12, col:16&gt; 'int' '+'</span><br><span class="line">|       |-ImplicitCastExpr 0x7fdd2a0127d8 &lt;col:12&gt; 'int' &lt;LValueToRValue&gt;</span><br><span class="line">|       | `-DeclRefExpr 0x7fdd2a012798 &lt;col:12&gt; 'int' lvalue ParmVar 0x7fdd2a010590 'a' 'int'</span><br><span class="line">|       `-ImplicitCastExpr 0x7fdd2a0127f0 &lt;col:16&gt; 'int' &lt;LValueToRValue&gt;</span><br><span class="line">|         `-DeclRefExpr 0x7fdd2a0127b8 &lt;col:16&gt; 'int' lvalue ParmVar 0x7fdd2a012618 'b' 'int'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> main 函数</span></span><br><span class="line">`-FunctionDecl 0x7fdd2a012a60 &lt;line:15:1, line:18:1&gt; line:15:5 main 'int (int, const char **)'</span><br><span class="line">  |-ParmVarDecl 0x7fdd2a012868 &lt;col:10, col:14&gt; col:14 argc 'int'</span><br><span class="line">  |-ParmVarDecl 0x7fdd2a012950 &lt;col:20, col:38&gt; col:33 argv 'const char **':'const char **'</span><br><span class="line">  `-CompoundStmt 0x7fdd2a012c98 &lt;col:41, line:18:1&gt;</span><br><span class="line">    |-DeclStmt 0x7fdd2a012c50 &lt;line:16:5, col:27&gt;</span><br><span class="line">    | `-VarDecl 0x7fdd2a012b20 &lt;col:5, col:26&gt; col:9 result 'int' cinit</span><br><span class="line">    |   `-CallExpr 0x7fdd2a012c20 &lt;col:18, col:26&gt; 'int'</span><br><span class="line">    |     |-ImplicitCastExpr 0x7fdd2a012c08 &lt;col:18&gt; 'int (*)(int, int)' &lt;FunctionToPointerDecay&gt;</span><br><span class="line">    |     | `-DeclRefExpr 0x7fdd2a012b80 &lt;col:18&gt; 'int (int, int)' Function 0x7fdd2a0126f0 'sum' 'int (int, int)'</span><br><span class="line">    |     |-IntegerLiteral 0x7fdd2a012ba0 &lt;col:22&gt; 'int' 1</span><br><span class="line">    |     `-IntegerLiteral 0x7fdd2a012bc0 &lt;col:25&gt; 'int' 2</span><br><span class="line">    `-ReturnStmt 0x7fdd2a012c88 &lt;line:17:5, col:12&gt;</span><br><span class="line">      `-IntegerLiteral 0x7fdd2a012c68 &lt;col:12&gt; 'int' 0</span><br></pre></td></tr></table></figure>
+<p>sum 函数的语法树图形化为：</p>
+<p><img src="http://liangjinggege.com/2019-10-28-080347.png" alt="image-20191028160346857" style="zoom:80%;"></p>
+<p>有了 AST 抽象语法树，语法分析阶段就可以对代码进行分析检查，如检查括号是否匹配，是否缺少操作符，类型是否匹配等，一旦检查不通过，就会报告语法分析阶段的错误。</p>
+<p>AST 也是用来编写 Clang 插件的主要交互的数据结构，程序员可以基于 AST 来编写自定义的语法规则，可以用来做代码静态检查。Clang 也提供了很多的 API 来对 AST 的节点做增删改查操作。</p>
+<h4 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h4><p>语法分析仅仅是完成对<code>表达式语法层面</code>的检查，要想检查语句是否真正有意义，还需要语义分析。</p>
+<p>语义分析是由<code>语义分析器</code>来完成，语义分析检查的是表达式是否真的有意义，如类型的转换，声明和类型的匹配，如将一个浮点型赋值给一个指针类型，就会报语义分析阶段错误。</p>
+<p>经过语义分析阶段后，整个语法树的表达式都被标识了类型，有些需要隐式转换的类型，也会在这个阶段插入相应的转换节点。</p>
+<h4 id="中间语言生成"><a href="#中间语言生成" class="headerlink" title="中间语言生成"></a>中间语言生成</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> clang 生成中间代码 .ll 是文本格式的中间代码，还有内存格式和二进制格式</span></span><br><span class="line">clang -S -emit-llvm main.c -o main.ll</span><br><span class="line"></span><br><span class="line">; ModuleID = 'main.c'</span><br><span class="line">source_filename = "main.c"</span><br><span class="line">target datalayout = "e-m:o-i64:64-f80:128-n8:16:32:64-S128"</span><br><span class="line">target triple = "x86_64-apple-macosx10.15.0"</span><br><span class="line"></span><br><span class="line">; Function Attrs: noinline nounwind optnone ssp uwtable</span><br><span class="line">define i32 @sum(i32, i32) #0 &#123;</span><br><span class="line"><span class="meta">  %</span><span class="bash">3 = alloca i32, align 4</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">4 = alloca i32, align 4</span></span><br><span class="line">  store i32 %0, i32* %3, align 4</span><br><span class="line">  store i32 %1, i32* %4, align 4</span><br><span class="line"><span class="meta">  %</span><span class="bash">5 = load i32, i32* %3, align 4</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">6 = load i32, i32* %4, align 4</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">7 = add nsw i32 %5, %6</span></span><br><span class="line">  ret i32 %7</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">; Function Attrs: noinline nounwind optnone ssp uwtable</span><br><span class="line">define i32 @main(i32, i8**) #0 &#123;</span><br><span class="line"><span class="meta">  %</span><span class="bash">3 = alloca i32, align 4</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">4 = alloca i32, align 4</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">5 = alloca i8**, align 8</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">6 = alloca i32, align 4</span></span><br><span class="line">  store i32 0, i32* %3, align 4</span><br><span class="line">  store i32 %0, i32* %4, align 4</span><br><span class="line">  store i8** %1, i8*** %5, align 8</span><br><span class="line"><span class="meta">  %</span><span class="bash">7 = call i32 @sum(i32 1, i32 2)</span></span><br><span class="line">  store i32 %7, i32* %6, align 4</span><br><span class="line">  ret i32 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">attributes #0 = &#123; noinline nounwind optnone ssp uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "darwin-stkchk-strong-link" "disable-tail-calls"="false" "less-precise-fpmad"="false" "min-legal-vector-width"="0" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "probe-stack"="___chkstk_darwin" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" &#125;</span><br><span class="line"></span><br><span class="line">!llvm.module.flags = !&#123;!0, !1, !2&#125;</span><br><span class="line">!llvm.ident = !&#123;!3&#125;</span><br><span class="line"></span><br><span class="line">!0 = !&#123;i32 2, !"SDK Version", [2 x i32] [i32 10, i32 15]&#125;</span><br><span class="line">!1 = !&#123;i32 1, !"wchar_size", i32 4&#125;</span><br><span class="line">!2 = !&#123;i32 7, !"PIC Level", i32 2&#125;</span><br><span class="line">!3 = !&#123;!"Apple clang version 11.0.0 (clang-1100.0.33.8)"&#125;</span><br></pre></td></tr></table></figure>
+<p>可以阅读以下 IR 中间代码中的 sum 函数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> sum 函数</span></span><br><span class="line">define i32 @sum(i32, i32) #0 &#123;</span><br><span class="line"><span class="meta">  %</span><span class="bash">3 = alloca i32, align 4 <span class="comment"># 分配一个局部变量 %3</span></span></span><br><span class="line"><span class="meta">  %</span><span class="bash">4 = alloca i32, align 4 <span class="comment"># 分配一个局部变量 %4</span></span></span><br><span class="line">  store i32 %0, i32* %3, align 4 # 将 %0 的值赋值给 %3，%0 就是 sum 函数的第一个参数 a</span><br><span class="line">  store i32 %1, i32* %4, align 4 # 将 %1 的值赋值给 %4，%1 就是 sum 函数的第二个参数 b</span><br><span class="line"><span class="meta">  %</span><span class="bash">5 = load i32, i32* %3, align 4 <span class="comment"># 分配一个局部变量 %5， 并将 %3 的值赋值给 %5，即 a 的值</span></span></span><br><span class="line"><span class="meta">  %</span><span class="bash">6 = load i32, i32* %4, align 4 <span class="comment"># 分配一个局部变量 %6， 并将 %4 的值赋值给 %5，即 b 的值</span></span></span><br><span class="line"><span class="meta">  %</span><span class="bash">7 = add nsw i32 %5, %6 a + b <span class="comment"># 分配一个局部变量 %7，将局部变量 %5 和局部变量 %6 的值相加后赋值给 %7，即 a + b 的值</span></span></span><br><span class="line">  ret i32 %7 # 返回局部变量 %7 的值，即 a + b 的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此，编译器前端的工作已经做完，生成了中间代码，中间代码是编译器前端的输出，也是编译器后端的输入。接下来就是编译器后端的工作了。</p>
+<h4 id="目标代码生成和优化"><a href="#目标代码生成和优化" class="headerlink" title="目标代码生成和优化"></a>目标代码生成和优化</h4><p>编译器后端将中间代码转成汇编代码，输出汇编代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># 使用 clang 生成汇编代码</span><br><span class="line">clang -S main.c -o main.s</span><br><span class="line">	</span><br><span class="line">	.section	__TEXT,__text,regular,pure_instructions</span><br><span class="line">	.build_version macos, 10, 15	sdk_version 10, 15</span><br><span class="line">	.globl	_sum                    ## -- Begin function sum</span><br><span class="line">	.p2align	4, 0x90</span><br><span class="line">_sum:                                   ## @sum</span><br><span class="line">	.cfi_startproc</span><br><span class="line">## %bb.0:</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset %rbp, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register %rbp</span><br><span class="line">	movl	%edi, -4(%rbp)</span><br><span class="line">	movl	%esi, -8(%rbp)</span><br><span class="line">	movl	-4(%rbp), %esi</span><br><span class="line">	addl	-8(%rbp), %esi</span><br><span class="line">	movl	%esi, %eax</span><br><span class="line">	popq	%rbp</span><br><span class="line">	retq</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ## -- End function</span><br><span class="line">	.globl	_main                   ## -- Begin function main</span><br><span class="line">	.p2align	4, 0x90</span><br><span class="line">_main:                                  ## @main</span><br><span class="line">	.cfi_startproc</span><br><span class="line">## %bb.0:</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset %rbp, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register %rbp</span><br><span class="line">	subq	$32, %rsp</span><br><span class="line">	movl	$0, -4(%rbp)</span><br><span class="line">	movl	%edi, -8(%rbp)</span><br><span class="line">	movq	%rsi, -16(%rbp)</span><br><span class="line">	movl	$1, %edi</span><br><span class="line">	movl	$2, %esi</span><br><span class="line">	callq	_sum</span><br><span class="line">	xorl	%esi, %esi</span><br><span class="line">	movl	%eax, -20(%rbp)</span><br><span class="line">	movl	%esi, %eax</span><br><span class="line">	addq	$32, %rsp</span><br><span class="line">	popq	%rbp</span><br><span class="line">	retq</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ## -- End function</span><br><span class="line"></span><br><span class="line">.subsections_via_symbols</span><br></pre></td></tr></table></figure>
+<p><code>汇编器</code>以汇编代码作为输入，将汇编代码转换为机器代码，最后输出目标文件(object file)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">clang -fmodules -c main.c -o main.o</span><br><span class="line"></span><br><span class="line">// 使用 nm 可以查看 main.o 文件中的符号 Symbol</span><br><span class="line">➜  HelloWorld nm -nm main.o</span><br><span class="line">0000000000000000 (__TEXT,__text) external _sum</span><br><span class="line">0000000000000020 (__TEXT,__text) external _main</span><br></pre></td></tr></table></figure>
+<p><code>目标代码生成</code>阶段依赖具体的目标机器，不同的机器有不同的字长、寄存器、整数和浮点数数据类型。目标代码优化`会采取选择合适的寻址方式、使用位移代替乘法、删除多余的指令等方对代码进行优化。</p>
+<blockquote>
+<p>符号 Symbol 表示一段代码或者是数据的起始地址。</p>
+</blockquote>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>每个文件或者模块独立编译后的目标文件组装的过程叫做<code>链接</code>，链接由<code>链接器</code>完成。链接过程主要包括了地址和空间的分配、符号决议、和重定位等步骤。</p>
+<p><code>链接器</code> 将不同的目标文件和库文件链接起来，处理好各个模块和文件中的相互引用，将符号绑定到地址上，最终形成<code>可执行文件</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用 clang 链接生目标文件生成可执行文件</span></span><br><span class="line">clang main.o -o main</span><br></pre></td></tr></table></figure>
+<p><img src="http://liangjinggege.com/2019-10-28-094817.png" alt="image-20191028174816689" style="zoom:50%;"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看可执行文件中的符号表</span></span><br><span class="line">➜  HelloWorld nm -nm main</span><br><span class="line">                 (undefined) external  dyld_stub_binder (from libSystem) </span><br><span class="line">0000000100000000 (__TEXT,__text) [referenced dynamically] external __mh_execute_header</span><br><span class="line">0000000100000f60 (__TEXT,__text) external _sum</span><br><span class="line">0000000100000f80 (__TEXT,__text) external _main</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>表示符号 dyld_stub_binder 来自于 libSystem 库，undefined 表示在当前文件中找不到该符号，external 表示该符号可以支持外部访问</p>
+</blockquote>
+<h3 id="iOS-DEMO"><a href="#iOS-DEMO" class="headerlink" title="iOS DEMO"></a>iOS DEMO</h3><p>上面我们通过一个 hello world 程序和一个加法函数的 C 语言来举例，基本覆盖了编译链接的整个大的流程，但毕竟是单文件的，涉及的场景有限，有很多细节没法展示。</p>
+<p>下面写一个使用 Objective-C 和 Swift 的混编项目，使用 CocoaPods 来管理第三方库，包含了一个Objective-C .a 静态库 FooObjcStaticLibrary 和一个 Swift 的动态库 FooSwift.framework，尽量模拟真实的 iOS 项目场景，再来探究下。DEMO 项目结构如下：</p>
+<p><img src="http://liangjinggege.com/2019-10-28-152925.png" alt="image-20191028232924657"></p>
+<p>运行效果：</p>
+<p><img src="http://liangjinggege.com/2019-10-28-153148.png" alt="image-20191028233148422" style="zoom: 50%;"></p>
+<h4 id="点击-Command-B"><a href="#点击-Command-B" class="headerlink" title="点击 Command + B"></a>点击 Command + B</h4><p><img src="http://liangjinggege.com/2019-10-29-061550.png" alt="image-20191029141549289"></p>
+<h4 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h4><p>大多数任务在构建过程中由命令行工具运行，比如 Clang，LD，AC 工具，IB 工具，代码符号等。这些工具等执行，需要一组特定的实参，以特定的顺序，基于 Xcode 项目配置。</p>
+<h4 id="构建系统-Bulid-System"><a href="#构建系统-Bulid-System" class="headerlink" title="构建系统 Bulid System"></a>构建系统 Bulid System</h4><p>Xcode 10 开始，使用了新的 Bulid System，新构建系统使用 Swift Scratch 编写，提供了更好的性能，而且这个代码是开源的，地址在<a href="https://github.com/apple/swift-llbuild" target="_blank" rel="noopener">这里</a>。</p>
+<h4 id="读取-project-文件"><a href="#读取-project-文件" class="headerlink" title="读取  project 文件"></a>读取  project 文件</h4><p>首先，构建系统会从 project 文件读取源代码的信息，决定构建过程的模型和流程，然后转换成一个树形结构叫做<code>定向图</code>，它显示了所有的<code>依赖关系</code>，项目中的输入和输出文件，以及处理他们的执行任务。构建系统就按照定向图的顺序执行一系列的构建任务。</p>
+<p><img src="http://liangjinggege.com/2019-10-30-040417.png" alt="image-20191030120417315"></p>
+<blockquote>
+<p>project 文件除了记录了 App 的一些相关信息和源代码文件的组织目录关系，还记录了 build settings、build phases、build rules、target 、target dependencies 等构建相关的信息。有关 project 文件更新详细的介绍可以看<a href="http://yulingtianxia.com/blog/2016/09/28/Let-s-Talk-About-project-pbxproj/" target="_blank" rel="noopener">这篇文章</a>。 </p>
+</blockquote>
+<p><strong>构建顺序是由依赖关系决定的</strong>，依赖关系的来源下面几种：</p>
+<ol>
+<li><p>构建系统自带的规则，如编译器、链接器、资源目录、storyboard 处理器，这些规则定义了哪些是输入文件，哪些是输出文件</p>
+</li>
+<li><p>target 依赖，build 当前的 target 之前，必须先对这里的依赖先进行 build</p>
+<p><img src="http://liangjinggege.com/2019-10-30-061806.png" alt="image-20191030141806543"></p>
+</li>
+<li><p>隐式依赖（Implicit dependencies）</p>
+</li>
+<li><p>Bulid phases，代表着将代码转变为可执行文件的最高级别规则，里面描述了 build 过程中必须执行的不同类型规则，定义了构建处理的过程</p>
+<p>​    <img src="http://liangjinggege.com/2019-10-30-062207.png" alt="image-20191030142206876"></p>
+<ul>
+<li><p>CocoaPods 相关的脚本 script execution</p>
+</li>
+<li><p>Compile Sources  中规定了所有必须参与编译的文件，这里列出的所有文件将根据相关的 build rules 和 build settings 被处理</p>
+</li>
+<li><p>Link Binary with Libraries：列出了所有的静态库和动态库，编译结束后，这些库会参与上面编译阶段生成的目标文件进行链接</p>
+</li>
+<li>Copy Bundle Resources：将静态资源（例如图片、Storyboard 和字体）拷贝到 app bundle 中</li>
+</ul>
+</li>
+<li><p>Scheme 顺序依赖</p>
+<p><img src="http://liangjinggege.com/2019-10-30-112243.png" alt="image-20191030192242047"></p>
+</li>
+</ol>
+<p>该项目的构建定向图如下：**</p>
+<h4 id="编译源代码"><a href="#编译源代码" class="headerlink" title="编译源代码"></a>编译源代码</h4><h4 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h4><h2 id="第二部分：点击-App-Icon-gt-看到页面"><a href="#第二部分：点击-App-Icon-gt-看到页面" class="headerlink" title="第二部分：点击 App Icon -&gt; 看到页面"></a>第二部分：点击 App Icon -&gt; 看到页面</h2><hr>
+<p>分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。</p>
+<p><img src="http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/编译/" rel="tag"># 编译</a>
+          
+            <a href="/Categorys/链接/" rel="tag"># 链接</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/11/Swift-代码编译流程/" rel="next" title="Swift 代码编译流程">
+                <i class="fa fa-chevron-left"></i> Swift 代码编译流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编程语言分类"><span class="nav-number">2.1.</span> <span class="nav-text">编程语言分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按与硬件的距离分："><span class="nav-number">2.1.1.</span> <span class="nav-text">按与硬件的距离分：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按编程范式分："><span class="nav-number">2.1.2.</span> <span class="nav-text">按编程范式分：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按是否需要编译分："><span class="nav-number">2.1.3.</span> <span class="nav-text">按是否需要编译分：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LLVM-编译器架构"><span class="nav-number">2.2.</span> <span class="nav-text">LLVM 编译器架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一部分：源代码-gt-App-阶段"><span class="nav-number">3.</span> <span class="nav-text">第一部分：源代码 -&gt; App 阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hello-World"><span class="nav-number">3.1.</span> <span class="nav-text">Hello World</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-预编译"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. 预编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-编译"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. 编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-汇编"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. 汇编</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-链接"><span class="nav-number">3.1.4.</span> <span class="nav-text">4. 链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">3.2.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#词法分析"><span class="nav-number">3.2.1.</span> <span class="nav-text">词法分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语法分析"><span class="nav-number">3.2.2.</span> <span class="nav-text">语法分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语义分析"><span class="nav-number">3.2.3.</span> <span class="nav-text">语义分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间语言生成"><span class="nav-number">3.2.4.</span> <span class="nav-text">中间语言生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目标代码生成和优化"><span class="nav-number">3.2.5.</span> <span class="nav-text">目标代码生成和优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接"><span class="nav-number">3.2.6.</span> <span class="nav-text">链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS-DEMO"><span class="nav-number">3.3.</span> <span class="nav-text">iOS DEMO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#点击-Command-B"><span class="nav-number">3.3.1.</span> <span class="nav-text">点击 Command + B</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建过程"><span class="nav-number">3.3.2.</span> <span class="nav-text">构建过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建系统-Bulid-System"><span class="nav-number">3.3.3.</span> <span class="nav-text">构建系统 Bulid System</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取-project-文件"><span class="nav-number">3.3.4.</span> <span class="nav-text">读取  project 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译源代码"><span class="nav-number">3.3.5.</span> <span class="nav-text">编译源代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接-1"><span class="nav-number">3.3.6.</span> <span class="nav-text">链接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二部分：点击-App-Icon-gt-看到页面"><span class="nav-number">4.</span> <span class="nav-text">第二部分：点击 App Icon -&gt; 看到页面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>
