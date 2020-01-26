@@ -42,7 +42,7 @@ categories:
 
 我们配置在用户目录下就行，也就是这个目录 ~/Library/LaunchAgents，按照固定的格式新建一个 Plist 文件就行，可以看到已经有一些第三方的任务在这里了:
 
-![image-20200126210005856](http://liangjinggege.com/2020-01-26-130006.png)
+![image-20200126210005856](http://liangjinggege.com/2020-01-26-140315.png)
 
 
 
@@ -241,9 +241,7 @@ TODO: 等待实现。
 
 我这边目前使用的钉钉进行协作，可以在相关工作群使用钉钉机器人自动发送消息。找钉钉群管理员添加一下获取  token 就行。可以向这个地址 `https://oapi.dingtalk.com/robot/send?access_token=Your Token` 发送纯文本、图文、markdown 等格式的消息，还可以填写需要 @ 的测试妹子们。
 
-<img src="http://liangjinggege.com/2020-01-26-132340.png" alt="image-20200126212339968" style="zoom:50%;" />
-
-
+![](http://liangjinggege.com/2020-01-26-140317.png)
 
 
 
@@ -265,7 +263,7 @@ TODO: 等待实现。
 
 给足访问权限就行。系统偏好设置 -> 安全性与隐私-> 完全磁盘访问权限，查看是否有勾选☑️ 在定时脚本中声明的解释执行的 shell 的路径，就是**#!/bin/** 后面接的，有 bash 、sh、 zsh 等，我的是 sh。没有的话就添加进去。
 
-<img src="/Users/chenliangjing/Library/Application Support/typora-user-images/image-20200126204424708.png" alt="image-20200126204424708" style="zoom:50%;" />
+![](http://liangjinggege.com/2020-01-26-140316.png)
 
 #### 二、在定时脚本中直接执行 fastlane 打包命令出错： /Users/username/Desktop/code/Project/run.sh ： fastlane: command not found
 
@@ -306,6 +304,7 @@ TODO: 等待实现。
 
 
 ---
+
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。
 
-![by在水一方](http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg)
+![by在水一方](http://liangjinggege.com/2020-01-26-140318.jpg)
