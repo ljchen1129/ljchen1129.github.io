@@ -301,7 +301,7 @@ TODO: 等待实现。
 2. [Operation not permitted](http://osxdaily.com/2018/10/09/fix-operation-not-permitted-terminal-error-macos/)
 
 3. [Fastlane](https://docs.fastlane.tools/)
-4. [钉钉开发文档](
+4. [钉钉开发文档](https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq)
 
 
 
