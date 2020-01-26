@@ -448,6 +448,261 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">iOS 基于 launchctl + fastlane + 钉钉机器人实现定时自动打包</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-22 16:08:58" itemprop="dateCreated datePublished" datetime="2020-01-22T16:08:58+08:00">2020-01-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-26 21:42:53" itemprop="dateModified" datetime="2020-01-26T21:42:53+08:00">2020-01-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/软件工程/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/软件工程/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/" class="leancloud_visitors" data-flag-title="iOS 基于 launchctl + fastlane + 钉钉机器人实现定时自动打包">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>作为一个移动端程序员，每次 feature add 或者 bug fix 后经常要打包交付给 QA，以前传统的操作都是手动点击 <code>Xcode -&gt; Product -&gt; Archive -&gt; Organizer -&gt; Distrubute App -&gt; ipa 上传到第三方内测分发平台（蒲公英、fir）-&gt; 手动填写更新日志 -&gt; 发送安装链接到部门群（钉钉或者企业微信）</code>，看起来好像很机械和繁琐，又没啥技术含量是吧……</p>
+<p>如果能把这部分工作给自动化了就好了，每天可以省一点时间出来发呆也挺好的。需求整理一下大概是这样：</p>
+<ol>
+<li>能够定时触发；</li>
+<li>自动打包；</li>
+<li>自动读取某个时间段内的 git commit messge 信息当做更新日志；</li>
+<li>打包完成自动发送安装链接到部门群（钉钉或者企业微信）；</li>
+</ol>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="需求一、定时任务"><a href="#需求一、定时任务" class="headerlink" title="需求一、定时任务"></a>需求一、定时任务</h4><p>调研了一下，Mac OS 可以基于 launchctl 来配置定时任务。可以配置到不同级别的 <strong>LaunchAgents</strong> 下，几种的区别如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~/Library/LaunchAgents 由用户自己定义的任务项</span><br><span class="line">/Library/LaunchAgents 由管理员为用户定义的任务项</span><br><span class="line">/Library/LaunchDaemons 由管理员定义的守护进程任务项</span><br><span class="line">/System/Library/LaunchAgents 由Mac OS X为用户定义的任务项</span><br><span class="line">/System/Library/LaunchDaemons 由Mac OS X定义的守护进程任务项</span><br></pre></td></tr></table></figure>
+<p>我们配置在用户目录下就行，也就是这个目录 ~/Library/LaunchAgents，按照固定的格式新建一个 Plist 文件就行，可以看到已经有一些第三方的任务在这里了:</p>
+<p><img src="http://liangjinggege.com/2020-01-26-130006.png" alt="image-20200126210005856"></p>
+<p>我的配置文件是这样：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Label唯一的标识 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">string</span>&gt;</span>com.autoArchiveTask.plist<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">key</span>&gt;</span>Program<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/username/Desktop/code/Project/run.sh<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 指定要运行的脚本 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/username/Desktop/code/Project/run.sh<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 指定要运行的时间 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">key</span>&gt;</span>StartCalendarInterval<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>Minute<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">integer</span>&gt;</span>00<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>Hour<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">integer</span>&gt;</span>11<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>Minute<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">integer</span>&gt;</span>00<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>Hour<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">integer</span>&gt;</span>16<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标准输出文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>StandardOutPath<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/username/Desktop/code/Project/run.log<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 标准错误输出文件，错误日志 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>StandardErrorPath<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/username/Desktop/code/Project/run.error<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>相关字段的解释如下：</p>
+<ol>
+<li>Label：对应的需要保证全局唯一性；</li>
+<li>Program：要运行脚本；</li>
+<li>ProgramArguments：指定要运行的脚本；</li>
+<li>StartCalendarInterval：运行的时间，单个时间点使用 dict，多个时间点使用 array <dict></dict></li>
+<li>StartInterval：时间间隔，与 StartCalendarInterval 使用其一，单位为秒</li>
+<li>StandardInPath、StandardOutPath、StandardErrorPath：标准的输入、输出、错误文件</li>
+</ol>
+<p>配置好了就可以加载了，加载后就生效了，相关的命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 加载任务, -w选项会将 plist 文件中无效的 key 覆盖掉，建议加上</span></span><br><span class="line">launchctl load -w xxx.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除任务</span></span><br><span class="line">launchctl unload -w xxx.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看任务列表, 使用 grep <span class="string">'任务部分名字'</span> 过滤</span></span><br><span class="line">launchctl list | grep 'xxx'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 立即执行一次任务，可用来测试</span></span><br><span class="line">launchctl start xxx.plist</span><br></pre></td></tr></table></figure>
+<h4 id="需求二、自动打包"><a href="#需求二、自动打包" class="headerlink" title="需求二、自动打包"></a>需求二、自动打包</h4><p>这个使用 fastlane 就行，很好很强大。相关的配置可参见<a href="https://github.com/fastlane/fastlane" target="_blank" rel="noopener">官网</a>，建议使用 brew 方式安装。配置安装文档就行，</p>
+<p>由于我这个是多 target 工程，所以我这边的可能多一点配置，我的 Fastfile 文件配置如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">default_platform(:ios)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 网络请求依赖</span></span><br><span class="line">require 'net/http'</span><br><span class="line">require 'uri'</span><br><span class="line">require 'json'</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> platform :ios do</span><br><span class="line">		</span><br><span class="line">   desc "发布app到 App Store 或者 Fir.im "</span><br><span class="line">   lane :customer_hoc do</span><br><span class="line">     # add actions here: https://docs.fastlane.tools/actions</span><br><span class="line">     sh "fastlane adhoc --env Customer"</span><br><span class="line">   end</span><br><span class="line"></span><br><span class="line">   desc "发布app到 App Store 或者 Fir.im "</span><br><span class="line">   lane :driver_hoc do</span><br><span class="line">     # add actions here: https://docs.fastlane.tools/actions</span><br><span class="line">     sh "fastlane adhoc --env Driver"</span><br><span class="line">   end</span><br><span class="line">		 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   desc "发布指定Target到 Fir.im"</span><br><span class="line">   lane :adhoc do</span><br><span class="line">   gym(</span><br><span class="line">     clean:true, #打包前clean项目</span><br><span class="line">     workspace: "Hedgehog.xcworkspace",</span><br><span class="line">     export_method: "ad-hoc", #导出方式</span><br><span class="line">     scheme: ENV['SCHEME_NAME'], #scheme</span><br><span class="line">     output_name: ENV['SCHEME_NAME']+".ipa", # ipa 文件名</span><br><span class="line">     output_directory: "./ipa", #ipa的存放目录</span><br><span class="line">     export_options: &#123;</span><br><span class="line">         provisioningProfiles: &#123;</span><br><span class="line">             "cn.ccmore.hedgehog.customer"=&gt;"CustomerAdhoc", </span><br><span class="line">             "cn.ccmore.hedgehog.driver"=&gt;"DricerAdhoc"</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   )</span><br><span class="line"><span class="meta">   #</span><span class="bash"> 前往fir.im获取 api token, 将鼠标放置右上角账号上面, 在下拉窗选择API token</span></span><br><span class="line"><span class="meta">   #</span><span class="bash"> 若使用的蒲公英, 请前往 https://www.pgyer.com/ 查看上传方法</span></span><br><span class="line"><span class="meta">   #</span><span class="bash"> 如果使用Firimfile, 此处为 firim 即可</span></span><br><span class="line">   firim(firim_api_token:'xxxx')</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash"> 钉钉机器人</span></span><br><span class="line">  app_patch   = "ipa/" + ENV['SCHEME_NAME']+".ipa"</span><br><span class="line">  app_version = get_ipa_info_plist_value(ipa: app_patch, key: "CFBundleShortVersionString")</span><br><span class="line">  app_build_version = get_ipa_info_plist_value(ipa: app_patch, key: "CFBundleVersion")</span><br><span class="line">  app_name    = get_ipa_info_plist_value(ipa: app_patch, key: "CFBundleDisplayName")</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">  #</span><span class="bash"> 根据 SCHEME_NAME 区分下载链接</span></span><br><span class="line">  app_url = "https://fir.im/6udv"</span><br><span class="line"></span><br><span class="line">  if ENV['SCHEME_NAME'] == "Driver" then</span><br><span class="line">    app_url = "https://fir.im/sa4q"</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">  app_icon = "./Hedgehog/ipa/icons/57.png"</span><br><span class="line">  dingTalk_url = "https://oapi.dingtalk.com/robot/send?access_token=xxx"</span><br><span class="line">  </span><br><span class="line">  markdown = </span><br><span class="line">  &#123;</span><br><span class="line">    msgtype: "link", </span><br><span class="line">    link: &#123;</span><br><span class="line">        text: "iOS #&#123;ENV['SCHEME_NAME']&#125; 更新了！！！", </span><br><span class="line">        title: "iOS #&#123;ENV['SCHEME_NAME']&#125; #&#123;app_version&#125; (#&#123;app_build_version&#125;) 内测版", </span><br><span class="line">        picUrl: "#&#123;app_icon&#125;", </span><br><span class="line">        messageUrl: "#&#123;app_url&#125;"</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">  uri = URI.parse(dingTalk_url)</span><br><span class="line">  https = Net::HTTP.new(uri.host, uri.port)</span><br><span class="line">  https.use_ssl = true</span><br><span class="line"></span><br><span class="line">  request = Net::HTTP::Post.new(uri.request_uri)</span><br><span class="line">  request.add_field('Content-Type', 'application/json')</span><br><span class="line">  request.body = markdown.to_json</span><br><span class="line"></span><br><span class="line">  response = https.request(request)</span><br><span class="line">  puts "------------------------------"</span><br><span class="line">  puts "Response #&#123;response.code&#125; #&#123;response.message&#125;: #&#123;response.body&#125;"</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+<p>上传到第三方内测平台（蒲公英、fir等）Fastlane 也有相关的插件，一行代码搞定，如 Fir 就是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 前往fir.im获取 api token, 将鼠标放置右上角账号上面, 在下拉窗选择API token</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 若使用的蒲公英, 请前往 https://www.pgyer.com/ 查看上传方法</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果使用Firimfile, 此处为 firim 即可</span></span><br><span class="line">firim(firim_api_token:'xxxx')</span><br></pre></td></tr></table></figure>
+<h4 id="需求三、读取-git-commit-messge"><a href="#需求三、读取-git-commit-messge" class="headerlink" title="需求三、读取 git commit messge"></a>需求三、读取 git commit messge</h4><p>TODO: 等待实现。</p>
+<h4 id="需求四、自动发送安装消息"><a href="#需求四、自动发送安装消息" class="headerlink" title="需求四、自动发送安装消息"></a>需求四、自动发送安装消息</h4><p>我这边目前使用的钉钉进行协作，可以在相关工作群使用钉钉机器人自动发送消息。找钉钉群管理员添加一下获取  token 就行。可以向这个地址 <code>https://oapi.dingtalk.com/robot/send?access_token=Your Token</code> 发送纯文本、图文、markdown 等格式的消息，还可以填写需要 @ 的测试妹子们。</p>
+<p><img src="http://liangjinggege.com/2020-01-26-132340.png" alt="image-20200126212339968" style="zoom:50%;"></p>
+<p>其他企业微信好像也是可以的，可以自行去查看文档。</p>
+<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><h4 id="一、定时脚本执行-bin-sh-xxx-run-sh-Operation-not-permitted"><a href="#一、定时脚本执行-bin-sh-xxx-run-sh-Operation-not-permitted" class="headerlink" title="一、定时脚本执行 /bin/sh:  xxx/run.sh: Operation not permitted"></a>一、定时脚本执行 /bin/sh:  xxx/run.sh: Operation not permitted</h4><h5 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h5><p><img src="http://liangjinggege.com/2020-01-26-121353.png" alt="image-20200126201353427" style="zoom:50%;"></p>
+<p>首先我配置的定时脚本路径在 /Users/username/Desktop/code/Project/run.sh，没有和定时任务的 Plist 配置文件在一个目录下，而配置的定时脚本声明的是 <strong>#!/bin/sh</strong>，意思是使用 <strong>/bin/sh</strong> 来解释执行，但是却没有给完全磁盘访问的权限。</p>
+<h5 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h5><p>给足访问权限就行。系统偏好设置 -&gt; 安全性与隐私-&gt; 完全磁盘访问权限，查看是否有勾选☑️ 在定时脚本中声明的解释执行的 shell 的路径，就是<strong>#!/bin/</strong> 后面接的，有 bash 、sh、 zsh 等，我的是 sh。没有的话就添加进去。</p>
+<p><img src="/Users/chenliangjing/Library/Application Support/typora-user-images/image-20200126204424708.png" alt="image-20200126204424708" style="zoom:50%;"></p>
+<h4 id="二、在定时脚本中直接执行-fastlane-打包命令出错：-Users-username-Desktop-code-Project-run-sh-：-fastlane-command-not-found"><a href="#二、在定时脚本中直接执行-fastlane-打包命令出错：-Users-username-Desktop-code-Project-run-sh-：-fastlane-command-not-found" class="headerlink" title="二、在定时脚本中直接执行 fastlane 打包命令出错： /Users/username/Desktop/code/Project/run.sh ： fastlane: command not found"></a>二、在定时脚本中直接执行 fastlane 打包命令出错： /Users/username/Desktop/code/Project/run.sh ： fastlane: command not found</h4><h5 id="原因：-1"><a href="#原因：-1" class="headerlink" title="原因："></a>原因：</h5><p>虽然 cd 到了当前项目目录，但还是报 fastlane 找不到</p>
+<h5 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h5><p>使用全路径 fastlane 执行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/username/.fastlane/bin/fastlane lane</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总共折腾了一两天时间，流程基本都跑通了，还剩抓取指定时间段内的 git commit message 当做更新日志的 TODO，总体上还是很愉悦和有成就感的，以后就可以专心干其他的事情了，打包几乎无感，也不用怕忘记。nice！</p>
+<p>效果如下：</p>
+<p><img src="http://liangjinggege.com/2020-01-26-125435.png" alt="image-20200126205435079" style="zoom:50%;"></p>
+<p>相关配置文件已经上传到 GitHub 仓库，地址<a href="https://github.com/ljchen1129/iOSAutoTimingArchiveTask" target="_blank" rel="noopener">点击这里</a>。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ol>
+<li><a href="https://my.oschina.net/shede333/blog/470377" target="_blank" rel="noopener">Mac上，执行定时任务：launchctl</a></li>
+<li><p><a href="http://osxdaily.com/2018/10/09/fix-operation-not-permitted-terminal-error-macos/" target="_blank" rel="noopener">Operation not permitted</a></p>
+</li>
+<li><p><a href="https://docs.fastlane.tools/" target="_blank" rel="noopener">Fastlane</a></p>
+</li>
+<li>[钉钉开发文档](</li>
+</ol>
+<hr>
+<p>分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。</p>
+<p><img src="http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/10/28/iOS-源代码是怎样成为-App-的/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2250,213 +2505,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/08/数据结构与算法学习-链表下/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">数据结构与算法学习-链表下</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-08 11:49:59" itemprop="dateCreated datePublished" datetime="2019-03-08T11:49:59+08:00">2019-03-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/08/数据结构与算法学习-链表下/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/08/数据结构与算法学习-链表下/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/03/08/数据结构与算法学习-链表下/" class="leancloud_visitors" data-flag-title="数据结构与算法学习-链表下">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/">上一篇文章</a>讲了链表相关的概念，这篇主要记录的是和链表相关的算法以及一些写好链表算法代码<code>相关的技巧</code>。</p>
-<h2 id="实现单链表、循环链表、双向链表，支持增删操作"><a href="#实现单链表、循环链表、双向链表，支持增删操作" class="headerlink" title="实现单链表、循环链表、双向链表，支持增删操作"></a>实现单链表、循环链表、双向链表，支持增删操作</h2><h4 id="1-单链表"><a href="#1-单链表" class="headerlink" title="1. 单链表"></a>1. 单链表</h4>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/08/数据结构与算法学习-链表下/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2506,7 +2554,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2593,7 +2641,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
