@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.me/"/>
-  <updated>2020-02-02T14:55:06.922Z</updated>
+  <updated>2020-02-02T15:33:50.665Z</updated>
   <id>https://chenliangjing.me/</id>
   
   <author>
@@ -21,14 +21,20 @@
     <link href="https://chenliangjing.me/2020/01/22/iOS-%E5%9F%BA%E4%BA%8E-launchctl-fastlane-%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85/"/>
     <id>https://chenliangjing.me/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/</id>
     <published>2020-01-22T08:08:58.000Z</published>
-    <updated>2020-02-02T14:55:06.922Z</updated>
+    <updated>2020-02-02T15:33:50.665Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;作为一个移动端程序员，每次 feature add 或者 bug fix 后经常要打包交付给 QA，以前传统的操作都是手动点击 &lt;code&gt;Xcode -&amp;gt; Product -&amp;gt; Archive -&amp;gt; Organizer -&amp;gt; Distrubute App -&amp;gt; ipa 上传到第三方内测分发平台（蒲公英、fir）-&amp;gt; 手动填写更新日志 -&amp;gt; 发送安装链接到部门群（钉钉或者企业微信）&lt;/code&gt;，看起来好像很机械和繁琐，又没啥技术含量是吧……&lt;/p&gt;
+&lt;p&gt;如果能把这部分工作给自动化了就好了，每天可以省一点时间出来发呆也挺好的。需求整理一下大概是这样：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;能够定时触发；&lt;/li&gt;
+&lt;li&gt;自动打包；&lt;/li&gt;
+&lt;li&gt;自动读取某个时间段内的 git commit messge 信息当做更新日志；&lt;/li&gt;
+&lt;li&gt;自动上传到第三方内测平台（蒲公英、Fir等）读取上一步中的更新日志一并上传，获取成功后的 下载链接，并自动生成安装二维码；&lt;/li&gt;
+&lt;li&gt;上传完毕，将第 3、4 步中的更新日志和下载链接以及二维码图片当做消息体，自动发送该消息到部门群（钉钉或者企业微信）；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;
     
     </summary>
     
