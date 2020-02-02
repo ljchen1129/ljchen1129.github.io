@@ -25,6 +25,8 @@ categories:
 
 ### 实现
 
+<!-- more -->
+
 #### 需求一、定时任务
 
 调研了一下，Mac OS 可以基于 launchctl 来配置定时任务。可以配置到不同级别的 **LaunchAgents** 下，几种的区别如下：
@@ -164,8 +166,8 @@ platform :ios do
      output_directory: "./ipa", #ipa的存放目录
      export_options: {
          provisioningProfiles: {
-             "cn.ccmore.Project.customer"=>"CustomerAdhocProfiles", 
-             "cn.ccmore.Project.driver"=>"DriverAdhocProfiles"
+             "bundleId"=>"CustomerAdhocProfiles", 
+             "bundleId"=>"DriverAdhocProfiles"
          }
      }
    )
@@ -347,7 +349,7 @@ qrencode -o xxx.png "内容"
 
 
 
-同样，因为配置在 Fastfile 文件总，也要用 sh 来调用执行：
+同样，因为配置在 Fastfile 文件中，也要用 sh 来调用执行：
 
 ```ruby
 # 生成的二维码图片路径
@@ -483,7 +485,13 @@ git log --after='上次打包时间' --before='当前时间' --pretty=format:"%s
 
 效果如下：
 
-<img src="http://liangjinggege.com/2020-01-26-125435.png" alt="image-20200126205435079" style="zoom:50%;" />
+<img src="http://liangjinggege.com/2020-02-02-150554.png" alt="image-20200202230554078" style="zoom:50%;" />
+
+
+
+相关配置文件已经上传到 GitHub 仓库，地址[点击这里](https://github.com/ljchen1129/iOSAutoTimingArchiveTask)，喜欢可以点个 start 哦。
+
+
 
 ### 参考链接
 
