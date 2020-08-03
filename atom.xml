@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.me/"/>
-  <updated>2020-02-02T15:33:50.665Z</updated>
+  <updated>2020-08-03T12:42:22.592Z</updated>
   <id>https://chenliangjing.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://chenliangjing.me/2020/01/22/iOS-%E5%9F%BA%E4%BA%8E-launchctl-fastlane-%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85/"/>
     <id>https://chenliangjing.me/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/</id>
     <published>2020-01-22T08:08:58.000Z</published>
-    <updated>2020-02-02T15:33:50.665Z</updated>
+    <updated>2020-08-03T12:42:22.592Z</updated>
     
     <summary type="html">
     
@@ -54,7 +54,7 @@
     <link href="https://chenliangjing.me/2019/10/28/iOS-%E6%BA%90%E4%BB%A3%E7%A0%81%E6%98%AF%E6%80%8E%E6%A0%B7%E6%88%90%E4%B8%BA-App-%E7%9A%84/"/>
     <id>https://chenliangjing.me/2019/10/28/iOS-源代码是怎样成为-App-的/</id>
     <published>2019-10-28T02:24:52.000Z</published>
-    <updated>2019-10-30T11:22:52.524Z</updated>
+    <updated>2020-08-03T12:42:22.595Z</updated>
     
     <summary type="html">
     
@@ -79,7 +79,7 @@
     <link href="https://chenliangjing.me/2019/10/11/Swift-%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B/"/>
     <id>https://chenliangjing.me/2019/10/11/Swift-代码编译流程/</id>
     <published>2019-10-11T01:37:14.000Z</published>
-    <updated>2019-10-28T02:25:15.711Z</updated>
+    <updated>2020-08-03T12:55:06.025Z</updated>
     
     <summary type="html">
     
@@ -110,12 +110,12 @@
     <link href="https://chenliangjing.me/2019/10/11/Playground-Markup-%E8%AF%AD%E6%B3%95/"/>
     <id>https://chenliangjing.me/2019/10/11/Playground-Markup-语法/</id>
     <published>2019-10-11T01:24:42.000Z</published>
-    <updated>2019-10-11T01:38:37.261Z</updated>
+    <updated>2020-08-03T12:42:22.602Z</updated>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;学习 Swift 语法最好的工具是 Xcode 配套的 Playground，所见即所得。除了实时显示变量的值，还可以加载资源，呈现视图，多文件管理等。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/2019-10-11-013609.png&quot; alt=&quot;image-20191011093609289&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-013609.png&quot; alt=&quot;image-20191011093609289&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -131,12 +131,12 @@
     <link href="https://chenliangjing.me/2019/10/02/%E5%9F%BA%E4%BA%8E-Pannellum-%E7%9A%84%E5%85%A8%E6%99%AF%E5%9B%BE%E7%BD%91%E9%A1%B5%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0/"/>
     <id>https://chenliangjing.me/2019/10/02/基于-Pannellum-的全景图网页容器实现/</id>
     <published>2019-10-02T04:22:17.000Z</published>
-    <updated>2019-10-02T13:37:49.990Z</updated>
+    <updated>2020-08-03T12:42:22.572Z</updated>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;2017 年由于公司需要，做过一个支持全景图显示的网页，这篇文章主要回顾和记录一下当初开发这个功能时的一些情景。&lt;/p&gt;
-&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/2019-10-02-113357.gif&quot; alt=&quot;ezgif.com-video-to-gif&quot; style=&quot;zoom:67%;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-02-113357.gif&quot; alt=&quot;ezgif.com-video-to-gif&quot; style=&quot;zoom:67%;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -156,13 +156,13 @@
     <link href="https://chenliangjing.me/2019/09/27/iOS-%E7%AB%AF-h5-%E9%A1%B5%E9%9D%A2%E7%A7%92%E5%BC%80%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
     <id>https://chenliangjing.me/2019/09/27/iOS-端-h5-页面秒开优化实践/</id>
     <published>2019-09-27T04:41:37.000Z</published>
-    <updated>2019-09-27T08:42:56.262Z</updated>
+    <updated>2020-08-03T12:42:22.600Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/2019-09-27-080029.jpg&quot; alt=&quot;中山公园&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-080029.jpg&quot; alt=&quot;中山公园&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。&lt;/p&gt;
-&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://liangjinggege.com/2019-09-27-074217.gif&quot; alt=&quot;ezgif.com-optimize&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-074217.gif&quot; alt=&quot;ezgif.com-optimize&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;优化思路&quot;&gt;&lt;a href=&quot;#优化思路&quot; class=&quot;headerlink&quot; title=&quot;优化思路&quot;&gt;&lt;/a&gt;优化思路&lt;/h3&gt;&lt;p&gt;首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：&lt;/p&gt;
 &lt;p&gt;初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -&amp;gt; 解析 JS 执行 -&amp;gt; JS 请求数据 -&amp;gt; 解析渲染 -&amp;gt; 下载渲染图片&lt;/p&gt;
     
@@ -184,11 +184,11 @@
     <link href="https://chenliangjing.me/2019/05/02/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E5%83%8F%E5%B0%8F%E8%AF%B4%E4%B8%80%E6%A0%B7%E6%9C%89%E8%B6%A3%E7%9A%84%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E4%B9%A6/"/>
     <id>https://chenliangjing.me/2019/05/02/《算法图解》读书笔记—像小说一样有趣的算法入门书/</id>
     <published>2019-05-02T00:29:08.000Z</published>
-    <updated>2019-09-27T04:40:02.374Z</updated>
+    <updated>2020-08-03T12:42:22.575Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;学习算法课程的时候，老师推荐了两本算法和数据结构入门书，一本是&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;、一本是&lt;a href=&quot;https://book.douban.com/subject/6424904/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《大话数据结构》&lt;/a&gt;，&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;这本书最近读完了，读完的最大感受就是对算法不再感到畏惧和陌生，对常用的算法和数据结构都会在心里有个基本的概念，这篇文章记录下这本书的主要内容和知识点。&lt;/p&gt;
 &lt;p&gt;总的来说，这本书是一本不错的算法入门书，作者以从实际开发场景出发，介绍了软件开发中最基本、最常用的一些&lt;code&gt;数据结构&lt;/code&gt;和&lt;code&gt;算法思想&lt;/code&gt;，同时作者写得非常深入浅出，联系实际应用场景，并结合了大量的算法推演图示，举例生动形象，循序渐进，使读者易于理解，能够很大地培养读者对算法的兴趣，从而引导读者进一步地进行学习研究。&lt;br&gt;&lt;/p&gt;
     
@@ -210,11 +210,11 @@
     <link href="https://chenliangjing.me/2019/04/30/%E3%80%8A%E5%BD%93%E6%88%91%E8%B0%88%E8%B7%91%E6%AD%A5%E6%97%B6%EF%BC%8C%E6%88%91%E8%B0%88%E4%BA%9B%E4%BB%80%E4%B9%88%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%88%91%E8%B7%91%EF%BC%8C%E6%95%85%E6%88%91%E5%9C%A8/"/>
     <id>https://chenliangjing.me/2019/04/30/《当我谈跑步时，我谈些什么》读书笔记-我跑，故我在/</id>
     <published>2019-04-30T13:17:08.000Z</published>
-    <updated>2019-08-11T07:39:47.172Z</updated>
+    <updated>2020-08-03T12:42:22.587Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/timg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/timg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://book.douban.com/subject/3369600/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这本书&lt;/a&gt;是村上春树写得一本关于自己跑步的随笔集，记录了村上几十年来跑步训练、马拉松比赛的一些心情日志和对跑步的感悟，其实大学时期就读过了，不过那时候刚刚跑步不久，读完也没啥印象了，现在跑步也已经七八年了，马拉松也跑了快十场，再读这本书，就稍微有点感觉了，如果你也是一个爱跑步的人，我想也会有一些相似的体会吧，于我而言，觉得有感觉的地方有以下几点：&lt;/p&gt;
 &lt;h2 id=&quot;为什么是跑步？&quot;&gt;&lt;a href=&quot;#为什么是跑步？&quot; class=&quot;headerlink&quot; title=&quot;为什么是跑步？&quot;&gt;&lt;/a&gt;为什么是跑步？&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;跑步简单。跑步对人类而言是一种天生的本能，每个人基因里天生就会跑，而且不需要同伴，一点不复杂，只需要一双合脚的跑鞋，说跑就跑了。&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
@@ -237,11 +237,11 @@
     <link href="https://chenliangjing.me/2019/03/29/%E3%80%8A%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%B8%80%E5%88%87%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%82%A3%E4%B9%88%E7%90%86%E6%89%80%E5%BD%93%E7%84%B6/"/>
     <id>https://chenliangjing.me/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/</id>
     <published>2019-03-29T11:29:09.000Z</published>
-    <updated>2019-08-11T07:39:47.160Z</updated>
+    <updated>2020-08-03T12:42:22.577Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://liangjinggege.com/IMG_3219.jpg?imageView2/2/w/200&quot; alt=&quot;&quot;&gt;&lt;br&gt;作者：[以色列] 尤瓦尔·赫拉利&lt;br&gt;翻译：林俊宏&lt;br&gt;出版年份：2014-11&lt;br&gt;&lt;/p&gt;
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/IMG_3219.jpg?imageView2/2/w/200&quot; alt=&quot;&quot;&gt;&lt;br&gt;作者：[以色列] 尤瓦尔·赫拉利&lt;br&gt;翻译：林俊宏&lt;br&gt;出版年份：2014-11&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -257,7 +257,7 @@
     <link href="https://chenliangjing.me/2019/03/09/C-%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/"/>
     <id>https://chenliangjing.me/2019/03/09/C-语言拾遗/</id>
     <published>2019-03-09T11:29:09.000Z</published>
-    <updated>2019-08-11T07:39:47.131Z</updated>
+    <updated>2020-08-03T12:42:22.554Z</updated>
     
     <summary type="html">
     
@@ -280,7 +280,7 @@
     <link href="https://chenliangjing.me/2019/03/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8B/"/>
     <id>https://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/</id>
     <published>2019-03-08T03:49:59.000Z</published>
-    <updated>2019-08-11T07:39:47.170Z</updated>
+    <updated>2020-08-03T12:42:22.585Z</updated>
     
     <summary type="html">
     
@@ -305,7 +305,7 @@
     <link href="https://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/"/>
     <id>https://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/</id>
     <published>2019-03-07T07:52:20.000Z</published>
-    <updated>2019-08-11T07:39:47.182Z</updated>
+    <updated>2020-08-03T12:42:22.600Z</updated>
     
     <summary type="html">
     
@@ -330,7 +330,7 @@
     <link href="https://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/"/>
     <id>https://chenliangjing.me/2019/02/15/数据结构与算法学习-数组/</id>
     <published>2019-02-15T08:43:24.000Z</published>
-    <updated>2019-08-11T07:39:47.186Z</updated>
+    <updated>2020-08-03T12:42:22.603Z</updated>
     
     <summary type="html">
     
@@ -357,7 +357,7 @@
     <link href="https://chenliangjing.me/2019/02/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"/>
     <id>https://chenliangjing.me/2019/02/14/数据结构与算法学习-复杂度分析/</id>
     <published>2019-02-14T06:43:24.000Z</published>
-    <updated>2019-08-11T07:39:47.153Z</updated>
+    <updated>2020-08-03T12:42:22.571Z</updated>
     
     <summary type="html">
     
@@ -382,7 +382,7 @@
     <link href="https://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/"/>
     <id>https://chenliangjing.me/2019/02/13/数据结构与算法学习-开篇/</id>
     <published>2019-02-13T06:43:24.000Z</published>
-    <updated>2019-08-11T07:39:47.144Z</updated>
+    <updated>2020-08-03T12:42:22.565Z</updated>
     
     <summary type="html">
     
@@ -406,7 +406,7 @@
     <link href="https://chenliangjing.me/2019/01/18/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83/"/>
     <id>https://chenliangjing.me/2019/01/18/《Developing-iOS-11-Apps-with-Swift》学习笔记（七/</id>
     <published>2019-01-18T09:19:08.000Z</published>
-    <updated>2019-08-11T07:39:47.142Z</updated>
+    <updated>2020-08-03T12:42:22.563Z</updated>
     
     <summary type="html">
     
@@ -433,7 +433,7 @@
     <link href="https://chenliangjing.me/2019/01/17/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD/"/>
     <id>https://chenliangjing.me/2019/01/17/《Developing-iOS-11-Apps-with-Swift》学习笔记（六/</id>
     <published>2019-01-17T08:43:23.000Z</published>
-    <updated>2019-08-11T07:39:47.142Z</updated>
+    <updated>2020-08-03T12:42:22.563Z</updated>
     
     <summary type="html">
     
@@ -461,7 +461,7 @@
     <link href="https://chenliangjing.me/2019/01/04/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94)/"/>
     <id>https://chenliangjing.me/2019/01/04/《Developing-iOS-11-Apps-with-Swift》学习笔记（五)/</id>
     <published>2019-01-04T07:30:16.000Z</published>
-    <updated>2019-08-11T07:39:47.166Z</updated>
+    <updated>2020-08-03T12:42:22.582Z</updated>
     
     <summary type="html">
     
@@ -489,7 +489,7 @@
     <link href="https://chenliangjing.me/2018/12/28/iOS-JS-Native-%E4%BA%A4%E4%BA%92%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/"/>
     <id>https://chenliangjing.me/2018/12/28/iOS-JS-Native-交互方案总结/</id>
     <published>2018-12-28T02:31:27.000Z</published>
-    <updated>2019-08-11T07:39:47.177Z</updated>
+    <updated>2020-08-03T12:42:22.593Z</updated>
     
     <summary type="html">
     
@@ -512,7 +512,7 @@
     <link href="https://chenliangjing.me/2018/10/20/%E5%9B%A2%E9%98%9F-git-flow-%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     <id>https://chenliangjing.me/2018/10/20/团队-git-flow-开发流程/</id>
     <published>2018-10-20T06:50:06.000Z</published>
-    <updated>2019-08-11T07:39:47.159Z</updated>
+    <updated>2020-08-03T12:42:22.577Z</updated>
     
     <summary type="html">
     

@@ -127,15 +127,15 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="###  编程语言分类编程语言按照不同的角度可以有不同的分类。 按与硬件的距离分： 机器语言：根据硬件指令集的 0101  汇编语言：对机器语言做了简单的封装 高级语言：C/C++/Java/Python/JavaScript/Swift 等  按编程范式分：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://liangjinggege.com/2019-10-11-070906.png">
-<meta property="og:image" content="http://liangjinggege.com/2019-10-11-071354.png">
-<meta property="og:image" content="http://liangjinggege.com/2019-10-11-111143.png">
-<meta property="og:image" content="http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg">
-<meta property="og:updated_time" content="2019-10-28T02:25:15.711Z">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-070906.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-071354.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-111143.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg">
+<meta property="og:updated_time" content="2020-08-03T12:55:06.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 代码编译流程">
 <meta name="twitter:description" content="###  编程语言分类编程语言按照不同的角度可以有不同的分类。 按与硬件的距离分： 机器语言：根据硬件指令集的 0101  汇编语言：对机器语言做了简单的封装 高级语言：C/C++/Java/Python/JavaScript/Swift 等  按编程范式分：">
-<meta name="twitter:image" content="http://liangjinggege.com/2019-10-11-070906.png">
+<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-070906.png">
 
 
 
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-28 10:25:15" itemprop="dateModified" datetime="2019-10-28T10:25:15+08:00">2019-10-28</time>
+                <time title="修改时间：2020-08-03 20:55:06" itemprop="dateModified" datetime="2020-08-03T20:55:06+08:00">2020-08-03</time>
               
             
           </span>
@@ -628,7 +628,7 @@
 </li>
 </ul>
 <p>Swift 是一门编译型语言，编译型语言的源代码要运行，首先是需要编译器（Complier）把源文件进行编译成目标文件，然后经过链接器（Linker）链接后才能够执行的。这篇主要记录的是 Swift 代码的编译过程。</p>
-<h3 id="LLVM-编译器架构"><a href="#LLVM-编译器架构" class="headerlink" title="LLVM 编译器架构"></a>LLVM 编译器架构</h3><p><img src="http://liangjinggege.com/2019-10-11-070906.png" alt="img"></p>
+<h3 id="LLVM-编译器架构"><a href="#LLVM-编译器架构" class="headerlink" title="LLVM 编译器架构"></a>LLVM 编译器架构</h3><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-070906.png" alt="img"></p>
 <ul>
 <li>Frontend 前端<ul>
 <li>词法分析、语法分析、语义分析、生成中间代码</li>
@@ -643,15 +643,15 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://liangjinggege.com/2019-10-11-071354.png" alt="img"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-071354.png" alt="img"></p>
 <blockquote>
 <p>前后端依赖统一格式的中间代码(IR)，使得前后端可以独立的变化。新增一门语言只需要修改前端，而新增一个 CPU 架构只需要修改后端即可。</p>
 </blockquote>
 <p>Objective C/C/C++使用的编译器前端是<a href="https://clang.llvm.org/docs/index.html" target="_blank" rel="noopener">clang</a>，swift是<a href="https://swift.org/compiler-stdlib/#compiler-architecture" target="_blank" rel="noopener">swift</a>，后端都是<a href="https://llvm.org/" target="_blank" rel="noopener">LLVM</a>。</p>
-<h3 id="Objective-C-源代码编译流程"><a href="#Objective-C-源代码编译流程" class="headerlink" title="Objective-C 源代码编译流程"></a>Objective-C 源代码编译流程</h3><h4 id="单文件编译"><a href="#单文件编译" class="headerlink" title="单文件编译"></a>单文件编译</h4><p><img src="http://liangjinggege.com/2019-10-11-111143.png" alt="å±å¹å¿«ç§ 2018-09-16 ä¸å7.59.40"></p>
+<h3 id="Objective-C-源代码编译流程"><a href="#Objective-C-源代码编译流程" class="headerlink" title="Objective-C 源代码编译流程"></a>Objective-C 源代码编译流程</h3><h4 id="单文件编译"><a href="#单文件编译" class="headerlink" title="单文件编译"></a>单文件编译</h4><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-111143.png" alt="å±å¹å¿«ç§ 2018-09-16 ä¸å7.59.40"></p>
 <h3 id="链接器"><a href="#链接器" class="headerlink" title="链接器"></a>链接器</h3><h3 id="Command-B-构建过程"><a href="#Command-B-构建过程" class="headerlink" title="Command + B 构建过程"></a>Command + B 构建过程</h3><h3 id="提高构建速度"><a href="#提高构建速度" class="headerlink" title="提高构建速度"></a>提高构建速度</h3><h4 id="统计构建时间"><a href="#统计构建时间" class="headerlink" title="统计构建时间"></a>统计构建时间</h4><h3 id="提高-App-启动时间"><a href="#提高-App-启动时间" class="headerlink" title="提高 App 启动时间"></a>提高 App 启动时间</h3><h3 id="Mach-O-文件格式"><a href="#Mach-O-文件格式" class="headerlink" title="Mach-O 文件格式"></a>Mach-O 文件格式</h3><hr>
 <p>分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。</p>
-<p><img src="http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方" style="zoom: 33%;"></p>
 
       
     </div>

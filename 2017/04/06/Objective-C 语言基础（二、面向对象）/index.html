@@ -127,14 +127,14 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="封装面向对象三大特性 封装性 继承性 多态性  什么是封装？ 封装性就是隐藏实现细节，仅对外公开接口  为什么要进行封装？ 如果没有封装，如果要访问成员变量，需要把成员变量声明为 public 的，也就是公开的，但是这样我们不能控制外界如何赋值，外界有可能赋值一些脏数据。   123Student *stu = [Student new];// 学生年龄不能为负数stu-&amp;gt;_age = -1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170407_1.png?imageView/0/h/220">
-<meta property="og:image" content="https://liangjinggege.com/class%20momory.001.jpeg?imageView/0/w/650">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170407_4.png">
-<meta property="og:updated_time" content="2019-08-11T07:39:47.132Z">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170407_1.png?imageView/0/h/220">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/class%20momory.001.jpeg?imageView/0/w/650">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170407_4.png">
+<meta property="og:updated_time" content="2020-08-03T12:42:22.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 语言基础（二、面向对象）">
 <meta name="twitter:description" content="封装面向对象三大特性 封装性 继承性 多态性  什么是封装？ 封装性就是隐藏实现细节，仅对外公开接口  为什么要进行封装？ 如果没有封装，如果要访问成员变量，需要把成员变量声明为 public 的，也就是公开的，但是这样我们不能控制外界如何赋值，外界有可能赋值一些脏数据。   123Student *stu = [Student new];// 学生年龄不能为负数stu-&amp;gt;_age = -1">
-<meta name="twitter:image" content="https://liangjinggege.com/Snip20170407_1.png?imageView/0/h/220">
+<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170407_1.png?imageView/0/h/220">
 
 
 
@@ -512,7 +512,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
+                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
               
             
           </span>
@@ -718,7 +718,7 @@
 <h3 id="继承的其他特点"><a href="#继承的其他特点" class="headerlink" title="继承的其他特点"></a>继承的其他特点</h3><ul>
 <li>Objective-C 中的继承关系</li>
 </ul>
-<p><img src="https://liangjinggege.com/Snip20170407_1.png?imageView/0/h/220" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170407_1.png?imageView/0/h/220" alt=""></p>
 <ul>
 <li>继承了某个类的类称为子类</li>
 <li>被继承的类称为父类/超类</li>
@@ -953,7 +953,7 @@
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span>  <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象方法</span></span><br><span class="line">- (<span class="keyword">void</span>)instanceMethod;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类方法</span></span><br><span class="line">+ (<span class="keyword">void</span>)classMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象方法</span></span><br><span class="line">- (<span class="keyword">void</span>)instanceMethod</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"instanceMethod"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类方法</span></span><br><span class="line">+ (<span class="keyword">void</span>)classMethod</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"classMethod"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  </span><br><span class="line">    Person *p = [[Person alloc] init];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 调用对象方法</span></span><br><span class="line">    [p instanceMethod];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 调用类方法</span></span><br><span class="line">    [Person classMethod];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Person 类在内存中的表现是：</p>
-<p><img src="https://liangjinggege.com/class%20momory.001.jpeg?imageView/0/w/650" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/class%20momory.001.jpeg?imageView/0/w/650" alt=""></p>
 <h4 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h4><ul>
 <li>程序一启动，就会将 Person 类加载到代码区，会调用类的 load 方法，当程序第一次使用 Person 类时，会在<code>堆</code>中创建 Person 类对象。类对象在程序运行时一直存在，并且在整个程序中只有一份。</li>
 <li>对象方法保存在<code>类对象</code>中</li>
@@ -965,7 +965,7 @@
 <p><br></p>
 <h4 id="类方法调用顺序"><a href="#类方法调用顺序" class="headerlink" title="#类方法调用顺序"></a>#类方法调用顺序</h4><p>当类方法调用发生时，首先会去堆中找到相应的<code>类对象</code>，然后通过<code>类对象</code>中 isa 指针找到指向的<code>元类对象</code>，最后找元类对象中类方法列表中的相应的类方法，如果找到，执行，如果没有找到，继续向上找<code>根元类对象（NSObject 元类对象）</code>。</p>
 <p><br></p>
-<h4 id="对象模型图"><a href="#对象模型图" class="headerlink" title="#对象模型图"></a>#对象模型图</h4><p><img src="https://liangjinggege.com/Snip20170407_4.png" alt=""></p>
+<h4 id="对象模型图"><a href="#对象模型图" class="headerlink" title="#对象模型图"></a>#对象模型图</h4><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170407_4.png" alt=""></p>
 <p><br></p>
 <blockquote>
 <p>所有类的“<code>类对象</code>”的继承关系就是“<code>元类对象</code>”的继承关系。这样便于方法的查找。首先<code>实例对象</code>的 isa 指针指向<code>类对象</code>，<code>类对象</code>的 isa 指针指向<code>元类对象</code>，<code>元类对象</code>的 isa 指针指向<code>根元类对象</code>，<code>根元类对象</code>的 isa 指针<code>指向自己</code>。其次在<code>类对象</code>中存储着对象方法，<code>元类对象</code>中存储着类方法。当一个子类要执行一个对象方法时，先到自己<code>类对象</code>中找，如果找到就执行，找不到就要去<code>类对象的父类对象</code>中找。同理，如果一个子类要执行一个类方法时，先到自己的元类对象中找，如果找到就执行，找不到就要去<code>元类对象</code>的<code>父类元类对象</code>中找。</p>

@@ -127,17 +127,17 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）。指内存管理中对引用采取自动计数的技术。只要在 LLVM 编译器中设置了 ARC 为有效状态，那么编译器将自动进行内存管理。 内存管理/引用计数举个栗子">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170330_2.png?imageView/0/h/200">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170330_3.png?imageView/0/h/100">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170330_4.png?imageView/0/h/80">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170330_6.png?imageView/0/h/200">
-<meta property="og:image" content="https://liangjinggege.com/Snip20170330_7.png?imageView/0/h/200">
-<meta property="og:updated_time" content="2019-08-11T07:39:47.176Z">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_1.png?imageView/0/h/200">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_2.png?imageView/0/h/200">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_3.png?imageView/0/h/100">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_4.png?imageView/0/h/80">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_6.png?imageView/0/h/200">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_7.png?imageView/0/h/200">
+<meta property="og:updated_time" content="2020-08-03T12:42:22.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Objective-C 高级编程》读书笔记-内存管理">
 <meta name="twitter:description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）。指内存管理中对引用采取自动计数的技术。只要在 LLVM 编译器中设置了 ARC 为有效状态，那么编译器将自动进行内存管理。 内存管理/引用计数举个栗子">
-<meta name="twitter:image" content="https://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200">
+<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_1.png?imageView/0/h/200">
 
 
 
@@ -515,7 +515,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-11 15:39:47" itemprop="dateModified" datetime="2019-08-11T15:39:47+08:00">2019-08-11</time>
+                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
               
             
           </span>
@@ -611,7 +611,7 @@
 <li>最后一个人下班离开办公室，<code>需要照明的人数</code>减 1，这时计数值从 1 变为 0，因此需要关灯；</li>
 </ol>
 <p>对应 Objective-C 中对象的内存管理如下表：</p>
-<p><img src="https://liangjinggege.com/Snip20170330_1.png?imageView/0/h/200" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_1.png?imageView/0/h/200" alt=""></p>
 <h3 id="内存管理的思考方式"><a href="#内存管理的思考方式" class="headerlink" title="内存管理的思考方式"></a>内存管理的思考方式</h3><blockquote>
 <p>注意：以下代码在 MRC 环境下。</p>
 </blockquote>
@@ -622,7 +622,7 @@
 <li>非自己持有的对象无法释放</li>
 </ul>
 <p>对象操作与 Objective-C 中方法对应如下：</p>
-<p><img src="https://liangjinggege.com/Snip20170330_2.png?imageView/0/h/200" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_2.png?imageView/0/h/200" alt=""></p>
 <blockquote>
 <p>注意：Objective-C 中对象的<code>内存管理方法</code>都在所有类的基类 NSObject 中定义，包括 alloc 类方法，retain/release/dealloc 对象方法。</p>
 </blockquote>
@@ -640,7 +640,7 @@
 <p>copy 方法利用基于 <code>&lt;NSCopying&gt;</code> 协议约定，由各类实现 copyWithZone：方法生成并持有对象的副本。同样，mutableCopy 方法利用基于 <code>&lt;NSMutableCopying&gt;</code> 协议，由各类实现 mutableCopyWithZone: 方法生成并持有对象的副本，两者的区别是：copy 方法生成不可变的对象，mutableCopy 方法生成可变的对象。其中 Foundation 类已经遵守了 <code>&lt;NSCopying&gt;</code> 和 <code>&lt;NSMutableCopying&gt;</code> 协议。</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LJStudent *stu1 = [[LJStudent alloc] init];</span><br><span class="line">/// 自己生成并持有对象</span><br><span class="line">LJStudent *stu2 = [stu1 <span class="keyword">copy</span><span class="bash">];</span></span><br><span class="line"><span class="bash">NSLog(@<span class="string">"stu1:%p---stu2:%p"</span>,stu1, stu2);</span></span><br></pre></td></tr></table></figure>
 <p>打印结果：</p>
-<p><img src="https://liangjinggege.com/Snip20170330_3.png?imageView/0/h/100" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_3.png?imageView/0/h/100" alt=""></p>
 <p>mutableCopy 方法类似。</p>
 <p>除了这些方法，使用<code>以下名称开头的方法名</code>也意味着自己<code>生成并持有对象</code>：</p>
 <ul>
@@ -651,7 +651,7 @@
 </ul>
 <h4 id="非自己生成的对象，自己也能持有"><a href="#非自己生成的对象，自己也能持有" class="headerlink" title="#非自己生成的对象，自己也能持有"></a>#非自己生成的对象，自己也能持有</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 取得非自己生成但自己持有的对象</span></span><br><span class="line"><span class="keyword">id</span> obj = [<span class="built_in">NSMutableArray</span> array]; <span class="comment">// 取得的对象存在，但变量 obj 并不持有</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"Reference Count=%lu"</span>,[obj retainCount]);</span><br><span class="line">[obj <span class="keyword">retain</span>]; <span class="comment">// obj 变量自己持有对象</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"Reference Count=%lu"</span>,[obj retainCount]);</span><br></pre></td></tr></table></figure>
 <p>打印结果：</p>
-<p><img src="https://liangjinggege.com/Snip20170330_4.png?imageView/0/h/80" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_4.png?imageView/0/h/80" alt=""></p>
 <blockquote>
 <p>为什么打印结果是 1 和 2，不是 0 和 1 ?不解？？？？？？？？？。做个标记<del>~</del>~~~</p>
 </blockquote>
@@ -677,12 +677,12 @@
 <blockquote>
 <p>alloc 类方法用 struct obj_layout 中 long 类型整数 <code>retained</code> 来保存<code>引用计数</code>，并将其写入对象内存头部，该对象内存块全部置 0 后返回。</p>
 </blockquote>
-<p><img src="https://liangjinggege.com/Snip20170330_6.png?imageView/0/h/200" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_6.png?imageView/0/h/200" alt=""></p>
 <center>alloc 返回对象内存图</center>
 
 <p>对象的引用计数可以通过 <code>retainCount</code> 实例方法得到，来看对象 alloc 后 <code>retainCount</code> 实例方法做了什么：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="built_in">NSUInteger</span>)retainCount</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 让 struct obj_layout 中保存的 retained 变量加 1 后返回，最开始 retained 的值为 0</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">NSExtraRefCount</span>(<span class="keyword">self</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 内联函数 </span></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">NSUInteger</span></span><br><span class="line"><span class="built_in">NSExtraRefCount</span>(<span class="keyword">id</span> anObject)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 返回 struct obj_layout 中的 retained 变量</span></span><br><span class="line">	<span class="keyword">return</span> ((<span class="keyword">struct</span> obj_layout *)anObject)[<span class="number">-1</span>].retained;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://liangjinggege.com/Snip20170330_7.png?imageView/0/h/200" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170330_7.png?imageView/0/h/200" alt=""></p>
 <blockquote>
 <p>由对象寻址找到对象内存头部，从而访问其中的 retained 变量。由于分配时全部置为 0，所以 retained 的值为 0。</p>
 </blockquote>
