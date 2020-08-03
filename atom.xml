@@ -75,37 +75,6 @@
   </entry>
   
   <entry>
-    <title>Swift 代码编译流程</title>
-    <link href="https://chenliangjing.me/2019/10/11/Swift-%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B/"/>
-    <id>https://chenliangjing.me/2019/10/11/Swift-代码编译流程/</id>
-    <published>2019-10-11T01:37:14.000Z</published>
-    <updated>2020-08-03T12:55:06.025Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;### &lt;/p&gt;
-&lt;h3 id=&quot;编程语言分类&quot;&gt;&lt;a href=&quot;#编程语言分类&quot; class=&quot;headerlink&quot; title=&quot;编程语言分类&quot;&gt;&lt;/a&gt;编程语言分类&lt;/h3&gt;&lt;p&gt;编程语言按照不同的角度可以有不同的分类。&lt;/p&gt;
-&lt;h4 id=&quot;按与硬件的距离分：&quot;&gt;&lt;a href=&quot;#按与硬件的距离分：&quot; class=&quot;headerlink&quot; title=&quot;按与硬件的距离分：&quot;&gt;&lt;/a&gt;按&lt;code&gt;与硬件的距离&lt;/code&gt;分：&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;机器语言：根据硬件指令集的 0101 &lt;/li&gt;
-&lt;li&gt;汇编语言：对机器语言做了简单的封装&lt;/li&gt;
-&lt;li&gt;高级语言：C/C++/Java/Python/JavaScript/Swift 等&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;按编程范式分：&quot;&gt;&lt;a href=&quot;#按编程范式分：&quot; class=&quot;headerlink&quot; title=&quot;按编程范式分：&quot;&gt;&lt;/a&gt;按&lt;code&gt;编程范式&lt;/code&gt;分：&lt;/h4&gt;
-    
-    </summary>
-    
-      <category term="Swift" scheme="https://chenliangjing.me/Tags/Swift/"/>
-    
-      <category term="编译" scheme="https://chenliangjing.me/Tags/Swift/%E7%BC%96%E8%AF%91/"/>
-    
-    
-      <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
-    
-      <category term="编译" scheme="https://chenliangjing.me/Categorys/%E7%BC%96%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Playground Markup 语法</title>
     <link href="https://chenliangjing.me/2019/10/11/Playground-Markup-%E8%AF%AD%E6%B3%95/"/>
     <id>https://chenliangjing.me/2019/10/11/Playground-Markup-语法/</id>
@@ -526,6 +495,33 @@
     
     
       <category term="软件工程" scheme="https://chenliangjing.me/Categorys/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>活动行 App_iOS 性能检测分析</title>
+    <link href="https://chenliangjing.me/2018/08/20/%E6%B4%BB%E5%8A%A8%E8%A1%8C-App-iOS-%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%90/"/>
+    <id>https://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/</id>
+    <published>2018-08-20T03:12:29.000Z</published>
+    <updated>2020-08-03T12:42:22.590Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;性能检测&quot;&gt;&lt;a href=&quot;#性能检测&quot; class=&quot;headerlink&quot; title=&quot;性能检测&quot;&gt;&lt;/a&gt;性能检测&lt;/h2&gt;&lt;h3 id=&quot;使用到的相关工具&quot;&gt;&lt;a href=&quot;#使用到的相关工具&quot; class=&quot;headerlink&quot; title=&quot;使用到的相关工具&quot;&gt;&lt;/a&gt;使用到的相关工具&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-21-39.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="性能优化" scheme="https://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="性能优化" scheme="https://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
