@@ -36,26 +36,26 @@ categories:
 
 由于 iOS 是有 Unix 分出来的，所以这一层的大部分都是一些用 C 语言写的 UNIX 操作系统的接口，主要有系统内核、Mach 3.0、BSD、Sockets（套接字）、Security（安全）、Power Managerment（电量管理）、Keychain Access（钥匙串访问）、Certificates（证书）、File System（文件管理）、Bonjour。
 
-![](https://liangjinggege.com/Snip20180208_3.png?imageView2/2/w/600)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_3.png?imageView2/2/w/600)
 
 <!-- more -->
 - Core Services（系统服务层）
 
 这层是面向对象的，iOS 开发中经常用到的。主要封装有 Collections（集合类型）、Core Location(核心定位)、Address Book(地址簿)、Net Services(网络服务)、Networking(网络)、Theading (线程)、File Access(文件访问)、Preferences(偏好设置)、SQLite(数据库)、URL 实体等。
 
-![](https://liangjinggege.com/Snip20180208_4.png?imageView2/2/w/600)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_4.png?imageView2/2/w/600)
 
 - Media（媒体层）
 
 这层主要封装有 Core Audio(核心音频) JPEG,PNG,TIFF(不同图片格式)、OpenAL、PDF（文档）、Audio Mixing(音频合成)、Quartz(2D)(绘图)、Audio Recording(录音)、Core Animation(核心动画)、Video Playback(视频播放)、OpenGL ES（图形渲染）
 
-![](https://liangjinggege.com/Snip20180208_5.png?imageView2/2/w/600)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_5.png?imageView2/2/w/600)
 
 - Cocoa Touch（用户界面层）
 
 最顶层是用户直接接触的，是 UI 用户界面层。所有的视图、view、控件、地图、本地化、相机相册、多点触控等都是在这一层，日常的界面开发就是在这一层。
 
-![](https://liangjinggege.com/Snip20180208_6.png?imageView2/2/w/600)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_6.png?imageView2/2/w/600)
 
 
 ## iOS 开发平台组件
@@ -65,26 +65,26 @@ categories:
 - 框架：Foundation、UIKit 
 - 设计模式：MVC、MVP、MVVM 
 
-![](https://liangjinggege.com/Snip20180208_7.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_7.png?imageView2/2/w/700)
 
 ## 翻纸牌游戏 demo
 
 - 字符串常量拼接变量
 	
-![](https://liangjinggege.com/Snip20180208_8.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_8.png?imageView2/2/w/700)
 
 - 类型推断
 自动推断出变量的类型
 
-![](https://liangjinggege.com/Snip20180208_10.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_10.png?imageView2/2/w/700)
 
 - 计算属性
 监听属性的赋值操作
 
-![](https://liangjinggege.com/Snip20180208_11.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_11.png?imageView2/2/w/700)
 
 
 - 可选绑定
 给一个可选类型解包
 
-![](https://liangjinggege.com/Snip20180208_12.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_12.png?imageView2/2/w/700)

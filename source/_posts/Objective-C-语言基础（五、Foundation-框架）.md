@@ -34,7 +34,7 @@ NSString *str3 = [NSString stringWithFormat:@"李四"];
 <!-- more -->
 1. 通过字符串常量创建：字符串对象存储在`常量区`中，并且如果多个字符串对象，多个字符串对象指向同一块存储空间。
 	
-	![](https://liangjinggege.com/Snip20170416_5.png)
+	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170416_5.png)
 	
 2. 通过对象方法以及类工厂方法创建：字符串对象存储在`堆区`中。
 
@@ -120,7 +120,7 @@ NSURL *url = [NSURL fileURLWithPath:path];
 ```
 >注意：如果 URL 中含有中文，通过 fileURLWithPath: 方法创建 URL 会自动将中文进行百分号编码，而如果通过 UrlWithString: 方法，不会自动进行中文的处理，需手动进行中文百分号编码：
 
-![](https://liangjinggege.com/Snip20170426_1.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170426_1.png)
 
 ##### 文件写
 

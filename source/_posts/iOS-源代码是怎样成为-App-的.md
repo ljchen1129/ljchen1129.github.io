@@ -58,7 +58,7 @@ Swift 是一门编译型语言，编译型语言的源代码要运行，首先�
 
 
 
-![img](http://liangjinggege.com/2019-10-28-101309.png)
+![img](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com2019-10-28-101309.png)
 
 
 
@@ -71,7 +71,7 @@ Swift 是一门编译型语言，编译型语言的源代码要运行，首先�
 
 
 
-![img](http://liangjinggege.com/2019-10-28-101312.png)
+![img](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-101312.png)
 
 
 
@@ -282,7 +282,7 @@ eof ''		Loc=<main.c:18:2>
 
 `identifier 'sum'	 [LeadingSpace]	Loc=<main.c:16:18`>   表示位于源文件的第 16 行，从第 18 个字符开始
 
-![image-20191028130818220](http://liangjinggege.com/2019-10-28-050818.png)
+![image-20191028130818220](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-050818.png)
 
 
 
@@ -329,7 +329,7 @@ xcrun clang -fmodules -fsyntax-only -Xclang -dump-tokens main.c
 
 sum 函数的语法树图形化为：
 
-<img src="http://liangjinggege.com/2019-10-28-080347.png" alt="image-20191028160346857" style="zoom:80%;" />
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-080347.png" alt="image-20191028160346857" style="zoom:80%;" />
 
 有了 AST 抽象语法树，语法分析阶段就可以对代码进行分析检查，如检查括号是否匹配，是否缺少操作符，类型是否匹配等，一旦检查不通过，就会报告语法分析阶段的错误。
 
@@ -495,7 +495,7 @@ clang main.o -o main
 
 
 
-<img src="http://liangjinggege.com/2019-10-28-094817.png" alt="image-20191028174816689" style="zoom:50%;" />
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-094817.png" alt="image-20191028174816689" style="zoom:50%;" />
 
 
 
@@ -516,17 +516,17 @@ clang main.o -o main
 
 下面写一个使用 Objective-C 和 Swift 的混编项目，使用 CocoaPods 来管理第三方库，包含了一个Objective-C .a 静态库 FooObjcStaticLibrary 和一个 Swift 的动态库 FooSwift.framework，尽量模拟真实的 iOS 项目场景，再来探究下。DEMO 项目结构如下：
 
-![image-20191028232924657](http://liangjinggege.com/2019-10-28-152925.png)
+![image-20191028232924657](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-152925.png)
 
 运行效果：
 
-<img src="http://liangjinggege.com/2019-10-28-153148.png" alt="image-20191028233148422" style="zoom: 50%;" />
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-153148.png" alt="image-20191028233148422" style="zoom: 50%;" />
 
 
 
 #### 点击 Command + B
 
-![image-20191029141549289](http://liangjinggege.com/2019-10-29-061550.png)
+![image-20191029141549289](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-29-061550.png)
 
 #### 构建过程
 
@@ -540,7 +540,7 @@ Xcode 10 开始，使用了新的 Bulid System，新构建系统使用 Swift Scr
 
 首先，构建系统会从 project 文件读取源代码的信息，决定构建过程的模型和流程，然后转换成一个树形结构叫做`定向图`，它显示了所有的`依赖关系`，项目中的输入和输出文件，以及处理他们的执行任务。构建系统就按照定向图的顺序执行一系列的构建任务。
 
-![image-20191030120417315](http://liangjinggege.com/2019-10-30-040417.png)
+![image-20191030120417315](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-040417.png)
 
 >project 文件除了记录了 App 的一些相关信息和源代码文件的组织目录关系，还记录了 build settings、build phases、build rules、target 、target dependencies 等构建相关的信息。有关 project 文件更新详细的介绍可以看[这篇文章](http://yulingtianxia.com/blog/2016/09/28/Let-s-Talk-About-project-pbxproj/)。 
 
@@ -550,13 +550,13 @@ Xcode 10 开始，使用了新的 Bulid System，新构建系统使用 Swift Scr
 
 2. target 依赖，build 当前的 target 之前，必须先对这里的依赖先进行 build
 
-   ![image-20191030141806543](http://liangjinggege.com/2019-10-30-061806.png)
+   ![image-20191030141806543](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-061806.png)
 
 3. 隐式依赖（Implicit dependencies）
 
 4. Bulid phases，代表着将代码转变为可执行文件的最高级别规则，里面描述了 build 过程中必须执行的不同类型规则，定义了构建处理的过程
 
-   ​	![image-20191030142206876](http://liangjinggege.com/2019-10-30-062207.png)
+   ​	![image-20191030142206876](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-062207.png)
 
    - CocoaPods 相关的脚本 script execution
 
@@ -567,7 +567,7 @@ Xcode 10 开始，使用了新的 Bulid System，新构建系统使用 Swift Scr
 
 5. Scheme 顺序依赖
 
-   ![image-20191030192242047](http://liangjinggege.com/2019-10-30-112243.png)
+   ![image-20191030192242047](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-112243.png)
 
 
 
@@ -636,4 +636,4 @@ Xcode 10 开始，使用了新的 Bulid System，新构建系统使用 Swift Scr
 ---
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。
 
-![by在水一方](http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg)
+![by在水一方](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg)

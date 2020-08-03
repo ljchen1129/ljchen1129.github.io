@@ -10,7 +10,7 @@ categories:
 ## 前言
 随着移动互联网的发展，一些跨平台技术层出不穷，如 Facebook 的 [ReactNative](https://facebook.github.io/react-native/)、阿里的[Weex](https://weex.apache.org/)、国内各大互联网大厂的小程序、[PWA](https://en.wikipedia.org/wiki/Progressive_web_applications)、Google 的 [Flutter](https://flutter.dev/) 等，各种前端技术和原生混合形式开发方式正在成为一个大的趋势，所以在日常 iOS 开发中，经常会有原生 App 嵌入网页的业务需求，因此常常会有网页和原生页面交互的场景出现，希望能够结合网页和原生的各自优势，打造更极致的用户体验。本文就是总结日常开发中常见的几种 JS-Native 交互方案。
 
-![开发方式演变](https://liangjinggege.com/1431555559512_.pic.jpg)
+![开发方式演变](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/1431555559512_.pic.jpg)
 
 本文结合具体代码示例，尝试从使用、原理浅析、方案对比这几个角度来介绍各种方案的优缺点，希望能够说清楚在不同的业务场景下开发者该如何选择最合适自己的方案，最后，还会尝试自己实现一套满足基本业务需求的轻量级 hybrid 方案并展望未来。
 

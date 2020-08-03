@@ -27,7 +27,7 @@ int *p, q;
 int *p,q;
 ```
 
-![](https://liangjinggege.com/Xnip2019-03-09_20-38-52.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-09_20-38-52.png)
 
 ### 指针应用场景
 
@@ -128,13 +128,13 @@ Program ended with exit code: 0
 
 定义了指针变量，但还没有指向任何变量，就开始使用指针。
 
-![](https://liangjinggege.com/Xnip2019-03-09_20-46-33.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-09_20-46-33.png)
 
 ### 指针数组
 
 #### 1. 函数参数中的数组其实就是指针。看段代码：
 
-![](https://liangjinggege.com/Xnip2019-03-09_21-06-45.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-09_21-06-45.png)
 
 在sum函数里面修改数组参数a[0]的值，影响到了原数组。其实在函数中，数组参数就是指针，所以下面这几种写法是等价的。
 
@@ -153,7 +153,7 @@ int sum(int [], int length)
 - `* 运算符`可以对指针做，也可以对数组做。
 - 数组变量是` const 的指针`，不能被赋值。
 
-![](https://liangjinggege.com/Xnip2019-03-09_21-49-17.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-09_21-49-17.png)
 
 
 ### 指针与const
@@ -204,11 +204,11 @@ Program ended with exit code: 0
 
 #### 4. const 数组
 
-![](https://liangjinggege.com/Xnip2019-03-09_22-25-32.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-09_22-25-32.png)
 
 上面说到，数组在函数参数中其实是指针，在函数内部可以修改原数组的值，为了保护数组不被函数破坏，可以设置函数参数为const
 
-![](https://liangjinggege.com/Xnip2019-03-09_22-28-47.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-09_22-28-47.png)
 
 
 ### 指针运算
@@ -315,7 +315,7 @@ int *q = NULL;
 - 指针类型转换
 	- void * 表示不知道指向指向什么类型的指针
 
-![](https://liangjinggege.com/Xnip2019-03-10_15-16-52.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-10_15-16-52.png)
 
 
 ### 动态内存分配
@@ -331,7 +331,7 @@ void *malloc(size_t __size)
 void free(void *);
 ```
 
-![](https://liangjinggege.com/Xnip2019-03-10_15-39-48.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-10_15-39-48.png)
 
 #### 常见问题
 
@@ -371,7 +371,7 @@ struct point {
 
 ### 访问
 
-![](https://liangjinggege.com/Xnip2019-03-10_16-16-28.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-03-10_16-16-28.png)
 
 ### 作为函数参数
 
@@ -450,4 +450,4 @@ p2->y = 2;
 
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「青争哥哥」。
 
-![](https://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg)

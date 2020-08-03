@@ -21,13 +21,13 @@ categories:
 	- M：数据层（网络、数据库、文件等）数据相关
 	- V：UIView 以及子类 + UIViewController 及子类
 	- P：中介（用于关联 M 和 V）
- 
+
 >特点：将数据层和 UI 层完全隔离。V 层：只负责创建 UI 和显示 UI，刷新 UI。
 <!-- more -->
 ## 模拟场景
 通常一个业务开发的流程是这样的，进入一个页面 --> 请求数据 --> 网络加载 --> 渲染 UI。下面就模拟一下这样一个业务场景，请求数据渲染一个列表视图，通过 MVP 架构模式来编写代码，看看会发生什么？
 
-![](https://liangjinggege.com/Snip20170427_3.png?imageView/0/w/375)
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170427_3.png?imageView/0/w/375" style="zoom:67%;" />
 
 ## 第一步
 编写一个网络请求工具类，通过传递请求路径，请求参数，请求方式能够从网上请求数据并回调出去。

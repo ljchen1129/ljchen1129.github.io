@@ -56,7 +56,7 @@ Swift 是一门编译型语言，编译型语言的源代码要运行，首先�
 
 
 
-![img](http://liangjinggege.com/2019-10-11-070906.png)
+![img](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-070906.png)
 
 
 
@@ -69,7 +69,7 @@ Swift 是一门编译型语言，编译型语言的源代码要运行，首先�
 
 
 
-![img](http://liangjinggege.com/2019-10-11-071354.png)
+![img](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-071354.png)
 
 
 
@@ -89,7 +89,7 @@ Objective C/C/C++使用的编译器前端是[clang](https://clang.llvm.org/docs/
 
 #### 单文件编译
 
-![å±å¹å¿«ç§ 2018-09-16 ä¸å7.59.40](http://liangjinggege.com/2019-10-11-111143.png)
+![å±å¹å¿«ç§ 2018-09-16 ä¸å7.59.40](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-111143.png)
 
 ### 链接器
 
@@ -120,4 +120,4 @@ Objective C/C/C++使用的编译器前端是[clang](https://clang.llvm.org/docs/
 ---
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。
 
-![by在水一方](http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg)
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方" style="zoom: 33%;" />

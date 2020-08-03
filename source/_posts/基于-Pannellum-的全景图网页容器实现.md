@@ -17,7 +17,7 @@ categories:
 
 ### 先看效果
 
-<img src="http://liangjinggege.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;" />
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;" />
 
 
 
@@ -100,4 +100,4 @@ NSRange startR = [message rangeOfString:@"hjdykj://RoomID="];
 ---
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。
 
-![青争哥哥](http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg)
+![青争哥哥](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg)

@@ -312,7 +312,7 @@ Person *p = [Person new];
 
 在内存中的存储情况：
 
-![](https://liangjinggege.com/object%20memory.001.jpeg?imageView/0/h/450)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/object%20memory.001.jpeg?imageView/0/h/450)
 
 ### 过程描述：
 

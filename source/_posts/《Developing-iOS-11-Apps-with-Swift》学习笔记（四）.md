@@ -29,11 +29,11 @@ categories:
 
 - 未使用 `mutating` 关键字 
 
-![](https://liangjinggege.com/Snip20180222_2.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180222_2.png?imageView2/2/w/700)
 
 - 使用 `mutating` 关键字 
 
-![](https://liangjinggege.com/Snip20180222_4.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180222_4.png?imageView2/2/w/700)
 
 ## protocols(协议)
 
@@ -191,9 +191,9 @@ protocol Equatable {
 
 在 Demo 中，可以直接使用 Card 结构体当做 cards 字典的 key，只需要 Card 结构体遵循 Hashable 协议：
 
-![](https://liangjinggege.com/Xnip2019-01-04_08-40-55.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_08-40-55.png?imageView2/2/w/700)
 
-![](https://liangjinggege.com/Xnip2019-01-04_08-50-01.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_08-50-01.png?imageView2/2/w/700)
 
 
 #### 4. 高级使用
@@ -274,8 +274,8 @@ str.uppercased()
 
 ### #demo 中将纸牌的emojis又数组结构改成字符串
 
-![](https://liangjinggege.com/Xnip2019-01-04_10-44-44.png?imageView2/2/w/700)
-![](https://liangjinggege.com/Xnip2019-01-04_10-45-04.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_10-44-44.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_10-45-04.png?imageView2/2/w/700)
 
 
 
@@ -286,7 +286,7 @@ NSAttributedString 是一个字符串中的每一个字符 character 都有一�
 - NSAttributedString 是来自于 Objective-C 中的 NSStirng 构造的
 - NSAttributedString 是引用类型，不是值类型，所以使用可变的时候需要使用 NSMutableAttributedString 对象
 
-![](https://liangjinggege.com/Xnip2019-01-04_11-04-04.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_11-04-04.png?imageView2/2/w/700)
 
 ## Closures 闭包
 	
@@ -326,12 +326,12 @@ var someProperty: Type = {
 ```
 
 #### #Demo 中应用
-![](https://liangjinggege.com/Xnip2019-01-04_12-03-17.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_12-03-17.png?imageView2/2/w/700)
 
 对 Collection 协议扩展，添加一个属性
 
-![](https://liangjinggege.com/Xnip2019-01-04_12-04-58.png?imageView2/2/w/500)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_12-04-58.png?imageView2/2/w/500)
 
 然后修改为仅用一行代码：
 
-![](https://liangjinggege.com/Xnip2019-01-04_12-06-23.png?imageView2/2/w/700)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-04_12-06-23.png?imageView2/2/w/700)

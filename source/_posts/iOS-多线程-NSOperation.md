@@ -93,7 +93,7 @@ categories:
 - 主队列：[NSOperationQueue mainQueue]。凡是添加到主队列中的任务，都会放到主线程中执行
 - 其他队列：(串行、并发) [[NSOperationQueue alloc] init]。添加到这种队列中的任务，会自动在子线程中执行。
  
-	![](https://liangjinggege.com/Snip20170502_2.png?imageView/0/h/450) 
+	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170502_2.png?imageView/0/h/450) 
 
 ### 最大并发数
 
@@ -172,7 +172,7 @@ categories:
 
 ```
 
-![](https://liangjinggege.com/Snip20170502_3.png?imageView/0/h/300) 
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170502_3.png?imageView/0/h/300) 
 
 ## NSOperation 的依赖和监听
 - NSOperation 之间可以通过设置依赖来保证执行顺序
@@ -223,7 +223,7 @@ NSBlockOperation *op5 = [NSBlockOperation blockOperationWithBlock:^{
 
 - 打印结果：
 
-	![](https://liangjinggege.com/Snip20170502_4.png?imageView/0/h/230)
+	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170502_4.png?imageView/0/h/230)
 
 >注意：不能相互设置依赖。造成结果，两个操作都不会执行。
 
@@ -305,7 +305,7 @@ NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
 
 显示效果：
 
-![](https://liangjinggege.com/Snip20170502_5.png?imageView/0/h/300)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170502_5.png?imageView/0/h/300)
 
 ## NSOperation 实现多图下载
 - 需要解决的问题
@@ -440,7 +440,7 @@ return cell;
 
 - 流程图
 
-![](https://liangjinggege.com/%E5%A4%9A%E5%9B%BE%E4%B8%8B%E8%BD%BD-%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98%E6%B5%81%E7%A8%8B%E5%9B%BE.001.jpeg)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/%E5%A4%9A%E5%9B%BE%E4%B8%8B%E8%BD%BD-%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98%E6%B5%81%E7%A8%8B%E5%9B%BE.001.jpeg)
 
 - 扩展
 	1. 设置缓存过期，缓存多久，一周，一月还是一天？

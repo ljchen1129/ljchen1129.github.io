@@ -9,7 +9,7 @@ categories: iOS
 
 ## NSTimer 实现定时器
 
-```
+```objective-c
 // 在主线程中实现定时器
 - (void)OCTimerInMainThread
 {
@@ -58,7 +58,7 @@ categories: iOS
 
 ## GCD 实现定时器
 
-```
+```objective-c
 // 开启定时器
 - (IBAction)startTimer:(id)sender
 {

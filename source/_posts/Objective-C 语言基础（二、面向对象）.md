@@ -189,7 +189,7 @@ getter 和 setter 方法的格式和写法都是固定的，所以有了 getter 
 ### 继承的其他特点
 - Objective-C 中的继承关系
 
-![](https://liangjinggege.com/Snip20170407_1.png?imageView/0/h/220)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170407_1.png?imageView/0/h/220)
 
 - 继承了某个类的类称为子类
 - 被继承的类称为父类/超类
@@ -575,7 +575,7 @@ int main(int argc, const char * argv[]) {
 
 Person 类在内存中的表现是：
 
-![](https://liangjinggege.com/class%20momory.001.jpeg?imageView/0/w/650)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/class%20momory.001.jpeg?imageView/0/w/650)
 
 
 #### #说明
@@ -595,7 +595,7 @@ Person 类在内存中的表现是：
 </br>
 #### #对象模型图
 
-![](https://liangjinggege.com/Snip20170407_4.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170407_4.png)
 
 </br>
 >所有类的“`类对象`”的继承关系就是“`元类对象`”的继承关系。这样便于方法的查找。首先`实例对象`的 isa 指针指向`类对象`，`类对象`的 isa 指针指向`元类对象`，`元类对象`的 isa 指针指向`根元类对象`，`根元类对象`的 isa 指针`指向自己`。其次在`类对象`中存储着对象方法，`元类对象`中存储着类方法。当一个子类要执行一个对象方法时，先到自己`类对象`中找，如果找到就执行，找不到就要去`类对象的父类对象`中找。同理，如果一个子类要执行一个类方法时，先到自己的元类对象中找，如果找到就执行，找不到就要去`元类对象`的`父类元类对象`中找。

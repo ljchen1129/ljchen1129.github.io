@@ -19,7 +19,7 @@ categories:
 ## git 规范
 参考 [git flow](https://nvie.com/posts/a-successful-git-branching-model/)，一图胜千言
 
-![](https://liangjinggege.com/git-flow.png)
+![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/git-flow.png)
 
 ### 中心分支
 生命周期长，一直存在。

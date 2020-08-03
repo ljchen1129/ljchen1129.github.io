@@ -11,7 +11,7 @@ categories: others
 
 学习 Swift 语法最好的工具是 Xcode 配套的 Playground，所见即所得。除了实时显示变量的值，还可以加载资源，呈现视图，多文件管理等。
 
-![image-20191011093609289](http://liangjinggege.com/2019-10-11-013609.png)
+![image-20191011093609289](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-013609.png)
 
 <!--more-->
 
@@ -55,11 +55,11 @@ categories: others
 
 查看效果：
 
-<img src="http://liangjinggege.com/2019-10-11-013229.png" alt="image-20191011093224523" style="zoom:50%;" />
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-013229.png" alt="image-20191011093224523" style="zoom:50%;" />
 
-<img src="http://liangjinggege.com/2019-10-11-013338.png" alt="image-20191011093338195" style="zoom:50%;" />
+<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-013338.png" alt="image-20191011093338195" style="zoom:50%;" />
 
 ---
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。
 
-![by在水一方](http://liangjinggege.com/qrcode_for_gh_0be790c1f754_258.jpg)
+![by在水一方](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg)

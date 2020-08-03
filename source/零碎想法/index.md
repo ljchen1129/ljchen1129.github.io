@@ -4,6 +4,35 @@ date: 2017-05-28 23:27:40
 ---
 
 
+
+### 2020.2.16
+
+新冠肺炎
+
+
+
+背起背包 跨过高山
+
+闭上双眼 感受春天
+
+虽然我还没遇见你
+
+但我一定会爱上你
+
+走破双脚 踏过江海
+
+不用停留 就要相见
+
+虽然我是自由自在
+
+但我一定会爱上你
+
+
+
+{% aplayer "我一定会爱上你" "谢春花" "https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/c1cf_dfec_a0a3_52fbde573b26e129695c12301a6569ca.mp3" "https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-16-095436.jpg" %}
+
+
+
 ### 2019.10.1
 
 1. Typora 插件支持：多平台一键发布支持。（github，简书、掘金、知乎，豆瓣、微信公众号）；
@@ -18,7 +47,7 @@ date: 2017-05-28 23:27:40
 
 Mac 用了两年多，256 G 的硬盘经常提示存储不够。
 
-![image-20190908160619537](http://liangjinggege.com/2019-09-08-080619.png)
+![image-20190908160619537](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-08-080619.png)
 
 看了下存储分布，系统占用接近 200 g 了，找下罪魁祸首，打开终端，根目录输入：
 
@@ -28,13 +57,13 @@ du -sh *
 
 
 
-![image-20190908160534269](http://liangjinggege.com/2019-09-08-080534.png)
+![image-20190908160534269](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-08-080534.png)
 
-![image-20190908161730060](http://liangjinggege.com/2019-09-08-081730.png)
+![image-20190908161730060](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-08-081730.png)
 
 
 
-![image-20190908161939991](http://liangjinggege.com/2019-09-08-081940.png)
+![image-20190908161939991](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-08-081940.png)
 
 大部分是 Xcode 的锅，日积月累，存储了各种 iOS 的系统，模拟器，IPA 包文件，将其中不需要的删除即可。
 
@@ -42,7 +71,7 @@ du -sh *
 
 清理后结果：
 
-![image-20190908162907372](http://liangjinggege.com/2019-09-08-082907.png)
+![image-20190908162907372](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-08-082907.png)
 
 
 
@@ -76,7 +105,7 @@ hexo d
 
 生活很艰难！
 
-{% aplayer "硬币" "汪峰" "https://liangjinggege.com/%E7%A1%AC%E5%B8%81.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg" %}
+{% aplayer "硬币" "汪峰" "https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/%E7%A1%AC%E5%B8%81.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg" %}
 
 除了阳光
 没有什么可以笼罩世界
@@ -184,7 +213,7 @@ App 开发的发展方向判断。
 
 ### 2018.3.31
 
-{% aplayer "借我" "谢春花" "https://liangjinggege.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000" %}
+{% aplayer "借我" "谢春花" "https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/%E8%B0%A2%E6%98%A5%E8%8A%B1-%E5%80%9F%E6%88%91.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M000000aCAG748KoJQ.jpg?max_age=2592000" %}
 
 借我十年
 借我亡命天涯的勇敢
@@ -203,7 +232,7 @@ App 开发的发展方向判断。
 
 ### 2018.3.7
 
-{% aplayer "彼岸" "汪峰" "https://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
+{% aplayer "彼岸" "汪峰" "https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" %}
 
 <br></br>
 
@@ -247,7 +276,7 @@ AI。入个门，把需要的基础知识复习下、搞个模型弄弄就行，
 * 汪峰-->是一个奇才 写了太多好听的歌了 也许正是一定的年龄和阶段才最能听懂汪峰的音乐吧
 
 
-{% aplayer "觉醒" "汪峰" "https://liangjinggege.com/M800002HocyJ3ad9Uh.mp3" "http://i.gtimg.cn/music/photo/mid_album_500/V/I/003k3pNG0KpRVI.jpg" %}
+{% aplayer "觉醒" "汪峰" "https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/M800002HocyJ3ad9Uh.mp3" "http://i.gtimg.cn/music/photo/mid_album_500/V/I/003k3pNG0KpRVI.jpg" %}
 
 ### 2017.5.28
 <!--* _检讨自己：_
@@ -257,4 +286,4 @@ AI。入个门，把需要的基础知识复习下、搞个模型弄弄就行，
 * 越往后压力越大，如果还是这个样子，人生就要废了！只有用自己不断的进步来堵住那些悠悠众口，聪明和勤奋的人太多了，千万不能自己感动自己！
 * 三十岁之前的时间很珍贵很珍贵！-->
 
-<!--{% aplayer "彼岸" "汪峰" "https://liangjinggege.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->
+<!--{% aplayer "彼岸" "汪峰" "https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/M800002FiXZh2vto9Q.mp3" "https://y.gtimg.cn/music/photo_new/T002R300x300M0000027CCrs2QnL0D.jpg?max_age=2592000" "autoplay" %}-->

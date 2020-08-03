@@ -14,7 +14,7 @@ categories: iOS
 
 <div >
 <center>
-    <img src="https://liangjinggege.com/4C26F715-EADD-4C10-AA6F-8953C0726C60.png?imageView2/0/h/350" width="500px" >
+    <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/4C26F715-EADD-4C10-AA6F-8953C0726C60.png?imageView2/0/h/350" width="500px" >
     </center>
 </div>
 
@@ -23,7 +23,7 @@ categories: iOS
 	```
 	find . -name "*.m" -or -name "*.h" -or -name "*.xib" -or -name "*.c" |xargs grep -v "^$"|wc -l 
 	```
-	![](https://liangjinggege.com/97C15843-4298-4916-9E96-A6F4FC512232.png?imageView2/0/h/350/w/500)
+	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/97C15843-4298-4916-9E96-A6F4FC512232.png?imageView2/0/h/350/w/500)
 	
 	>注意：这个统计会去掉`空行`，但是包括`注释`。
 	
@@ -32,7 +32,7 @@ categories: iOS
 	```
 	find . -name "*.m" -or -name "*.h" -or -name "*.xib" -or -name "*.c" |xargs wc -l   
 	```
-	![](https://liangjinggege.com/622C80FA-38BA-4A8F-992E-0EFA8F05EDE7.png?imageView2/0/h/350/w/500)
+	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/622C80FA-38BA-4A8F-992E-0EFA8F05EDE7.png?imageView2/0/h/350/w/500)
 	
 >但是发现一个问题：如果用这句命令，总行数和上一句命令的总行数对不上，可能是没有忽略掉空行吧，不知道那个命令才是表示去掉空行的，困惑？
 	
@@ -79,7 +79,7 @@ pod update --verbose --no-repo-update
 
 <div >
 <center>
-    <img src="https://liangjinggege.com/0914271803292uou.gif?imageView2/0/h/650" width="300px" >
+    <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/0914271803292uou.gif?imageView2/0/h/650" width="300px" >
     </center>
 </div>
 
