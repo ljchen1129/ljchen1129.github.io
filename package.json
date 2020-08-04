@@ -25,5 +25,8 @@
     "hexo-tag-dplayer": "^0.3.3",
     "hexo-wordcount": "^3.0.2",
     "shelljs": "^0.7.8"
+  },
+  "devDependencies": {
+    "fancybox": "^3.0.1"
   }
 }
