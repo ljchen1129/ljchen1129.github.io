@@ -12,7 +12,7 @@ categories:
 ## 介绍
 RunLoop：运行循环，每个线程对应一个 RunLoop，主线程的 RunLoop 默认启动，子线程的 RunLoop 需要手动启动。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/runloop.jpg)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/runloop.jpg)
 
 **作用：**
 
@@ -29,11 +29,11 @@ RunLoop 实际上就是一个对象，这个对象管理了其需要处理的事
 
 **NSRunLoop** ：基于 CFRunLoopRef 的封装，提供了面向对象的 API，但是这些 API 不是线程安全的。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/RunLoop%20comm.001.jpeg)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/RunLoop%20comm.001.jpeg)
 
 **说明：**一个 RunLoop 包含若干个 Mode，每个 Mode 又包含若干个 Source/Timer/Observer。每次调用 RunLoop 的主函数时，只能指定其中一个 Mode，这个 Mode 被称作 CurrentMode。如果需要切换 Mode，只能退出 Loop，再重新指定一个 Mode 进入。这样做主要是为了分隔开不同组的 Source/Timer/Observer，让其互不影响。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/RunLoop_mode.png?imageView/0/h/300)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/RunLoop_mode.png?imageView/0/h/300)
 
 **CFRunLoopSourceRef**：事件产生的地方。有 `Source0` 和 `Source1` 两个版本。
 
@@ -73,7 +73,7 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 
 ## RunLoop 内部逻辑
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/RunLoop_process.png?imageView/0/h/450)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/RunLoop_process.png?imageView/0/h/450)
 
 每次运行 `Run Loop`， 线程的 `Run Loop` 都会自动处理之前`未处理的的消`息，并通知相关的`观察者`。
 
@@ -143,7 +143,7 @@ CFRunLoopRunInMode(CFRunLoopMode mode, CFTimeInterval seconds>, Boolean returnAf
 >**说明：**只能通过 mode name 来操作内部的 mode，当传入一个新的 mode name 但 RunLoop 内部没有对应 mode 时，RunLoop 会自动创建对应的 CFRunLoopModeRef。对于一个 RunLoop 来说，其内部的 mode 只能增加不能删除。
 
 ### 5. 添加观察者，监听 RunLoop 活动状态的改变
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170509_13.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170509_13.png)
 
 
 >注意：CF 对象的内存管理
@@ -153,7 +153,7 @@ CFRunLoopRunInMode(CFRunLoopMode mode, CFTimeInterval seconds>, Boolean returnAf
 
 ## 使用场景
 ### #1. 定时器
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170509_10.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170509_10.png)
 
 ### #2. 子线程异步通知
 [源代码地址](https://github.com/ljchen1129/Objective-C-Practice-Code/tree/master/NSNotification%20%E5%AD%A6%E4%B9%A0)
@@ -163,12 +163,12 @@ CFRunLoopRunInMode(CFRunLoopMode mode, CFTimeInterval seconds>, Boolean returnAf
 - 通知`默认同步执行`的
 - 当前发送通知的线程在那条线程，通知执行就会在那条线程。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170509_9.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170509_9.png)
 
 ### #3. 创建常驻线程（线程保活）
 子线程默认没有开启 Run Loop，开启子线程后，当任务一结束，子线程就会立即销毁。有时候需要子线程一直存在，做一些事情，这种情况下就可以使用 Run Loop 创建常驻线程。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170509_14.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170509_14.png)
 
 
 ### #4. 自动释放池

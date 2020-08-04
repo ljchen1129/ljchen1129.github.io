@@ -38,11 +38,11 @@ categories:
 ## UIStackView
 `UIStackView` 是 iOS 9 推出的一项用于自动布局的技术。只要将需要布局的控件放入到 UIStackView 容器中，容器里面的控件的约束就不需要管理了，UIStackView 会自动管理。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_29.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_29.png?imageView2/2/w/600)
 <!-- more -->
 设置 UIStackView 属性
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_30.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_30.png?imageView2/2/w/600)
 
 
 ## Range（区间）
@@ -60,7 +60,7 @@ for(i = 0.5; i <= 15.25; i += 0.3)
 for i in stride(from:0.5, through:15.25, by:0.3) {
 }
 ```
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_31.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_31.png?imageView2/2/w/600)
 
 >注意1：在这里，`through:`表示的是一个闭区间，包括 15.25 这个数，如果将 `through:` 换成 `to:`，将表示是一个`左闭右开`区间，不包括最后的 15.25。
 >注意2：`CountableRange `是个 `generic Type(泛型)`，不只适用于 Ints，同样适用于 String 等其他类型.
@@ -115,9 +115,9 @@ print(“height is \(getSize().height)”) // height is 80
 
 - 计算属性的作用
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_33.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_33.png?imageView2/2/w/600)
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_34.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_34.png?imageView2/2/w/600)
 
 
 ## Access Control（访问控制）
@@ -131,12 +131,12 @@ print(“height is \(getSize().height)”) // height is 80
 ## Assertions(断言)
 `Assertions(断言)` 是一个函数，可以用来在开发中保护 API，调试定位程序的 bug。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_36.png?imageView2/2/w/700)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_36.png?imageView2/2/w/700)
 
 ## Extensions（扩展）
 在 Swift 语法中，可以为 Struct、Class、Enum 添加方法、属性，即使不知道 Struct、Class、Enum 的实现。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_37.png?imageView2/2/w/700)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_37.png?imageView2/2/w/700)
 
 ## enum(枚举)
 `enum(枚举)` 是一种出 struct 和 class 外另一种常用的`数据结构`。`enum(枚举)` 和 struct 一样是值类型。
@@ -312,12 +312,12 @@ enum Optional<T> { // a generic type, like Array<Element> or Dictionary<Key,Valu
 	case some(<T>) // the some case has associated data of type T 
 }
 ```
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_39.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_39.png?imageView2/2/w/600)
 
 ### #`可选链`
 使用 ？对多个可选值链式调用，当其中一个可选解包失败，整个表达式就会返回 nil。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180209_40.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180209_40.png?imageView2/2/w/600)
 
 ## Memory Management(内存管理)
 ### #ARC（自动引用计数）

@@ -210,7 +210,7 @@ contains(CGPoint)->Bool
 
 > 注意：bounds 和 frame 不总是相等的，如当视图旋转、拉伸后 bounds 和 frame就不相等了。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-17_14-36-41.png?imageView2/2/w/700)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-01-17_14-36-41.png?imageView2/2/w/700)
 
 ### 创建视图
 创建视图的两种方式:
@@ -234,7 +234,7 @@ view.addSubview(label)
 
 - 通过创建 UIView 的子类并重载 draw(CGRect) 来绘图
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-17_14-49-28.png?imageView2/2/w/700)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-01-17_14-49-28.png?imageView2/2/w/700)
 
 >注意：不要主动调用 `draw(CGRect)` 方法，如果需要重新绘图，可以调用 `setNeedsDisplay()`或者 `setNeedsDisplay(_ rect: CGRect) ` 告诉系统，系统将会在适合的时间调用 draw(CGRect) 方法，其中 rect 参数为需要重绘制的区域。
 
@@ -416,16 +416,16 @@ override func layoutSubviews() {
 
 - 构造一张扑克牌结构体，有四种花色，13 中大小，其中包括，ace、numeric、face，使用了带关联值的枚举。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-17_16-27-01.png?imageView2/2/w/700)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-01-17_16-27-01.png?imageView2/2/w/700)
 
 - 一副扑克牌
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-17_16-27-16.png?imageView2/2/w/700)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-01-17_16-27-16.png?imageView2/2/w/700)
 
 - 随机抽取 10 张
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-17_16-27-51.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-01-17_16-27-51.png)
 
 - 打印结果
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-01-17_16-28-02.png?imageView2/2/w/700)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-01-17_16-28-02.png?imageView2/2/w/700)

@@ -88,5 +88,5 @@ hello，欢迎来到我的主页，我是一名 iOS 程序员，业余长跑马�
 
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「青争哥哥」。
 
-<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" style="zoom: 33%;" />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" style="zoom: 33%;" />
 

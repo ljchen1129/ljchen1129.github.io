@@ -13,7 +13,7 @@ categories: html5
 >随着移动互联网的火热，html5技术的成熟，越来越多的APP都采用了混合编程的模式，这是一个趋势。既在原生APP里面嵌入大量的HTML5网页，综合了原生和html5各自的优势。所以作为一个APP开发从业人员，掌握html5开发已成为了职业发展的必备技能。
 <!-- more -->
 ## 效果
-<center><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/aboutUS.png" width="375px" height="675px">
+<center><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/aboutUS.png" width="375px" height="675px">
 </center>
 
 ## 开发工具

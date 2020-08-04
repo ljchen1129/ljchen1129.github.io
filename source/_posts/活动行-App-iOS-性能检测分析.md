@@ -16,7 +16,7 @@ categories:
 
 - instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-21-39.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_19-21-39.png)
 
 <!-- more -->
 
@@ -46,11 +46,11 @@ categories:
 
 preMain 耗时可以在 XCode -> Product -> Scheme -> Edit Shchem -> Run -> Environment Variables -> + -> 添加 name 为 `DYLD_PRINT_STATISTICS`，Value 为 `1` 的`环境变量`。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Jietu20180627-152429.jpg)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Jietu20180627-152429.jpg)
 
 在控制台就可以打印出 preMain 耗时的相关信息
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Jietu20180627-162633.jpg)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Jietu20180627-162633.jpg)
 
 **信息解读**
 
@@ -62,21 +62,21 @@ preMain 耗时可以在 XCode -> Product -> Scheme -> Edit Shchem -> Run -> Envi
 
 #### #1.2 main 函数调用之到第一个 ViewController 的 viewDidAppear 调用耗时测量
 1. 手写统计耗时代码
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-06-28_16-12-22.png)
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-06-28_16-30-12.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-06-28_16-12-22.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-06-28_16-30-12.png)
 
 
 2. 使用[打点计时器](https://github.com/beiliao-mobile/BLStopwatch)工具进行打点
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2122663-461126cdd47bbe16%20%281%29.png?imageView2/2/w/600)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2122663-461126cdd47bbe16%20%281%29.png?imageView2/2/w/600)
 
 >**工作原理：** 只需要在 main 函数中开启 start 方法计时，然后在 `didFinishLaunchingWithOptions` 方法中对启动时调用的相关方法做打点，最后在首页控制器 viewDidAppear 中结束打点计时，从而可以根据每个节点，统计出打点方法的调用时间以及总时间。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-06-28_001.png)
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-06-28_002.png)
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-06-28_003.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-06-28_001.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-06-28_002.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-06-28_003.png)
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-27-12.png?imageView2/2/w/375)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_19-27-12.png?imageView2/2/w/375)
 
 #### #1.3 测量数据统计分析
 
@@ -113,16 +113,16 @@ preMain 耗时可以在 XCode -> Product -> Scheme -> Edit Shchem -> Run -> Envi
 
 打包后的 ipa 包体积：
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-52-59.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_19-52-59.png)
 
 解压缩后右键显示包内容：
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-52-41.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_19-52-41.png)
 
 
 可以看到安装包主要构成：
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-56-14.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_19-56-14.png)
 
 其中，主要的体积消耗在：
 
@@ -135,7 +135,7 @@ preMain 耗时可以在 XCode -> Product -> Scheme -> Edit Shchem -> Run -> Envi
 - 图片优化：使用 [ImageOptim](https://github.com/ImageOptim/ImageOptim) 图片压缩工具对工程中的图片做一次压缩处理；
 - 清除无用的资源：使用 [LSUnusedResources](https://github.com/tinymind/LSUnusedResources) 工具，清除掉工程中未使用到的资源文件；
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_20-15-39.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_20-15-39.png)
 
 >可以看到无用的资源文件特别多。
 
@@ -143,7 +143,7 @@ preMain 耗时可以在 XCode -> Product -> Scheme -> Edit Shchem -> Run -> Envi
 
 编译后 arm 7 架构下每个库或者类在最终的可执行文件中所占用的空间大小：
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_20-25-07.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_20-25-07.png)
 
 - 一些编译选项优化的开关开启；
 
@@ -151,7 +151,7 @@ preMain 耗时可以在 XCode -> Product -> Scheme -> Edit Shchem -> Run -> Envi
 
 - Xcode Analyze 静态分析工具分析可疑泄露点，有些真的存在，有些不存在，可以通过结合 Instruments 动态分析工具以及代码上下文排除解决
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_15-54-58.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_15-54-58.png)
 
 
 - 主要包含以下几个部分：
@@ -165,8 +165,8 @@ preMain 耗时可以在 XCode -> Product -> Scheme -> Edit Shchem -> Run -> Envi
 
 - Xcode Instruments 动态分析工具中的 Leaks 和 Allocations 跟踪模板进行动态跟踪分析, 确认这些点是否真的泄漏, 或者是否有新的泄漏点出现
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-09-50.png)
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-10-33.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_19-09-50.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2018-07-13_19-10-33.png)
 
 ### #3.1. 内存方面可做的优化
 一般在占用系统内存超过 20% 的时候会有内存警告，而超过 50% 的时候，就很容易被系统 Crash。

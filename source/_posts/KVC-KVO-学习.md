@@ -56,7 +56,7 @@ KVC：Key-value coding）键值编码。通过 key 值，来获取对象的属�
 
 * 第一，判断是否有无 getter 方法，如果有，依次按照（NSString 类型查找方式）找 getKey> -> key -> isKey 的 getter 方法查找（属性也是通过存取方法来查找的，属性在编译时默认生成了 getter 方法和 setter 方法的代码）。其中，如果是 BOOL 或者 int 等值类型， 会做 NSNumber 类型转换。
 
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_4.png?imageView/0/h/250)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_4.png?imageView/0/h/250)
 	
 * 第二，如果没有找到，继续按照`数组类型`规则查找方式，查找 countOf<Key>、objectIn<Key>Atindex、<Key>AtIndexes 格式的方法。如果 countOf<Key> 和另外两个方法中的一个找到，那么就会返回一个可以响应 NSArray 所有方法的代理集合的 NSArray 消息方法。
 
@@ -102,7 +102,7 @@ KVC：Key-value coding）键值编码。通过 key 值，来获取对象的属�
 
 **打印结果：**
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170514_1.png?imageView/0/h/250)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170514_1.png?imageView/0/h/250)
 	
 * 第三，还没找到，继续按照`集合类型`规则查找方式，查找 countOf<Key>、enumeratorOf<Key>、memberOf<Key> 格式的方法。如果这三个方法都找到，那么就返回一个可以响应 `NSSet` 所有方法的代理集合。
 	
@@ -110,33 +110,33 @@ KVC：Key-value coding）键值编码。通过 key 值，来获取对象的属�
 	
 * 第四，判断是否实现了 `+ (BOOL)accessInstanceVariablesDirectly` 这个方法，这个方法默认是 YES，如果返回 YES，那么就按照 `_key -> _isKey -> key -> isKey` 的顺序查找`对应实例变量`的值并返回，如果该方法返回 NO，那么继续往下一个规则查找。
 	
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_7.png?imageView/0/h/140)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_7.png?imageView/0/h/140)
 	
 * 第五，如果以上都没有找到对应的 key，那么会调用 `- (id)valueForUndefinedKey:(NSString *)key` 方法，做`异常处理`.
 
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_5.png?imageView/0/h/180)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_5.png?imageView/0/h/180)
 	
 * 第六，如果没有实现第四步中的方法，那么应用程序会崩溃。
 
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_9.png?imageView/0/h/150)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_9.png?imageView/0/h/150)
 	
 
 ### setValue:forKey:
 * 第一，查找 `setter` 方法，判断有无相应的 `- (void)set<key>:(NSString *)<key>` setter 方法，如果有，则通过 setter 方法来设置值。（属性也是通过 setter 默认生成的 setter 方法来设置值的）。其中 `- (void)set<key>:(NSString *)<key>` 优先级大于 `- (void)set<isKey>:(NSString *)<iskey>`。
 	
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_10.png?imageView/0/h/270)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_10.png?imageView/0/h/270)
 	
 * 第二，如果没有找到相应的 setter 方法，那么再判断 `+ (BOOL)accessInstanceVariablesDirectly` 是否实现，默认返回 YES，如果返回 YES，那么去查找实例变量，依次按照 `_key -> _isKey -> key -> isKey` 的顺序查找设置值。如果返回 NO 或者实例对应的实例变量没有找到，那么继续走下一个步骤。
 	
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_11.png?imageView/0/h/200)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_11.png?imageView/0/h/200)
 	
 * 第三，如果以上步骤都没有设置值成功，那么会调用 `- (void)setValue:(id)value forUndefinedKey:(NSString *)key ` 方法，进行异常处理，
 
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_12.png?imageView/0/h/300)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_12.png?imageView/0/h/300)
 	
 * 第四，如果没有实现第三步中的方法，那么应用程序将会崩溃.
 
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170512_13.png?imageView/0/h/170)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170512_13.png?imageView/0/h/170)
 
 
 ### setValue:forKeyPath:
@@ -188,7 +188,7 @@ NSLog(@"dogFoodName = %@ %@", dogFoodName, [dogFoodName class]); // dogFoodName 
 
 运算符是一个以@开头的特殊字符串，格式如下图所示：
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/keypath.jpg)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/keypath.jpg)
 
 **集合操作符分为三种：**
 
@@ -196,22 +196,22 @@ NSLog(@"dogFoodName = %@ %@", dogFoodName, [dogFoodName class]); // dogFoodName 
 	- 简单集合运算符共有 @avg，@count，@max，@min，@sum 5 种。除了 `@count`，其他都需要有右边的 keyPath(一般为属性名)。
 	
 	**#如果数组或者集合的元素由 NSNumber 类型组成，可以使用 `@keyPath.self `的方式来操作集合**
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_1.png)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_1.png)
 	
 	**#如果数组或者集合的元素由对象类型组成**
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_2.png)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_2.png)
 		
 2. 对象操作符返回: NSArray.
 	- @distinctUnionOfObjects: 返回一个由操作符右边的 `key path` 所指定的对象属性组成的数组，不对数组去重
 	
 	- @unionOfObjects: 返回一个由操作符右边的 `key path` 所指定的对象属性组成的数组，并对数组去重
 	
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_3.png)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_3.png)
 	
 3. 数组或集合操作符: 返回 NSArray、NSSet.
 	- @distinctUnionOfArrays 和 @unionOfArrays: 返回 NSArray，distinct 版本会对数组取重。
 	
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_4.png)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_4.png)
 	
 	- @distinctUnionOfSets: 返回一个 NSSet 对象，因为 Sets 中的元素本身就是唯一的，所以没有对应的 @unionOfSets 运算符。
 
@@ -225,7 +225,7 @@ KVC 提供了属性值，用来验证 key/keyPath 对应的 Value 是否可用�
 
 ```
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_8.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_8.png)
 
 **重写方法：**
 
@@ -250,12 +250,12 @@ KVC 提供了属性值，用来验证 key/keyPath 对应的 Value 是否可用�
 
 如果给一个`非对象属性`设置了一个 nil 值，会调用 `setNilValueForKey:` 这个方法，只需要重写这个方法即可
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_5.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_5.png)
 
 
 ### KVC 和字典
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_6.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_6.png)
 
 ### KVC 实现原理	
 **实现代码:**
@@ -492,7 +492,7 @@ KVC 提供了属性值，用来验证 key/keyPath 对应的 Value 是否可用�
 
 **调用：**
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170518_9.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170518_9.png)
 
 ### 应用场景
 1. 动态地取值和设值
@@ -654,7 +654,7 @@ static int const PrivateKVOContext;
 
 **调用**
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170514_2.png?imageView/0/h/350)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170514_2.png?imageView/0/h/350)
 
 
 ### 5. NSKeyValueObservingOptions 
@@ -689,12 +689,12 @@ static int const PrivateKVOContext;
 
 ```
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170514_3.png?imageView/0/h/350)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170514_3.png?imageView/0/h/350)
 
 ### 6. KVO 和线程
 KVO 行为是`同步`的，并且发生与所观察的值发生变化的`同样的线程`上。手动或者自动调用 `- didChangeValueForKey:` 会触发 KVO 通知。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170514_4.png?imageView/0/h/350)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170514_4.png?imageView/0/h/350)
 
 >KVO 能够保证属性值在 setter 方法调用`之前`，该属性的观察者就就能够被通知到。
 

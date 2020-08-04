@@ -43,7 +43,7 @@ categories:
 
 我们配置在用户目录下就行，也就是这个目录 ~/Library/LaunchAgents，按照固定的格式新建一个 Plist 文件就行，可以看到已经有一些第三方的任务在这里了:
 
-![image-20200126210005856](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-145405.png)
+![image-20200126210005856](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-145405.png)
 
 
 
@@ -278,7 +278,7 @@ git log 可以支持多种格式的 log 输出，其中就包括指定时间段�
 git shortlog --after="上次打包完成时间" --before="当前时间"
 ```
 
-![image-20200127162137227](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-145409.png)
+![image-20200127162137227](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-145409.png)
 
 我们还需要保存上次打包完成的时间，使用文件就行：
 
@@ -296,7 +296,7 @@ read -r lastArchiveDate < "/Users/username/Desktop/code/Project/lastArchiveDate.
 
 不过这是直接在 shell 中直接执行的，我们这段脚本要写到 Fastlane 打包脚本里面去的，而 Fastlane 是基于 ruby 的，所以我们得让 ruby 来执行这段 shell，ruby 执行 shell 有很多种方式，可以参考 https://stackoverflow.com/questions/2232/how-to-call-shell-commands-from-ruby 。
 
-<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-01-30-071320.png" alt="enter image description here" style="zoom:50%;" />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-01-30-071320.png" alt="enter image description here" style="zoom:50%;" />
 
 
 
@@ -367,7 +367,7 @@ sh("qrencode -o #{qrCodeImagePath} #{download_url}")
 
 我这边目前使用的钉钉进行协作，可以在相关工作群使用钉钉机器人自动发送消息。找钉钉群管理员添加一下获取  token 就行。可以向这个地址 `https://oapi.dingtalk.com/robot/send?access_token=Your Token` 发送支持文本 (text)、链接 (link)、markdown(markdown)、ActionCard、FeedCard消息类型格式的消息，还可以填写需要 @ 的测试妹子们。
 
-<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-01-26-140401.png" style="zoom:33%;" />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-01-26-140401.png" style="zoom:33%;" />
 
 
 
@@ -396,7 +396,7 @@ puts "图片 base64: #{qrcodeBase64} "
 
 ##### 原因：
 
-<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-01-26-121353.png" alt="image-20200126201353427" style="zoom:50%;" />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-01-26-121353.png" alt="image-20200126201353427" style="zoom:50%;" />
 
 首先我配置的定时脚本路径在 /Users/username/Desktop/code/Project/run.sh，没有和定时任务的 Plist 配置文件在一个目录下，而配置的定时脚本声明的是 **#!/bin/sh**，意思是使用 **/bin/sh** 来解释执行，但是却没有给完全磁盘访问的权限。
 
@@ -404,7 +404,7 @@ puts "图片 base64: #{qrcodeBase64} "
 
 给足访问权限就行。系统偏好设置 -> 安全性与隐私-> 完全磁盘访问权限，查看是否有勾选☑️ 在定时脚本中声明的解释执行的 shell 的路径，就是**#!/bin/** 后面接的，有 bash 、sh、 zsh 等，我的是 sh。没有的话就添加进去。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-145406.png)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-145406.png)
 
 #### 二、在定时脚本中直接执行 fastlane 打包命令出错： /Users/username/Desktop/code/Project/run.sh ： fastlane: command not found
 
@@ -442,9 +442,9 @@ sh("git shortlog --after="上次打包完成时间" --before="当前时间"  HEA
 
 可能 brew 版本不对，导致 [libqrencode](https://github.com/fukuchi/libqrencode) 依赖的 Libpng 不正确，可以搜一下源代码是一个 else 里面抛出来的错误，条件是 `HAVE_PNG`，所以这样猜测，提了 issue，作者也回复了， https://github.com/fukuchi/libqrencode/issues/149
 
-![image-20200131202517576](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-145407.png)
+![image-20200131202517576](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-145407.png)
 
-![image-20200131202618174](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-145408.png)
+![image-20200131202618174](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-145408.png)
 
 ##### 解决方案：
 
@@ -462,7 +462,7 @@ brew reinstall qrencode
 
 #### 五、钉钉机器人发送文本消息不换行
 
-<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-122134.png" alt="image-20200202202133100" style="zoom:50%;" />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-122134.png" alt="image-20200202202133100" style="zoom:50%;" />
 
 ##### 原因：
 
@@ -485,7 +485,7 @@ git log --after='上次打包时间' --before='当前时间' --pretty=format:"%s
 
 效果如下：
 
-<img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-150554.png" alt="image-20200202230554078" style="zoom:50%;" />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-150554.png" alt="image-20200202230554078" style="zoom:50%;" />
 
 
 
@@ -509,4 +509,4 @@ git log --after='上次打包时间' --before='当前时间' --pretty=format:"%s
 
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。
 
-![by在水一方](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2020-02-02-145408.jpg)
+![by在水一方](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-02-02-145408.jpg)

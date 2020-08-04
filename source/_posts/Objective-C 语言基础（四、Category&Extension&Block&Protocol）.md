@@ -282,15 +282,15 @@ myBlock(); // 20
 
 #### #默认情况下，不可以在 block 中修改外界变量的值
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_1.png?imageView/0/h/120)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_1.png?imageView/0/h/120)
 
 >原因：因为 block 中的变量和外界的变量并不是同一个变量。当 block 中访问到了外界的变量时，block 会将外界的变量拷贝一份到`堆内存`中。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_2.png?imageView/0/h/220)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_2.png?imageView/0/h/220)
 
 >所以，如果在调用之前修改外界变量的值，不会影响到 block 中的 copy 值。
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_3.png?imageView/0/h/220)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_3.png?imageView/0/h/220)
 
 #### #在 block 中修改外界变量的值
 - 如果想在 block 中修改外界变量的值，必须在外界变量前面加上 `__block`
@@ -320,14 +320,14 @@ NSLog(@"a = %i", a); // 20
 - 默认情况下，block 存储在`栈`中，如果对 block 进行一个 `copy 操作，block 会转移到`堆`中。
 - 如果 block 存储在`栈`中，block 中访问了外界的`对象`，那么不会对对象进行 `retain` 操作。
 	
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_5.png?imageView/0/h/220)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_5.png?imageView/0/h/220)
 
 - 如果 block 存储在`堆`中，block 中访问了外界的`对象`，会对外界的对象进行一次 `reatin`操作。
 
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_6.png?imageView/0/h/220)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_6.png?imageView/0/h/220)
 	
 - 如果在 block 中访问了外界的对象，一定要给对象加上 `__block`，只要加上了 `__block`，不管 block 是在`栈`中还是在`堆`中，都不会对对象进行一次`reatin`操作。
-	![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_7.png?imageView/0/h/230)
+	![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_7.png?imageView/0/h/230)
 
 
 ## Protocol
@@ -440,7 +440,7 @@ NSLog(@"a = %i", a); // 20
 
 - 这时如果学生没有实现 StudentCondition 协议的话，那么就将会报警告
 
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_8.png?imageView/0/h/200)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_8.png?imageView/0/h/200)
 
 
 >特别注意：就算 student 遵守了 StudentCondition 协议，但他却不一定实现了协议里面的方法，如果在 School 调用 Student 对象的协议方法时，需要加一层验证，验证 student 是否实现了协议中的方法。不然 student 如果没有实现协议方法，调用的话程序会崩溃。
@@ -527,7 +527,7 @@ Person 类:
 		
 - 调用
 		
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_9.png?imageView/0/h/250)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_9.png?imageView/0/h/250)
 
 
 - 协议的编写规范
