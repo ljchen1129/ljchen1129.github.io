@@ -30,7 +30,9 @@ categories:
 
 ### 废话不多说，先看效果：
 
-#### <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-105920201114185932086" style="zoom: 25%;" /><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-105932.png" alt="image-20201114185932086" style="zoom: 25%;" />
+<!--more-->
+
+#### <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-105932.png" alt="image-20201114185932086" style="zoom: 25%;" />
 
 ![ezgif.com-gif-makereee](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-112339.gif)
 
@@ -795,5 +797,5 @@ static func openGaodeMapDirection(withParams params: DirectionParams) {
 ---
 分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。
 
-<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方"  />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方" style="zoom:33%;" />
 
