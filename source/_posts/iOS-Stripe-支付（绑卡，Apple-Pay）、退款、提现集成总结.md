@@ -393,7 +393,7 @@ Apple Pay 只是支付方式的一种，Stripe 和绑卡支付封装在一起，
 
 #### 二、商户去到 Stripe 管理后台设置用户注册 Stripe 的 OAuth 账户类型和重定向地址
 
-<img src="/Users/chenliangjing/Library/Application Support/typora-user-images/image-20201115191839939.png" alt="image-20201115191839939" style="zoom:50%;" />
+<img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-15-121817.png" alt="image-20201115201817482" style="zoom:50%;" />
 
 
 
