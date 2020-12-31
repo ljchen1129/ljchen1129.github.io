@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言最近开发的项目使用了一些第三方地图的功能，主要包括：  定位 POI（附近，模糊）搜索 地理编码和逆编码 地图展示  标记点（大头针） 线段，图形，覆盖物（折线，直线，圆形，不规则图形） 导航（内部导航，跳转其他地图 App 导航） 地理围栏   主要包含了高德地图、谷歌地图等，其他的地图如百度地图，腾讯地图等参考相关文档其实差别也不大。  文章主要记录一下相关代码和一些集成调试踩过的一些坑，">
+<meta name="keywords" content="iOS,地图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）">
+<meta property="og:url" content="https://chenliangjing.me/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/index.html">
+<meta property="og:site_name" content="在水一方">
+<meta property="og:description" content="前言最近开发的项目使用了一些第三方地图的功能，主要包括：  定位 POI（附近，模糊）搜索 地理编码和逆编码 地图展示  标记点（大头针） 线段，图形，覆盖物（折线，直线，圆形，不规则图形） 导航（内部导航，跳转其他地图 App 导航） 地理围栏   主要包含了高德地图、谷歌地图等，其他的地图如百度地图，腾讯地图等参考相关文档其实差别也不大。  文章主要记录一下相关代码和一些集成调试踩过的一些坑，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-105932.png">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-112339.gif">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-111311.gif">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-110809.png">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-114426.png">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-094340.png">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg">
+<meta property="og:updated_time" content="2020-11-28T00:03:56.942Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）">
+<meta name="twitter:description" content="前言最近开发的项目使用了一些第三方地图的功能，主要包括：  定位 POI（附近，模糊）搜索 地理编码和逆编码 地图展示  标记点（大头针） 线段，图形，覆盖物（折线，直线，圆形，不规则图形） 导航（内部导航，跳转其他地图 App 导航） 地理围栏   主要包含了高德地图、谷歌地图等，其他的地图如百度地图，腾讯地图等参考相关文档其实差别也不大。  文章主要记录一下相关代码和一些集成调试踩过的一些坑，">
+<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-105932.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="在水一方" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://chenliangjing.me/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等） | 在水一方</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">在水一方</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录个人成长历程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-ios进阶">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/iOS-进阶" rel="section"><i class="menu-item-icon fa fa-fw fa-money"></i> <br>iOS进阶</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-零碎想法">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/零碎想法" rel="section"><i class="menu-item-icon fa fa-fw fa-edit"></i> <br>零碎想法</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>公益404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-11-14 19:27:25" itemprop="dateCreated datePublished" datetime="2020-11-14T19:27:25+08:00">2020-11-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-11-28 08:03:56" itemprop="dateModified" datetime="2020-11-28T08:03:56+08:00">2020-11-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/定位/" itemprop="url" rel="index"><span itemprop="name">定位</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" class="leancloud_visitors" data-flag-title="iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近开发的项目使用了一些第三方地图的功能，主要包括：</p>
+<ul>
+<li>定位</li>
+<li>POI（附近，模糊）搜索</li>
+<li>地理编码和逆编码</li>
+<li>地图展示 </li>
+<li>标记点（大头针）</li>
+<li>线段，图形，覆盖物（折线，直线，圆形，不规则图形）</li>
+<li>导航（内部导航，跳转其他地图 App 导航）</li>
+<li>地理围栏</li>
+</ul>
+<blockquote>
+<p>主要包含了高德地图、谷歌地图等，其他的地图如百度地图，腾讯地图等参考相关文档其实差别也不大。</p>
+</blockquote>
+<p>文章主要记录一下相关代码和一些集成调试踩过的一些坑，防止忘记，归个档。</p>
+<h3 id="废话不多说，先看效果："><a href="#废话不多说，先看效果：" class="headerlink" title="废话不多说，先看效果："></a>废话不多说，先看效果：</h3><a id="more"></a>
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-105932.png" alt="image-20201114185932086" style="zoom: 25%;"></h4><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-112339.gif" alt="ezgif.com-gif-makereee"></p>
+<h4 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-111311.gif" style="zoom: 50%;"></h4><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-110809.png" alt="image-20201114190809301" style="zoom:25%;"></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-114426.png" alt="image-20201114194426235" style="zoom:33%;"></p>
+<h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><p><code>CoreLocation 框架</code>， <code>CLLocationManager</code> 类。</p>
+<h4 id="定位-系统原生"><a href="#定位-系统原生" class="headerlink" title="定位 - 系统原生"></a>定位 - 系统原生</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 初始化 CLLocationManager 实例</span></span><br><span class="line">locationManager.delegate = <span class="keyword">self</span></span><br><span class="line">locationManager.requestAlwaysAuthorization()</span><br><span class="line">locationManager.desiredAccuracy = kCLLocationAccuracyBest</span><br><span class="line">locationManager.distanceFilter = kCLDistanceFilterNone</span><br><span class="line"></span><br><span class="line"><span class="comment">// 持续定位上报</span></span><br><span class="line">locationManager.allowsBackgroundLocationUpdates = <span class="literal">true</span></span><br><span class="line"><span class="comment">// 是否允许中断定位功能</span></span><br><span class="line">locationManager.pausesLocationUpdatesAutomatically = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">locationManager.startUpdatingLocation()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 权限判断</span></span><br><span class="line"><span class="keyword">let</span> status  = <span class="type">CLLocationManager</span>.authorizationStatus()</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> status == .notDetermined &#123;</span><br><span class="line">    locationManager.requestWhenInUseAuthorization()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> status == .denied || status == .restricted &#123;</span><br><span class="line">    <span class="keyword">let</span> alert = <span class="type">UIAlertController</span>(title: <span class="string">"定位权限未开启"</span>, message: <span class="string">"请前往设置允许访问您的定位权限"</span>, preferredStyle: .alert)</span><br><span class="line">    <span class="keyword">let</span> okAction = <span class="type">UIAlertAction</span>(title: <span class="string">"去开启"</span>, style: .<span class="keyword">default</span>, handler: &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">        <span class="comment">// 打开设置</span></span><br><span class="line">        <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(<span class="type">URL</span>(string: <span class="type">UIApplication</span>.openSettingsURLString)!, options: [:], completionHandler: <span class="literal">nil</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    alert.addAction(okAction)</span><br><span class="line">    <span class="keyword">let</span> cancelAction = <span class="type">UIAlertAction</span>(title: <span class="string">"取消"</span>, style: .cancel, handler: <span class="literal">nil</span>)</span><br><span class="line">    alert.addAction(cancelAction)</span><br><span class="line"></span><br><span class="line">    <span class="type">UIApplication</span>.shared.visibleVC().present(alert, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 代理回调 CLLocationManagerDelegate</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">locationManager</span><span class="params">(<span class="number">_</span> manager: CLLocationManager, didUpdateLocations locations: [CLLocation])</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> currentLocation = locations.last</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 得到经纬度</span></span><br><span class="line">    <span class="keyword">let</span> currentCoordinate2D = currentLocation?.coordinate</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> latitude = currentCoordinate2D?.latitude, <span class="keyword">let</span> longitude = currentCoordinate2D?.longitude <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定位成功后停止定位</span></span><br><span class="line">    locationManager.stopUpdatingLocation()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发生错误</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">locationManager</span><span class="params">(<span class="number">_</span> manager: CLLocationManager, didFailWithError error: Error)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="定位-高德定位"><a href="#定位-高德定位" class="headerlink" title="定位 - 高德定位"></a>定位 - 高德定位</h4><blockquote>
+<ol>
+<li>在<a href="https://lbs.amap.com/" target="_blank" rel="noopener">高德开放平台</a>注册账号</li>
+<li>新建应用</li>
+<li>拿到 key，在 App 启动的时候设置 </li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 key</span></span><br><span class="line"><span class="type">AMapServices</span>.shared()?.apiKey = <span class="string">"\(appKey)"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 初始化 AMapLocationManager 实例</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> locationManager : <span class="type">AMapLocationManager</span> = &#123;</span><br><span class="line">    <span class="keyword">let</span> managner = <span class="type">AMapLocationManager</span>()</span><br><span class="line">    managner.delegate = <span class="keyword">self</span></span><br><span class="line">    managner.pausesLocationUpdatesAutomatically = <span class="literal">false</span></span><br><span class="line">    <span class="comment">// 定位精度</span></span><br><span class="line">    managner.desiredAccuracy = kCLLocationAccuracyBest</span><br><span class="line">    <span class="comment">// 是否允许后台定位</span></span><br><span class="line">    managner.allowsBackgroundLocationUpdates = <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 指定单次定位超时时间,默认为10s。最小值是2s。注意单次定位请求前设置。注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)后开始计算。</span></span><br><span class="line">    manager.locationTimeout = <span class="number">2</span></span><br><span class="line">    <span class="comment">// 指定单次定位逆地理超时时间,默认为5s。最小值是2s。注意单次定位请求前设置。</span></span><br><span class="line">    manager.reGeocodeTimeout = <span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> managner</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 开始连续定位。调用此方法会cancel掉所有的单次定位请求。</span></span><br><span class="line">locationManager.startUpdatingLocation()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 停止连续定位。调用此方法会cancel掉所有的单次定位请求，可以用来取消单次定位。</span></span><br><span class="line">locationManager.stopUpdatingLocation()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 单次定位。如果当前正在连续定位，调用此方法将会失败，返回NO。\n该方法将会根据设定的 desiredAccuracy 去获取定位信息。如果获取的定位信息精确度低于 desiredAccuracy ，将会持续的等待定位信息，直到超时后通过completionBlock返回精度最高的定位信息。\n可以通过 stopUpdatingLocation 方法去取消正在进行的单次定位请求。</span></span><br><span class="line"><span class="comment">// withReGeocode: 是否带有逆地理信息(获取逆地理信息需要联网)</span></span><br><span class="line">locationManager.requestLocation(withReGeocode: <span class="literal">true</span>) &#123; (location, regeocode, error) <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">guard</span> error == <span class="literal">nil</span> <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> regeocode = regeocode <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="built_in">print</span>(regeocode)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 代理回调  AMapLocationManagerDelegate</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定位成功</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">amapLocationManager</span><span class="params">(<span class="number">_</span> manager: AMapLocationManager!, didUpdate location: CLLocation!, reGeocode: AMapLocationReGeocode!)</span></span> &#123;</span><br><span class="line">    	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定位失败</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">amapLocationManager</span><span class="params">(<span class="number">_</span> manager: AMapLocationManager!, didFailWithError error: Error!)</span></span> &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求定位授权</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">amapLocationManager</span><span class="params">(<span class="number">_</span> manager: AMapLocationManager!, doRequireLocationAuth locationManager: CLLocationManager!)</span></span> &#123;</span><br><span class="line">    locationManager.requestAlwaysAuthorization()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="定位-Google-定位"><a href="#定位-Google-定位" class="headerlink" title="定位 - Google 定位"></a>定位 - Google 定位</h4><blockquote>
+<ol>
+<li>在 <a href="https://cloud.google.com/maps-platform/" target="_blank" rel="noopener">https://cloud.google.com/maps-platform/</a> 平台注册开发者账号</li>
+<li>申请 API key</li>
+<li><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-14-094340.png" alt="image-20201114173121575"></li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 API key</span></span><br><span class="line"><span class="type">GMSServices</span>.provideAPIKey(<span class="string">"\(Google API key)"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划"><a href="#POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划" class="headerlink" title="POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划"></a>POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划</h3><h4 id="POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划-高德地图"><a href="#POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划-高德地图" class="headerlink" title="POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划 -  高德地图"></a>POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划 -  高德地图</h4><blockquote>
+<p>高德地图 SDK 封装了 AMapSearchObject 基类对象，具体的搜搜请求对象和响应对象都由子类去继承实现。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、初始化搜索对象，设置代理</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> search: <span class="type">AMapSearchAPI</span> = &#123;</span><br><span class="line">     <span class="keyword">let</span> object = <span class="type">AMapSearchAPI</span>()!</span><br><span class="line">     object.delegate = <span class="keyword">self</span></span><br><span class="line">     <span class="keyword">return</span> object</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//---------  附近 ：构造请求对象 ----------- </span></span><br><span class="line"><span class="keyword">let</span> request = <span class="type">AMapPOIAroundSearchRequest</span>()</span><br><span class="line"><span class="comment">// 当地定位经纬度</span></span><br><span class="line">request.location = <span class="type">AMapGeoPoint</span>.location(withLatitude: currentCoordinate!.latitude.cgFloat, longitude: currentCoordinate!.longitude.cgFloat)</span><br><span class="line">request.sortrule = <span class="number">0</span></span><br><span class="line"><span class="comment">// 类型，多个类型用“|”分割 可选值:文本分类、分类代码 </span></span><br><span class="line"><span class="comment">// 高德地图的POI类别共20个大类，分别为：汽车服务、汽车销售、汽车维修、摩托车服务、餐饮服务、购物服务、生活服务、体育休闲服务、医疗保健服务、住宿服务、风景名胜、商务住宅、政府机构及社会团体、科教文化服务、交通设施服务、金融保险服务、公司企业、道路附属设施、地名地址信息、公共设施，同时，每个大类别都还有二级以及三级的细小划。</span></span><br><span class="line">request.types = <span class="string">"风景名胜|商务住宅|政府机构及社会团体|交通设施服务|公司企业|道路附属设施|地名地址信息"</span></span><br><span class="line">request.requireExtension = <span class="literal">true</span></span><br><span class="line"><span class="comment">// 当前页数</span></span><br><span class="line">request.page = page</span><br><span class="line">request.requireSubPOIs = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 发起搜索</span></span><br><span class="line">search.aMapPOIAroundSearch(request)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------- 关键词搜索 构造请求对象 ------------------------------</span></span><br><span class="line"><span class="keyword">let</span> request = <span class="type">AMapPOIKeywordsSearchRequest</span>()</span><br><span class="line">request.keywords = keywords</span><br><span class="line"><span class="comment">// 指定城市</span></span><br><span class="line">request.city = city</span><br><span class="line">request.sortrule = <span class="number">0</span></span><br><span class="line">request.requireExtension = <span class="literal">true</span></span><br><span class="line">request.page = page</span><br><span class="line">request.cityLimit = <span class="literal">false</span></span><br><span class="line">request.requireSubPOIs = <span class="literal">true</span></span><br><span class="line">request.types = <span class="string">"风景名胜|商务住宅|政府机构及社会团体|交通设施服务|公司企业|道路附属设施|地名地址信息"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关键词搜索 - 高德： 发起关键词搜索</span></span><br><span class="line">search.aMapPOIKeywordsSearch(request)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------- 地理编码：地理编码，又称为地址匹配，是从已知的地址描述到对应的经纬度坐标的转换过程。该功能适用于根据用户输入的地址确认用户具体位置的场景，常用于配送人员根据用户输入的具体地址找地点。-----------</span></span><br><span class="line"><span class="keyword">let</span> request = <span class="type">AMapGeocodeSearchRequest</span>()</span><br><span class="line"><span class="comment">// 位置信息：地理编码是依据当前输入，根据标准化的地址结构（省/市/区或县/乡/村或社区/商圈/街道/门牌号/POI）进行各个地址级别的匹配，以确认输入地址对应的地理坐标，只有返回的地理坐标匹配的级别为POI，才会对应一个具体的地物（POI）。</span></span><br><span class="line">request.address = address</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发起地理编码搜索请求</span></span><br><span class="line">search.aMapGeocodeSearch(request)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------------------------- AMapSearchDelegate --------------------------------------</span></span><br><span class="line"><span class="comment">// POI 搜索回调</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">onPOISearchDone</span><span class="params">(<span class="number">_</span> request: AMapPOISearchBaseRequest!, response: AMapPOISearchResponse!)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> response.<span class="built_in">count</span> == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//解析response获取POI信息</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 地理编码（地址转坐标）回调</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">onGeocodeSearchDone</span><span class="params">(<span class="number">_</span> request: AMapGeocodeSearchRequest!, response: AMapGeocodeSearchResponse!)</span></span> &#123;</span><br><span class="line">    <span class="comment">// 解析response获取地理信息，</span></span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路线规划</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">onRouteSearchDone</span><span class="params">(<span class="number">_</span> request: AMapRouteSearchBaseRequest!, response: AMapRouteSearchResponse!)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> response.<span class="built_in">count</span> &gt; <span class="number">0</span> &#123;</span><br><span class="line">        <span class="comment">//解析response获取路径信息</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 搜索出现错误    </span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">aMapSearchRequest</span><span class="params">(<span class="number">_</span> request: Any!, didFailWithError error: Error!)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划-Google-地图"><a href="#POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划-Google-地图" class="headerlink" title="POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划 -  Google 地图"></a>POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划 -  Google 地图</h4><blockquote>
+<p>Google 地图这些 POI 搜索，导航数据这些，提供的是 HTTP API 请求调用的方式。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 谷歌地图 POI 关键词模糊搜索</span></span><br><span class="line"><span class="comment">// https://maps.googleapis.com/maps/api/place/textsearch/json</span></span><br><span class="line"><span class="keyword">var</span> params: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</span><br><span class="line">params[<span class="string">"key"</span>] = <span class="string">"\(Google API key)"</span></span><br><span class="line"><span class="comment">// 语言 ： </span></span><br><span class="line">params[<span class="string">"language"</span>] = <span class="string">"en"</span></span><br><span class="line">params[<span class="string">"query"</span>] = <span class="string">"\(关键词文本)"</span></span><br><span class="line">params[<span class="string">"inputType"</span>] = <span class="string">"textQuery"</span></span><br><span class="line"><span class="comment">//  params["region"] =</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 谷歌地图 POI 附近搜索</span></span><br><span class="line"><span class="comment">// https://maps.googleapis.com/maps/api/place/nearbysearch/json</span></span><br><span class="line"><span class="keyword">var</span> params: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</span><br><span class="line">params[<span class="string">"key"</span>] = <span class="string">"\(Google API key)"</span></span><br><span class="line"><span class="comment">// 语言 ： </span></span><br><span class="line">params[<span class="string">"language"</span>] = <span class="string">"en"</span></span><br><span class="line"><span class="comment">// 当前位置 字符串: "纬度,经度"</span></span><br><span class="line">params[<span class="string">"location"</span>] = <span class="string">"\(latitude,longitude)"</span></span><br><span class="line"><span class="comment">// 搜索半径 （单位：米）</span></span><br><span class="line">params[<span class="string">"radius"</span>] = <span class="string">"\(1500)"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 谷歌地理编码</span></span><br><span class="line"><span class="comment">// https://maps.googleapis.com/maps/api/geocode/json</span></span><br><span class="line"><span class="keyword">var</span> params: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</span><br><span class="line">params[<span class="string">"key"</span>] = <span class="string">"\(Google API key)"</span></span><br><span class="line"><span class="comment">// 地址文本</span></span><br><span class="line">params[<span class="string">"address"</span>] = address</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 谷歌地址逆编码</span></span><br><span class="line"><span class="comment">// https://maps.googleapis.com/maps/api/geocode/json</span></span><br><span class="line"><span class="keyword">var</span> params: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</span><br><span class="line">params[<span class="string">"key"</span>] = <span class="string">"\(Google API key)"</span></span><br><span class="line">params[<span class="string">"latlng"</span>] = location.googleDisplay</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> .requestParameters(parameters: params,</span><br><span class="line">                          encoding: <span class="type">URLEncoding</span>.<span class="keyword">default</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 谷歌路线导航，默认驾车</span></span><br><span class="line"><span class="comment">// https://maps.googleapis.com/maps/api/directions/json</span></span><br><span class="line"><span class="keyword">var</span> params: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</span><br><span class="line">params[<span class="string">"key"</span>] = <span class="string">"\(Google API key)"</span></span><br><span class="line"><span class="comment">// 出发点坐标位置</span></span><br><span class="line">params[<span class="string">"origin"</span>] = <span class="string">"\(latitude,longitude)"</span></span><br><span class="line"><span class="comment">// 目的地坐标位置</span></span><br><span class="line">params[<span class="string">"destination"</span>] = <span class="string">"\(latitude,longitude)"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析相应数据，模型转换框架使用的是 ObjectMapper </span></span><br><span class="line"><span class="comment">/// 列表容器模型</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListContainerModel</span>&lt;<span class="title">T</span>: <span class="title">Mappable</span>&gt;: <span class="title">Mappable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> list: [<span class="type">T</span>]?</span><br><span class="line">    <span class="keyword">var</span> numberOfElements: <span class="type">Int</span>?</span><br><span class="line">    <span class="keyword">var</span> total: <span class="type">Int</span>?</span><br><span class="line">    <span class="keyword">var</span> pageNumber: <span class="type">Int</span>?</span><br><span class="line">    <span class="keyword">var</span> size: <span class="type">Int</span>?</span><br><span class="line">    <span class="keyword">var</span> hasNextPage: <span class="type">Bool</span>?</span><br><span class="line">    <span class="keyword">var</span> hasPreviousPage: <span class="type">Bool</span>?</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</span><br><span class="line">        list &lt;- <span class="built_in">map</span>[<span class="string">"list"</span>]</span><br><span class="line">        numberOfElements &lt;- <span class="built_in">map</span>[<span class="string">"numberOfElements"</span>]</span><br><span class="line">        total &lt;- <span class="built_in">map</span>[<span class="string">"total"</span>]</span><br><span class="line">        pageNumber &lt;- <span class="built_in">map</span>[<span class="string">"pageNumber"</span>]</span><br><span class="line">        size &lt;- <span class="built_in">map</span>[<span class="string">"size"</span>]</span><br><span class="line">        hasNextPage &lt;- <span class="built_in">map</span>[<span class="string">"hasNextPage"</span>]</span><br><span class="line">        hasPreviousPage &lt;- <span class="built_in">map</span>[<span class="string">"hasPreviousPage"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// google POI 附近和关键词地址搜索</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GoogleSearchAddressContainerModel</span>: <span class="title">Mappable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> html_attributions: [<span class="type">Any</span>]?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// POI 列表</span></span><br><span class="line">    <span class="keyword">var</span> results: [<span class="type">SearchAddressModel</span>]?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 返回结果状态</span></span><br><span class="line">    <span class="keyword">var</span> status: <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</span><br><span class="line">        html_attributions &lt;- <span class="built_in">map</span>[<span class="string">"html_attributions"</span>]</span><br><span class="line">        results &lt;- <span class="built_in">map</span>[<span class="string">"results"</span>]</span><br><span class="line">        status &lt;- <span class="built_in">map</span>[<span class="string">"status"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// leg Model</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GoogleDirectionLegModel</span>: <span class="title">Mappable</span>  </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">distance</span>: <span class="type">Any</span>?</span><br><span class="line">    <span class="keyword">var</span> duration: <span class="type">Any</span>?</span><br><span class="line">    <span class="keyword">var</span> end_address: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> end_location: <span class="type">GeometryLocation</span>?</span><br><span class="line">    <span class="keyword">var</span> start_address: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> start_location: <span class="type">GeometryLocation</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> steps: [<span class="type">GoogleDirectionAddressModel</span>]?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</span><br><span class="line">        steps &lt;- <span class="built_in">map</span>[<span class="string">"steps"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 谷歌地图返回结果模型 </span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GoogleDirectionResultModel</span>: <span class="title">Mappable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> steps: [<span class="type">GoogleDirectionAddressModel</span>]? &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> result = [<span class="type">GoogleDirectionAddressModel</span>]()</span><br><span class="line">            legs?.forEach(&#123; (leg) <span class="keyword">in</span></span><br><span class="line">                result.append(contentsOf: leg.steps ?? [])</span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> legs: [<span class="type">GoogleDirectionLegModel</span>]?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> points: <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</span><br><span class="line">        legs &lt;- <span class="built_in">map</span>[<span class="string">"routes.0.legs"</span>]</span><br><span class="line">        points &lt;- <span class="built_in">map</span>[<span class="string">"routes.0.overview_polyline.points"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="标记点（大头针-annotation-Marker）"><a href="#标记点（大头针-annotation-Marker）" class="headerlink" title="标记点（大头针 annotation || Marker）"></a>标记点（大头针 annotation || Marker）</h3><h4 id="标记点（大头针-annotation-Marker）-高德"><a href="#标记点（大头针-annotation-Marker）-高德" class="headerlink" title="标记点（大头针 annotation || Marker）- 高德"></a>标记点（大头针 annotation || Marker）- 高德</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建地图对象</span></span><br><span class="line"><span class="keyword">let</span> gaodeMap = <span class="type">MAMapView</span>()</span><br><span class="line">gaodeMap.delegate = <span class="keyword">self</span></span><br><span class="line"><span class="comment">// 缩放级别</span></span><br><span class="line">zoomLevel = <span class="number">17</span></span><br><span class="line"><span class="comment">// 是否显示用户位置</span></span><br><span class="line">isShowsUserLocation = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义地图样式(1. 在高德地图开发者应用后台新建地图样式，下载样式的资源包拖到工程里面去)</span></span><br><span class="line"><span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">R</span>.file.styleData(),</span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">try</span>? <span class="type">Data</span>(contentsOf: url) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> options = <span class="type">MAMapCustomStyleOptions</span>()</span><br><span class="line">options.styleData = data</span><br><span class="line">setCustomMapStyleOptions(options)</span><br><span class="line">customMapStyleEnabled = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定当前地图的经纬度范围，该范围可能会被调整为适合地图窗口显示的范围</span></span><br><span class="line">setRegion(<span class="type">MACoordinateRegion</span>(center:  centerCoordinate, span: <span class="type">MACoordinateSpan</span>(latitudeDelta: <span class="number">0.03</span>, longitudeDelta: <span class="number">0.03</span>)), animated: <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 新建标注</span></span><br><span class="line"><span class="keyword">let</span> pointAnnotation = <span class="type">MAPointAnnotation</span>()</span><br><span class="line"><span class="comment">// 标注中心点经纬度坐标</span></span><br><span class="line">pointAnnotation.coordinate = center</span><br><span class="line"><span class="comment">// 标注标题</span></span><br><span class="line">pointAnnotation.title = title</span><br><span class="line"><span class="comment">// 标注副标题</span></span><br><span class="line">pointAnnotation.subtitle = subTitle</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加标注 </span></span><br><span class="line">gaodeMap.addAnnotation(pointAnnotation</span><br><span class="line"><span class="comment">// 选中标注数据对应的view。注意：如果annotation对应的annotationView因不在屏幕范围内而被移入复用池，为了完成选中操作，会将对应的annotationView添加到地图上，并将地图中心点移至annotation.coordinate的位置。</span></span><br><span class="line">gaodeMap.selectAnnotation(pointAnnotation, animated: <span class="literal">false</span>)</span><br><span class="line">                       </span><br><span class="line">                       </span><br><span class="line"><span class="comment">// 设置标注 的外观样式</span></span><br><span class="line"><span class="comment">// MAMapViewDelegate       </span></span><br><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">mapView</span><span class="params">(<span class="number">_</span> mapView: MAMapView!, viewFor annotation: MAAnnotation!)</span></span> -&gt; <span class="type">MAAnnotationView</span>! &#123;</span><br><span class="line">    <span class="keyword">if</span> annotation.isKind(of: <span class="type">MAPointAnnotation</span>.<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> pointReuseIndetifier = <span class="string">"pointReuseIndetifier"</span></span><br><span class="line">        <span class="keyword">var</span> annotationView: <span class="type">MAPinAnnotationView</span>? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) <span class="keyword">as</span>! <span class="type">MAPinAnnotationView</span>?</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> annotationView == <span class="literal">nil</span> &#123;</span><br><span class="line">            annotationView = <span class="type">MAPinAnnotationView</span>(annotation: annotation, reuseIdentifier: pointReuseIndetifier)</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 是否可以点击标注view</span></span><br><span class="line">        annotationView!.canShowCallout = <span class="literal">true</span></span><br><span class="line">        <span class="comment">// 是否有标注添加到地图上的动画效果(从上而下)</span></span><br><span class="line">        annotationView!.animatesDrop = <span class="literal">true</span></span><br><span class="line">        <span class="comment">// 是否可以拖拽</span></span><br><span class="line">        annotationView!.isDraggable = <span class="literal">true</span></span><br><span class="line">        <span class="comment">// 是否有右边的视图</span></span><br><span class="line">        annotationView!.rightCalloutAccessoryView = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> annotationView!</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line">                       </span><br><span class="line"><span class="comment">// 移除标注</span></span><br><span class="line">gaodeMap.removeAnnotation(pointAnnotation)</span><br></pre></td></tr></table></figure>
+<h4 id="标记点（大头针-annotation-Marker）-Google"><a href="#标记点（大头针-annotation-Marker）-Google" class="headerlink" title="标记点（大头针 annotation || Marker）- Google"></a>标记点（大头针 annotation || Marker）- Google</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建 Google map</span></span><br><span class="line"><span class="keyword">let</span> googleMap = <span class="type">GMSMapView</span>()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加标注 Marker</span></span><br><span class="line"><span class="comment">// 创建 GMSMarker 对象</span></span><br><span class="line"><span class="keyword">let</span> marker = <span class="type">GMSMarker</span>()</span><br><span class="line"><span class="comment">// 标注位置</span></span><br><span class="line">marker.position = <span class="type">CLLocationCoordinate2D</span>(latitude: latitude, longitude: longitude)</span><br><span class="line"><span class="comment">// 标注标题</span></span><br><span class="line">marker.title = title</span><br><span class="line"><span class="comment">// 标注副标题</span></span><br><span class="line">marker.snippet = subTitle</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置标注的图片</span></span><br><span class="line">marker.icon = <span class="type">UIImage</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置</span></span><br><span class="line"><span class="keyword">let</span> camera = <span class="type">GMSCameraPosition</span>.camera(withLatitude: marker.position.latitude, longitude: marker.position.longitude, zoom: <span class="number">16.0</span>)</span><br><span class="line">marker.<span class="built_in">map</span> = googleMap</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自动显示标题内容</span></span><br><span class="line">selectedMarker = marker</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除标注</span></span><br><span class="line">marker.<span class="built_in">map</span> = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+<h3 id="Overlay-amp-amp-Polyline"><a href="#Overlay-amp-amp-Polyline" class="headerlink" title="Overlay &amp;&amp; Polyline"></a>Overlay &amp;&amp; Polyline</h3><h4 id="Overlay-amp-amp-Polyline-高德"><a href="#Overlay-amp-amp-Polyline-高德" class="headerlink" title="Overlay &amp;&amp; Polyline - 高德"></a>Overlay &amp;&amp; Polyline - 高德</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多线段的坐标点数组</span></span><br><span class="line"><span class="keyword">var</span> lineCoordinates = [<span class="type">CLLocationCoordinate2D</span>]()</span><br><span class="line"><span class="comment">// 多边形</span></span><br><span class="line"><span class="keyword">let</span> pol = <span class="type">MAPolygon</span>(coordinates: &amp;lineCoordinates, <span class="built_in">count</span>: <span class="type">UInt</span>(lineCoordinates.<span class="built_in">count</span>))</span><br><span class="line">gaodeMap.add(pol)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不是多边形</span></span><br><span class="line"><span class="keyword">let</span> polyline: <span class="type">MAPolyline</span> = <span class="type">MAPolyline</span>(coordinates: &amp;lineCoordinates, <span class="built_in">count</span>: <span class="type">UInt</span>(lineCoordinates.<span class="built_in">count</span>))</span><br><span class="line">gaodeMap.addOverlays([polyline])</span><br><span class="line"><span class="comment">// 展示路线</span></span><br><span class="line">showOverlays([polyline], animated: <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除</span></span><br><span class="line">removeOverlays(polyline)</span><br></pre></td></tr></table></figure>
+<h4 id="Overlay-amp-amp-Polyline-Google"><a href="#Overlay-amp-amp-Polyline-Google" class="headerlink" title="Overlay &amp;&amp; Polyline - Google"></a>Overlay &amp;&amp; Polyline - Google</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多线段的坐标点数组</span></span><br><span class="line"><span class="keyword">var</span> lineCoordinates = [<span class="type">CLLocationCoordinate2D</span>]()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多边形路径</span></span><br><span class="line"><span class="keyword">let</span> gmsPath = <span class="type">GMSMutablePath</span>()</span><br><span class="line">lineCoordinates.forEach &#123; (location) <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> latitude = location.latitude, <span class="keyword">let</span> longitude = location.longitude &#123;</span><br><span class="line">        gmsPath.addLatitude(latitude, longitude: longitude)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> polyline = <span class="type">GMSPolyline</span>(path: gmsPath)</span><br><span class="line"><span class="comment">// 设置线段颜色</span></span><br><span class="line">polyline.strokeColor = <span class="type">UIColor</span>._themeColor()</span><br><span class="line"><span class="comment">// 设置线段宽度</span></span><br><span class="line">polyline.strokeWidth = <span class="number">8.0</span></span><br><span class="line"><span class="comment">// 显示出来</span></span><br><span class="line">polyline.<span class="built_in">map</span> = googleMap</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除</span></span><br><span class="line">polyline.<span class="built_in">map</span> = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+<h3 id="地理围栏"><a href="#地理围栏" class="headerlink" title="地理围栏"></a>地理围栏</h3><ul>
+<li><p>POI 围栏</p>
+</li>
+<li><p>行政区划 围栏</p>
+</li>
+<li><p>自定义圆形围栏</p>
+</li>
+<li><p>自定义多边围栏</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建围栏对象</span></span><br><span class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> geoFenceManager: <span class="type">AMapGeoFenceManager</span> = &#123;</span><br><span class="line">    <span class="keyword">let</span> manager = <span class="type">AMapGeoFenceManager</span>()</span><br><span class="line">    <span class="comment">//进入，离开，停留都要进行通知</span></span><br><span class="line">    manager.activeAction = [<span class="type">AMapGeoFenceActiveAction</span>.inside , <span class="type">AMapGeoFenceActiveAction</span>.outside , <span class="type">AMapGeoFenceActiveAction</span>.stayed]</span><br><span class="line">    manager.allowsBackgroundLocationUpdates = <span class="literal">false</span>  <span class="comment">// 允许后台定位</span></span><br><span class="line">    manager.delegate = <span class="keyword">self</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> manager</span><br><span class="line">&#125;()</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 创建行政区域地理围栏</span></span><br><span class="line">geoFenceManager.addDistrictRegionForMonitoring(withDistrictName: <span class="string">"深圳市"</span>, customID: <span class="string">"city"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加圆形围栏</span></span><br><span class="line"><span class="comment">// withCenter: 围栏中心点</span></span><br><span class="line"><span class="comment">//  radius: 围栏半径</span></span><br><span class="line">geoFenceManager.addCircleRegionForMonitoring(withCenter: <span class="type">CLLocationCoordinate2D</span>(latitude: latitude, longitude: longitude), radius: <span class="number">500</span>, customID: <span class="string">"123456"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除围栏</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置圆形围栏样式</span></span><br><span class="line"><span class="comment">// 渲染多边型 --- MAMapViewDelegate</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapView</span><span class="params">(<span class="number">_</span> mapView: MAMapView!, rendererFor overlay: MAOverlay!)</span></span> -&gt; <span class="type">MAOverlayRenderer</span>! &#123;</span><br><span class="line">    <span class="keyword">if</span> overlay.isKind(of: <span class="type">MACircle</span>.<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> renderer: <span class="type">MACircleRenderer</span> = <span class="type">MACircleRenderer</span>(overlay: overlay)</span><br><span class="line">     </span><br><span class="line">        renderer.lineWidth = <span class="number">1.0</span></span><br><span class="line">        renderer.strokeColor = <span class="type">UIColor</span>.gxd_themeColor()</span><br><span class="line">        renderer.fillColor = <span class="type">UIColor</span>.gxd_themeColor().withAlphaComponent(<span class="number">0.4</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> renderer</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: - AMapGeoFenceManagerDelegate </span></span><br><span class="line"><span class="comment">// 围栏创建完成</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">amapGeoFenceManager</span><span class="params">(<span class="number">_</span> manager: AMapGeoFenceManager!, didAddRegionForMonitoringFinished regions: [AMapGeoFenceRegion]!, customID: String!, error: Error!)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error = error &#123;</span><br><span class="line">        <span class="keyword">let</span> error = error <span class="keyword">as</span> <span class="type">NSError</span></span><br><span class="line">        <span class="type">NSLog</span>(<span class="string">"创建失败 %@"</span>,error);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="type">NSLog</span>(<span class="string">"创建成功"</span>)</span><br><span class="line">        <span class="keyword">let</span> circleRegion = regions.first <span class="keyword">as</span>? <span class="type">AMapGeoFenceCircleRegion</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 在地图上画一个区域</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> center = circleRegion?.center,</span><br><span class="line">            <span class="keyword">let</span> radius = circleRegion?.radius <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">let</span> circle: <span class="type">MACircle</span> = <span class="type">MACircle</span>(center: <span class="type">CLLocationCoordinate2D</span>(latitude: center.latitude, longitude: center.longitude), radius: <span class="type">CLLocationDistance</span>(radius))</span><br><span class="line">        gaodeMap.add(circle)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 围栏状态改变时 用户未知、进入围栏、退出围栏、在围栏内停留</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">amapGeoFenceManager</span><span class="params">(<span class="number">_</span> manager: AMapGeoFenceManager!, didGeoFencesStatusChangedFor region: AMapGeoFenceRegion!, customID: String!, error: Error!)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"status changed \(region.description)"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"status changed error \(error)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><blockquote>
+<p>跳转到第三方地图  App 发起导航，先要在 InfoPlist 文件里面配置 QueriesSchemes 字段</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>LSApplicationQueriesSchemes<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>comgooglemaps<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>iosamap<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>baidumap<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>发起导航：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 地图导航模式</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">MapDirectionMode</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 驾车</span></span><br><span class="line">    <span class="keyword">case</span> driving</span><br><span class="line">    <span class="comment">// 步行</span></span><br><span class="line">    <span class="keyword">case</span> walking</span><br><span class="line">    <span class="comment">// 骑行</span></span><br><span class="line">    <span class="keyword">case</span> bicycling</span><br><span class="line">    <span class="comment">// 公共交通</span></span><br><span class="line">    <span class="keyword">case</span> transit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DirectionParams</span> </span>&#123;</span><br><span class="line">    <span class="comment">/// 源 App 名称</span></span><br><span class="line">    <span class="keyword">var</span> sourceApplication: <span class="type">String</span> = <span class="type">U</span><span class="string">""</span></span><br><span class="line">    <span class="comment">/// 源 App scheme url</span></span><br><span class="line">    <span class="keyword">var</span> backScheme: <span class="type">String</span> = <span class="string">"\(appUrlScheme)"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 起始地点</span></span><br><span class="line">    <span class="keyword">var</span> origin: <span class="type">Location</span>?</span><br><span class="line">    <span class="comment">/// 目的地点</span></span><br><span class="line">    <span class="keyword">var</span> destination: <span class="type">Location</span></span><br><span class="line">    <span class="comment">/// 导航模式</span></span><br><span class="line">    <span class="keyword">var</span> mode: <span class="type">MapDirectionMode</span> = .driving</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 打开苹果地图导航</span></span><br><span class="line"><span class="comment">/// - Parameter params: 参数</span></span><br><span class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">openAppleMapDirection</span><span class="params">(withParams params: DirectionParams)</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> latitude = params.destination.latitude,</span><br><span class="line">        <span class="keyword">let</span> longitude = params.destination.longitude <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> currentLocation = <span class="type">MKMapItem</span>.forCurrentLocation()</span><br><span class="line">    <span class="keyword">let</span> toPlacemark = <span class="type">MKPlacemark</span>(coordinate: <span class="type">CLLocationCoordinate2D</span>(latitude: latitude, longitude: longitude))</span><br><span class="line">    <span class="keyword">let</span> toLocation = <span class="type">MKMapItem</span>(placemark: toPlacemark)</span><br><span class="line">    toLocation.name = params.destination.name</span><br><span class="line">    <span class="type">MKMapItem</span>.openMaps(with: [currentLocation, toLocation], launchOptions: [<span class="type">MKLaunchOptionsDirectionsModeKey</span>: <span class="type">MKLaunchOptionsDirectionsModeDriving</span>])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 打开 google 地图导航</span></span><br><span class="line"><span class="comment">/// - Parameter params: 参数</span></span><br><span class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">openGoogleMapDirection</span><span class="params">(withParams params: DirectionParams)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> !<span class="type">Keys</span>.<span class="type">MapSchemeUrl</span>.google.isInstalled &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">var</span> daddr = params.destination.name <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    daddr = daddr.replacingOccurrences(of: <span class="string">" "</span>, with: <span class="string">"+"</span>, options: .literal, range: <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> urlString = <span class="type">Keys</span>.<span class="type">MapSchemeUrl</span>.google.rawValue + <span class="string">"?"</span> +  <span class="string">"x-source=\(params.sourceApplication)&amp;x-success=\(params.backScheme)&amp;saddr=&amp;daddr=\(daddr)&amp;directionsmode=driving"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">URL</span>(string: urlString) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(url, options: [:], completionHandler: <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 打开 百度 地图导航</span></span><br><span class="line"><span class="comment">/// - Parameter params: 参数</span></span><br><span class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">openBaiduMapDirection</span><span class="params">(withParams params: DirectionParams)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> !<span class="type">Keys</span>.<span class="type">MapSchemeUrl</span>.baidu.isInstalled &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> destinationLatitude = params.destination.latitude,</span><br><span class="line">                <span class="keyword">let</span> destinationLongitude = params.destination.longitude <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="keyword">let</span> destinationName = params.destination.name ?? <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> urlString = <span class="type">Keys</span>.<span class="type">MapSchemeUrl</span>.baidu.rawValue + <span class="string">"map/direction?origin=name:&#123;&#123;我的位置&#125;&#125;&amp;destination=name:\(destinationName)|latlng:\(destinationLatitude),\(destinationLongitude)&amp;mode=driving&amp;coord_type=bd09ll&amp;src=ios.Express.\(params.sourceApplication)"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">URL</span>(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? <span class="string">""</span>) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(url, options: [:], completionHandler: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 打开 高德 地图导航</span></span><br><span class="line"><span class="comment">/// - Parameter params: 参数</span></span><br><span class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">openGaodeMapDirection</span><span class="params">(withParams params: DirectionParams)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> !<span class="type">Keys</span>.<span class="type">MapSchemeUrl</span>.gaode.isInstalled &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> latitude = params.destination.latitude,</span><br><span class="line">        <span class="keyword">let</span> longitude = params.destination.longitude <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="keyword">let</span> destinationName = params.destination.name ?? <span class="string">""</span></span><br><span class="line">    <span class="keyword">let</span> urlString = <span class="type">Keys</span>.<span class="type">MapSchemeUrl</span>.gaode.rawValue +  <span class="string">"path?sourceApplication=\(params.sourceApplication)&amp;backScheme=\(params.backScheme)&amp;dlat=\(latitude)&amp;dlon=\(longitude)&amp;dname=\(destinationName)&amp;dev=0&amp;t=0"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">URL</span>(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? <span class="string">""</span>) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(url, options: [:], completionHandler: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ol>
+<li><a href="https://lbs.amap.com/api" target="_blank" rel="noopener">https://lbs.amap.com/api</a></li>
+<li><a href="https://developers.google.com/places/ios-sdk/overview" target="_blank" rel="noopener">https://developers.google.com/places/ios-sdk/overview</a></li>
+</ol>
+<hr>
+<p>分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。</p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方" style="zoom:33%;"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="陈良静 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="陈良静 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Categorys/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/Categorys/地图/" rel="tag"># 地图</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/" rel="next" title="iOS 基于 launchctl + fastlane + 钉钉机器人实现定时自动打包">
+                <i class="fa fa-chevron-left"></i> iOS 基于 launchctl + fastlane + 钉钉机器人实现定时自动打包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/" rel="prev" title="iOS Stripe 支付（绑卡，Apple Pay）、退款、提现集成总结">
+                iOS Stripe 支付（绑卡，Apple Pay）、退款、提现集成总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myIcon.jpg" alt="陈良静">
+            
+              <p class="site-author-name" itemprop="name">陈良静</p>
+              <p class="site-description motion-element" itemprop="description">跑得了马，写得了码！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ljchen1129" title="GitHub &rarr; https://github.com/ljchen1129" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" title="Weibo &rarr; http://weibo.com/3240004000/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1#_loginLayer_1462099198074" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:ljchen1129@gmail.com" title="E-Mail &rarr; mailto:ljchen1129@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/potato512?viewmode=contents" title="http://blog.csdn.net/potato512?viewmode=contents" rel="noopener" target="_blank">番薯大佬的专栏</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#废话不多说，先看效果："><span class="nav-number">2.</span> <span class="nav-text">废话不多说，先看效果：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">2.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#-1"><span class="nav-number">2.2.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位"><span class="nav-number">3.</span> <span class="nav-text">定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定位-系统原生"><span class="nav-number">3.1.</span> <span class="nav-text">定位 - 系统原生</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定位-高德定位"><span class="nav-number">3.2.</span> <span class="nav-text">定位 - 高德定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定位-Google-定位"><span class="nav-number">3.3.</span> <span class="nav-text">定位 - Google 定位</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划"><span class="nav-number">4.</span> <span class="nav-text">POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划-高德地图"><span class="nav-number">4.1.</span> <span class="nav-text">POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划 -  高德地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POI（Point-of-Interest，兴趣点）-amp-amp-地理编码、逆编码-amp-amp-路径规划-Google-地图"><span class="nav-number">4.2.</span> <span class="nav-text">POI（Point of Interest，兴趣点）&amp;&amp; 地理编码、逆编码  &amp;&amp;  路径规划 -  Google 地图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记点（大头针-annotation-Marker）"><span class="nav-number">5.</span> <span class="nav-text">标记点（大头针 annotation || Marker）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标记点（大头针-annotation-Marker）-高德"><span class="nav-number">5.1.</span> <span class="nav-text">标记点（大头针 annotation || Marker）- 高德</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记点（大头针-annotation-Marker）-Google"><span class="nav-number">5.2.</span> <span class="nav-text">标记点（大头针 annotation || Marker）- Google</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overlay-amp-amp-Polyline"><span class="nav-number">6.</span> <span class="nav-text">Overlay &amp;&amp; Polyline</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Overlay-amp-amp-Polyline-高德"><span class="nav-number">6.1.</span> <span class="nav-text">Overlay &amp;&amp; Polyline - 高德</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Overlay-amp-amp-Polyline-Google"><span class="nav-number">6.2.</span> <span class="nav-text">Overlay &amp;&amp; Polyline - Google</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理围栏"><span class="nav-number">7.</span> <span class="nav-text">地理围栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导航"><span class="nav-number">8.</span> <span class="nav-text">导航</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">9.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-陈良静"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈良静</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz',
+        appKey: 'CYDILgdElMj7KhP2Bxd32PgP',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UhiryUKWiuTK5FNFHwYJr4H5-gzGzoHsz",
+                'X-LC-Key': "CYDILgdElMj7KhP2Bxd32PgP",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>

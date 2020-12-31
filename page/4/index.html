@@ -448,6 +448,432 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/05/18/iOS-网络编程-Socket-通信/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/05/18/iOS-网络编程-Socket-通信/" class="post-title-link" itemprop="https://chenliangjing.me/page/4/index.html">iOS 网络编程-Socket 通信</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-18 20:39:45" itemprop="dateCreated datePublished" datetime="2017-05-18T20:39:45+08:00">2017-05-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/网络编程/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/18/iOS-网络编程-Socket-通信/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/05/18/iOS-网络编程-Socket-通信/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/18/iOS-网络编程-Socket-通信/" class="leancloud_visitors" data-flag-title="iOS 网络编程-Socket 通信">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="通信三个要素"><a href="#通信三个要素" class="headerlink" title="通信三个要素"></a>通信三个要素</h2><ul>
+<li><p>IP 地址（主机名）</p>
+<ul>
+<li>网络中设备的标识</li>
+<li>可以用主机名</li>
+<li>本地主机地址：127.0.0.1 主机名：localhost</li>
+</ul>
+</li>
+<li><p>端口号（port）</p>
+<ul>
+<li>用于标识应用程序的逻辑地址，不同进程的标识</li>
+<li>有效端口号 0~65535</li>
+<li>其中 0~1024 为系统使用或者保留端口，开发中不要使用，使用 1024 以下的端口</li>
+</ul>
+</li>
+<li><p>传输协议</p>
+<ul>
+<li>TCP</li>
+<li>UDP</li></ul></li></ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/05/18/iOS-网络编程-Socket-通信/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/05/11/KVC-KVO-学习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/05/11/KVC-KVO-学习/" class="post-title-link" itemprop="https://chenliangjing.me/page/4/index.html">KVC & KVO 学习</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-11 11:11:09" itemprop="dateCreated datePublished" datetime="2017-05-11T11:11:09+08:00">2017-05-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/11/KVC-KVO-学习/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/05/11/KVC-KVO-学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/11/KVC-KVO-学习/" class="leancloud_visitors" data-flag-title="KVC & KVO 学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p>KVC：Key-value coding）键值编码。通过 key 值，来获取对象的属性，而不是通过明确地存取方法来获取。（通过一系列的方法和规则）</p>
+<p>苹果系统通过给 NSObject 类添加一个 NSKeyValueCoding 分类来实现了 KVC，所以对于所有继承了 NSObject 的类都能使用 KVC，KVC 的使用主要是下面四个方法：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 key 来取值</span></span><br><span class="line">- (<span class="keyword">nullable</span> <span class="keyword">id</span>)valueForKey:(<span class="built_in">NSString</span> *)key;</span><br><span class="line"><span class="comment">// 通过 key 来设置</span></span><br><span class="line">- (<span class="keyword">void</span>)setValue:(<span class="keyword">nullable</span> <span class="keyword">id</span>)value forKey:(<span class="built_in">NSString</span> *)key;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 keyPath 来取值</span></span><br><span class="line">- (<span class="keyword">nullable</span> <span class="keyword">id</span>)valueForKeyPath:(<span class="built_in">NSString</span> *)keyPath;</span><br><span class="line"><span class="comment">// 通过 keyPath 来设置</span></span><br><span class="line">- (<span class="keyword">void</span>)setValue:(<span class="keyword">nullable</span> <span class="keyword">id</span>)value forKeyPath:(<span class="built_in">NSString</span> *)keyPath;</span><br></pre></td></tr></table></figure>
+<p><strong>其他的一些方法：</strong><br></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/05/11/KVC-KVO-学习/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/05/10/runtime-学习/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -510,7 +936,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -717,7 +1143,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-03 22:03:45" itemprop="dateModified" datetime="2020-08-03T22:03:45+08:00">2020-08-03</time>
               
             
           </span>
@@ -912,7 +1338,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -993,7 +1419,7 @@
       
         
           <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>RunLoop：运行循环，每个线程对应一个 RunLoop，主线程的 RunLoop 默认启动，子线程的 RunLoop 需要手动启动。</p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/runloop.jpg" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/runloop.jpg" alt=""></p>
 <p><strong>作用：</strong></p>
 <ul>
 <li>使程序一直运行并接受用户输入</li>
@@ -1128,7 +1554,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1335,7 +1761,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1555,7 +1981,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1970,7 +2396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -2105,465 +2531,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/04/10/Objective-C 语言基础（四、Category&Extension&Block&Protocol）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/10/Objective-C 语言基础（四、Category&Extension&Block&Protocol）/" class="post-title-link" itemprop="https://chenliangjing.me/page/4/index.html">Objective-C 语言基础（四、Category&Extension&Block&Protocol）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-04-10 21:38:05" itemprop="dateCreated datePublished" datetime="2017-04-10T21:38:05+08:00">2017-04-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Objective-C/" itemprop="url" rel="index"><span itemprop="name">Objective-C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/10/Objective-C 语言基础（四、Category&Extension&Block&Protocol）/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/10/Objective-C 语言基础（四、Category&Extension&Block&Protocol）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/10/Objective-C 语言基础（四、Category&Extension&Block&Protocol）/" class="leancloud_visitors" data-flag-title="Objective-C 语言基础（四、Category&Extension&Block&Protocol）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><h3 id="1-Category-基本概念"><a href="#1-Category-基本概念" class="headerlink" title="1. Category 基本概念"></a>1. Category 基本概念</h3><ul>
-<li>Category 是 Objectvie-C 特有的语法，其他语言没有</li>
-<li>Category 作用<ul>
-<li>可以在<code>不修改</code>原来类的基础上，为这个类<code>扩充一些方法</code></li>
-<li>一个庞大的类可以分模块开发</li>
-<li>一个庞大的类可以有多个人编写，更有利于团队合作</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-Category-格式"><a href="#2-Category-格式" class="headerlink" title="2. Category 格式"></a>2. Category 格式</h3><ul>
-<li>在 .h 文件中声明类别<ul>
-<li>新添加的方法必须写在 @interface 和 @end 之间</li>
-<li>ClassNme（现有类的类名，要为那个类扩充方法） + CategoryName (待声明的类别名称)</li>
-<li>NewMethod：先添加的方法</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Category 的声明</span></span><br><span class="line"><span class="variable">@interface</span> ClassName (CategroyName)</span><br><span class="line">NewMethod; <span class="comment">// 在类别中添加方法</span></span><br><span class="line"><span class="comment">// 不允许在类别中添加成员变量</span></span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/04/10/Objective-C 语言基础（四、Category&Extension&Block&Protocol）/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/04/08/Objective-C 语言基础（三、内存管理）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/08/Objective-C 语言基础（三、内存管理）/" class="post-title-link" itemprop="https://chenliangjing.me/page/4/index.html">Objective-C 语言基础（三、内存管理）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-04-08 11:14:18" itemprop="dateCreated datePublished" datetime="2017-04-08T11:14:18+08:00">2017-04-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Objective-C/" itemprop="url" rel="index"><span itemprop="name">Objective-C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/08/Objective-C 语言基础（三、内存管理）/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/08/Objective-C 语言基础（三、内存管理）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/08/Objective-C 语言基础（三、内存管理）/" class="leancloud_visitors" data-flag-title="Objective-C 语言基础（三、内存管理）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="1-内存管理的重要性"><a href="#1-内存管理的重要性" class="headerlink" title="1. 内存管理的重要性"></a>1. 内存管理的重要性</h3><ul>
-<li>移动设备的内存极其有限，每个 app 所能占用的内存是有限制的</li>
-<li>下列行为都会增加一个 app 的内存占用<ul>
-<li>创建一个 Objective-C 对象</li>
-<li>定义一个变量</li>
-<li>调用一个函数或者方法</li>
-</ul>
-</li>
-<li>当 app 所占用的内存较多时，系统会发出内存警告，这时得回收一些不需要再使用的内存空间，比如回收一些不需要使用的对象，变量等</li>
-<li>如果 app 内存占用过大，系统可能会强制关闭 app，造成闪退现象，影响用户体验</li>
-</ul>
-<h3 id="2-什么是内存管理"><a href="#2-什么是内存管理" class="headerlink" title="2. 什么是内存管理"></a>2. 什么是内存管理</h3><ul>
-<li>如何回收那些不需要再使用的对象</li>
-<li>内存管理，就是对内存进行管理，涉及的操作有<ul>
-<li>分配内存：比如<code>创建</code>一个对象，会<code>增加</code>内存占用</li>
-<li>清除内存：比如<code>销毁</code>一个对象，会<code>减小</code>内存占用</li>
-</ul>
-</li>
-<li>内存管理的管理范围<ul>
-<li>任何继承了 NSObject 的对象</li>
-<li>对其他非对象类型无效（int、char、float、double、struct、enum等）</li>
-</ul>
-</li>
-<li>只有对 Objective-C 对象才需要进行内存管理的本质原因<ul>
-<li>Objective-C 对象存放于<code>堆</code>里面</li>
-<li>非 Objective-C 对象一般放在<code>栈</code>里面（栈内存会被系统自动回收）</li></ul></li></ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/04/08/Objective-C 语言基础（三、内存管理）/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2608,7 +2580,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2695,7 +2667,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2806,7 +2782,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

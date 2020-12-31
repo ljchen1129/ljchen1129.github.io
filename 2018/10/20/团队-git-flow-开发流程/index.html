@@ -127,12 +127,12 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="前言之前做项目的时候，出现过一些因为代码提交管理出现的问题。问题如下：  分支过多，每个做马甲一个分支，每次混淆完又一个备份分支，每次企业包发版一个分支、每个新特性又是一个分支，大量的分支，又没有及时的删除，一方面容易造成 git 服务器的存储压力，另一方面，大量的提交记录造成工程体积庞大，全部 clone 下来好几个 G，费时费力，http 方式 clone 也容易报 RPC failed; c">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/git-flow.png">
-<meta property="og:updated_time" content="2020-08-03T12:42:22.577Z">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/git-flow.png">
+<meta property="og:updated_time" content="2020-08-04T12:14:06.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="团队 git-flow 开发流程">
 <meta name="twitter:description" content="前言之前做项目的时候，出现过一些因为代码提交管理出现的问题。问题如下：  分支过多，每个做马甲一个分支，每次混淆完又一个备份分支，每次企业包发版一个分支、每个新特性又是一个分支，大量的分支，又没有及时的删除，一方面容易造成 git 服务器的存储压力，另一方面，大量的提交记录造成工程体积庞大，全部 clone 下来好几个 G，费时费力，http 方式 clone 也容易报 RPC failed; c">
-<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/git-flow.png">
+<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/git-flow.png">
 
 
 
@@ -510,7 +510,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -590,7 +590,7 @@
 <li>打包管理，应该要保证发包前测试通过后的项目代码是不能有任何修改的，最好能够自动化打包，避免开发人员人为修改代码后打包上传，造成测试人员测试通过的代码和真正发包的代码不一致问题。</li>
 </ol>
 <h2 id="git-规范"><a href="#git-规范" class="headerlink" title="git 规范"></a>git 规范</h2><p>参考 <a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">git flow</a>，一图胜千言</p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/git-flow.png" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/git-flow.png" alt=""></p>
 <h3 id="中心分支"><a href="#中心分支" class="headerlink" title="中心分支"></a>中心分支</h3><p>生命周期长，一直存在。</p>
 <h4 id="Master（主分支）"><a href="#Master（主分支）" class="headerlink" title="Master（主分支）"></a>Master（主分支）</h4><p>顾名思义，既然名字叫 Master，那么该分支就是主分支的意思。在 git repo下主分支的职责主要就是负责记录 stable版本的迭代，当在 beta 版本的项目或是开发版本的项目得到了充分的验证之后，才能将分支并入 master 分支。master 分支永远是 production-ready 的状态，即稳定可产品化发布的状态。每发布一个版本则打上对应的 tag 标签。</p>
 <h4 id="Develop（开发分支）"><a href="#Develop（开发分支）" class="headerlink" title="Develop（开发分支）"></a>Develop（开发分支）</h4><p>这个分支是平常开发的一个主要分支，不管是要做新的 feature 还是需要做 bug fix，都是从这个分支分出来做。在这个分支下主要负责记录开发状态下相对稳定的版本，即完成了某个 feature 或者修复了某 个bug 后的开发稳定版本。从 develop 分支总能够获得最新开发进展的代码。</p>
@@ -837,7 +837,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -924,7 +924,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1035,7 +1039,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

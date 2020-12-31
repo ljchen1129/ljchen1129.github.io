@@ -127,15 +127,15 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="仿悦动圈运动APP  项目地址  第一天获取图片资源">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170307_3.png?imageView2/0/h/400/w/350">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170307_4.png?imageView2/0/h/400/w/550">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/yuedongquankuangjia.gif?imageView2/0/h/600/w/450">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170307_5.png?imageView2/0/h/600/w/350">
-<meta property="og:updated_time" content="2020-08-03T12:42:22.571Z">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170307_3.png?imageView2/0/h/400/w/350">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170307_4.png?imageView2/0/h/400/w/550">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/yuedongquankuangjia.gif?imageView2/0/h/600/w/450">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170307_5.png?imageView2/0/h/600/w/350">
+<meta property="og:updated_time" content="2020-08-04T12:14:06.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="仿悦动圈运动APP（第一天）">
 <meta name="twitter:description" content="仿悦动圈运动APP  项目地址  第一天获取图片资源">
-<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170307_3.png?imageView2/0/h/400/w/350">
+<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170307_3.png?imageView2/0/h/400/w/350">
 
 
 
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -591,18 +591,18 @@
 </blockquote>
 <h1 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h1><h2 id="获取图片资源"><a href="#获取图片资源" class="headerlink" title="获取图片资源"></a>获取图片资源</h2><a id="more"></a>
 <p>用<a href="http://pro.25pp.com/" target="_blank" rel="noopener">PP助手</a>下载<a href="https://itunes.apple.com/cn/app/%E6%82%A6%E5%8A%A8%E5%9C%88-%E8%B7%91%E6%AD%A5%E8%AE%A1%E6%AD%A5%E5%87%8F%E8%82%A5100-%E9%A2%86%E7%BA%A2%E5%8C%85%E7%9A%84%E8%BF%90%E5%8A%A8%E5%81%A5%E5%BA%B7%E7%A4%BE%E5%8C%BA/id872341407?mt=8" target="_blank" rel="noopener">悦动圈</a>官方 App 的 ipa 包，使用归档工具解压 ipa 包，找到 Payload 文件夹，看到 SprotBar 显示包内容，里面就有整个 App 的资源文件，能在里面找到 AppIcon，Lanch 启动图，引导图等。</p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170307_3.png?imageView2/0/h/400/w/350" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170307_3.png?imageView2/0/h/400/w/350" alt=""></p>
 <p>但是还有很多图片是找不到的，因为在一个 Assets.car 的文件里面，需要用到一个工具把里面的图片资源导出来，这个工具叫<a href="https://github.com/steventroughtonsmith/cartool" target="_blank" rel="noopener">cartool</a>，可以用 XCode 打开，在 main.m 文件里删除 idiomSuffixForCoreThemeIdiom 方法，新建一个文件夹用来接收导出来的图片，如下配置：</p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170307_4.png?imageView2/0/h/400/w/550" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170307_4.png?imageView2/0/h/400/w/550" alt=""></p>
 <p>再运行一下工程，图片资源就导出到添加的文件夹里面了。</p>
 <h2 id="新建工程，基础配置"><a href="#新建工程，基础配置" class="headerlink" title="新建工程，基础配置"></a>新建工程，基础配置</h2><p>新建一个工程项目，配置应用名称、BundleId、部署版本、横竖屏等这些信息，再将图片资源导入，配置下 AppIcon，启动图</p>
 <h2 id="接口API获取"><a href="#接口API获取" class="headerlink" title="接口API获取"></a>接口API获取</h2><p>使用 <a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 工具，配置一下，https 请求需要在手机端安装 SSL 证书，获取到每个页面的 API，做好对应的整理，主要有请求方式，请求参数，请求地址的获取。</p>
 <blockquote>
 <p>关于 <a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 如何使用的相关介绍可以参照唐老师写的这篇<a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="noopener">博客</a></p>
 </blockquote>
-<h2 id="搭建框架"><a href="#搭建框架" class="headerlink" title="搭建框架"></a>搭建框架</h2><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/yuedongquankuangjia.gif?imageView2/0/h/600/w/450" alt=""></p>
+<h2 id="搭建框架"><a href="#搭建框架" class="headerlink" title="搭建框架"></a>搭建框架</h2><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/yuedongquankuangjia.gif?imageView2/0/h/600/w/450" alt=""></p>
 <p>底部是一个 UITabBarController 主控制器，有 SportsViewController、ChallengeViewController、ProfileViewController 5个子控制器，采用 storyboard 的方式搭建，并按照 MVVM 的架构模式新建好文件夹目录：</p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170307_5.png?imageView2/0/h/600/w/350" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170307_5.png?imageView2/0/h/600/w/350" alt=""></p>
 <p>修改 TabBar 的全局颜色：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    </span><br><span class="line">    // 修改TabBar的全局颜色</span><br><span class="line">    [UITabBar appearance].tintColor = CLJTabBarTintColor;</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>将各个子控制器添加到 TabBarController 上去：</p>
@@ -816,7 +816,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -903,7 +903,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1014,7 +1018,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

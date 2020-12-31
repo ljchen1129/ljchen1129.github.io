@@ -448,6 +448,435 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">iOS Stripe 支付（绑卡，Apple Pay）、退款、提现集成总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-11-15 20:05:34" itemprop="dateCreated datePublished" datetime="2020-11-15T20:05:34+08:00">2020-11-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-11-28 08:03:56" itemprop="dateModified" datetime="2020-11-28T08:03:56+08:00">2020-11-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Stripe/" itemprop="url" rel="index"><span itemprop="name">Stripe</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/" class="leancloud_visitors" data-flag-title="iOS Stripe 支付（绑卡，Apple Pay）、退款、提现集成总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://stripe.com/" target="_blank" rel="noopener">Stripe</a> 是一家国外的提供支付服务的平台，可以让商户在自己的应用和网站方便快捷地集成信用卡支付、第三方（Apple Pay、Alipay、微信pay、三星pay、微软pay 等）支付方式等服务，具体参考官网介绍。</p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-15-083806.png" alt="image-20201115163806075"></p>
+<p>本文主要记录总结一下在 iOS  平台如何集成 Stripe 相关的服务。主要包含一下内容：</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-11-14 19:27:25" itemprop="dateCreated datePublished" datetime="2020-11-14T19:27:25+08:00">2020-11-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-11-28 08:03:56" itemprop="dateModified" datetime="2020-11-28T08:03:56+08:00">2020-11-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/定位/" itemprop="url" rel="index"><span itemprop="name">定位</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" class="leancloud_visitors" data-flag-title="iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近开发的项目使用了一些第三方地图的功能，主要包括：</p>
+<ul>
+<li>定位</li>
+<li>POI（附近，模糊）搜索</li>
+<li>地理编码和逆编码</li>
+<li>地图展示 </li>
+<li>标记点（大头针）</li>
+<li>线段，图形，覆盖物（折线，直线，圆形，不规则图形）</li>
+<li>导航（内部导航，跳转其他地图 App 导航）</li>
+<li>地理围栏</li>
+</ul>
+<blockquote>
+<p>主要包含了高德地图、谷歌地图等，其他的地图如百度地图，腾讯地图等参考相关文档其实差别也不大。</p>
+</blockquote>
+<p>文章主要记录一下相关代码和一些集成调试踩过的一些坑，防止忘记，归个档。</p>
+<h3 id="废话不多说，先看效果："><a href="#废话不多说，先看效果：" class="headerlink" title="废话不多说，先看效果："></a>废话不多说，先看效果：</h3>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -510,7 +939,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -725,7 +1154,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -932,7 +1361,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1006,7 +1435,7 @@
       
         
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>学习 Swift 语法最好的工具是 Xcode 配套的 Playground，所见即所得。除了实时显示变量的值，还可以加载资源，呈现视图，多文件管理等。</p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-013609.png" alt="image-20191011093609289"></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-11-013609.png" alt="image-20191011093609289"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1132,7 +1561,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1213,7 +1642,7 @@
       
         
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>2017 年由于公司需要，做过一个支持全景图显示的网页，这篇文章主要回顾和记录一下当初开发这个功能时的一些情景。</p>
-<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;"></p>
+<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1339,7 +1768,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1419,9 +1848,9 @@
 
       
         
-          <p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-080029.jpg" alt="中山公园"></p>
+          <p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-09-27-080029.jpg" alt="中山公园"></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。</p>
-<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-074217.gif" alt="ezgif.com-optimize"></p>
+<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-09-27-074217.gif" alt="ezgif.com-optimize"></p>
 <h3 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h3><p>首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：</p>
 <p>初始化 webview -&gt; 请求页面 -&gt; 下载数据 -&gt; 解析HTML -&gt; 请求 js/css 资源 -&gt; dom 渲染 -&gt; 解析 JS 执行 -&gt; JS 请求数据 -&gt; 解析渲染 -&gt; 下载渲染图片</p>
           <!--noindex-->
@@ -1549,7 +1978,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1629,7 +2058,7 @@
 
       
         
-          <p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400" alt=""></p>
+          <p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学习算法课程的时候，老师推荐了两本算法和数据结构入门书，一本是<a href="https://book.douban.com/subject/26979890/" target="_blank" rel="noopener">《算法图解》</a>、一本是<a href="https://book.douban.com/subject/6424904/" target="_blank" rel="noopener">《大话数据结构》</a>，<a href="https://book.douban.com/subject/26979890/" target="_blank" rel="noopener">《算法图解》</a>这本书最近读完了，读完的最大感受就是对算法不再感到畏惧和陌生，对常用的算法和数据结构都会在心里有个基本的概念，这篇文章记录下这本书的主要内容和知识点。</p>
 <p>总的来说，这本书是一本不错的算法入门书，作者以从实际开发场景出发，介绍了软件开发中最基本、最常用的一些<code>数据结构</code>和<code>算法思想</code>，同时作者写得非常深入浅出，联系实际应用场景，并结合了大量的算法推演图示，举例生动形象，循序渐进，使读者易于理解，能够很大地培养读者对算法的兴趣，从而引导读者进一步地进行学习研究。<br></p>
           <!--noindex-->
@@ -1757,7 +2186,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -1837,7 +2266,7 @@
 
       
         
-          <p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/timg.jpeg" alt=""></p>
+          <p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/timg.jpeg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://book.douban.com/subject/3369600/" target="_blank" rel="noopener">这本书</a>是村上春树写得一本关于自己跑步的随笔集，记录了村上几十年来跑步训练、马拉松比赛的一些心情日志和对跑步的感悟，其实大学时期就读过了，不过那时候刚刚跑步不久，读完也没啥印象了，现在跑步也已经七八年了，马拉松也跑了快十场，再读这本书，就稍微有点感觉了，如果你也是一个爱跑步的人，我想也会有一些相似的体会吧，于我而言，觉得有感觉的地方有以下几点：</p>
 <h2 id="为什么是跑步？"><a href="#为什么是跑步？" class="headerlink" title="为什么是跑步？"></a>为什么是跑步？</h2><ol>
 <li><p>跑步简单。跑步对人类而言是一种天生的本能，每个人基因里天生就会跑，而且不需要同伴，一点不复杂，只需要一双合脚的跑鞋，说跑就跑了。</p></li></ol>
@@ -1966,7 +2395,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-04 20:14:06" itemprop="dateModified" datetime="2020-08-04T20:14:06+08:00">2020-08-04</time>
               
             
           </span>
@@ -2039,7 +2468,7 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/IMG_3219.jpg?imageView2/2/w/200" alt=""><br>作者：[以色列] 尤瓦尔·赫拉利<br>翻译：林俊宏<br>出版年份：2014-11<br></p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/IMG_3219.jpg?imageView2/2/w/200" alt=""><br>作者：[以色列] 尤瓦尔·赫拉利<br>翻译：林俊宏<br>出版年份：2014-11<br></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2088,418 +2517,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/03/09/C-语言拾遗/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/09/C-语言拾遗/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">C 语言拾遗</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-09 19:29:09" itemprop="dateCreated datePublished" datetime="2019-03-09T19:29:09+08:00">2019-03-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/09/C-语言拾遗/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/09/C-语言拾遗/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/03/09/C-语言拾遗/" class="leancloud_visitors" data-flag-title="C 语言拾遗">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近学习<a href="https://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/">数据结构和算法</a>，使用 C 语言实现一些算法和练习题的时候，容易卡壳在 C 语言里面的一些指针、结构体、内存分配等相关语法知识点上，这次复习了一下，下面是一些记录。</p>
-<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>指针：就是<code>保存地址的变量</code>，变量的值是所指像的<code>内存地址</code>。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/09/C-语言拾遗/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/08/数据结构与算法学习-链表下/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">数据结构与算法学习-链表下</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-08 11:49:59" itemprop="dateCreated datePublished" datetime="2019-03-08T11:49:59+08:00">2019-03-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/08/数据结构与算法学习-链表下/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/08/数据结构与算法学习-链表下/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/03/08/数据结构与算法学习-链表下/" class="leancloud_visitors" data-flag-title="数据结构与算法学习-链表下">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/">上一篇文章</a>讲了链表相关的概念，这篇主要记录的是和链表相关的算法以及一些写好链表算法代码<code>相关的技巧</code>。</p>
-<h2 id="实现单链表、循环链表、双向链表，支持增删操作"><a href="#实现单链表、循环链表、双向链表，支持增删操作" class="headerlink" title="实现单链表、循环链表、双向链表，支持增删操作"></a>实现单链表、循环链表、双向链表，支持增删操作</h2><h4 id="1-单链表"><a href="#1-单链表" class="headerlink" title="1. 单链表"></a>1. 单链表</h4>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/08/数据结构与算法学习-链表下/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2544,7 +2566,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2631,7 +2653,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2742,7 +2768,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
