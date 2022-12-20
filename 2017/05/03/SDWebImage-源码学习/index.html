@@ -123,7 +123,7 @@
 <meta name="keywords" content="iOS,源码学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SDWebImage 源码学习">
-<meta property="og:url" content="https://chenliangjing.me/2017/05/03/SDWebImage-源码学习/index.html">
+<meta property="og:url" content="https://chenliangjing.run/2017/05/03/SDWebImage-源码学习/index.html">
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="前言SDWebImage 是用来做图片异步加载以及图片缓存的第三方库，用一行代码就能集成图片的多级缓存以及异步下载，功能强大，好用方便。之前学习多线程 NSOperation 时，实现过一个简单的图片异步下载，代码在这里。现在想了解一下 SDWebImage 的实现机制和工作原理，通过过阅读他的源代码。我这里的版本是 SDWebImage 4.0.0。 使用方法">
 <meta property="og:locale" content="zh-CN">
@@ -145,7 +145,7 @@
 
 
 
-  <link rel="canonical" href="https://chenliangjing.me/2017/05/03/SDWebImage-源码学习/">
+  <link rel="canonical" href="https://chenliangjing.run/2017/05/03/SDWebImage-源码学习/">
 
 
 
@@ -455,7 +455,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/05/03/SDWebImage-源码学习/">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.run/2017/05/03/SDWebImage-源码学习/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈良静">
@@ -593,7 +593,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SDWebImage 是用来做图片异步加载以及图片缓存的第三方库，用一行代码就能集成图片的多级缓存以及异步下载，功能强大，好用方便。之前学习多线程 NSOperation 时，实现过一个简单的图片异步下载，代码在<a href="http://chenliangjing.me/2017/03/17/iOS-%E5%A4%9A%E7%BA%BF%E7%A8%8B-NSOperation/#NSOperation-实现多图下载">这里</a>。现在想了解一下 SDWebImage 的实现机制和工作原理，通过过阅读他的源代码。我这里的版本是 SDWebImage 4.0.0。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SDWebImage 是用来做图片异步加载以及图片缓存的第三方库，用一行代码就能集成图片的多级缓存以及异步下载，功能强大，好用方便。之前学习多线程 NSOperation 时，实现过一个简单的图片异步下载，代码在<a href="http://chenliangjing.me/2017/03/17/iOS-%E5%A4%9A%E7%BA%BF%E7%A8%8B-NSOperation/#NSOperation-实现多图下载" target="_blank" rel="noopener">这里</a>。现在想了解一下 SDWebImage 的实现机制和工作原理，通过过阅读他的源代码。我这里的版本是 SDWebImage 4.0.0。</p>
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><a id="more"></a>
 <p>1.通过 <code>UIImageView+WebCache</code> 分类，给一个 UIImageView 视图下载并设置图片。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 方法：根据一个 url 给一个 UIImageView 视图下载并设置图片</span><br><span class="line">// URL：图片资源地址</span><br><span class="line">// placeholderImage：占位图片</span><br><span class="line">[cell.imageView sd_setImageWithURL:[NSURL URLWithString:a.icon] placeholderImage:[UIImage imageNamed:@&quot;placeHolder&quot;]];</span><br></pre></td></tr></table></figure>

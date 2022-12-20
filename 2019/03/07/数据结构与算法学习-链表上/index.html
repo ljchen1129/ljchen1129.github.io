@@ -123,7 +123,7 @@
 <meta name="keywords" content="数据结构,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法学习-链表上">
-<meta property="og:url" content="https://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/index.html">
+<meta property="og:url" content="https://chenliangjing.run/2019/03/07/数据结构与算法学习-链表上/index.html">
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="前言这一篇笔记主要记录总结了线性表数据结构中的链表概念，以及和数组的对比，数组和链表都是计算机中最基本的数据结构，是构建其他高级复杂数据的结构的基础。开发中应该根据具体的场景选择最合适的数据结构和算法。下一篇将会实现链表相关的算法。 链表概念上一篇数组讲了数组是一种是一种线性表数据结构，是用一组连续的内存空间，来存储一组具有相同数据类型的数据。和数组相同的是，链表也是一种线性表数据结构，不同的是链">
 <meta property="og:locale" content="zh-CN">
@@ -147,7 +147,7 @@
 
 
 
-  <link rel="canonical" href="https://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/">
+  <link rel="canonical" href="https://chenliangjing.run/2019/03/07/数据结构与算法学习-链表上/">
 
 
 
@@ -457,7 +457,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.run/2019/03/07/数据结构与算法学习-链表上/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈良静">
@@ -596,7 +596,7 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这一篇笔记主要记录总结了<code>线性表</code>数据结构中的<code>链表</code>概念，以及和<code>数组</code>的对比，数组和链表都是计算机中最基本的数据结构，是构建其他高级复杂数据的结构的基础。开发中应该根据具体的场景选择最合适的数据结构和算法。下一篇将会实现链表相关的算法。</p>
-<h2 id="链表概念"><a href="#链表概念" class="headerlink" title="链表概念"></a>链表概念</h2><p><a href="https://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/">上一篇数组</a>讲了数组是一种是一种<code>线性表</code>数据结构，是用一组<code>连续的内存空间</code>，来存储一组具有<code>相同数据类型</code>的数据。和数组相同的是，<code>链表</code>也是一种<code>线性表</code>数据结构，不同的是链表是通过指针将<code>一组零散的内存块</code>串联起来存储数据，可以存储<code>不同数据类型</code>的数据。<br><a id="more"></a></p>
+<h2 id="链表概念"><a href="#链表概念" class="headerlink" title="链表概念"></a>链表概念</h2><p><a href="https://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/" target="_blank" rel="noopener">上一篇数组</a>讲了数组是一种是一种<code>线性表</code>数据结构，是用一组<code>连续的内存空间</code>，来存储一组具有<code>相同数据类型</code>的数据。和数组相同的是，<code>链表</code>也是一种<code>线性表</code>数据结构，不同的是链表是通过指针将<code>一组零散的内存块</code>串联起来存储数据，可以存储<code>不同数据类型</code>的数据。<br><a id="more"></a></p>
 <p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/arrayLinkList.jpg" alt=""></p>
 <p>链表的种类五花八门，主要有以下几类：</p>
 <h3 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h3><p>每个内存块被称为链表的<code>结点</code>，每个结点包含了<code>数据域</code>和<code>指针域</code>，数据域存储数据，指针域的指针指向<code>下一个结点的内存地址</code>，称为<code>后继指针next</code>。</p>
