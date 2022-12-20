@@ -15,7 +15,9 @@ categories:
 4. Plugin：Flutter 平台插件，包含 Dart 和 Native 平台层的实现，是一种`特殊的 Flutter Package`
 5. Skeleton（骨架）：flutter 2.5 之后新增的，自动生成 Flutter 模版，提供常用框架
 
-![Untitled](/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled.png)
+![Untitled](Flutter 学习-基础知识/Untitled.png)
+
+<!--more-->
 
 ### 基本结构
 
@@ -133,7 +135,7 @@ Widget _bulidRow(WordPair pair) {
   }
 ```
 
-![Untitled](/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled 1.png)
+![Untitled](Flutter 学习-基础知识/Untitled 1.png)
 
 ### 交互事件
 
@@ -224,7 +226,7 @@ onTap: () {
 
 ### 最后效果
 
-![Untitled](/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled.gif)
+![Untitled](Flutter 学习-基础知识/Untitled.gif)
 
 ### 布局
 
