@@ -127,18 +127,18 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="UIApplicationDelegate几个角色：  UIApplication 对象  处理用户与 iOS 设备交互时产生的事件（Multitouch Events，Motion Event，Remote Control Event）交由 UIApplication 对象来分发给 UIControl 对应的 target 对象来处理并且管理整个事件，而一些关于 App 运行时重要事件委托给 A">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/1933920-acb1107656c1a483.png">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588c94641d3a.jpg">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d15fc4c41.gif">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d259ba79b.gif">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d2941520f.gif">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d2a8aa73a.gif">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/1354776680_2123.png">
-<meta property="og:updated_time" content="2022-12-20T04:46:01.435Z">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/1933920-acb1107656c1a483.png">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588c94641d3a.jpg">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d15fc4c41.gif">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d259ba79b.gif">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d2941520f.gif">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d2a8aa73a.gif">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/1354776680_2123.png">
+<meta property="og:updated_time" content="2022-12-20T05:25:58.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIApplication &amp;&amp; UIViewController &amp;&amp; UIView 生命周期">
 <meta name="twitter:description" content="UIApplicationDelegate几个角色：  UIApplication 对象  处理用户与 iOS 设备交互时产生的事件（Multitouch Events，Motion Event，Remote Control Event）交由 UIApplication 对象来分发给 UIControl 对应的 target 对象来处理并且管理整个事件，而一些关于 App 运行时重要事件委托给 A">
-<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/1933920-acb1107656c1a483.png">
+<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/1933920-acb1107656c1a483.png">
 
 
 
@@ -516,7 +516,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 13:25:58" itemprop="dateModified" datetime="2022-12-20T13:25:58+08:00">2022-12-20</time>
               
             
           </span>
@@ -643,10 +643,10 @@
 </li>
 </ul>
 <p><strong>应用程序启动：</strong></p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/1933920-acb1107656c1a483.png" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/1933920-acb1107656c1a483.png" alt=""></p>
 <p>应用程序启动 -&gt; 执行 main 函数 -&gt; 执行 UIApplicationMain 函数 -&gt; 初始化 UIApplication 对象（创建和设置代理对象，开启主线程 ranloop）-&gt; 代理对象监听系统事件（程序加载完毕、程序获取焦点、程序进入后台、程序失去焦点、程序从后台回到前台、内存警告、程序即将退出）-&gt; 结束程序</p>
 <p><strong>应用程序的状态和多任务：</strong><br>应用程序有好几种状态，当按下 Home 键，锁屏、电话打来，切换 App 等中断情况时都会造成应用程序的状态发生改变。</p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588c94641d3a.jpg" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588c94641d3a.jpg" alt=""></p>
 <ul>
 <li>Not running：App 还没运行</li>
 <li>Inactive：App 运行在前台但没有接收事件</li>
@@ -657,25 +657,25 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个方法是在程序启动时的第一次机会执行代码</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application willFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序将要启动完成%s"</span>, __func__);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个方法允许在显示 app 给用户之前执行最后的初始化操作</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序启动完成%s"</span>, __func__);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 将要从前台切换到后台时需要执行的操作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillResignActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"程序将要失去焦点%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 已经进入后台后需要执行的操作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序已经进入后台%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 将要从后台切换到前台需要执行的操作，但 app 还不是 active 状态</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillEnterForeground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序即将进入前台%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app 已经切换到 active 状态后需要执行的操作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidBecomeActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序已经获得焦点%s"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app将要结束时需要执行的操作， 可以做一些数据保存工作</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillTerminate:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"程序将要退出%s"</span>, __func__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>App 启动和 active/inactive</p>
-<p>  App 一启动，由    Not running 状态变成 Inactive 状态，调用 <code>application didFinishLaunchingWithOptions</code> 方法，然后由 Inactive 状态变成 Active 状态，调用 <code>applicationDidBecomeActive</code> 方法<br>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d15fc4c41.gif" alt=""></p>
+<p>  App 一启动，由    Not running 状态变成 Inactive 状态，调用 <code>application didFinishLaunchingWithOptions</code> 方法，然后由 Inactive 状态变成 Active 状态，调用 <code>applicationDidBecomeActive</code> 方法<br>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d15fc4c41.gif" alt=""></p>
 </li>
 </ul>
 <pre><code>当 App 由于一些原因（来电等系统事件）发生中断时，由 Active 状态变成 Inactive 状态，调用 `applicationWillResignActive` 方法。
-![](https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d56cdc36a.gif)
+![](https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d56cdc36a.gif)
 </code></pre><ul>
 <li><p>来回切换App</p>
-<p>  当 App 切换到另一个 App 时，先由 Active 状态变成 Inactive 状态，调用 <code>applicationWillResignActive</code> 方法，然后再从 Inactive 状态变成 running 状态，调用 <code>applicationDidEnterBackground</code> 方法。<br>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d259ba79b.gif" alt=""></p>
-<p>  当切换回本 App 时，先由 running 状态变为 Inactive 状态，调用 <code>applicationWillEnterForeground</code> 方法，然后由 Inactive 状态变为 Active 状态，调用 <code>applicationDidBecomeActive</code> 方法。<br>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d2941520f.gif" alt=""></p>
+<p>  当 App 切换到另一个 App 时，先由 Active 状态变成 Inactive 状态，调用 <code>applicationWillResignActive</code> 方法，然后再从 Inactive 状态变成 running 状态，调用 <code>applicationDidEnterBackground</code> 方法。<br>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d259ba79b.gif" alt=""></p>
+<p>  当切换回本 App 时，先由 running 状态变为 Inactive 状态，调用 <code>applicationWillEnterForeground</code> 方法，然后由 Inactive 状态变为 Active 状态，调用 <code>applicationDidBecomeActive</code> 方法。<br>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d2941520f.gif" alt=""></p>
 </li>
 <li><p>锁屏</p>
-<p>  锁屏时，先由 Active 状态变成 Inactive 状态，调用 <code>applicationWillResignActive</code> 方法，然后由 Inactive 状态变为 Running 状态，调用 <code>applicationDidEnterBackground</code> 方法。<br>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/5588d2a8aa73a.gif" alt=""></p>
+<p>  锁屏时，先由 Active 状态变成 Inactive 状态，调用 <code>applicationWillResignActive</code> 方法，然后由 Inactive 状态变为 Running 状态，调用 <code>applicationDidEnterBackground</code> 方法。<br>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/5588d2a8aa73a.gif" alt=""></p>
 </li>
 <li><p>应用程序终止</p>
 <p>  当应用程序由于内存警告或长时间驻留后台等一些原因需要被操作系统终止时，系统还在应用程序终止前调用一次 <code>applicationWillTerminate</code> 方法，用来保存用户的一些重要数据以便于下次启动时恢复到 app 原来的状态。</p>
 </li>
 </ul>
 <h2 id="UIViewController"><a href="#UIViewController" class="headerlink" title="UIViewController"></a>UIViewController</h2><p><strong>UIView 的加载</strong></p>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/1354776680_2123.png" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/1354776680_2123.png" alt=""></p>
 <p>控制器 view 的加载时懒加载的，只用用到时才会去加载，首先调用的 loadView 方法，</p>
 <p><strong>UIView 的卸载</strong></p>
 <h3 id="1-通过-XIB-加载"><a href="#1-通过-XIB-加载" class="headerlink" title="1. 通过 XIB 加载"></a>1. 通过 XIB 加载</h3><p>通过 XIB 这种方式加载视图，需要调用 UIViewController 类的<code>initWithNibName:bundle:</code> 方法</p>
@@ -897,7 +897,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -984,7 +984,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1095,7 +1101,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

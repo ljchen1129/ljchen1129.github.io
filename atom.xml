@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.me/"/>
-  <updated>2022-12-20T04:46:01.436Z</updated>
+  <updated>2022-12-20T05:25:58.638Z</updated>
   <id>https://chenliangjing.me/</id>
   
   <author>
@@ -17,11 +17,154 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Flutter 学习-基本基础知识</title>
+    <link href="https://chenliangjing.me/2022/10/01/Flutter-%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E6%9C%AC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <id>https://chenliangjing.me/2022/10/01/Flutter-学习-基本基础知识/</id>
+    <published>2022-10-01T03:39:23.000Z</published>
+    <updated>2022-12-20T05:25:58.638Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Flutter-工程模式&quot;&gt;&lt;a href=&quot;#Flutter-工程模式&quot; class=&quot;headerlink&quot; title=&quot;Flutter 工程模式&quot;&gt;&lt;/a&gt;Flutter 工程模式&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;App：就是一个以 Flutter 为容器的 App 工程项目，里面可包含各种平台（iOS、Android、Mac OS、Windows、Linux、Web），&lt;code&gt;统一管理模式&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Module：创建一个 Flutter 模块，以模块的形式分别嵌入各自的原生平台项目，&lt;code&gt;三端分离模式&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Package：纯 Dart 插件工程，不依赖 Flutter，仅包含 Dart 层的实现，&lt;code&gt;通常用来定义一些公共库&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Plugin：Flutter 平台插件，包含 Dart 和 Native 平台层的实现，是一种&lt;code&gt;特殊的 Flutter Package&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Skeleton（骨架）：flutter 2.5 之后新增的，自动生成 Flutter 模版，提供常用框架&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled.png&quot; alt=&quot;Untitled&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;基本结构&quot;&gt;&lt;a href=&quot;#基本结构&quot; class=&quot;headerlink&quot; title=&quot;基本结构&quot;&gt;&lt;/a&gt;基本结构&lt;/h3&gt;&lt;figure class=&quot;highlight dart&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 入口主函数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  runApp(&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; MyApp());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 无状态组件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyApp&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;StatelessWidget&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// 构造方法&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; MyApp(&amp;#123;&lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.key&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// build 描述如何根据其他较低级别的 widgets 来显示自己&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;meta&quot;&gt;@override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Widget build(BuildContext context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; wordPair = WordPair.random();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 一种移动端和网页端通用的视觉设计语言， Flutter 提供了丰富的 Material 风格的 widgets&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; MaterialApp(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      title: &lt;span class=&quot;string&quot;&gt;&#39;Welcome to Flutter&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;// Scaffold 是 Material 库中提供的一个 widget，它提供了默认的导航栏、标题和包含主屏幕 widget 树的 body 属性。 widget 树可以很复杂。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      home: Scaffold(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        appBar: AppBar(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          title: &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; Text(&lt;span class=&quot;string&quot;&gt;&#39;Welcome to Flutter&#39;&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        body: Center(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          child: Text(wordPair.asPascalCase),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;widget&quot;&gt;&lt;a href=&quot;#widget&quot; class=&quot;headerlink&quot; title=&quot;widget&quot;&gt;&lt;/a&gt;widget&lt;/h3&gt;&lt;p&gt;&lt;code&gt;StatelessWidget&lt;/code&gt;：无状态的 widgets 是不可变的，这意味着它们的属性不能改变 —— 所有的值都是 final&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;StatefulWidget&lt;/code&gt;：有状态的 widgets 也是不可变的，但其持有的状态可能在 widget 生命周期中发生变化&lt;/p&gt;
+&lt;p&gt;实现一个有状态的 widget 至少需要两个类： &lt;/p&gt;
+&lt;p&gt;1）一个 &lt;code&gt;StatefulWidget&lt;/code&gt; 类；&lt;/p&gt;
+&lt;p&gt;2）一个 &lt;code&gt;State&lt;/code&gt; 类；&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;StatefulWidget&lt;/code&gt; 类本身是不变的，但是 &lt;code&gt;State&lt;/code&gt; 类在 widget 生命周期中始终存在。&lt;/p&gt;
+&lt;p&gt;IDE 直接输入 &lt;code&gt;stful&lt;/code&gt;，直接会生成样板代码&lt;/p&gt;
+&lt;figure class=&quot;highlight dart&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 自动更新 RandomWords 其对应的 State 类 _RandomWordsState&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;RandomWords&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;StatefulWidget&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; RandomWords(&amp;#123;Key? key&amp;#125;) : &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;(key: key);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;meta&quot;&gt;@override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  State&amp;lt;RandomWords&amp;gt; createState() =&amp;gt; _RandomWordsState();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;_RandomWordsState&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;State&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;RandomWords&lt;/span&gt;&amp;gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;meta&quot;&gt;@override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Widget build(BuildContext context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; Container();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;列表组件&quot;&gt;&lt;a href=&quot;#列表组件&quot; class=&quot;headerlink&quot; title=&quot;列表组件&quot;&gt;&lt;/a&gt;列表组件&lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;ListView&lt;/code&gt; 实现列表组件&lt;/p&gt;
+&lt;figure class=&quot;highlight dart&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ListView _bulidSuggestions() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ListView.builder(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        padding: &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; EdgeInsets.all(&lt;span class=&quot;number&quot;&gt;16.0&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        itemBuilder: (context, i) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;// 对于每个建议的单词对都会调用一次 itemBuilder，&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;// 然后将单词对添加到 ListTile 行中。在偶数行，&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;// 该函数会为单词对添加一个 ListTile row，在奇数行，&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;// 该函数会添加一个分割线的 widget，来分隔相邻的词对。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;// 注意，在小屏幕上，分割线可能较难辨别。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (i.isOdd)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; Divider(); &lt;span class=&quot;comment&quot;&gt;// 在 ListView 里的每一行之前，添加一个 1 像素高的分隔线 widget。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; index = i ~/ &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;// 语法 i ~/ 2 表示 i 除以 2，但返回值是整型（向下取整），&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;// 比如 i 为：1, 2, 3, 4, 5 时，结果为 0, 1, 1, 2, 2，&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;// 这个可以计算出 ListView 中减去分隔线后的实际单词对数量。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (index &amp;gt;= _suggestions.length) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            _suggestions.addAll(generateWordPairs()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .take(&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;)); &lt;span class=&quot;comment&quot;&gt;// 如果是建议列表中最后一个单词对，接着再生成 10 个单词对，然后添加到建议列表。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; _bulidRow(_suggestions[index]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Widget _bulidRow(WordPair pair) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; alerdySaved = _saved.contains(pair);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ListTile(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      title: Text(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        pair.asPascalCase,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        style: _biggerFont,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      trailing: Icon(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        alerdySaved ? Icons.favorite : Icons.favorite_border,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        color: alerdySaved ? Colors.red : &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      onTap: () &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        setState(() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          alerdySaved ? _saved.remove(pair) : _saved.add(pair);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled 1.png&quot; alt=&quot;Untitled&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;交互事件&quot;&gt;&lt;a href=&quot;#交互事件&quot; class=&quot;headerlink&quot; title=&quot;交互事件&quot;&gt;&lt;/a&gt;交互事件&lt;/h3&gt;&lt;p&gt;给组件添加事件&lt;/p&gt;
+&lt;figure class=&quot;highlight dart&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;onTap: () &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 触发页面重新布局渲染&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        setState(() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          alerdySaved ? _saved.remove(pair) : _saved.add(pair);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;路由导航&quot;&gt;&lt;a href=&quot;#路由导航&quot; class=&quot;headerlink&quot; title=&quot;路由导航&quot;&gt;&lt;/a&gt;路由导航&lt;/h3&gt;&lt;p&gt;页面跳转，导航路由组件 &lt;code&gt;Navigator&lt;/code&gt; 组件&lt;/p&gt;
+&lt;figure class=&quot;highlight dart&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 路由到新的页面&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; _pushSaved() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Navigator.of(context).push(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      MaterialPageRoute(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        builder: (BuildContext context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; tiles = _saved.map(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                (WordPair pair) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ListTile(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                title: Text(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                  pair.asPascalCase,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                  style: _biggerFont,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; divided = ListTile.divideTiles(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            context: context,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            tiles: tiles,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          ).toList();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; Scaffold(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// 新增 6 行代码开始 ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            appBar: AppBar(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              title: &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; Text(&lt;span class=&quot;string&quot;&gt;&#39;Saved Suggestions&#39;&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            body: ListView(children: divided),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          ); &lt;span class=&quot;comment&quot;&gt;// ... 新增代码段结束.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;主题样式&quot;&gt;&lt;a href=&quot;#主题样式&quot; class=&quot;headerlink&quot; title=&quot;主题样式&quot;&gt;&lt;/a&gt;主题样式&lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;ThemeData&lt;/code&gt; 切换主题样式&lt;/p&gt;
+&lt;figure class=&quot;highlight dart&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// build 描述如何根据其他较低级别的 widgets 来显示自己&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;meta&quot;&gt;@override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Widget build(BuildContext context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; wordPair = WordPair.random();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 一种移动端和网页端通用的视觉设计语言， Flutter 提供了丰富的 Material 风格的 widgets&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; MaterialApp(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      title: &lt;span class=&quot;string&quot;&gt;&#39;Startup Name Generator&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;// 切换样式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      theme: ThemeData(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        primaryColor: Colors.red,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        primarySwatch: Colors.red,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        colorScheme: &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; ColorScheme.light().copyWith(primary: Colors.yellow),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;// Scaffold 是 Material 库中提供的一个 widget，它提供了默认的导航栏、标题和包含主屏幕 widget 树的 body 属性。 widget 树可以很复杂。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      home: &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; RandomWords(),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      debugShowCheckedModeBanner: &lt;span class=&quot;keyword&quot;&gt;false&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;// Scaffold(&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//   appBar: AppBar(&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//     title: const Text(&#39;Startup Name Generator&#39;),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//   ),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//   body: const Center(&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//     child: RandomWords(),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//   ),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;// ),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;&lt;a href=&quot;https://www.cnblogs.com/huangzs/p/16305693.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;解决Flutter中ThemeData.primaryColor在AppBar等组件中不生效&lt;/a&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;最后效果&quot;&gt;&lt;a href=&quot;#最后效果&quot; class=&quot;headerlink&quot; title=&quot;最后效果&quot;&gt;&lt;/a&gt;最后效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled.gif&quot; alt=&quot;Untitled&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;布局&quot;&gt;&lt;a href=&quot;#布局&quot; class=&quot;headerlink&quot; title=&quot;布局&quot;&gt;&lt;/a&gt;布局&lt;/h3&gt;&lt;p&gt;基础 &lt;strong&gt;&lt;code&gt;widgets&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Text&lt;/li&gt;
+&lt;li&gt;Row，column：相对应 web 中的 flexbox 布局模型&lt;/li&gt;
+&lt;li&gt;Stack: 相对应 web 中的绝对位置布局模型&lt;/li&gt;
+&lt;li&gt;Container：容器 &lt;strong&gt;&lt;code&gt;widgets&lt;/code&gt;&lt;/strong&gt; &lt;ol&gt;
+&lt;li&gt;设置外边距、内边距和尺寸的约束条件&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;[BoxDecoration](https://api.flutter-io.cn/flutter/painting/BoxDecoration-class.html)&lt;/code&gt;来进行装饰，如背景，边框，或阴影等&lt;/li&gt;
+&lt;li&gt;使用矩阵在三维空间进行转换&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Flutter App 就是由各个 &lt;strong&gt;&lt;code&gt;widgets&lt;/code&gt;&lt;/strong&gt; 组合嵌套而成&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Flutter-的构建模式&quot;&gt;&lt;a href=&quot;#Flutter-的构建模式&quot; class=&quot;headerlink&quot; title=&quot;Flutter 的构建模式&quot;&gt;&lt;/a&gt;&lt;strong&gt;Flutter 的构建模式&lt;/strong&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Debug&lt;ul&gt;
+&lt;li&gt;包含所有调试信息，日志，devTools，热重载工具等，包体积大，代码未优化，实际性能受影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Release&lt;ul&gt;
+&lt;li&gt;没有断点等调试信息，只支持真机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Profile&lt;ul&gt;
+&lt;li&gt;用来测试 App 性能，关闭各种日志，devTools，包体积小，接近真实使用场景&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Flutter" scheme="https://chenliangjing.me/Tags/Flutter/"/>
+    
+    
+      <category term="Flutter" scheme="https://chenliangjing.me/Categorys/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS Stripe 支付（绑卡，Apple Pay）、退款、提现集成总结</title>
+    <link href="https://chenliangjing.me/2020/11/15/iOS-Stripe-%E6%94%AF%E4%BB%98%EF%BC%88%E7%BB%91%E5%8D%A1%EF%BC%8CApple-Pay%EF%BC%89%E3%80%81%E9%80%80%E6%AC%BE%E3%80%81%E6%8F%90%E7%8E%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/"/>
+    <id>https://chenliangjing.me/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/</id>
+    <published>2020-11-15T12:05:34.000Z</published>
+    <updated>2022-12-20T05:25:58.648Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://stripe.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Stripe&lt;/a&gt; 是一家国外的提供支付服务的平台，可以让商户在自己的应用和网站方便快捷地集成信用卡支付、第三方（Apple Pay、Alipay、微信pay、三星pay、微软pay 等）支付方式等服务，具体参考官网介绍。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-15-083806.png&quot; alt=&quot;image-20201115163806075&quot;&gt;&lt;/p&gt;
+&lt;p&gt;本文主要记录总结一下在 iOS  平台如何集成 Stripe 相关的服务。主要包含一下内容：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="Stripe" scheme="https://chenliangjing.me/Tags/iOS/Stripe/"/>
+    
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="Stripe" scheme="https://chenliangjing.me/Categorys/Stripe/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）</title>
+    <link href="https://chenliangjing.me/2020/11/14/iOS-%E5%BC%80%E5%8F%91%E5%9C%B0%E5%9B%BE%E5%B8%B8%E8%A7%81%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93%EF%BC%88%E5%AE%9A%E4%BD%8D%E3%80%81%E6%A0%87%E6%B3%A8%E5%A4%A7%E5%A4%B4%E9%92%88%E3%80%81%E5%88%92%E7%BA%BF%E3%80%81%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92%E3%80%81%E5%AF%BC%E8%88%AA%E3%80%81%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E7%AD%89%EF%BC%89/"/>
+    <id>https://chenliangjing.me/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/</id>
+    <published>2020-11-14T11:27:25.000Z</published>
+    <updated>2022-12-20T05:25:58.651Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近开发的项目使用了一些第三方地图的功能，主要包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定位&lt;/li&gt;
+&lt;li&gt;POI（附近，模糊）搜索&lt;/li&gt;
+&lt;li&gt;地理编码和逆编码&lt;/li&gt;
+&lt;li&gt;地图展示 &lt;/li&gt;
+&lt;li&gt;标记点（大头针）&lt;/li&gt;
+&lt;li&gt;线段，图形，覆盖物（折线，直线，圆形，不规则图形）&lt;/li&gt;
+&lt;li&gt;导航（内部导航，跳转其他地图 App 导航）&lt;/li&gt;
+&lt;li&gt;地理围栏&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;主要包含了高德地图、谷歌地图等，其他的地图如百度地图，腾讯地图等参考相关文档其实差别也不大。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;文章主要记录一下相关代码和一些集成调试踩过的一些坑，防止忘记，归个档。&lt;/p&gt;
+&lt;h3 id=&quot;废话不多说，先看效果：&quot;&gt;&lt;a href=&quot;#废话不多说，先看效果：&quot; class=&quot;headerlink&quot; title=&quot;废话不多说，先看效果：&quot;&gt;&lt;/a&gt;废话不多说，先看效果：&lt;/h3&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
+    
+      <category term="定位" scheme="https://chenliangjing.me/Tags/iOS/%E5%AE%9A%E4%BD%8D/"/>
+    
+    
+      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
+    
+      <category term="地图" scheme="https://chenliangjing.me/Categorys/%E5%9C%B0%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>iOS 基于 launchctl + fastlane + 钉钉机器人实现定时自动打包</title>
     <link href="https://chenliangjing.me/2020/01/22/iOS-%E5%9F%BA%E4%BA%8E-launchctl-fastlane-%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85/"/>
     <id>https://chenliangjing.me/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/</id>
     <published>2020-01-22T08:08:58.000Z</published>
-    <updated>2022-12-20T04:46:01.436Z</updated>
+    <updated>2022-12-20T05:25:58.649Z</updated>
     
     <summary type="html">
     
@@ -54,7 +197,7 @@
     <link href="https://chenliangjing.me/2019/10/28/iOS-%E6%BA%90%E4%BB%A3%E7%A0%81%E6%98%AF%E6%80%8E%E6%A0%B7%E6%88%90%E4%B8%BA-App-%E7%9A%84/"/>
     <id>https://chenliangjing.me/2019/10/28/iOS-源代码是怎样成为-App-的/</id>
     <published>2019-10-28T02:24:52.000Z</published>
-    <updated>2022-12-20T04:46:01.438Z</updated>
+    <updated>2022-12-20T05:25:58.652Z</updated>
     
     <summary type="html">
     
@@ -79,12 +222,12 @@
     <link href="https://chenliangjing.me/2019/10/11/Playground-Markup-%E8%AF%AD%E6%B3%95/"/>
     <id>https://chenliangjing.me/2019/10/11/Playground-Markup-语法/</id>
     <published>2019-10-11T01:24:42.000Z</published>
-    <updated>2022-12-20T04:46:01.433Z</updated>
+    <updated>2022-12-20T05:25:58.644Z</updated>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;学习 Swift 语法最好的工具是 Xcode 配套的 Playground，所见即所得。除了实时显示变量的值，还可以加载资源，呈现视图，多文件管理等。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-013609.png&quot; alt=&quot;image-20191011093609289&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-11-013609.png&quot; alt=&quot;image-20191011093609289&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -100,12 +243,12 @@
     <link href="https://chenliangjing.me/2019/10/02/%E5%9F%BA%E4%BA%8E-Pannellum-%E7%9A%84%E5%85%A8%E6%99%AF%E5%9B%BE%E7%BD%91%E9%A1%B5%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0/"/>
     <id>https://chenliangjing.me/2019/10/02/基于-Pannellum-的全景图网页容器实现/</id>
     <published>2019-10-02T04:22:17.000Z</published>
-    <updated>2022-12-20T04:46:01.449Z</updated>
+    <updated>2022-12-20T05:25:58.664Z</updated>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;2017 年由于公司需要，做过一个支持全景图显示的网页，这篇文章主要回顾和记录一下当初开发这个功能时的一些情景。&lt;/p&gt;
-&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-02-113357.gif&quot; alt=&quot;ezgif.com-video-to-gif&quot; style=&quot;zoom:67%;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-02-113357.gif&quot; alt=&quot;ezgif.com-video-to-gif&quot; style=&quot;zoom:67%;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -125,13 +268,13 @@
     <link href="https://chenliangjing.me/2019/09/27/iOS-%E7%AB%AF-h5-%E9%A1%B5%E9%9D%A2%E7%A7%92%E5%BC%80%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
     <id>https://chenliangjing.me/2019/09/27/iOS-端-h5-页面秒开优化实践/</id>
     <published>2019-09-27T04:41:37.000Z</published>
-    <updated>2022-12-20T04:46:01.439Z</updated>
+    <updated>2022-12-20T05:25:58.653Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-080029.jpg&quot; alt=&quot;中山公园&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-09-27-080029.jpg&quot; alt=&quot;中山公园&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。&lt;/p&gt;
-&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-074217.gif&quot; alt=&quot;ezgif.com-optimize&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;先看效果&quot;&gt;&lt;a href=&quot;#先看效果&quot; class=&quot;headerlink&quot; title=&quot;先看效果&quot;&gt;&lt;/a&gt;先看效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-09-27-074217.gif&quot; alt=&quot;ezgif.com-optimize&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;优化思路&quot;&gt;&lt;a href=&quot;#优化思路&quot; class=&quot;headerlink&quot; title=&quot;优化思路&quot;&gt;&lt;/a&gt;优化思路&lt;/h3&gt;&lt;p&gt;首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：&lt;/p&gt;
 &lt;p&gt;初始化 webview -&amp;gt; 请求页面 -&amp;gt; 下载数据 -&amp;gt; 解析HTML -&amp;gt; 请求 js/css 资源 -&amp;gt; dom 渲染 -&amp;gt; 解析 JS 执行 -&amp;gt; JS 请求数据 -&amp;gt; 解析渲染 -&amp;gt; 下载渲染图片&lt;/p&gt;
     
@@ -153,11 +296,11 @@
     <link href="https://chenliangjing.me/2019/05/02/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E5%83%8F%E5%B0%8F%E8%AF%B4%E4%B8%80%E6%A0%B7%E6%9C%89%E8%B6%A3%E7%9A%84%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E4%B9%A6/"/>
     <id>https://chenliangjing.me/2019/05/02/《算法图解》读书笔记—像小说一样有趣的算法入门书/</id>
     <published>2019-05-02T00:29:08.000Z</published>
-    <updated>2022-12-20T04:46:01.447Z</updated>
+    <updated>2022-12-20T05:25:58.662Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;学习算法课程的时候，老师推荐了两本算法和数据结构入门书，一本是&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;、一本是&lt;a href=&quot;https://book.douban.com/subject/6424904/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《大话数据结构》&lt;/a&gt;，&lt;a href=&quot;https://book.douban.com/subject/26979890/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《算法图解》&lt;/a&gt;这本书最近读完了，读完的最大感受就是对算法不再感到畏惧和陌生，对常用的算法和数据结构都会在心里有个基本的概念，这篇文章记录下这本书的主要内容和知识点。&lt;/p&gt;
 &lt;p&gt;总的来说，这本书是一本不错的算法入门书，作者以从实际开发场景出发，介绍了软件开发中最基本、最常用的一些&lt;code&gt;数据结构&lt;/code&gt;和&lt;code&gt;算法思想&lt;/code&gt;，同时作者写得非常深入浅出，联系实际应用场景，并结合了大量的算法推演图示，举例生动形象，循序渐进，使读者易于理解，能够很大地培养读者对算法的兴趣，从而引导读者进一步地进行学习研究。&lt;br&gt;&lt;/p&gt;
     
@@ -179,11 +322,11 @@
     <link href="https://chenliangjing.me/2019/04/30/%E3%80%8A%E5%BD%93%E6%88%91%E8%B0%88%E8%B7%91%E6%AD%A5%E6%97%B6%EF%BC%8C%E6%88%91%E8%B0%88%E4%BA%9B%E4%BB%80%E4%B9%88%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%88%91%E8%B7%91%EF%BC%8C%E6%95%85%E6%88%91%E5%9C%A8/"/>
     <id>https://chenliangjing.me/2019/04/30/《当我谈跑步时，我谈些什么》读书笔记-我跑，故我在/</id>
     <published>2019-04-30T13:17:08.000Z</published>
-    <updated>2022-12-20T04:46:01.447Z</updated>
+    <updated>2022-12-20T05:25:58.662Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/timg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/timg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://book.douban.com/subject/3369600/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这本书&lt;/a&gt;是村上春树写得一本关于自己跑步的随笔集，记录了村上几十年来跑步训练、马拉松比赛的一些心情日志和对跑步的感悟，其实大学时期就读过了，不过那时候刚刚跑步不久，读完也没啥印象了，现在跑步也已经七八年了，马拉松也跑了快十场，再读这本书，就稍微有点感觉了，如果你也是一个爱跑步的人，我想也会有一些相似的体会吧，于我而言，觉得有感觉的地方有以下几点：&lt;/p&gt;
 &lt;h2 id=&quot;为什么是跑步？&quot;&gt;&lt;a href=&quot;#为什么是跑步？&quot; class=&quot;headerlink&quot; title=&quot;为什么是跑步？&quot;&gt;&lt;/a&gt;为什么是跑步？&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;跑步简单。跑步对人类而言是一种天生的本能，每个人基因里天生就会跑，而且不需要同伴，一点不复杂，只需要一双合脚的跑鞋，说跑就跑了。&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
@@ -206,11 +349,11 @@
     <link href="https://chenliangjing.me/2019/03/29/%E3%80%8A%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%B8%80%E5%88%87%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%82%A3%E4%B9%88%E7%90%86%E6%89%80%E5%BD%93%E7%84%B6/"/>
     <id>https://chenliangjing.me/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/</id>
     <published>2019-03-29T11:29:09.000Z</published>
-    <updated>2022-12-20T04:46:01.446Z</updated>
+    <updated>2022-12-20T05:25:58.661Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/IMG_3219.jpg?imageView2/2/w/200&quot; alt=&quot;&quot;&gt;&lt;br&gt;作者：[以色列] 尤瓦尔·赫拉利&lt;br&gt;翻译：林俊宏&lt;br&gt;出版年份：2014-11&lt;br&gt;&lt;/p&gt;
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/IMG_3219.jpg?imageView2/2/w/200&quot; alt=&quot;&quot;&gt;&lt;br&gt;作者：[以色列] 尤瓦尔·赫拉利&lt;br&gt;翻译：林俊宏&lt;br&gt;出版年份：2014-11&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -226,7 +369,7 @@
     <link href="https://chenliangjing.me/2019/03/09/C-%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/"/>
     <id>https://chenliangjing.me/2019/03/09/C-语言拾遗/</id>
     <published>2019-03-09T11:29:09.000Z</published>
-    <updated>2022-12-20T04:46:01.428Z</updated>
+    <updated>2022-12-20T05:25:58.590Z</updated>
     
     <summary type="html">
     
@@ -249,7 +392,7 @@
     <link href="https://chenliangjing.me/2019/03/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8B/"/>
     <id>https://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/</id>
     <published>2019-03-08T03:49:59.000Z</published>
-    <updated>2022-12-20T04:46:01.454Z</updated>
+    <updated>2022-12-20T05:25:58.666Z</updated>
     
     <summary type="html">
     
@@ -274,7 +417,7 @@
     <link href="https://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/"/>
     <id>https://chenliangjing.me/2019/03/07/数据结构与算法学习-链表上/</id>
     <published>2019-03-07T07:52:20.000Z</published>
-    <updated>2022-12-20T04:46:01.454Z</updated>
+    <updated>2022-12-20T05:25:58.666Z</updated>
     
     <summary type="html">
     
@@ -299,7 +442,7 @@
     <link href="https://chenliangjing.me/2019/02/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E6%95%B0%E7%BB%84/"/>
     <id>https://chenliangjing.me/2019/02/15/数据结构与算法学习-数组/</id>
     <published>2019-02-15T08:43:24.000Z</published>
-    <updated>2022-12-20T04:46:01.453Z</updated>
+    <updated>2022-12-20T05:25:58.665Z</updated>
     
     <summary type="html">
     
@@ -326,7 +469,7 @@
     <link href="https://chenliangjing.me/2019/02/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"/>
     <id>https://chenliangjing.me/2019/02/14/数据结构与算法学习-复杂度分析/</id>
     <published>2019-02-14T06:43:24.000Z</published>
-    <updated>2022-12-20T04:46:01.452Z</updated>
+    <updated>2022-12-20T05:25:58.665Z</updated>
     
     <summary type="html">
     
@@ -351,7 +494,7 @@
     <link href="https://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/"/>
     <id>https://chenliangjing.me/2019/02/13/数据结构与算法学习-开篇/</id>
     <published>2019-02-13T06:43:24.000Z</published>
-    <updated>2022-12-20T04:46:01.453Z</updated>
+    <updated>2022-12-20T05:25:38.945Z</updated>
     
     <summary type="html">
     
@@ -375,7 +518,7 @@
     <link href="https://chenliangjing.me/2019/01/18/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83/"/>
     <id>https://chenliangjing.me/2019/01/18/《Developing-iOS-11-Apps-with-Swift》学习笔记（七/</id>
     <published>2019-01-18T09:19:08.000Z</published>
-    <updated>2022-12-20T04:46:01.442Z</updated>
+    <updated>2022-12-20T05:25:38.932Z</updated>
     
     <summary type="html">
     
@@ -402,7 +545,7 @@
     <link href="https://chenliangjing.me/2019/01/17/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD/"/>
     <id>https://chenliangjing.me/2019/01/17/《Developing-iOS-11-Apps-with-Swift》学习笔记（六/</id>
     <published>2019-01-17T08:43:23.000Z</published>
-    <updated>2022-12-20T04:46:01.443Z</updated>
+    <updated>2022-12-20T05:25:58.659Z</updated>
     
     <summary type="html">
     
@@ -430,7 +573,7 @@
     <link href="https://chenliangjing.me/2019/01/04/%E3%80%8ADeveloping-iOS-11-Apps-with-Swift%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94)/"/>
     <id>https://chenliangjing.me/2019/01/04/《Developing-iOS-11-Apps-with-Swift》学习笔记（五)/</id>
     <published>2019-01-04T07:30:16.000Z</published>
-    <updated>2022-12-20T04:46:01.443Z</updated>
+    <updated>2022-12-20T05:25:58.659Z</updated>
     
     <summary type="html">
     
@@ -450,78 +593,6 @@
       <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
     
       <category term="Swift" scheme="https://chenliangjing.me/Categorys/Swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS JS-Native 交互方案总结</title>
-    <link href="https://chenliangjing.me/2018/12/28/iOS-JS-Native-%E4%BA%A4%E4%BA%92%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/"/>
-    <id>https://chenliangjing.me/2018/12/28/iOS-JS-Native-交互方案总结/</id>
-    <published>2018-12-28T02:31:27.000Z</published>
-    <updated>2022-12-20T04:46:01.435Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
-    
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>团队 git-flow 开发流程</title>
-    <link href="https://chenliangjing.me/2018/10/20/%E5%9B%A2%E9%98%9F-git-flow-%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    <id>https://chenliangjing.me/2018/10/20/团队-git-flow-开发流程/</id>
-    <published>2018-10-20T06:50:06.000Z</published>
-    <updated>2022-12-20T04:46:01.449Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;之前做项目的时候，出现过一些因为代码提交管理出现的问题。问题如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;分支过多，每个做马甲一个分支，每次混淆完又一个备份分支，每次企业包发版一个分支、每个新特性又是一个分支，大量的分支，又没有及时的删除，一方面容易造成 git 服务器的存储压力，另一方面，大量的提交记录造成工程体积庞大，全部 clone 下来好几个 G，费时费力，http 方式 clone 也容易报 &lt;code&gt;RPC failed; curl 18 transfer closed with outstanding read data remaining&lt;/code&gt; 错。&lt;/li&gt;&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="软件工程" scheme="https://chenliangjing.me/Tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件工程" scheme="https://chenliangjing.me/Categorys/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>活动行 App_iOS 性能检测分析</title>
-    <link href="https://chenliangjing.me/2018/08/20/%E6%B4%BB%E5%8A%A8%E8%A1%8C-App-iOS-%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%90/"/>
-    <id>https://chenliangjing.me/2018/08/20/活动行-App-iOS-性能检测分析/</id>
-    <published>2018-08-20T03:12:29.000Z</published>
-    <updated>2022-12-20T04:46:01.454Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;性能检测&quot;&gt;&lt;a href=&quot;#性能检测&quot; class=&quot;headerlink&quot; title=&quot;性能检测&quot;&gt;&lt;/a&gt;性能检测&lt;/h2&gt;&lt;h3 id=&quot;使用到的相关工具&quot;&gt;&lt;a href=&quot;#使用到的相关工具&quot; class=&quot;headerlink&quot; title=&quot;使用到的相关工具&quot;&gt;&lt;/a&gt;使用到的相关工具&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;instruments： XCode 内置的性能检测工具，可以实时查看程序内存占用，调试的内存泄漏，代码执行耗时，页面渲染，网络等，并可辅助定位到具体的代码；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2018-07-13_19-21-39.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Tags/iOS/"/>
-    
-      <category term="性能优化" scheme="https://chenliangjing.me/Tags/iOS/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    
-    
-      <category term="iOS" scheme="https://chenliangjing.me/Categorys/iOS/"/>
-    
-      <category term="性能优化" scheme="https://chenliangjing.me/Categorys/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   

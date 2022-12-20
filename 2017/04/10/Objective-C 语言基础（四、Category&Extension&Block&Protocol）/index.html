@@ -127,19 +127,19 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="Category1. Category 基本概念 Category 是 Objectvie-C 特有的语法，其他语言没有 Category 作用 可以在不修改原来类的基础上，为这个类扩充一些方法 一个庞大的类可以分模块开发 一个庞大的类可以有多个人编写，更有利于团队合作    2. Category 格式 在 .h 文件中声明类别 新添加的方法必须写在 @interface 和 @end 之间 C">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_1.png?imageView/0/h/120">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_2.png?imageView/0/h/220">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_3.png?imageView/0/h/220">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_5.png?imageView/0/h/220">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_6.png?imageView/0/h/220">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_7.png?imageView/0/h/230">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_8.png?imageView/0/h/200">
-<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_9.png?imageView/0/h/250">
-<meta property="og:updated_time" content="2022-12-20T04:46:01.432Z">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_1.png?imageView/0/h/120">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_2.png?imageView/0/h/220">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_3.png?imageView/0/h/220">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_5.png?imageView/0/h/220">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_6.png?imageView/0/h/220">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_7.png?imageView/0/h/230">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_8.png?imageView/0/h/200">
+<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_9.png?imageView/0/h/250">
+<meta property="og:updated_time" content="2022-12-20T05:25:58.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 语言基础（四、Category&amp;Extension&amp;Block&amp;Protocol）">
 <meta name="twitter:description" content="Category1. Category 基本概念 Category 是 Objectvie-C 特有的语法，其他语言没有 Category 作用 可以在不修改原来类的基础上，为这个类扩充一些方法 一个庞大的类可以分模块开发 一个庞大的类可以有多个人编写，更有利于团队合作    2. Category 格式 在 .h 文件中声明类别 新添加的方法必须写在 @interface 和 @end 之间 C">
-<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_1.png?imageView/0/h/120">
+<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_1.png?imageView/0/h/120">
 
 
 
@@ -517,7 +517,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 13:25:58" itemprop="dateModified" datetime="2022-12-20T13:25:58+08:00">2022-12-20</time>
               
             
           </span>
@@ -683,15 +683,15 @@
 <li>如果在 block 中定义了和外界同名的变量，在 block 中访问的是 block 中的变量</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. block 中可以定义和外界同名的变量</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">void</span> (^myBlock)() = ^&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%i"</span>, a);</span><br><span class="line">&#125;;</span><br><span class="line">myBlock(); <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
-<h4 id="默认情况下，不可以在-block-中修改外界变量的值"><a href="#默认情况下，不可以在-block-中修改外界变量的值" class="headerlink" title="#默认情况下，不可以在 block 中修改外界变量的值"></a>#默认情况下，不可以在 block 中修改外界变量的值</h4><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_1.png?imageView/0/h/120" alt=""></p>
+<h4 id="默认情况下，不可以在-block-中修改外界变量的值"><a href="#默认情况下，不可以在-block-中修改外界变量的值" class="headerlink" title="#默认情况下，不可以在 block 中修改外界变量的值"></a>#默认情况下，不可以在 block 中修改外界变量的值</h4><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_1.png?imageView/0/h/120" alt=""></p>
 <blockquote>
 <p>原因：因为 block 中的变量和外界的变量并不是同一个变量。当 block 中访问到了外界的变量时，block 会将外界的变量拷贝一份到<code>堆内存</code>中。</p>
 </blockquote>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_2.png?imageView/0/h/220" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_2.png?imageView/0/h/220" alt=""></p>
 <blockquote>
 <p>所以，如果在调用之前修改外界变量的值，不会影响到 block 中的 copy 值。</p>
 </blockquote>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_3.png?imageView/0/h/220" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_3.png?imageView/0/h/220" alt=""></p>
 <h4 id="在-block-中修改外界变量的值"><a href="#在-block-中修改外界变量的值" class="headerlink" title="#在 block 中修改外界变量的值"></a>#在 block 中修改外界变量的值</h4><ul>
 <li>如果想在 block 中修改外界变量的值，必须在外界变量前面加上 <code>__block</code></li>
 <li>如果在 block 中修改了外界变量的值，会影响到外界变量的值。</li>
@@ -712,12 +712,12 @@
 <h4 id="block-存储在堆中还是栈中？"><a href="#block-存储在堆中还是栈中？" class="headerlink" title="#block 存储在堆中还是栈中？"></a>#block 存储在堆中还是栈中？</h4><ul>
 <li>默认情况下，block 存储在<code>栈</code>中，如果对 block 进行一个 <code>copy 操作，block 会转移到</code>堆`中。</li>
 <li><p>如果 block 存储在<code>栈</code>中，block 中访问了外界的<code>对象</code>，那么不会对对象进行 <code>retain</code> 操作。</p>
-<p>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_5.png?imageView/0/h/220" alt=""></p>
+<p>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_5.png?imageView/0/h/220" alt=""></p>
 </li>
 <li><p>如果 block 存储在<code>堆</code>中，block 中访问了外界的<code>对象</code>，会对外界的对象进行一次 <code>reatin</code>操作。</p>
-<p>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_6.png?imageView/0/h/220" alt=""></p>
+<p>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_6.png?imageView/0/h/220" alt=""></p>
 </li>
-<li><p>如果在 block 中访问了外界的对象，一定要给对象加上 <code>__block</code>，只要加上了 <code>__block</code>，不管 block 是在<code>栈</code>中还是在<code>堆</code>中，都不会对对象进行一次<code>reatin</code>操作。<br>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_7.png?imageView/0/h/230" alt=""></p>
+<li><p>如果在 block 中访问了外界的对象，一定要给对象加上 <code>__block</code>，只要加上了 <code>__block</code>，不管 block 是在<code>栈</code>中还是在<code>堆</code>中，都不会对对象进行一次<code>reatin</code>操作。<br>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_7.png?imageView/0/h/230" alt=""></p>
 </li>
 </ul>
 <h2 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h2><h3 id="1-Protocol-基本概念"><a href="#1-Protocol-基本概念" class="headerlink" title="1. Protocol 基本概念"></a>1. Protocol 基本概念</h3><ul>
@@ -792,7 +792,7 @@
 <ul>
 <li>这时如果学生没有实现 StudentCondition 协议的话，那么就将会报警告</li>
 </ul>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_8.png?imageView/0/h/200" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_8.png?imageView/0/h/200" alt=""></p>
 <blockquote>
 <p>特别注意：就算 student 遵守了 StudentCondition 协议，但他却不一定实现了协议里面的方法，如果在 School 调用 Student 对象的协议方法时，需要加一层验证，验证 student 是否实现了协议中的方法。不然 student 如果没有实现协议方法，调用的话程序会崩溃。</p>
 </blockquote>
@@ -853,7 +853,7 @@
 <ul>
 <li>调用</li>
 </ul>
-<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170411_9.png?imageView/0/h/250" alt=""></p>
+<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170411_9.png?imageView/0/h/250" alt=""></p>
 <ul>
 <li><p>协议的编写规范</p>
 <ol>
@@ -1086,7 +1086,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1173,7 +1173,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1284,7 +1290,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
