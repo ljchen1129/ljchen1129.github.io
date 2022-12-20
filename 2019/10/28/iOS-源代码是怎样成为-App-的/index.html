@@ -127,24 +127,24 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="前言这篇文章想要探究一下在 iOS 开发中，iOS 源代码是怎样变成用户手机上的一个个 App 的，Xcode 里面 Command + B 具体发生了什么？ 我想可以分为两个部分，第一个部分是 iOS 源代码是怎样打包上架市场并安装到到用户手机上的，第二部分是用户当点击 App Icon 到 App 启动经历了哪些过程？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com2019-10-28-101309.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-101312.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-050818.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-080347.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-094817.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-152925.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-153148.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-29-061550.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-040417.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-061806.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-062207.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-112243.png">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg">
-<meta property="og:updated_time" content="2022-12-20T04:09:51.203Z">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com2019-10-28-101309.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-101312.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-050818.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-080347.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-094817.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-152925.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-153148.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-29-061550.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-040417.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-061806.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-062207.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-112243.png">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg">
+<meta property="og:updated_time" content="2022-12-20T04:46:01.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 源代码是怎样成为 App 的">
 <meta name="twitter:description" content="前言这篇文章想要探究一下在 iOS 开发中，iOS 源代码是怎样变成用户手机上的一个个 App 的，Xcode 里面 Command + B 具体发生了什么？ 我想可以分为两个部分，第一个部分是 iOS 源代码是怎样打包上架市场并安装到到用户手机上的，第二部分是用户当点击 App Icon 到 App 启动经历了哪些过程？">
-<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com2019-10-28-101309.png">
+<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com2019-10-28-101309.png">
 
 
 
@@ -522,7 +522,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -638,7 +638,7 @@
 </li>
 </ul>
 <p>Swift 是一门编译型语言，编译型语言的源代码要运行，首先是需要编译器（Complier）把源文件进行编译成目标文件，然后经过链接器（Linker）链接后才能够执行的。这篇主要记录的是 Swift 代码的编译过程。</p>
-<h3 id="LLVM-编译器架构"><a href="#LLVM-编译器架构" class="headerlink" title="LLVM 编译器架构"></a>LLVM 编译器架构</h3><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com2019-10-28-101309.png" alt="img"></p>
+<h3 id="LLVM-编译器架构"><a href="#LLVM-编译器架构" class="headerlink" title="LLVM 编译器架构"></a>LLVM 编译器架构</h3><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com2019-10-28-101309.png" alt="img"></p>
 <ul>
 <li>Frontend 前端<ul>
 <li>词法分析、语法分析、语义分析、生成中间代码</li>
@@ -653,7 +653,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-101312.png" alt="img"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-101312.png" alt="img"></p>
 <blockquote>
 <p>LLVM 编译器三层式的架构，前后端依赖统一格式的中间代码(IR)，使得前后端可以独立的变化。新增一门语言只需要修改前端，而新增一个 CPU 架构只需要修改后端即可。</p>
 </blockquote>
@@ -682,12 +682,12 @@
 <p>产生的 token 一般可以分为以下几类：关键字、标识符、字面量（数字、字符串）、特殊符号。在识别记号 token 的同时，也会将标识符放到符号表、将数字、字符串常量放到文字表等。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用 clang 对 main.c 源代码只进行词法分析</span></span><br><span class="line">xcrun clang -fmodules -fsyntax-only -Xclang -dump-tokens main.c</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果</span></span><br><span class="line">annot_module_include '#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int sum(int a, int b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">    int result = sum(1, 2);</span><br><span class="line">'		Loc=&lt;main.c:9:1&gt; // 标识位于源文件的第 9 行，从第 1 个字符开始</span><br><span class="line">int 'int'	 [StartOfLine]	Loc=&lt;main.c:11:1&gt; // 标识位于源文件的第 11 行，从第 1 个字符开始</span><br><span class="line">identifier 'sum'	 [LeadingSpace]	Loc=&lt;main.c:11:5&gt;</span><br><span class="line">l_paren '('		Loc=&lt;main.c:11:8&gt;</span><br><span class="line">int 'int'		Loc=&lt;main.c:11:9&gt;</span><br><span class="line">identifier 'a'	 [LeadingSpace]	Loc=&lt;main.c:11:13&gt;</span><br><span class="line">comma ','		Loc=&lt;main.c:11:14&gt;</span><br><span class="line">int 'int'	 [LeadingSpace]	Loc=&lt;main.c:11:16&gt;</span><br><span class="line">identifier 'b'	 [LeadingSpace]	Loc=&lt;main.c:11:20&gt;</span><br><span class="line">r_paren ')'		Loc=&lt;main.c:11:21&gt;</span><br><span class="line">l_brace '&#123;'	 [LeadingSpace]	Loc=&lt;main.c:11:23&gt;</span><br><span class="line">return 'return'	 [StartOfLine] [LeadingSpace]	Loc=&lt;main.c:12:5&gt;</span><br><span class="line">identifier 'a'	 [LeadingSpace]	Loc=&lt;main.c:12:12&gt;</span><br><span class="line">plus '+'	 [LeadingSpace]	Loc=&lt;main.c:12:14&gt;</span><br><span class="line">identifier 'b'	 [LeadingSpace]	Loc=&lt;main.c:12:16&gt;</span><br><span class="line">semi ';'		Loc=&lt;main.c:12:17&gt;</span><br><span class="line">r_brace '&#125;'	 [StartOfLine]	Loc=&lt;main.c:13:1&gt;</span><br><span class="line">int 'int'	 [StartOfLine]	Loc=&lt;main.c:15:1&gt;</span><br><span class="line">identifier 'main'	 [LeadingSpace]	Loc=&lt;main.c:15:5&gt;</span><br><span class="line">l_paren '('		Loc=&lt;main.c:15:9&gt;</span><br><span class="line">int 'int'		Loc=&lt;main.c:15:10&gt;</span><br><span class="line">identifier 'argc'	 [LeadingSpace]	Loc=&lt;main.c:15:14&gt;</span><br><span class="line">comma ','		Loc=&lt;main.c:15:18&gt;</span><br><span class="line">const 'const'	 [LeadingSpace]	Loc=&lt;main.c:15:20&gt;</span><br><span class="line">char 'char'	 [LeadingSpace]	Loc=&lt;main.c:15:26&gt;</span><br><span class="line">star '*'	 [LeadingSpace]	Loc=&lt;main.c:15:31&gt;</span><br><span class="line">identifier 'argv'	 [LeadingSpace]	Loc=&lt;main.c:15:33&gt;</span><br><span class="line">l_square '['		Loc=&lt;main.c:15:37&gt;</span><br><span class="line">r_square ']'		Loc=&lt;main.c:15:38&gt;</span><br><span class="line">r_paren ')'		Loc=&lt;main.c:15:39&gt;</span><br><span class="line">l_brace '&#123;'	 [LeadingSpace]	Loc=&lt;main.c:15:41&gt;</span><br><span class="line">int 'int'	 [StartOfLine] [LeadingSpace]	Loc=&lt;main.c:16:5&gt;</span><br><span class="line">identifier 'result'	 [LeadingSpace]	Loc=&lt;main.c:16:9&gt;</span><br><span class="line">equal '='	 [LeadingSpace]	Loc=&lt;main.c:16:16&gt;</span><br><span class="line">identifier 'sum'	 [LeadingSpace]	Loc=&lt;main.c:16:18&gt; // 标识位于源文件的第 16 行，从第 18 个字符开始</span><br><span class="line">l_paren '('		Loc=&lt;main.c:16:21&gt;</span><br><span class="line">numeric_constant '1'		Loc=&lt;main.c:16:22&gt;</span><br><span class="line">comma ','		Loc=&lt;main.c:16:23&gt;</span><br><span class="line">numeric_constant '2'	 [LeadingSpace]	Loc=&lt;main.c:16:25&gt;</span><br><span class="line">r_paren ')'		Loc=&lt;main.c:16:26&gt;</span><br><span class="line">semi ';'		Loc=&lt;main.c:16:27&gt;</span><br><span class="line">return 'return'	 [StartOfLine] [LeadingSpace]	Loc=&lt;main.c:17:5&gt;</span><br><span class="line">numeric_constant '0'	 [LeadingSpace]	Loc=&lt;main.c:17:12&gt;</span><br><span class="line">semi ';'		Loc=&lt;main.c:17:13&gt;</span><br><span class="line">r_brace '&#125;'	 [StartOfLine]	Loc=&lt;main.c:18:1&gt;</span><br><span class="line">eof ''		Loc=&lt;main.c:18:2&gt;</span><br></pre></td></tr></table></figure>
 <p><code>identifier &#39;sum&#39;     [LeadingSpace]    Loc=&lt;main.c:16:18</code>&gt;   表示位于源文件的第 16 行，从第 18 个字符开始</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-050818.png" alt="image-20191028130818220"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-050818.png" alt="image-20191028130818220"></p>
 <p>经过词法分析后，源代码就变成了一个个记号 token，并且记录了每一个记号 token 的在源代码中的位置信息。</p>
 <h4 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h4><p>语法分析就是语法分析器对词法分析输出的记号 token 进行语法分析，输出一颗<code>以表达式为节点</code>的<code>抽象语法树(abstract syntax tree - AST)</code>。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> clang 语法分析生成抽象语法树</span></span><br><span class="line">xcrun clang -fmodules -fsyntax-only -Xclang -dump-tokens main.c</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> sum 函数</span></span><br><span class="line">|-FunctionDecl 0x7fdd2a0126f0 &lt;main.c:11:1, line:13:1&gt; line:11:5 used sum 'int (int, int)'</span><br><span class="line">| |-ParmVarDecl 0x7fdd2a010590 &lt;col:9, col:13&gt; col:13 used a 'int'</span><br><span class="line">| |-ParmVarDecl 0x7fdd2a012618 &lt;col:16, col:20&gt; col:20 used b 'int'</span><br><span class="line">| `-CompoundStmt 0x7fdd2a012838 &lt;col:23, line:13:1&gt;</span><br><span class="line">|   `-ReturnStmt 0x7fdd2a012828 &lt;line:12:5, col:16&gt;</span><br><span class="line">|     `-BinaryOperator 0x7fdd2a012808 &lt;col:12, col:16&gt; 'int' '+'</span><br><span class="line">|       |-ImplicitCastExpr 0x7fdd2a0127d8 &lt;col:12&gt; 'int' &lt;LValueToRValue&gt;</span><br><span class="line">|       | `-DeclRefExpr 0x7fdd2a012798 &lt;col:12&gt; 'int' lvalue ParmVar 0x7fdd2a010590 'a' 'int'</span><br><span class="line">|       `-ImplicitCastExpr 0x7fdd2a0127f0 &lt;col:16&gt; 'int' &lt;LValueToRValue&gt;</span><br><span class="line">|         `-DeclRefExpr 0x7fdd2a0127b8 &lt;col:16&gt; 'int' lvalue ParmVar 0x7fdd2a012618 'b' 'int'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> main 函数</span></span><br><span class="line">`-FunctionDecl 0x7fdd2a012a60 &lt;line:15:1, line:18:1&gt; line:15:5 main 'int (int, const char **)'</span><br><span class="line">  |-ParmVarDecl 0x7fdd2a012868 &lt;col:10, col:14&gt; col:14 argc 'int'</span><br><span class="line">  |-ParmVarDecl 0x7fdd2a012950 &lt;col:20, col:38&gt; col:33 argv 'const char **':'const char **'</span><br><span class="line">  `-CompoundStmt 0x7fdd2a012c98 &lt;col:41, line:18:1&gt;</span><br><span class="line">    |-DeclStmt 0x7fdd2a012c50 &lt;line:16:5, col:27&gt;</span><br><span class="line">    | `-VarDecl 0x7fdd2a012b20 &lt;col:5, col:26&gt; col:9 result 'int' cinit</span><br><span class="line">    |   `-CallExpr 0x7fdd2a012c20 &lt;col:18, col:26&gt; 'int'</span><br><span class="line">    |     |-ImplicitCastExpr 0x7fdd2a012c08 &lt;col:18&gt; 'int (*)(int, int)' &lt;FunctionToPointerDecay&gt;</span><br><span class="line">    |     | `-DeclRefExpr 0x7fdd2a012b80 &lt;col:18&gt; 'int (int, int)' Function 0x7fdd2a0126f0 'sum' 'int (int, int)'</span><br><span class="line">    |     |-IntegerLiteral 0x7fdd2a012ba0 &lt;col:22&gt; 'int' 1</span><br><span class="line">    |     `-IntegerLiteral 0x7fdd2a012bc0 &lt;col:25&gt; 'int' 2</span><br><span class="line">    `-ReturnStmt 0x7fdd2a012c88 &lt;line:17:5, col:12&gt;</span><br><span class="line">      `-IntegerLiteral 0x7fdd2a012c68 &lt;col:12&gt; 'int' 0</span><br></pre></td></tr></table></figure>
 <p>sum 函数的语法树图形化为：</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-080347.png" alt="image-20191028160346857" style="zoom:80%;"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-080347.png" alt="image-20191028160346857" style="zoom:80%;"></p>
 <p>有了 AST 抽象语法树，语法分析阶段就可以对代码进行分析检查，如检查括号是否匹配，是否缺少操作符，类型是否匹配等，一旦检查不通过，就会报告语法分析阶段的错误。</p>
 <p>AST 也是用来编写 Clang 插件的主要交互的数据结构，程序员可以基于 AST 来编写自定义的语法规则，可以用来做代码静态检查。Clang 也提供了很多的 API 来对 AST 的节点做增删改查操作。</p>
 <h4 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h4><p>语法分析仅仅是完成对<code>表达式语法层面</code>的检查，要想检查语句是否真正有意义，还需要语义分析。</p>
@@ -708,21 +708,21 @@
 <h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>每个文件或者模块独立编译后的目标文件组装的过程叫做<code>链接</code>，链接由<code>链接器</code>完成。链接过程主要包括了地址和空间的分配、符号决议、和重定位等步骤。</p>
 <p><code>链接器</code> 将不同的目标文件和库文件链接起来，处理好各个模块和文件中的相互引用，将符号绑定到地址上，最终形成<code>可执行文件</code>。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用 clang 链接生目标文件生成可执行文件</span></span><br><span class="line">clang main.o -o main</span><br></pre></td></tr></table></figure>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-094817.png" alt="image-20191028174816689" style="zoom:50%;"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-094817.png" alt="image-20191028174816689" style="zoom:50%;"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看可执行文件中的符号表</span></span><br><span class="line">➜  HelloWorld nm -nm main</span><br><span class="line">                 (undefined) external  dyld_stub_binder (from libSystem) </span><br><span class="line">0000000100000000 (__TEXT,__text) [referenced dynamically] external __mh_execute_header</span><br><span class="line">0000000100000f60 (__TEXT,__text) external _sum</span><br><span class="line">0000000100000f80 (__TEXT,__text) external _main</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>表示符号 dyld_stub_binder 来自于 libSystem 库，undefined 表示在当前文件中找不到该符号，external 表示该符号可以支持外部访问</p>
 </blockquote>
 <h3 id="iOS-DEMO"><a href="#iOS-DEMO" class="headerlink" title="iOS DEMO"></a>iOS DEMO</h3><p>上面我们通过一个 hello world 程序和一个加法函数的 C 语言来举例，基本覆盖了编译链接的整个大的流程，但毕竟是单文件的，涉及的场景有限，有很多细节没法展示。</p>
 <p>下面写一个使用 Objective-C 和 Swift 的混编项目，使用 CocoaPods 来管理第三方库，包含了一个Objective-C .a 静态库 FooObjcStaticLibrary 和一个 Swift 的动态库 FooSwift.framework，尽量模拟真实的 iOS 项目场景，再来探究下。DEMO 项目结构如下：</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-152925.png" alt="image-20191028232924657"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-152925.png" alt="image-20191028232924657"></p>
 <p>运行效果：</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-28-153148.png" alt="image-20191028233148422" style="zoom: 50%;"></p>
-<h4 id="点击-Command-B"><a href="#点击-Command-B" class="headerlink" title="点击 Command + B"></a>点击 Command + B</h4><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-29-061550.png" alt="image-20191029141549289"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-28-153148.png" alt="image-20191028233148422" style="zoom: 50%;"></p>
+<h4 id="点击-Command-B"><a href="#点击-Command-B" class="headerlink" title="点击 Command + B"></a>点击 Command + B</h4><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-29-061550.png" alt="image-20191029141549289"></p>
 <h4 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h4><p>大多数任务在构建过程中由命令行工具运行，比如 Clang，LD，AC 工具，IB 工具，代码符号等。这些工具等执行，需要一组特定的实参，以特定的顺序，基于 Xcode 项目配置。</p>
 <h4 id="构建系统-Bulid-System"><a href="#构建系统-Bulid-System" class="headerlink" title="构建系统 Bulid System"></a>构建系统 Bulid System</h4><p>Xcode 10 开始，使用了新的 Bulid System，新构建系统使用 Swift Scratch 编写，提供了更好的性能，而且这个代码是开源的，地址在<a href="https://github.com/apple/swift-llbuild" target="_blank" rel="noopener">这里</a>。</p>
 <h4 id="读取-project-文件"><a href="#读取-project-文件" class="headerlink" title="读取  project 文件"></a>读取  project 文件</h4><p>首先，构建系统会从 project 文件读取源代码的信息，决定构建过程的模型和流程，然后转换成一个树形结构叫做<code>定向图</code>，它显示了所有的<code>依赖关系</code>，项目中的输入和输出文件，以及处理他们的执行任务。构建系统就按照定向图的顺序执行一系列的构建任务。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-040417.png" alt="image-20191030120417315"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-040417.png" alt="image-20191030120417315"></p>
 <blockquote>
 <p>project 文件除了记录了 App 的一些相关信息和源代码文件的组织目录关系，还记录了 build settings、build phases、build rules、target 、target dependencies 等构建相关的信息。有关 project 文件更新详细的介绍可以看<a href="http://yulingtianxia.com/blog/2016/09/28/Let-s-Talk-About-project-pbxproj/" target="_blank" rel="noopener">这篇文章</a>。 </p>
 </blockquote>
@@ -731,12 +731,12 @@
 <li><p>构建系统自带的规则，如编译器、链接器、资源目录、storyboard 处理器，这些规则定义了哪些是输入文件，哪些是输出文件</p>
 </li>
 <li><p>target 依赖，build 当前的 target 之前，必须先对这里的依赖先进行 build</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-061806.png" alt="image-20191030141806543"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-061806.png" alt="image-20191030141806543"></p>
 </li>
 <li><p>隐式依赖（Implicit dependencies）</p>
 </li>
 <li><p>Bulid phases，代表着将代码转变为可执行文件的最高级别规则，里面描述了 build 过程中必须执行的不同类型规则，定义了构建处理的过程</p>
-<p>​    <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-062207.png" alt="image-20191030142206876"></p>
+<p>​    <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-062207.png" alt="image-20191030142206876"></p>
 <ul>
 <li><p>CocoaPods 相关的脚本 script execution</p>
 </li>
@@ -748,13 +748,13 @@
 </ul>
 </li>
 <li><p>Scheme 顺序依赖</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-30-112243.png" alt="image-20191030192242047"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-30-112243.png" alt="image-20191030192242047"></p>
 </li>
 </ol>
 <p>该项目的构建定向图如下：**</p>
 <h4 id="编译源代码"><a href="#编译源代码" class="headerlink" title="编译源代码"></a>编译源代码</h4><h4 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h4><h2 id="第二部分：点击-App-Icon-gt-看到页面"><a href="#第二部分：点击-App-Icon-gt-看到页面" class="headerlink" title="第二部分：点击 App Icon -&gt; 看到页面"></a>第二部分：点击 App Icon -&gt; 看到页面</h2><hr>
 <p>分享个人技术学习记录和跑步马拉松训练比赛、读书笔记等内容，感兴趣的朋友可以关注我的公众号「by在水一方」。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/qrcode_for_gh_0be790c1f754_258.jpg" alt="by在水一方"></p>
 
       
     </div>
@@ -964,7 +964,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1051,13 +1051,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1168,13 +1162,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

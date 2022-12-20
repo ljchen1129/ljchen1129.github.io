@@ -448,628 +448,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/03/17/iOS-多线程-NSThread/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/03/17/iOS-多线程-NSThread/" class="post-title-link" itemprop="https://chenliangjing.me/page/6/index.html">iOS 多线程-NSThread</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-03-17 16:02:43" itemprop="dateCreated datePublished" datetime="2017-03-17T16:02:43+08:00">2017-03-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/多线程/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/17/iOS-多线程-NSThread/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/17/iOS-多线程-NSThread/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/17/iOS-多线程-NSThread/" class="leancloud_visitors" data-flag-title="iOS 多线程-NSThread">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>NSThread</code> 是实现 iOS 多线程技术的一种方案。是用 OC 语言编写的，由程序员管理线程生命周期，简单易用，可直接操作，使用更加地面向对象。</p>
-<h1 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h1><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)buttonClick:(<span class="keyword">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1.创建线程对象</span></span><br><span class="line">    <span class="built_in">NSThread</span> *thread = [[<span class="built_in">NSThread</span> alloc] initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(run:) object:<span class="string">@"testParm"</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 启动线程</span></span><br><span class="line">    [thread start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)run:(<span class="built_in">NSString</span> *)parm</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 获取当前线程对象</span></span><br><span class="line">    <span class="built_in">NSThread</span> *currentThread = [<span class="built_in">NSThread</span> currentThread];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"----run----%@---%@"</span>, parm, currentThread);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/03/17/iOS-多线程-NSThread/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/03/10/iOS 多线程-基本概念/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/03/10/iOS 多线程-基本概念/" class="post-title-link" itemprop="https://chenliangjing.me/page/6/index.html">iOS 多线程-基本概念</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-03-10 21:10:07" itemprop="dateCreated datePublished" datetime="2017-03-10T21:10:07+08:00">2017-03-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/多线程/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/10/iOS 多线程-基本概念/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/10/iOS 多线程-基本概念/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/10/iOS 多线程-基本概念/" class="leancloud_visitors" data-flag-title="iOS 多线程-基本概念">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>Q：什么是进程？<br>A：进程是指在系统中<code>正在运行</code>的一个应用程序。<br>eg：比如同时打开微信、QQ，系统就会分别启动两个进程。</p>
-<blockquote>
-<p>注意：每个进程之间是<code>独立</code>的且均运行在其专用并受保护的内存空间内。</p>
-</blockquote>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170316_4.png?imageView2/0/h/120/" alt=""></p>
-<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>Q：什么是线程？<br>A：<code>线程</code>是<code>进程</code>的<code>基本执行单元</code>，一个进程想要执行任务，必须得有线程（每个进程至少要有一个线程）。<br>eg：比如使用 QQ 进行文字聊天，使用微信进行视频聊天，都需要在各自的线程中执行。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170316_3.png?imageView2/0/h/120/" alt=""><br></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/03/10/iOS 多线程-基本概念/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2017/03/07/仿悦动圈运动APP（第一天）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/03/07/仿悦动圈运动APP（第一天）/" class="post-title-link" itemprop="https://chenliangjing.me/page/6/index.html">仿悦动圈运动APP（第一天）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-03-07 23:03:45" itemprop="dateCreated datePublished" datetime="2017-03-07T23:03:45+08:00">2017-03-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/07/仿悦动圈运动APP（第一天）/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/07/仿悦动圈运动APP（第一天）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/07/仿悦动圈运动APP（第一天）/" class="leancloud_visitors" data-flag-title="仿悦动圈运动APP（第一天）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>仿<a href="https://itunes.apple.com/cn/app/%E6%82%A6%E5%8A%A8%E5%9C%88-%E8%B7%91%E6%AD%A5%E8%AE%A1%E6%AD%A5%E5%87%8F%E8%82%A5100-%E9%A2%86%E7%BA%A2%E5%8C%85%E7%9A%84%E8%BF%90%E5%8A%A8%E5%81%A5%E5%BA%B7%E7%A4%BE%E5%8C%BA/id872341407?mt=8" target="_blank" rel="noopener">悦动圈</a>运动APP</p>
-<blockquote>
-<p><a href="https://github.com/ljchen1129/YDQ" target="_blank" rel="noopener">项目地址</a></p>
-</blockquote>
-<h1 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h1><h2 id="获取图片资源"><a href="#获取图片资源" class="headerlink" title="获取图片资源"></a>获取图片资源</h2>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/03/07/仿悦动圈运动APP（第一天）/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2016/11/09/微信小程序初体验/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1132,7 +510,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1332,7 +710,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1407,7 +785,7 @@
         
           <h2 id="GitHub-上传代码"><a href="#GitHub-上传代码" class="headerlink" title="#GitHub 上传代码"></a>#GitHub 上传代码</h2><h3 id="安装-git"><a href="#安装-git" class="headerlink" title="安装 git"></a>安装 git</h3><p>如果没有安装 git，得先安装 git，mac 系统自带 git，不用安装，可以在命令行里查看下 git 的版本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git version</span><br></pre></td></tr></table></figure>
-<div><br><center><br>    <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20161109_3.png?imageView2/0/h/300/w/475"><br>  </center><br></div>
+<div><br><center><br>    <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20161109_3.png?imageView2/0/h/300/w/475"><br>  </center><br></div>
 
 <h3 id="git-配置"><a href="#git-配置" class="headerlink" title="git 配置"></a>git 配置</h3><p>安装完 git，首要任务是配置我们的信息，最重要的是用户名及邮箱，在终端中以下命令：<br></p>
           <!--noindex-->
@@ -1535,7 +913,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1738,7 +1116,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1815,7 +1193,7 @@
 <h1 id="工具效率"><a href="#工具效率" class="headerlink" title="工具效率"></a>工具效率</h1><h3 id="1-查看工程代码行数"><a href="#1-查看工程代码行数" class="headerlink" title="1. 查看工程代码行数"></a>1. 查看工程代码行数</h3><ol>
 <li>cd 到工程文件夹，如果要避免统计到<code>第三方库</code>的代码，应该再 cd 到存放我们自己写的项目文件夹：</li>
 </ol>
-<div><br><center><br>    <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/4C26F715-EADD-4C10-AA6F-8953C0726C60.png?imageView2/0/h/350" width="500px"><br>    </center><br></div>
+<div><br><center><br>    <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/4C26F715-EADD-4C10-AA6F-8953C0726C60.png?imageView2/0/h/350" width="500px"><br>    </center><br></div>
 
 <ol start="2">
 <li><p>打开终端，输入如下命令：</p></li></ol>
@@ -1944,7 +1322,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-03 20:42:22" itemprop="dateModified" datetime="2020-08-03T20:42:22+08:00">2020-08-03</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -2144,7 +1522,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -2344,7 +1722,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -2472,11 +1850,631 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2016/06/02/HTML5初体验/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/06/02/HTML5初体验/" class="post-title-link" itemprop="https://chenliangjing.me/page/6/index.html">HTML5 初体验</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-06-02 14:10:22" itemprop="dateCreated datePublished" datetime="2016-06-02T14:10:22+08:00">2016-06-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/html5/" itemprop="url" rel="index"><span itemprop="name">html5</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/02/HTML5初体验/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2016/06/02/HTML5初体验/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/06/02/HTML5初体验/" class="leancloud_visitors" data-flag-title="HTML5 初体验">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/2016/06/02/HTML5初体验/html5.jpg" width="400px" height="300px
+"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>随着移动互联网的火热，html5技术的成熟，越来越多的APP都采用了混合编程的模式，这是一个趋势。既在原生APP里面嵌入大量的HTML5网页，综合了原生和html5各自的优势。所以作为一个APP开发从业人员，掌握html5开发已成为了职业发展的必备技能。<br></p></blockquote>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/06/02/HTML5初体验/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2016/05/01/我的个人技术博客搭建之旅/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/01/我的个人技术博客搭建之旅/" class="post-title-link" itemprop="https://chenliangjing.me/page/6/index.html">我的个人技术博客搭建之旅</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-05-01 20:50:56" itemprop="dateCreated datePublished" datetime="2016-05-01T20:50:56+08:00">2016-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/01/我的个人技术博客搭建之旅/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2016/05/01/我的个人技术博客搭建之旅/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/05/01/我的个人技术博客搭建之旅/" class="leancloud_visitors" data-flag-title="我的个人技术博客搭建之旅">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="为什么要建站？"><a href="#为什么要建站？" class="headerlink" title="为什么要建站？"></a>为什么要建站？</h2><ul>
+<li>从事iOS开发工作快一年了，一直觉得自己的能力提高的比较慢，想要快点提高自己的技术水平，因为这是一个快鱼吃慢鱼的社会</li>
+<li>写博客可以督促自己养成良好的<code>学习</code>、<code>思考</code>、<code>记录</code>、<code>总结</code>的习惯</li>
+<li>之前的学习大都参考了很多牛人的博客。从他们的博客中已经学到了很多有用的知识和技术。程序员是一个伟大的职业，受到启发，想成为一个<code>真正的程序员</code></li>
+<li>互联网时代，人人都是<code>自媒体</code>。个人博客是一个平台，可以用来展示自己，建立自己的个人品牌</li>
+<li>分享是一种<code>美德</code>。人人为我，我为人人</li>
+</ul>
+<h2 id="为什么要建独立的个人博客？"><a href="#为什么要建独立的个人博客？" class="headerlink" title="为什么要建独立的个人博客？"></a>为什么要建独立的个人博客？</h2><ul>
+<li>喜欢自由，个人独立博客，可编辑定制空间大，不像第三方的博客系统，有很多不受自己控制的地方，比如文章页面出现广告，体验很不好</li>
+<li>自己动手搭建博客，可以顺便学习到一些网页，写作方面的知识或技能</li>
+<li>酷，有趣。程序员都追求酷，自己折腾，自己瞎改，改主题，改配置，改风格，绑定个性化的独立域名，甚至自己开发一套自己喜欢和满意的主题，一切都那么有趣和美好</li></ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/05/01/我的个人技术博客搭建之旅/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2016/01/13/2016香港马拉松总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/01/13/2016香港马拉松总结/" class="post-title-link" itemprop="https://chenliangjing.me/page/6/index.html">2016香港马拉松总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-01-13 16:00:52" itemprop="dateCreated datePublished" datetime="2016-01-13T16:00:52+08:00">2016-01-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/生活/" itemprop="url" rel="index"><span itemprop="name">生活</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/生活/马拉松/" itemprop="url" rel="index"><span itemprop="name">马拉松</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/01/13/2016香港马拉松总结/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2016/01/13/2016香港马拉松总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/01/13/2016香港马拉松总结/" class="leancloud_visitors" data-flag-title="2016香港马拉松总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>上周末去参加了2016香港渣打马拉松，休息一礼拜后，身体基本都恢复了，正好周末不加班，又是雨雪冷天，精力过剩，so随便写写，记录一下这次旅程，无病呻吟也好，流水账也好，至少用写，顶住忘记。</p>
+<p>为什么想去参加？首先回答一下这个问题。第一，因为工作在深圳，靠近香港，而且香港马拉松算是亚洲数一数二有名的马拉松赛事了，作为一个马拉松爱好者，必定心驰神往。第二，2016正好是香港马拉松20周年，无意中在facebook上看到了陈奕迅演唱的赛会主题曲《人生马拉松》MV，很受感动，参加了肯定很有纪念意义。好吧，我是个偏感性的人。最后，也是最重要的原因，刚刚毕业，来到大城市，有些迷茫，有些浮躁，有些戾气赶不走，需要一个具象的目标来消化，2016香港马拉松无疑是我能想到的并且适合我的最好的方式。新鲜而又富有挑战性。</p>
+<h4 id="九月份，报名。"><a href="#九月份，报名。" class="headerlink" title="九月份，报名。"></a>九月份，报名。</h4><p>看攻略，演练报名情景，只为点击的时候能比别人快那么零点几秒。发现支付只支持信用卡，需要有带visa或者万事达标志的那种，于是调休了半天跑了深圳的招行，建行，工行，申请办理那种信用卡，但是都是以没有社保或者缴纳社保不够时长为由被拒绝。被拒绝的时候，感觉自己too young  too  simple ! 好吧，那时我只是个可怜的试用期员工，还享受不到大城市的社保的福利，就是能办等审批下来也来不及了……求助朋友吧，最后还是长跑俱乐部的一个学长帮到了我。<br>一如近几年国内的马拉松报名，必须用抢的，但是幸好不像深圳马拉松那样报上了还要抽签摇号，是先到先得。早晨七点准时开抢，根据以往几年的经验，我选择了去网吧，不到六点起床，找了一台网速给力，配置给力的机子，当然价格也贵，怀念高中一块钱一个小时的网吧。买了VPN，配置了翻墙（后面发现其实不用，没有被墙）感觉一切准备就绪了，我对着香港时间倒计着秒数，我以为我会很快，等真正点进去的时候发现排到了3000多名，幸运的是最后还是进去了，填了资料，用学长朋友的信用卡刷了350港币。报名成功了！</p>
+<h4 id="十月，十一月，十二月份，训练。"><a href="#十月，十一月，十二月份，训练。" class="headerlink" title="十月，十一月，十二月份，训练。"></a>十月，十一月，十二月份，训练。</h4><p>其实很惭愧，真正没怎么训练到。毕业后，时间就不是自己的了，断断续续，特别是当我知道和我同时进来的两个做andriod开发的哥们被开了以后，更有危机感。这个时候，生存问题大于一切。但是，也做了一件让自己开心的事情，国庆放假，我花了5天时间搭了一个属于自己的技术博客站点，虽然排版还很粗糙，虽然还没有集成评论分享系统，还没有站内搜索，没做seo，没有数据统计功能，但是相对于这些，走心，优质的内容才是最最重要的，我希望在未来的日子里，它能够帮助我记录我技术成长的点点滴滴。我相信这是一个美好的开始，因为我信仰文字的力量。在这个过程中，我认识了很多业内的大牛和榜样，发现了很多有意思的事情，虽然他们当中没有一个认识我这个无名小卒。我读他们的博客，能够找到很多相似的情感投射和共鸣，这就够了。他们很多时候也孤独，却不无趣，我想有趣才是最高程度的优秀吧！技术应该是有趣的吧，至少可以让他变得有趣！</p>
+<p>说说工作吧，目前在深圳就职于一家互联网行业的创业公司，节奏很快，产品很多，感觉还行，按照某个大牛的话说，这种公司是我们这些初级程序员的锻炼基地，应该好好珍惜。刚进去，首先做的工作是维护之前的旧项目，其实主要是在改bug,，也是很多不懂，项目的技术规范和技术架构不熟悉，找个文件或是变量都要找半天，效率很低，说实话，那段时间很痛苦，但幸好熬过去了。国庆节后就开始做新项目了，一个很小的商家APP，我们三个人做iOS平台，都是90后，其中还有一妹子（这在程序员群体里面是多么的难得），相处配合的都很好，也是在那个项目做完后，谢天谢地，顺利的转正了。十一月初参与了一个理财类APP的改版工作，那个项目的一期代码写的非常规范，项目结构很清晰，是我们公司一个30多岁的技术大牛担任项目经理做的，所以改版任务挺轻松的就完成了，这次改版工作让我学到了团队开发遵从一定的技术规范和标准是多么重要的一件事情，做团队开发的技术人员需要有团队思维。十一月末到现在，都是在做一个团购APP的开发和后期迭代工作，是要给泰国那边事业部去运营的，而我在想，是不是把活做漂亮了，就有机会去泰国看看人妖啥的（梦想还是要有的，万一大Boss给我们实现了呢？哈哈。。）。这段时间也是我们团队最稳定的一段时期。嗯嗯，活儿一定要做好！</p>
+<p>要归正传。训练，多少我还是有训练的，虽然训练次数和训练强度都不能和大学时期相提并论了。最初，住在西乡，我就坐两个地铁站去宝安体育馆跑步，绕着那个体育馆跑，一圈大约600到700米，哪里好多人，而且经常有哪些街头乐队在表演，像是在给我们这些跑步的在加油鼓励，只是那边每晚不到十点就闭馆，每次都只能跑个5公里左右，塞牙缝都不够。后面搬到民治了，这边上班更近了，每天早上可以睡到八点都不会迟到，刚搬来的时候，我去过几次深圳北大草坪，那里夜跑的人也很多，只是那里的赛道很拥挤，而且路很不平，伤膝盖，后面我就没去了，因为接下来我发现了一个新的更好的跑步地点，那就是深圳莲花山公园，哪里盛开了很多深圳的市花——簕杜鹃，非常漂亮。据说每次国家领导人来深圳都会来这个公园，因为山上面有一个邓小平爷爷的铜像，我妈来深圳的时候，我还带她上去过，不高，铜像周围簇拥着很多敬献的花篮，山上可以俯瞰一下深圳的夜景，也是很漂亮，很多广告片或是影视剧取景都常来这里，我还亲身碰到过一次。铜像下面的墙壁上铿锵有力的写着几个邓公的题词——深圳的发展和经验证明，我们建立经济特区的政策是正确的！在莲花山公园跑步，既可以跑长距离，绕外圈一次大约5公里，也可以短距离，绕着中央的湖一圈跑大约1.2公里，还有一些有坡度的跑道，可以模拟练习马拉松的上下坡赛道，这里的森林覆盖率也很高，氧气很足，洗肺充分。湖光山色，鸟语花香，跑步在这里就是一种大自然的享受。</p>
+<h4 id="一月份，比赛。"><a href="#一月份，比赛。" class="headerlink" title="一月份，比赛。"></a>一月份，比赛。</h4><p>第一次去香港，在不影响项目开发进度的情况下，调了一天休，一月十五号准备了一天，换了个深圳的号码，全球通，因为泉州的号在香港不能用了，而且要开通港澳台服务的话需要本人携带证件到泉州营业厅去办理，相当麻烦，不然我是不情愿换号的。晚上在携程上订了一间较便宜的房间，靠近起点尖沙咀，也要300多， 选了离自己最近的福田口岸通关，看攻略上说年底了又是周末很多大陆游客会去香港购物，本以为通关要花很长的时间，结果那天没感觉排了很长的队就顺利出关了，可能是天气不太好吧，大家都不太愿意出门，哈哈。在福田口岸，将自己的L签转了G签，换了几百港币，买了张八达通卡，就开始乘坐港铁了，东铁转西铁，在地铁里看到那些红磡，铜锣湾，尖沙咀什么的站的时候，还有那种很高的双层巴士，好像有一种穿越到香港电影或是TVB剧的感觉，太酷了！可见文化的入侵比什么都来的猛烈。噢，好像不能讲入侵，应该讲融合。</p>
+<p>来到香港的第一站是维多利亚公园，也是这次马拉松的终点，一月16号，海外选手需要在这里来领取参赛的包裹，海外？对，对于香港人而言，我就是海外选手。 但不得不说，组织的真的很有秩序，完全不乱，也不用等很久就能领到包裹，里面有参赛服，号码牌（计时芯片绑定在号码牌背面），参赛说明，还有一些广告传单。他们的志愿者大多能用粤语，国语，英语三门语言来维持秩序，也挺有礼貌的，对比之下，感觉内地的一些马拉松赛事服务质量确实还有提升的空间。在香港吃了中餐和晚餐，普通的扬州炒饭和一个什么鸡肉套餐，花了将近100港币，真不便宜。一切准备妥当后，开始睡觉，我以为我能睡着，结果只睡了两个小时，后面就在思考人生了，，，，四点起床，吃早餐，赶到起点，存包，热身，重复着之前跑马拉松都会重复的工作，不同的是，开跑前十分钟，天空突然噼里啪啦的下起大雨来，但好像并没有减弱大家的热情，人群反而更兴奋了，6点45，开跑，大家都蜂拥而出，一群人一起跑步的感觉就是，就算你不high，也会被带high的。一开始我混在人群中自由自在地跑着，任由周边的人一个一个超过我，因为过去的参赛经验告诉我，开头我不能跑太快，否则会死的很惨，我看得出来，他们中有高手，也有菜鸟，但我不会拉住某个要超过我的那个看起来像菜鸟的选手，告诉他，你应该跑慢点，不然后面你会死的很惨。第一，那会显得很傻逼，第二因为我曾经也是菜鸟，一切都需要靠自己的领悟和体验。遵从少量多次的补水原则，我安全地跑到了30公里。三十公里前，当我跑步时，我在想些什么呢？我在想，这雨什么时候能停，我在想，这赛道为什么这么难跑，基本都是在桥上，环形公路造成的高低脚，让人很难受。三十公里后，我吃了大量的香蕉和巧克力，因为可以快速补充能量，更因为这里是所有马拉松运动员的一个关口，生理极限，全体都有，黑人也不列外。人体储藏的肝糖原和肌糖原在这里全部分解完了，人体各项机能达到最低点，大脑开始调配脂肪供给能量，只是中间有段过渡期，有些人长有些人短而已，撑不过的就叫撞墙了。我知道我今年练得不够，加上魔鬼赛道和下雨，撞墙在所难免。所以，三十公里后，我在想些什么呢？我在想这该死的过渡期怎么还过不去？该死的脂肪怎么还不分解供能？我在预支跑完后的心情，拿着奖牌，拍着照，又一次成功的挑战了自己，可喜可贺。公里数在我心里也由已经跑了多少公里变成了了仅有几公里。没有大的不同，但是这些心里的微妙变化在跑马的心路历程中却显得特别的有趣，我想把他记录下来而已。 所以这就是亚洲第一魔鬼赛道，三座大桥，三条隧道，最后两公里还要过个几百米的天桥，就是要让你不舒服。总是将人生比作马拉松，或许我还没完全理解，但是在试着慢慢地去理解。</p>
+<h4 id="2016，期许。"><a href="#2016，期许。" class="headerlink" title="2016，期许。"></a>2016，期许。</h4><p>戒奢戒躁，技术上有提高。不作恶。跑步，读书，享受音乐。<br>一个人固然寂寞，两个人孤灯下无言相对却可以更寂寞。他之蜜糖，我之砒霜。。。</p>
+<p>PS：不能再写了，夜已深，发现越来越感性了，真是精力过剩，写了一堆废话，删了又可惜，，，能看到这里的都真爱。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
   </nav>
 
 
@@ -2521,7 +2519,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2608,13 +2606,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2725,13 +2717,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

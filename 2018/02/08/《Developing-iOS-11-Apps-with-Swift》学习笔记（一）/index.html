@@ -127,20 +127,20 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="前言这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。 课程地址 Demo 示例地址 参考资料一：官方文档参考资料二：官方文档中文翻译 第一节课主要是介绍了 iOS 开发的一些基本知识点，iOS 系统的框架层级，Swift">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_3.png?imageView2/2/w/600">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_4.png?imageView2/2/w/600">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_5.png?imageView2/2/w/600">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_6.png?imageView2/2/w/600">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_7.png?imageView2/2/w/700">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_8.png?imageView2/2/w/700">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_10.png?imageView2/2/w/700">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_11.png?imageView2/2/w/700">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_12.png?imageView2/2/w/700">
-<meta property="og:updated_time" content="2022-12-20T04:09:51.207Z">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_3.png?imageView2/2/w/600">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_4.png?imageView2/2/w/600">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_5.png?imageView2/2/w/600">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_6.png?imageView2/2/w/600">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_7.png?imageView2/2/w/700">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_8.png?imageView2/2/w/700">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_10.png?imageView2/2/w/700">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_11.png?imageView2/2/w/700">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_12.png?imageView2/2/w/700">
+<meta property="og:updated_time" content="2022-12-20T04:46:01.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Developing iOS 11 Apps with Swift》学习笔记（一）">
 <meta name="twitter:description" content="前言这套课程是苹果官方推荐的入门 iOS 开发的学习课程。之前也听过，Paul 老爷子讲的非常好，这次准备重看一遍，顺便把 swift 和 iOS 相关的一些基础知识点复习一遍。文章会按照视频的次序写笔记，记录重点以及自己的理解。 课程地址 Demo 示例地址 参考资料一：官方文档参考资料二：官方文档中文翻译 第一节课主要是介绍了 iOS 开发的一些基本知识点，iOS 系统的框架层级，Swift">
-<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_3.png?imageView2/2/w/600">
+<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_3.png?imageView2/2/w/600">
 
 
 
@@ -518,7 +518,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -608,46 +608,46 @@
 <li>Core OS（系统核心层）</li>
 </ul>
 <p>由于 iOS 是有 Unix 分出来的，所以这一层的大部分都是一些用 C 语言写的 UNIX 操作系统的接口，主要有系统内核、Mach 3.0、BSD、Sockets（套接字）、Security（安全）、Power Managerment（电量管理）、Keychain Access（钥匙串访问）、Certificates（证书）、File System（文件管理）、Bonjour。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_3.png?imageView2/2/w/600" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_3.png?imageView2/2/w/600" alt=""></p>
 <a id="more"></a>
 <ul>
 <li>Core Services（系统服务层）</li>
 </ul>
 <p>这层是面向对象的，iOS 开发中经常用到的。主要封装有 Collections（集合类型）、Core Location(核心定位)、Address Book(地址簿)、Net Services(网络服务)、Networking(网络)、Theading (线程)、File Access(文件访问)、Preferences(偏好设置)、SQLite(数据库)、URL 实体等。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_4.png?imageView2/2/w/600" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_4.png?imageView2/2/w/600" alt=""></p>
 <ul>
 <li>Media（媒体层）</li>
 </ul>
 <p>这层主要封装有 Core Audio(核心音频) JPEG,PNG,TIFF(不同图片格式)、OpenAL、PDF（文档）、Audio Mixing(音频合成)、Quartz(2D)(绘图)、Audio Recording(录音)、Core Animation(核心动画)、Video Playback(视频播放)、OpenGL ES（图形渲染）</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_5.png?imageView2/2/w/600" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_5.png?imageView2/2/w/600" alt=""></p>
 <ul>
 <li>Cocoa Touch（用户界面层）</li>
 </ul>
 <p>最顶层是用户直接接触的，是 UI 用户界面层。所有的视图、view、控件、地图、本地化、相机相册、多点触控等都是在这一层，日常的界面开发就是在这一层。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_6.png?imageView2/2/w/600" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_6.png?imageView2/2/w/600" alt=""></p>
 <h2 id="iOS-开发平台组件"><a href="#iOS-开发平台组件" class="headerlink" title="iOS 开发平台组件"></a>iOS 开发平台组件</h2><ul>
 <li>工具：Xocde（IDE）、Instrument(辅助调试、内存溢出什么的)</li>
 <li>语言：Objective-C、Swift、C、C++</li>
 <li>框架：Foundation、UIKit </li>
 <li>设计模式：MVC、MVP、MVVM </li>
 </ul>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_7.png?imageView2/2/w/700" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_7.png?imageView2/2/w/700" alt=""></p>
 <h2 id="翻纸牌游戏-demo"><a href="#翻纸牌游戏-demo" class="headerlink" title="翻纸牌游戏 demo"></a>翻纸牌游戏 demo</h2><ul>
 <li>字符串常量拼接变量</li>
 </ul>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_8.png?imageView2/2/w/700" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_8.png?imageView2/2/w/700" alt=""></p>
 <ul>
 <li>类型推断<br>自动推断出变量的类型</li>
 </ul>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_10.png?imageView2/2/w/700" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_10.png?imageView2/2/w/700" alt=""></p>
 <ul>
 <li>计算属性<br>监听属性的赋值操作</li>
 </ul>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_11.png?imageView2/2/w/700" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_11.png?imageView2/2/w/700" alt=""></p>
 <ul>
 <li>可选绑定<br>给一个可选类型解包</li>
 </ul>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20180208_12.png?imageView2/2/w/700" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20180208_12.png?imageView2/2/w/700" alt=""></p>
 
       
     </div>
@@ -857,7 +857,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -944,13 +944,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1061,13 +1055,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

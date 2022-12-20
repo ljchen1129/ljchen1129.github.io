@@ -127,15 +127,15 @@
 <meta property="og:site_name" content="在水一方">
 <meta property="og:description" content="前言正在读《Effective Objective-C 2.0》这本书，这本书主要介绍了一些使用 Objective-C 语言编写代码方面的 52 个有效方法，并且介绍了相应的原理。准备按章节写下读书笔记，并贴出实际的验证代码。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_2.png?imageView2/0/h/100">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_3.png?imageView2/0/h/250">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_5.png?imageView2/0/h/150">
-<meta property="og:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_6.png?imageView2/0/h/100">
-<meta property="og:updated_time" content="2022-12-20T04:09:51.210Z">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_2.png?imageView2/0/h/100">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_3.png?imageView2/0/h/250">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_5.png?imageView2/0/h/150">
+<meta property="og:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_6.png?imageView2/0/h/100">
+<meta property="og:updated_time" content="2022-12-20T04:46:01.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective Objective-C 2.0》读书笔记（第一章：熟悉 Objective-C）">
 <meta name="twitter:description" content="前言正在读《Effective Objective-C 2.0》这本书，这本书主要介绍了一些使用 Objective-C 语言编写代码方面的 52 个有效方法，并且介绍了相应的原理。准备按章节写下读书笔记，并贴出实际的验证代码。">
-<meta name="twitter:image" content="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_2.png?imageView2/0/h/100">
+<meta name="twitter:image" content="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_2.png?imageView2/0/h/100">
 
 
 
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -614,7 +614,7 @@
 </ul>
 <ul>
 <li><p>直接这样定义，会报如下错误：</p>
-<p>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_2.png?imageView2/0/h/100" alt=""></p>
+<p>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_2.png?imageView2/0/h/100" alt=""></p>
 </li>
 </ul>
 <blockquote>
@@ -628,7 +628,7 @@
 <ul>
 <li>此时的内存布局：</li>
 </ul>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_3.png?imageView2/0/h/250" alt=""></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_3.png?imageView2/0/h/250" alt=""></p>
 <blockquote>
 <p>此时图中演示了一个分配在堆中的 NSString 实例，还有两个分配在栈上的指针指向该实例。其中，分配在堆中的内存必须直接管理，而分配在栈上用于保存变量的内存则会在其栈帧（stack frame）弹出时自动清理。</p>
 </blockquote>
@@ -690,7 +690,7 @@
 <p>  假设有三个对象实例obj1、obj2、obj3，其中 obj2 为 <code>nil</code>，分别使用两种方式创建数组 arrayA、arrayB，看下会发生什么情况：</p>
   <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">id</span> obj1 = <span class="string">@"obj1"</span>;</span><br><span class="line"><span class="keyword">id</span> obj2 = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">id</span> obj3 = @<span class="number">2</span>;</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSArray</span> *arrayA = [<span class="built_in">NSArray</span> arrayWithObjects:obj1, obj2, obj3, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrayA=%@"</span>,arrayA);</span><br><span class="line"><span class="built_in">NSArray</span> *arrayB = @[obj1, obj2, obj3];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrayB=%@"</span>,arrayB);</span><br></pre></td></tr></table></figure>
 <p>  看下打印：</p>
-<p>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_5.png?imageView2/0/h/150" alt=""></p>
+<p>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_5.png?imageView2/0/h/150" alt=""></p>
 <blockquote>
 <p>结果：没有使用字面量方式创建的数组 arrayA 只有 obj1 一个元素加进去了，而使用字面量创建的数组 arrayB 崩溃了。</p>
 </blockquote>
@@ -712,7 +712,7 @@
 </ul>
 <ul>
 <li><p>打印：</p>
-<p>  <img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Snip20170327_6.png?imageView2/0/h/100" alt=""></p>
+<p>  <img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Snip20170327_6.png?imageView2/0/h/100" alt=""></p>
 </li>
 <li><p><strong>要点</strong></p>
 <ul>
@@ -931,7 +931,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1018,13 +1018,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1135,13 +1129,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

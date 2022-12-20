@@ -448,692 +448,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2022/10/01/Flutter-学习-基本基础知识/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2022/10/01/Flutter-学习-基本基础知识/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">Flutter 学习-基本基础知识</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2022-10-01 11:39:23" itemprop="dateCreated datePublished" datetime="2022-10-01T11:39:23+08:00">2022-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2022-12-20 11:40:54" itemprop="dateModified" datetime="2022-12-20T11:40:54+08:00">2022-12-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2022/10/01/Flutter-学习-基本基础知识/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2022/10/01/Flutter-学习-基本基础知识/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2022/10/01/Flutter-学习-基本基础知识/" class="leancloud_visitors" data-flag-title="Flutter 学习-基本基础知识">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Flutter-工程模式"><a href="#Flutter-工程模式" class="headerlink" title="Flutter 工程模式"></a>Flutter 工程模式</h3><ol>
-<li>App：就是一个以 Flutter 为容器的 App 工程项目，里面可包含各种平台（iOS、Android、Mac OS、Windows、Linux、Web），<code>统一管理模式</code></li>
-<li>Module：创建一个 Flutter 模块，以模块的形式分别嵌入各自的原生平台项目，<code>三端分离模式</code></li>
-<li>Package：纯 Dart 插件工程，不依赖 Flutter，仅包含 Dart 层的实现，<code>通常用来定义一些公共库</code></li>
-<li>Plugin：Flutter 平台插件，包含 Dart 和 Native 平台层的实现，是一种<code>特殊的 Flutter Package</code></li>
-<li>Skeleton（骨架）：flutter 2.5 之后新增的，自动生成 Flutter 模版，提供常用框架</li>
-</ol>
-<p><img src="/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled.png" alt="Untitled"></p>
-<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 入口主函数</span></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无状态组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 构造方法</span></span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;<span class="keyword">super</span>.key&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// build 描述如何根据其他较低级别的 widgets 来显示自己</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> wordPair = WordPair.random();</span><br><span class="line">    <span class="comment">// 一种移动端和网页端通用的视觉设计语言， Flutter 提供了丰富的 Material 风格的 widgets</span></span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Welcome to Flutter'</span>,</span><br><span class="line">      <span class="comment">// Scaffold 是 Material 库中提供的一个 widget，它提供了默认的导航栏、标题和包含主屏幕 widget 树的 body 属性。 widget 树可以很复杂。</span></span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: <span class="keyword">const</span> Text(<span class="string">'Welcome to Flutter'</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Center(</span><br><span class="line">          child: Text(wordPair.asPascalCase),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="widget"><a href="#widget" class="headerlink" title="widget"></a>widget</h3><p><code>StatelessWidget</code>：无状态的 widgets 是不可变的，这意味着它们的属性不能改变 —— 所有的值都是 final</p>
-<p><code>StatefulWidget</code>：有状态的 widgets 也是不可变的，但其持有的状态可能在 widget 生命周期中发生变化</p>
-<p>实现一个有状态的 widget 至少需要两个类： </p>
-<p>1）一个 <code>StatefulWidget</code> 类；</p>
-<p>2）一个 <code>State</code> 类；</p>
-<p><code>StatefulWidget</code> 类本身是不变的，但是 <code>State</code> 类在 widget 生命周期中始终存在。</p>
-<p>IDE 直接输入 <code>stful</code>，直接会生成样板代码</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自动更新 RandomWords 其对应的 State 类 _RandomWordsState</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RandomWords</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> RandomWords(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;RandomWords&gt; createState() =&gt; _RandomWordsState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_RandomWordsState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">RandomWords</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="列表组件"><a href="#列表组件" class="headerlink" title="列表组件"></a>列表组件</h3><p>使用 <code>ListView</code> 实现列表组件</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">ListView _bulidSuggestions() &#123;</span><br><span class="line">    <span class="keyword">return</span> ListView.builder(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.all(<span class="number">16.0</span>),</span><br><span class="line">        itemBuilder: (context, i) &#123;</span><br><span class="line">          <span class="comment">// 对于每个建议的单词对都会调用一次 itemBuilder，</span></span><br><span class="line">          <span class="comment">// 然后将单词对添加到 ListTile 行中。在偶数行，</span></span><br><span class="line">          <span class="comment">// 该函数会为单词对添加一个 ListTile row，在奇数行，</span></span><br><span class="line">          <span class="comment">// 该函数会添加一个分割线的 widget，来分隔相邻的词对。</span></span><br><span class="line">          <span class="comment">// 注意，在小屏幕上，分割线可能较难辨别。</span></span><br><span class="line">          <span class="keyword">if</span> (i.isOdd)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">const</span> Divider(); <span class="comment">// 在 ListView 里的每一行之前，添加一个 1 像素高的分隔线 widget。</span></span><br><span class="line"></span><br><span class="line">          <span class="keyword">final</span> index = i ~/ <span class="number">2</span>; <span class="comment">// 语法 i ~/ 2 表示 i 除以 2，但返回值是整型（向下取整），</span></span><br><span class="line">          <span class="comment">// 比如 i 为：1, 2, 3, 4, 5 时，结果为 0, 1, 1, 2, 2，</span></span><br><span class="line">          <span class="comment">// 这个可以计算出 ListView 中减去分隔线后的实际单词对数量。</span></span><br><span class="line">          <span class="keyword">if</span> (index &gt;= _suggestions.length) &#123;</span><br><span class="line">            _suggestions.addAll(generateWordPairs()</span><br><span class="line">                .take(<span class="number">10</span>)); <span class="comment">// 如果是建议列表中最后一个单词对，接着再生成 10 个单词对，然后添加到建议列表。</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span> _bulidRow(_suggestions[index]);</span><br><span class="line">        &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">Widget _bulidRow(WordPair pair) &#123;</span><br><span class="line">    <span class="keyword">final</span> alerdySaved = _saved.contains(pair);</span><br><span class="line">    <span class="keyword">return</span> ListTile(</span><br><span class="line">      title: Text(</span><br><span class="line">        pair.asPascalCase,</span><br><span class="line">        style: _biggerFont,</span><br><span class="line">      ),</span><br><span class="line">      trailing: Icon(</span><br><span class="line">        alerdySaved ? Icons.favorite : Icons.favorite_border,</span><br><span class="line">        color: alerdySaved ? Colors.red : <span class="keyword">null</span>,</span><br><span class="line">      ),</span><br><span class="line">      onTap: () &#123;</span><br><span class="line">        setState(() &#123;</span><br><span class="line">          alerdySaved ? _saved.remove(pair) : _saved.add(pair);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled 1.png" alt="Untitled"></p>
-<h3 id="交互事件"><a href="#交互事件" class="headerlink" title="交互事件"></a>交互事件</h3><p>给组件添加事件</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">onTap: () &#123;</span><br><span class="line"><span class="comment">// 触发页面重新布局渲染</span></span><br><span class="line">        setState(() &#123;</span><br><span class="line">          alerdySaved ? _saved.remove(pair) : _saved.add(pair);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
-<h3 id="路由导航"><a href="#路由导航" class="headerlink" title="路由导航"></a>路由导航</h3><p>页面跳转，导航路由组件 <code>Navigator</code> 组件</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 路由到新的页面</span></span><br><span class="line">  <span class="keyword">void</span> _pushSaved() &#123;</span><br><span class="line">    Navigator.of(context).push(</span><br><span class="line">      MaterialPageRoute(</span><br><span class="line">        builder: (BuildContext context) &#123;</span><br><span class="line">          <span class="keyword">final</span> tiles = _saved.map(</span><br><span class="line">                (WordPair pair) &#123;</span><br><span class="line">              <span class="keyword">return</span> ListTile(</span><br><span class="line">                title: Text(</span><br><span class="line">                  pair.asPascalCase,</span><br><span class="line">                  style: _biggerFont,</span><br><span class="line">                ),</span><br><span class="line">              );</span><br><span class="line">            &#125;,</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          <span class="keyword">final</span> divided = ListTile.divideTiles(</span><br><span class="line">            context: context,</span><br><span class="line">            tiles: tiles,</span><br><span class="line">          ).toList();</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span> Scaffold(</span><br><span class="line">            <span class="comment">// 新增 6 行代码开始 ...</span></span><br><span class="line">            appBar: AppBar(</span><br><span class="line">              title: <span class="keyword">const</span> Text(<span class="string">'Saved Suggestions'</span>),</span><br><span class="line">            ),</span><br><span class="line">            body: ListView(children: divided),</span><br><span class="line">          ); <span class="comment">// ... 新增代码段结束.</span></span><br><span class="line">        &#125;,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="主题样式"><a href="#主题样式" class="headerlink" title="主题样式"></a>主题样式</h3><p>使用 <code>ThemeData</code> 切换主题样式</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// build 描述如何根据其他较低级别的 widgets 来显示自己</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> wordPair = WordPair.random();</span><br><span class="line">    <span class="comment">// 一种移动端和网页端通用的视觉设计语言， Flutter 提供了丰富的 Material 风格的 widgets</span></span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Startup Name Generator'</span>,</span><br><span class="line">      <span class="comment">// 切换样式</span></span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primaryColor: Colors.red,</span><br><span class="line">        primarySwatch: Colors.red,</span><br><span class="line">        colorScheme: <span class="keyword">const</span> ColorScheme.light().copyWith(primary: Colors.yellow),</span><br><span class="line">      ),</span><br><span class="line">      <span class="comment">// Scaffold 是 Material 库中提供的一个 widget，它提供了默认的导航栏、标题和包含主屏幕 widget 树的 body 属性。 widget 树可以很复杂。</span></span><br><span class="line">      home: <span class="keyword">const</span> RandomWords(),</span><br><span class="line">      debugShowCheckedModeBanner: <span class="keyword">false</span>,</span><br><span class="line">      <span class="comment">// Scaffold(</span></span><br><span class="line">      <span class="comment">//   appBar: AppBar(</span></span><br><span class="line">      <span class="comment">//     title: const Text('Startup Name Generator'),</span></span><br><span class="line">      <span class="comment">//   ),</span></span><br><span class="line">      <span class="comment">//   body: const Center(</span></span><br><span class="line">      <span class="comment">//     child: RandomWords(),</span></span><br><span class="line">      <span class="comment">//   ),</span></span><br><span class="line">      <span class="comment">// ),</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong><strong><a href="https://www.cnblogs.com/huangzs/p/16305693.html" target="_blank" rel="noopener">解决Flutter中ThemeData.primaryColor在AppBar等组件中不生效</a></strong></strong></p>
-</blockquote>
-<h3 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a>最后效果</h3><p><img src="/Users/chenliangjing/Desktop/Futter 学习-基础知识 2/Flutter 学习-基础知识 e6440b73b13b4778acd60310c88194ed/Untitled.gif" alt="Untitled"></p>
-<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>基础 <strong><code>widgets</code></strong></p>
-<ol>
-<li>Text</li>
-<li>Row，column：相对应 web 中的 flexbox 布局模型</li>
-<li>Stack: 相对应 web 中的绝对位置布局模型</li>
-<li>Container：容器 <strong><code>widgets</code></strong> <ol>
-<li>设置外边距、内边距和尺寸的约束条件</li>
-<li>使用 <code>[BoxDecoration](https://api.flutter-io.cn/flutter/painting/BoxDecoration-class.html)</code>来进行装饰，如背景，边框，或阴影等</li>
-<li>使用矩阵在三维空间进行转换</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>Flutter App 就是由各个 <strong><code>widgets</code></strong> 组合嵌套而成</p>
-</blockquote>
-<h3 id="Flutter-的构建模式"><a href="#Flutter-的构建模式" class="headerlink" title="Flutter 的构建模式"></a><strong>Flutter 的构建模式</strong></h3><ul>
-<li>Debug<ul>
-<li>包含所有调试信息，日志，devTools，热重载工具等，包体积大，代码未优化，实际性能受影响</li>
-</ul>
-</li>
-<li>Release<ul>
-<li>没有断点等调试信息，只支持真机</li>
-</ul>
-</li>
-<li>Profile<ul>
-<li>用来测试 App 性能，关闭各种日志，devTools，包体积小，接近真实使用场景</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2022/10/01/Flutter-学习-基本基础知识/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">iOS Stripe 支付（绑卡，Apple Pay）、退款、提现集成总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-11-15 20:05:34" itemprop="dateCreated datePublished" datetime="2020-11-15T20:05:34+08:00">2020-11-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/Stripe/" itemprop="url" rel="index"><span itemprop="name">Stripe</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/" class="leancloud_visitors" data-flag-title="iOS Stripe 支付（绑卡，Apple Pay）、退款、提现集成总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://stripe.com/" target="_blank" rel="noopener">Stripe</a> 是一家国外的提供支付服务的平台，可以让商户在自己的应用和网站方便快捷地集成信用卡支付、第三方（Apple Pay、Alipay、微信pay、三星pay、微软pay 等）支付方式等服务，具体参考官网介绍。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2020-11-15-083806.png" alt="image-20201115163806075"></p>
-<p>本文主要记录总结一下在 iOS  平台如何集成 Stripe 相关的服务。主要包含一下内容：</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/11/15/iOS-Stripe-支付（绑卡，Apple-Pay）、退款、提现集成总结/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈良静">
-      <meta itemprop="description" content="跑得了马，写得了码！">
-      <meta itemprop="image" content="/images/myIcon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="在水一方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-11-14 19:27:25" itemprop="dateCreated datePublished" datetime="2020-11-14T19:27:25+08:00">2020-11-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/iOS/定位/" itemprop="url" rel="index"><span itemprop="name">定位</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/" class="leancloud_visitors" data-flag-title="iOS 开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近开发的项目使用了一些第三方地图的功能，主要包括：</p>
-<ul>
-<li>定位</li>
-<li>POI（附近，模糊）搜索</li>
-<li>地理编码和逆编码</li>
-<li>地图展示 </li>
-<li>标记点（大头针）</li>
-<li>线段，图形，覆盖物（折线，直线，圆形，不规则图形）</li>
-<li>导航（内部导航，跳转其他地图 App 导航）</li>
-<li>地理围栏</li>
-</ul>
-<blockquote>
-<p>主要包含了高德地图、谷歌地图等，其他的地图如百度地图，腾讯地图等参考相关文档其实差别也不大。</p>
-</blockquote>
-<p>文章主要记录一下相关代码和一些集成调试踩过的一些坑，防止忘记，归个档。</p>
-<h3 id="废话不多说，先看效果："><a href="#废话不多说，先看效果：" class="headerlink" title="废话不多说，先看效果："></a>废话不多说，先看效果：</h3>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/11/14/iOS-开发地图常见功能总结（定位、标注大头针、划线、路径规划、导航、地理围栏等）/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2020/01/22/iOS-基于-launchctl-fastlane-钉钉机器人实现定时自动打包/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1196,7 +510,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1411,7 +725,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1618,7 +932,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1692,7 +1006,7 @@
       
         
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>学习 Swift 语法最好的工具是 Xcode 配套的 Playground，所见即所得。除了实时显示变量的值，还可以加载资源，呈现视图，多文件管理等。</p>
-<p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-11-013609.png" alt="image-20191011093609289"></p>
+<p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-11-013609.png" alt="image-20191011093609289"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1818,7 +1132,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -1899,7 +1213,7 @@
       
         
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>2017 年由于公司需要，做过一个支持全景图显示的网页，这篇文章主要回顾和记录一下当初开发这个功能时的一些情景。</p>
-<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;"></p>
+<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-10-02-113357.gif" alt="ezgif.com-video-to-gif" style="zoom:67%;"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2025,7 +1339,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -2105,9 +1419,9 @@
 
       
         
-          <p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-09-27-080029.jpg" alt="中山公园"></p>
+          <p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-080029.jpg" alt="中山公园"></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司项目中需要做秒开 h5 页面的优化需求，于是调研了下市面上的方案，并结合本公司具体的业务需求做了一次这方面的优化实践，这篇文章是对这次优化实践的记录，文末附上源代码下载。</p>
-<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2019-09-27-074217.gif" alt="ezgif.com-optimize"></p>
+<h3 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h3><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/2019-09-27-074217.gif" alt="ezgif.com-optimize"></p>
 <h3 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h3><p>首先来看，在 iOS 平台加载一个 H5 网页，需要经过哪些步骤：</p>
 <p>初始化 webview -&gt; 请求页面 -&gt; 下载数据 -&gt; 解析HTML -&gt; 请求 js/css 资源 -&gt; dom 渲染 -&gt; 解析 JS 执行 -&gt; JS 请求数据 -&gt; 解析渲染 -&gt; 下载渲染图片</p>
           <!--noindex-->
@@ -2235,7 +1549,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -2315,7 +1629,7 @@
 
       
         
-          <p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400" alt=""></p>
+          <p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/Xnip2019-05-02_08-31-17.png?imageView2/2/w/400" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学习算法课程的时候，老师推荐了两本算法和数据结构入门书，一本是<a href="https://book.douban.com/subject/26979890/" target="_blank" rel="noopener">《算法图解》</a>、一本是<a href="https://book.douban.com/subject/6424904/" target="_blank" rel="noopener">《大话数据结构》</a>，<a href="https://book.douban.com/subject/26979890/" target="_blank" rel="noopener">《算法图解》</a>这本书最近读完了，读完的最大感受就是对算法不再感到畏惧和陌生，对常用的算法和数据结构都会在心里有个基本的概念，这篇文章记录下这本书的主要内容和知识点。</p>
 <p>总的来说，这本书是一本不错的算法入门书，作者以从实际开发场景出发，介绍了软件开发中最基本、最常用的一些<code>数据结构</code>和<code>算法思想</code>，同时作者写得非常深入浅出，联系实际应用场景，并结合了大量的算法推演图示，举例生动形象，循序渐进，使读者易于理解，能够很大地培养读者对算法的兴趣，从而引导读者进一步地进行学习研究。<br></p>
           <!--noindex-->
@@ -2443,7 +1757,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-12-20 12:09:51" itemprop="dateModified" datetime="2022-12-20T12:09:51+08:00">2022-12-20</time>
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
               
             
           </span>
@@ -2523,7 +1837,7 @@
 
       
         
-          <p><img src="https://image-1254431338.cos.ap-guangzhou.myqcloud.com/timg.jpeg" alt=""></p>
+          <p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/timg.jpeg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://book.douban.com/subject/3369600/" target="_blank" rel="noopener">这本书</a>是村上春树写得一本关于自己跑步的随笔集，记录了村上几十年来跑步训练、马拉松比赛的一些心情日志和对跑步的感悟，其实大学时期就读过了，不过那时候刚刚跑步不久，读完也没啥印象了，现在跑步也已经七八年了，马拉松也跑了快十场，再读这本书，就稍微有点感觉了，如果你也是一个爱跑步的人，我想也会有一些相似的体会吧，于我而言，觉得有感觉的地方有以下几点：</p>
 <h2 id="为什么是跑步？"><a href="#为什么是跑步？" class="headerlink" title="为什么是跑步？"></a>为什么是跑步？</h2><ol>
 <li><p>跑步简单。跑步对人类而言是一种天生的本能，每个人基因里天生就会跑，而且不需要同伴，一点不复杂，只需要一双合脚的跑鞋，说跑就跑了。</p></li></ol>
@@ -2575,11 +1889,617 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">《人类简史》读书笔记-一切并不是那么理所当然</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-29 19:29:09" itemprop="dateCreated datePublished" datetime="2019-03-29T19:29:09+08:00">2019-03-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/" class="leancloud_visitors" data-flag-title="《人类简史》读书笔记-一切并不是那么理所当然">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://blogimages-1254431338.cos.ap-shenzhen-fsi.myqcloud.com/IMG_3219.jpg?imageView2/2/w/200" alt=""><br>作者：[以色列] 尤瓦尔·赫拉利<br>翻译：林俊宏<br>出版年份：2014-11<br></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/29/《人类简史》读书笔记-一切并不是那么理所当然/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/03/09/C-语言拾遗/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/09/C-语言拾遗/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">C 语言拾遗</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-09 19:29:09" itemprop="dateCreated datePublished" datetime="2019-03-09T19:29:09+08:00">2019-03-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/09/C-语言拾遗/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/09/C-语言拾遗/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/09/C-语言拾遗/" class="leancloud_visitors" data-flag-title="C 语言拾遗">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近学习<a href="https://chenliangjing.me/2019/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%80%E7%AF%87/">数据结构和算法</a>，使用 C 语言实现一些算法和练习题的时候，容易卡壳在 C 语言里面的一些指针、结构体、内存分配等相关语法知识点上，这次复习了一下，下面是一些记录。</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>指针：就是<code>保存地址的变量</code>，变量的值是所指像的<code>内存地址</code>。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/09/C-语言拾遗/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenliangjing.me/2019/03/08/数据结构与算法学习-链表下/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈良静">
+      <meta itemprop="description" content="跑得了马，写得了码！">
+      <meta itemprop="image" content="/images/myIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在水一方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/08/数据结构与算法学习-链表下/" class="post-title-link" itemprop="https://chenliangjing.me/index.html">数据结构与算法学习-链表下</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-08 11:49:59" itemprop="dateCreated datePublished" datetime="2019-03-08T11:49:59+08:00">2019-03-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-20 12:46:01" itemprop="dateModified" datetime="2022-12-20T12:46:01+08:00">2022-12-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/Tags/数据结构/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/08/数据结构与算法学习-链表下/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/08/数据结构与算法学习-链表下/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/08/数据结构与算法学习-链表下/" class="leancloud_visitors" data-flag-title="数据结构与算法学习-链表下">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://chenliangjing.me/2019/03/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E9%93%BE%E8%A1%A8%E4%B8%8A/">上一篇文章</a>讲了链表相关的概念，这篇主要记录的是和链表相关的算法以及一些写好链表算法代码<code>相关的技巧</code>。</p>
+<h2 id="实现单链表、循环链表、双向链表，支持增删操作"><a href="#实现单链表、循环链表、双向链表，支持增删操作" class="headerlink" title="实现单链表、循环链表、双向链表，支持增删操作"></a>实现单链表、循环链表、双向链表，支持增删操作</h2><h4 id="1-单链表"><a href="#1-单链表" class="headerlink" title="1. 单链表"></a>1. 单链表</h4>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/08/数据结构与算法学习-链表下/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2624,7 +2544,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2711,13 +2631,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2828,13 +2742,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
