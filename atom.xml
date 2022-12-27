@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenliangjing.run/"/>
-  <updated>2022-12-20T06:03:47.577Z</updated>
+  <updated>2022-12-27T05:19:46.337Z</updated>
   <id>https://chenliangjing.run/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://chenliangjing.run/2022/10/01/Flutter-%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E6%9C%AC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <id>https://chenliangjing.run/2022/10/01/Flutter-学习-基本基础知识/</id>
     <published>2022-10-01T03:39:23.000Z</published>
-    <updated>2022-12-20T06:03:47.577Z</updated>
+    <updated>2022-12-27T05:19:46.337Z</updated>
     
     <summary type="html">
     
@@ -32,7 +32,7 @@
 &lt;li&gt;Plugin：Flutter 平台插件，包含 Dart 和 Native 平台层的实现，是一种&lt;code&gt;特殊的 Flutter Package&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Skeleton（骨架）：flutter 2.5 之后新增的，自动生成 Flutter 模版，提供常用框架&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;/2022/10/01/Flutter-学习-基本基础知识/Untitled.png&quot; alt=&quot;Untitled&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://image-1254431338.cos.ap-guangzhou.myqcloud.com/2022-12-27-051905.png&quot; alt=&quot;Untitled&quot;&gt;&lt;/p&gt;
     
     </summary>
     
